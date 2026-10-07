@@ -44,7 +44,7 @@ src/js/texte.js                Pur : markdown léger, [passages à compléter], 
 src/js/schema.js               Schéma d'une fiche et contrôle de typographie
 src/js/ui.js · stockage.js     el(), remplir(), typographier(), copier() ; seul accès à localStorage (préfixe skazy-prompts:)
 src/js/icones.js               Liste des icônes Font Awesome utilisées ; icone('nom') ou icone('regular/nom')
-src/js/vues/                   bandeau, scene, resultats, carte, fiche, apropos, commun
+src/js/vues/                   bandeau, scene, resultats, menu (filtres en pilule), carte, fiche, apropos, commun
 src/donnees/referentiels.js    Catégories (une couleur du design system chacune), niveaux, outils
 src/donnees/fiches.js          Les fiches, écrites par npm run integrer
 archives/the-neuron/           Toutes les éditions archivées + index.json (date, source, récupération)

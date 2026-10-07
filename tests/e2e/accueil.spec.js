@@ -2,27 +2,42 @@ import { test, expect } from '@playwright/test';
 import { surveillerErreurs, verifierAccessibilite } from './outils.js';
 
 const nombre = async (locator) => Number((await locator.textContent()).match(/\d+/)[0]);
+const PAS = 36;
+
+/** Choisit une option dans un menu de filtre (niveau, outil, tri). */
+async function choisir(page, menu, option) {
+  await page.locator(`#filtre-${menu}`).click();
+  await page.locator(`#filtre-${menu}-liste`).getByRole('option', { name: option }).click();
+}
 
 test.beforeEach(async ({ page }) => {
   await page.goto('/');
   await expect(page.locator('.carte').first()).toBeVisible();
 });
 
-test('l’accueil affiche toutes les fiches, sans erreur ni défaut d’accessibilité', async ({
+test('l’accueil affiche les fiches par lots, sans erreur ni défaut d’accessibilité', async ({
   page,
 }) => {
+  test.slow();
   const erreurs = surveillerErreurs(page);
   await page.reload();
   await expect(page.locator('.carte').first()).toBeVisible();
   const total = await nombre(page.locator('#titre-resultats'));
-  expect(total).toBeGreaterThan(100);
-  await expect(page.locator('.carte')).toHaveCount(total);
+  expect(total).toBeGreaterThan(400);
+  await expect(page.locator('.carte')).toHaveCount(PAS);
+  await expect(page.locator('.resultats__compte')).toHaveText(
+    `${PAS} sur ${total} fiches affichées`,
+  );
+  await page.locator('#afficher-plus').click();
+  await expect(page.locator('.carte')).toHaveCount(2 * PAS);
+  await expect(page.locator('.carte').nth(PAS).locator('.carte__lien')).toBeFocused();
   await expect(page.locator('#titre-page')).toHaveText('Des techniques de prompt prêtes à copier');
   await verifierAccessibilite(page);
   expect(erreurs).toEqual([]);
 });
 
 test('le thème sombre est accessible aussi', async ({ page }) => {
+  test.slow();
   await page.emulateMedia({ colorScheme: 'dark' });
   await expect(page.locator('body')).toHaveCSS('background-color', 'rgb(20, 20, 20)');
   await verifierAccessibilite(page);
@@ -33,7 +48,8 @@ test('une catégorie filtre les cartes et s’inscrit dans l’adresse', async (
   const pastille = page.locator('label.pastille', { hasText: 'Coder' });
   const attendu = await nombre(pastille.locator('.pastille__nombre'));
   await pastille.click();
-  await expect(page.locator('.carte')).toHaveCount(attendu);
+  await expect(page.locator('#titre-resultats')).toHaveText(`${attendu} fiches`);
+  await expect(page.locator('.carte')).toHaveCount(Math.min(attendu, PAS));
   expect(attendu).toBeLessThan(total);
   await expect(page).toHaveURL(/categorie=coder/);
   for (const badge of await page.locator('.carte .badge').allTextContents()) {
@@ -41,16 +57,19 @@ test('une catégorie filtre les cartes et s’inscrit dans l’adresse', async (
   }
   // Le filtre actif s'affiche et se retire.
   await page.getByRole('button', { name: 'Retirer le filtre : Coder avec l’IA' }).click();
-  await expect(page.locator('.carte')).toHaveCount(total);
+  await expect(page.locator('#titre-resultats')).toHaveText(`${total} fiches`);
 });
 
 test('l’adresse avec filtres rouvre la même vue', async ({ page }) => {
   await page.goto('/?categorie=verifier&niveau=debutant');
   await expect(page.locator('.carte').first()).toBeVisible();
   await expect(page.locator('input[name="categorie"][value="verifier"]')).toBeChecked();
-  await expect(page.locator('#filtre-niveau')).toHaveValue('debutant');
-  for (const niveau of await page.locator('.carte__niveau').allTextContents()) {
-    expect(niveau.trim()).toBe('Débutant');
+  const niveau = page.locator('#filtre-niveau');
+  await expect(niveau).toHaveText('Débutant');
+  await expect(niveau).toHaveClass(/menu-filtre__bouton--actif/);
+  await expect(niveau).toHaveAttribute('aria-label', 'Niveau : Débutant');
+  for (const n of await page.locator('.carte__niveau').allTextContents()) {
+    expect(n.trim()).toBe('Débutant');
   }
 });
 
@@ -70,18 +89,51 @@ test('la recherche ignore les accents et propose de tout effacer quand rien ne c
   await expect(page.locator('.carte').first()).toBeVisible();
 });
 
-test('niveau, outil et tri se combinent', async ({ page }) => {
-  await page.locator('#filtre-niveau').selectOption('avance');
-  await page.locator('#filtre-outil').selectOption('claude-code');
-  const n = await page.locator('.carte').count();
-  expect(n).toBeGreaterThan(0);
+test('les menus de niveau, d’outil et de tri se combinent', async ({ page }) => {
+  // Chaque choix annonce son nombre de fiches, et la pilule montre le filtre actif.
+  await page.locator('#filtre-niveau').click();
+  const option = page.locator('#filtre-niveau-liste').getByRole('option', { name: /Avancé/ });
+  const attendu = await nombre(option.locator('.menu-filtre__nombre'));
+  await option.click();
+  await expect(page.locator('#filtre-niveau-liste')).toBeHidden();
+  await expect(page.locator('#titre-resultats')).toHaveText(`${attendu} fiches`);
+  await expect(page.locator('#filtre-niveau')).toHaveText('Avancé');
+
+  await choisir(page, 'outil', /Claude Code/);
+  expect(await page.locator('.carte').count()).toBeGreaterThan(0);
   for (const outils of await page.locator('.carte__outils').allTextContents()) {
     expect(outils).toContain('Claude Code');
   }
-  await page.locator('#filtre-tri').selectOption('ancien');
+  await choisir(page, 'tri', 'Plus anciennes');
+  await expect(page.locator('#filtre-tri')).toHaveText('Plus anciennes');
   const dates = await page.locator('.carte time').evaluateAll((t) => t.map((x) => x.dateTime));
   expect([...dates].sort()).toEqual(dates);
   await expect(page.getByRole('button', { name: 'Tout effacer' })).toBeVisible();
+  await page.getByRole('button', { name: 'Tout effacer' }).click();
+  await expect(page.locator('#filtre-niveau')).toHaveText('Niveau');
+});
+
+test('un menu se pilote au clavier et se ferme avec Échap', async ({ page }) => {
+  const bouton = page.locator('#filtre-niveau');
+  await bouton.focus();
+  await page.keyboard.press('Enter');
+  await expect(bouton).toHaveAttribute('aria-expanded', 'true');
+  await expect(page.locator('#filtre-niveau-tous')).toBeFocused();
+  await page.keyboard.press('ArrowDown');
+  await expect(page.locator('#filtre-niveau-debutant')).toBeFocused();
+  await page.keyboard.press('Enter');
+  await expect(bouton).toHaveText('Débutant');
+  await expect(bouton).toBeFocused();
+
+  await page.keyboard.press('ArrowDown');
+  await expect(page.locator('#filtre-niveau-liste')).toBeVisible();
+  await page.keyboard.press('Escape');
+  await expect(page.locator('#filtre-niveau-liste')).toBeHidden();
+  await expect(bouton).toBeFocused();
+  // Un clic ailleurs ferme aussi le menu.
+  await bouton.click();
+  await page.locator('#titre-resultats').click();
+  await expect(page.locator('#filtre-niveau-liste')).toBeHidden();
 });
 
 test('les favoris se gardent et se filtrent', async ({ page }) => {
@@ -128,6 +180,7 @@ test('le thème se change et se retient', async ({ page }) => {
 });
 
 test('À propos présente les catégories et mène à l’une d’elles', async ({ page }) => {
+  test.slow();
   await page.getByRole('button', { name: 'À propos de la Prompthèque' }).click();
   const dialogue = page.getByRole('dialog', { name: 'À propos' });
   await expect(dialogue).toBeVisible();
