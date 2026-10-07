@@ -101,6 +101,70 @@ await capturer('apropos-390', {
   action: (page) => page.locator('.bouton-apropos').click(),
 });
 
+const versFiltres = (page) =>
+  page.evaluate(() => {
+    const barre = document.querySelector('.barre-filtres');
+    window.scrollTo(0, barre.getBoundingClientRect().top + window.scrollY - 220);
+  });
+await capturer('menu-1280', {
+  largeur: 1280,
+  hauteur: 720,
+  action: async (page) => {
+    await versFiltres(page);
+    await page.locator('#filtre-niveau').click();
+  },
+});
+await capturer('menu-tri-1280-sombre', {
+  largeur: 1280,
+  hauteur: 720,
+  theme: 'dark',
+  action: async (page) => {
+    await versFiltres(page);
+    await page.locator('#filtre-tri').click();
+  },
+});
+await capturer('filtres-390-sombre', {
+  largeur: 390,
+  hauteur: 844,
+  theme: 'dark',
+  action: async (page) => {
+    await page.locator('.categories').scrollIntoViewIfNeeded();
+    await page.evaluate(() => window.scrollBy(0, 260));
+  },
+});
+await capturer('filtre-actif-390', {
+  largeur: 390,
+  hauteur: 844,
+  action: async (page) => {
+    await versFiltres(page);
+    await page.locator('#filtre-niveau').click();
+    await page.getByRole('option', { name: /Débutant/ }).click();
+    await versFiltres(page);
+  },
+});
+await capturer('menu-390', {
+  largeur: 390,
+  hauteur: 844,
+  action: async (page) => {
+    await versFiltres(page);
+    await page.locator('#filtre-outil').click();
+  },
+});
+await capturer('menu-360-sombre', {
+  largeur: 360,
+  hauteur: 780,
+  theme: 'dark',
+  action: async (page) => {
+    await versFiltres(page);
+    await page.locator('#filtre-niveau').click();
+  },
+});
+await capturer('plus-390', {
+  largeur: 390,
+  hauteur: 844,
+  action: (page) => page.locator('#afficher-plus').scrollIntoViewIfNeeded(),
+});
+
 await navigateur.close();
 console.log(`Captures dans ${DOSSIER}`);
 if (erreurs.length) console.log(`Erreurs :\n${[...new Set(erreurs)].slice(0, 20).join('\n')}`);

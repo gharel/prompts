@@ -1,6 +1,6 @@
 /**
- * Les résultats : titre et nombre, filtres secondaires (niveau, outil, tri), filtres actifs,
- * grille de cartes, état vide.
+ * Les résultats : titre et nombre, menus de filtre (niveau, outil, tri) avec le nombre de
+ * fiches de chaque choix, filtres actifs, grille de cartes, état vide.
  */
 import { el, remplir, pluriel, annoncer } from '../ui.js';
 import { icone } from '../icones.js';
@@ -8,57 +8,70 @@ import { CATEGORIES, NIVEAUX, OUTILS, categorie } from '../../donnees/referentie
 import { filtrer, trier, TRIS, auHasard, texteRecherche } from '../filtres.js';
 import { nombreFiltresActifs } from '../etat.js';
 import { creerCarte } from './carte.js';
+import { creerMenuFiltre } from './menu.js';
 
-function selecteur(id, libelle, nomIcone, options, valeur) {
-  const select = el(
-    'select',
-    { id, class: 'champ champ--select' },
-    options.map((o) => el('option', { value: o.slug, selected: o.slug === valeur }, o.nom)),
-  );
-  return {
-    select,
-    bloc: el(
-      'label',
-      { class: 'filtre', for: id },
-      el('span', { class: 'filtre__libelle' }, icone(nomIcone), libelle),
-      select,
-    ),
-  };
-}
+/** Cartes affichées par lot : la page reste légère, même sur téléphone. */
+export const PAS_AFFICHAGE = 36;
+
+const CHOIX_NIVEAUX = [{ slug: 'tous', nom: 'Tous les niveaux' }, ...NIVEAUX];
+const CHOIX_OUTILS = [
+  { slug: 'tous', nom: 'Tous les outils' },
+  ...OUTILS.filter((o) => o.slug !== 'tous'),
+];
 
 export function monterResultats(conteneur, magasin, fiches) {
   const index = new Map(fiches.map((f) => [f.id, texteRecherche(f)]));
   const cartes = new Map(fiches.map((f) => [f.id, creerCarte(f, magasin)]));
   let courants = [];
+  let affichees = PAS_AFFICHAGE;
 
   const f = magasin.filtres;
-  const niveau = selecteur(
-    'filtre-niveau',
-    'Niveau',
-    'stairs',
-    [{ slug: 'tous', nom: 'Tous' }, ...NIVEAUX],
-    f.niveau,
-  );
-  const outil = selecteur(
-    'filtre-outil',
-    'Outil',
-    'toolbox',
-    [{ slug: 'tous', nom: 'Tous' }, ...OUTILS.filter((o) => o.slug !== 'tous')],
-    f.outil,
-  );
-  const tri = selecteur('filtre-tri', 'Trier', 'sliders', TRIS, f.tri);
+  const niveau = creerMenuFiltre({
+    id: 'filtre-niveau',
+    libelle: 'Niveau',
+    nomIcone: 'stairs',
+    options: CHOIX_NIVEAUX,
+    valeur: f.niveau,
+    parDefaut: 'tous',
+    surChoix: (slug) => magasin.changerFiltres({ niveau: slug }),
+  });
+  const outil = creerMenuFiltre({
+    id: 'filtre-outil',
+    libelle: 'Outil',
+    nomIcone: 'toolbox',
+    options: CHOIX_OUTILS,
+    valeur: f.outil,
+    parDefaut: 'tous',
+    surChoix: (slug) => magasin.changerFiltres({ outil: slug }),
+  });
+  const tri = creerMenuFiltre({
+    id: 'filtre-tri',
+    libelle: 'Trier',
+    nomIcone: 'arrow-down-wide-short',
+    options: TRIS,
+    valeur: f.tri,
+    aDroite: true,
+    surChoix: (slug) => magasin.changerFiltres({ tri: slug }),
+  });
 
   const hasard = el(
     'button',
-    { type: 'button', class: 'bouton bouton--secondaire', id: 'hasard' },
+    {
+      type: 'button',
+      class: 'bouton bouton--secondaire bouton--compact',
+      id: 'hasard',
+      'aria-label': 'Ouvrir une fiche au hasard',
+    },
     icone('shuffle'),
-    'Une fiche au hasard',
+    el('span', { class: 'hasard__long' }, 'Une fiche au hasard'),
+    el('span', { class: 'hasard__court', 'aria-hidden': 'true' }, 'Au hasard'),
   );
   const titre = el('h2', { id: 'titre-resultats' });
   const contexte = el('p', { class: 'resultats__contexte' });
   const actifs = el('div', { class: 'actifs', 'aria-label': 'Filtres actifs' });
   const grille = el('div', { class: 'grille', id: 'grille' });
   const vide = el('div', { class: 'vide', hidden: true });
+  const plus = el('div', { class: 'resultats__plus' });
 
   remplir(
     conteneur,
@@ -71,20 +84,19 @@ export function monterResultats(conteneur, magasin, fiches) {
         el('div', { class: 'resultats__titres' }, titre, contexte),
         hasard,
       ),
-      el('div', { class: 'filtres' }, niveau.bloc, outil.bloc, tri.bloc),
+      el(
+        'div',
+        { class: 'barre-filtres', role: 'group', 'aria-label': 'Affiner la liste' },
+        el('div', { class: 'barre-filtres__groupe' }, niveau.element, outil.element),
+        tri.element,
+      ),
       actifs,
       grille,
+      plus,
       vide,
     ),
   );
 
-  niveau.select.addEventListener('change', () =>
-    magasin.changerFiltres({ niveau: niveau.select.value }),
-  );
-  outil.select.addEventListener('change', () =>
-    magasin.changerFiltres({ outil: outil.select.value }),
-  );
-  tri.select.addEventListener('change', () => magasin.changerFiltres({ tri: tri.select.value }));
   hasard.addEventListener('click', () => {
     const tiree = auHasard(courants.length ? courants : fiches);
     if (tiree) globalThis.location.hash = tiree.id;
@@ -188,14 +200,20 @@ export function monterResultats(conteneur, magasin, fiches) {
   }
 
   function libelleContexte(filtres) {
-    const morceaux = [
-      filtres.categorie === 'toutes' ? 'Toutes catégories' : categorie(filtres.categorie).nom,
-      filtres.niveau === 'tous'
-        ? 'tous niveaux'
-        : NIVEAUX.find((n) => n.slug === filtres.niveau).nom.toLowerCase(),
-      filtres.outil === 'tous' ? 'tous outils' : OUTILS.find((o) => o.slug === filtres.outil).nom,
-    ];
-    return `${morceaux.join(' · ')} · ${TRIS.find((t) => t.slug === filtres.tri).nom.toLowerCase()}`;
+    if (filtres.favoris) return 'Vos favoris, gardés dans ce navigateur.';
+    if (filtres.categorie === 'toutes') return 'Toutes les catégories, de toutes les éditions.';
+    const cat = categorie(filtres.categorie);
+    return `${cat.nom} : ${cat.description.charAt(0).toLowerCase()}${cat.description.slice(1)}`;
+  }
+
+  /** Nombre de fiches de chaque choix d'un menu, les autres filtres restant appliqués. */
+  function nombresPour(champ, choix) {
+    return new Map(
+      choix.map((c) => [
+        c.slug,
+        filtrer(fiches, { ...magasin.filtres, [champ]: c.slug }, magasin.favoris, index).length,
+      ]),
+    );
   }
 
   function afficher() {
@@ -203,14 +221,53 @@ export function monterResultats(conteneur, magasin, fiches) {
     courants = trier(filtrer(fiches, filtres, magasin.favoris, index), filtres.tri);
     titre.textContent = courants.length ? pluriel(courants.length, 'fiche') : 'Aucune fiche';
     contexte.textContent = libelleContexte(filtres);
-    grille.replaceChildren(...courants.map((fiche) => cartes.get(fiche.id)));
+    afficherCartes();
     grille.hidden = courants.length === 0;
     vide.hidden = courants.length > 0;
     if (!courants.length) afficherVide();
     afficherActifs();
-    niveau.select.value = filtres.niveau;
-    outil.select.value = filtres.outil;
-    tri.select.value = filtres.tri;
+    niveau.mettreAJour(filtres.niveau, nombresPour('niveau', CHOIX_NIVEAUX));
+    outil.mettreAJour(filtres.outil, nombresPour('outil', CHOIX_OUTILS));
+    tri.mettreAJour(filtres.tri);
+  }
+
+  /** Les cartes du lot courant, et le bouton pour afficher le lot suivant. */
+  function afficherCartes() {
+    const visibles = courants.slice(0, affichees);
+    grille.replaceChildren(...visibles.map((fiche) => cartes.get(fiche.id)));
+    const reste = courants.length - visibles.length;
+    if (reste <= 0) {
+      plus.replaceChildren();
+      return;
+    }
+    const lot = Math.min(PAS_AFFICHAGE, reste);
+    remplir(
+      plus,
+      el(
+        'p',
+        { class: 'resultats__compte' },
+        `${visibles.length} sur ${courants.length} fiches affichées`,
+      ),
+      el(
+        'button',
+        {
+          type: 'button',
+          class: 'bouton bouton--secondaire',
+          id: 'afficher-plus',
+          onclick: () => {
+            const premiere = visibles.length;
+            affichees += PAS_AFFICHAGE;
+            afficherCartes();
+            // Le focus passe à la première nouvelle carte, pour continuer au clavier.
+            grille.children[premiere]
+              ?.querySelector('.carte__lien')
+              ?.focus({ preventScroll: true });
+          },
+        },
+        icone('plus'),
+        `Afficher ${pluriel(lot, 'fiche')} de plus`,
+      ),
+    );
   }
 
   let minuterieAnnonce;
@@ -220,6 +277,7 @@ export function monterResultats(conteneur, magasin, fiches) {
       if (magasin.filtres.favoris) afficher();
       return;
     }
+    affichees = PAS_AFFICHAGE;
     afficher();
     clearTimeout(minuterieAnnonce);
     minuterieAnnonce = setTimeout(() => {

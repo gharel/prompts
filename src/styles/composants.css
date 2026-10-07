@@ -80,11 +80,15 @@
   display: grid;
   gap: var(--e-3);
 }
+/* Une légende n'est pas un élément de la grille du fieldset : son écart vient de sa marge. */
 .categories__legende {
   padding: 0;
-  font-size: var(--texte-sm);
+  margin-bottom: var(--e-4);
+  font-size: var(--texte-xs);
   font-weight: 700;
-  color: var(--scene-texte);
+  letter-spacing: var(--interlettre-tres-large);
+  text-transform: uppercase;
+  color: var(--scene-doux);
 }
 .pastilles {
   display: flex;
@@ -201,44 +205,200 @@
   color: var(--texte-doux);
 }
 
-.filtres {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--e-3) var(--e-4);
-  padding: var(--e-4);
+/* ── Barre de filtres : menus en pilule (niveau, outil, tri) ── */
+.barre-filtres {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--e-3);
+  padding-bottom: var(--e-4);
+  border-bottom: 1px solid var(--bord);
+}
+.barre-filtres__groupe {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--e-2);
+}
+.menu-filtre {
+  position: relative;
+}
+.menu-filtre__bouton {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--e-2);
+  min-height: 44px;
+  padding: 8px 14px 8px 16px;
+  border: 1.5px solid var(--bord-fort);
+  border-radius: var(--rayon-pilule);
+  background: var(--surface);
+  color: var(--texte-fort);
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+  cursor: pointer;
+  box-shadow: var(--ombre-xs);
+  transition:
+    background var(--transition-rapide),
+    border-color var(--transition-rapide),
+    color var(--transition-rapide),
+    box-shadow var(--transition-rapide);
+}
+.menu-filtre__bouton > .icone:first-child {
+  color: var(--primaire-texte);
+}
+.menu-filtre__bouton:hover {
+  border-color: var(--primaire);
+}
+.menu-filtre__bouton[aria-expanded='true'] {
+  border-color: var(--primaire);
+  box-shadow: 0 0 0 3px var(--primaire-pale);
+}
+.menu-filtre__bouton--actif,
+.menu-filtre__bouton--actif:hover {
+  background: var(--primaire-fonce);
+  border-color: var(--primaire-fonce);
+  color: var(--sur-primaire);
+}
+.menu-filtre__bouton--actif > .icone:first-child,
+.menu-filtre__bouton--actif .menu-filtre__chevron {
+  color: var(--sur-primaire);
+}
+.menu-filtre__chevron {
+  font-size: 0.7em;
+  color: var(--texte-doux);
+  transition: transform var(--transition-rapide);
+}
+.menu-filtre--ouvert .menu-filtre__chevron {
+  transform: rotate(180deg);
+}
+
+.menu-filtre__panneau {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 30;
+  width: max-content;
+  min-width: 17rem;
+  max-width: min(26rem, calc(100vw - 32px));
+  padding: var(--e-2);
   background: var(--surface);
   border: 1px solid var(--bord);
   border-radius: var(--rayon-xl);
+  box-shadow: var(--ombre-xl);
+  animation: entree-menu var(--transition-rapide) backwards;
 }
-.filtre {
+.menu-filtre--droite .menu-filtre__panneau {
+  left: auto;
+  right: 0;
+}
+@keyframes entree-menu {
+  from {
+    transform: translateY(-6px);
+    opacity: 0;
+  }
+}
+.menu-filtre__entete {
+  display: none;
+}
+.menu-filtre__liste {
+  margin: 0;
+  padding: 0;
+  list-style: none;
   display: grid;
-  gap: 6px;
-  min-width: 0;
+  gap: 2px;
+  max-height: min(60vh, 30rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
-.filtre__libelle {
-  display: inline-flex;
+.menu-filtre__option {
+  display: grid;
+  grid-template-columns: 1.1rem minmax(0, 1fr) auto;
   align-items: center;
-  gap: 6px;
-  font-size: var(--texte-xs);
+  gap: var(--e-3);
+  min-height: 44px;
+  padding: 8px 12px;
+  border-radius: var(--rayon-md);
+  color: var(--texte-fort);
+  cursor: pointer;
+}
+.menu-filtre__option:hover,
+.menu-filtre__option:focus {
+  background: var(--surface-2);
+  outline: none;
+}
+.menu-filtre__option:focus-visible {
+  outline: 2px solid var(--primaire);
+  outline-offset: -2px;
+}
+.menu-filtre__option[aria-selected='true'] {
+  background: var(--primaire-pale);
+  color: var(--primaire-texte);
+}
+.menu-filtre__option[aria-disabled='true'] {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.menu-filtre__coche {
+  display: grid;
+  place-items: center;
+  visibility: hidden;
+  color: var(--primaire-texte);
+}
+.menu-filtre__option[aria-selected='true'] .menu-filtre__coche {
+  visibility: visible;
+}
+.menu-filtre__nom {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+  font-weight: 600;
+}
+.menu-filtre__option[aria-selected='true'] .menu-filtre__nom {
   font-weight: 700;
-  letter-spacing: var(--interlettre-large);
-  text-transform: uppercase;
+}
+.menu-filtre__nom small {
+  font-size: var(--texte-xs);
+  font-weight: 500;
+  line-height: 1.4;
   color: var(--texte-doux);
 }
-.champ--select {
-  appearance: none;
-  padding-right: 40px;
-  border-radius: var(--rayon-pilule);
-  background-image:
-    linear-gradient(45deg, transparent 50%, var(--texte-doux) 50%),
-    linear-gradient(135deg, var(--texte-doux) 50%, transparent 50%);
-  background-position:
-    calc(100% - 20px) 50%,
-    calc(100% - 15px) 50%;
-  background-size: 5px 5px;
-  background-repeat: no-repeat;
-  cursor: pointer;
-  text-overflow: ellipsis;
+.menu-filtre__nombre {
+  min-width: 2ch;
+  font-size: var(--texte-xs);
+  font-weight: 700;
+  text-align: right;
+  color: var(--texte-doux);
+  font-variant-numeric: tabular-nums;
+}
+.menu-voile {
+  position: fixed;
+  inset: 0;
+  z-index: 49;
+  background: var(--voile);
+}
+@media (min-width: 641px) {
+  .menu-voile {
+    display: none;
+  }
+}
+
+.hasard__court {
+  display: none;
+}
+.resultats__plus {
+  display: grid;
+  justify-items: center;
+  gap: var(--e-3);
+  padding-top: var(--e-2);
+}
+.resultats__plus:empty {
+  display: none;
+}
+.resultats__compte {
+  font-size: var(--texte-sm);
+  color: var(--texte-doux);
+  font-variant-numeric: tabular-nums;
 }
 
 .actifs {
@@ -940,14 +1100,6 @@ mark.a-completer {
     padding-inline: 10px;
   }
 }
-@media (max-width: 760px) {
-  .filtres {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .filtres > .filtre:last-child {
-    grid-column: 1 / -1;
-  }
-}
 @media (max-width: 640px) {
   .scene__interieur {
     padding: var(--e-6) var(--e-4) var(--e-8);
@@ -972,11 +1124,70 @@ mark.a-completer {
   .resultats__titres h2 {
     font-size: var(--texte-2xl);
   }
-  .resultats__entete > .bouton {
-    width: 100%;
+  .resultats__entete {
+    flex-wrap: nowrap;
+    align-items: center;
   }
-  .filtres {
-    padding: var(--e-3);
+  .resultats__entete > .bouton {
+    flex: none;
+  }
+  .hasard__long {
+    display: none;
+  }
+  .hasard__court {
+    display: inline;
+  }
+  /* Pilules plus compactes, sans icône : niveau, outil et tri tiennent sur une ligne. */
+  .menu-filtre__bouton {
+    padding: 8px 12px 8px 14px;
+    font-size: 0.9375rem;
+  }
+  .menu-filtre__bouton > .icone:first-child {
+    display: none;
+  }
+  .barre-filtres {
+    gap: var(--e-2);
+  }
+  /* Sur téléphone, les choix s'ouvrent dans un panneau en bas de l'écran. */
+  .menu-filtre__panneau {
+    position: fixed;
+    top: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 50;
+    width: auto;
+    min-width: 0;
+    max-width: none;
+    padding: var(--e-3) var(--e-4) calc(var(--e-5) + env(safe-area-inset-bottom, 0px));
+    border-width: 1px 0 0;
+    border-radius: var(--rayon-2xl) var(--rayon-2xl) 0 0;
+    animation-name: entree-feuille;
+    animation-duration: var(--transition);
+  }
+  .menu-filtre--droite .menu-filtre__panneau {
+    right: 0;
+  }
+  .menu-filtre__entete {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--e-3);
+    padding: 0 0 var(--e-2) var(--e-2);
+    margin-bottom: var(--e-2);
+    border-bottom: 1px solid var(--bord);
+  }
+  .menu-filtre__titre {
+    font-size: var(--texte-lg);
+    font-weight: 800;
+    color: var(--texte-fort);
+  }
+  .menu-filtre__liste {
+    max-height: 65dvh;
+  }
+  .menu-filtre__option {
+    min-height: 52px;
+    padding: 10px 12px;
   }
   .grille {
     gap: var(--e-4);
@@ -1015,18 +1226,10 @@ mark.a-completer {
     display: none;
   }
 }
-/* Sur téléphone : une ligne par filtre, le libellé à gauche, la liste à droite. */
-@media (max-width: 520px) {
-  .filtres {
-    grid-template-columns: minmax(0, 1fr);
-    gap: var(--e-2);
-  }
-  .filtres > .filtre:last-child {
-    grid-column: auto;
-  }
-  .filtre {
-    grid-template-columns: 5.5rem minmax(0, 1fr);
-    align-items: center;
-    gap: var(--e-2);
+
+@keyframes entree-feuille {
+  from {
+    transform: translateY(40px);
+    opacity: 0.4;
   }
 }

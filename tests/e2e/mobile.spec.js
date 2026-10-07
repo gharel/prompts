@@ -23,24 +23,14 @@ const textesCoupes = (page, selecteur) =>
       .map((e) => `${e.className} : ${e.textContent.trim().slice(0, 60)}`);
   }, selecteur);
 
-/** Les options affichées des listes déroulantes tiennent dans leur champ. */
-const selectsCoupes = (page) =>
-  page.evaluate(() => {
-    const mesure = document.createElement('span');
-    document.body.append(mesure);
-    const coupes = [...document.querySelectorAll('select')].filter((select) => {
-      const style = getComputedStyle(select);
-      mesure.style.font = style.font;
-      mesure.style.position = 'absolute';
-      mesure.style.whiteSpace = 'nowrap';
-      mesure.textContent = select.selectedOptions[0].textContent;
-      const place =
-        select.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
-      return mesure.offsetWidth > place;
-    });
-    mesure.remove();
-    return coupes.map((s) => s.id);
-  });
+/** Écart vertical entre le bas d'un élément et le haut d'un autre. */
+const ecart = (page, haut, bas) =>
+  page.evaluate(
+    ([haut, bas]) =>
+      document.querySelector(bas).getBoundingClientRect().top -
+      document.querySelector(haut).getBoundingClientRect().bottom,
+    [haut, bas],
+  );
 
 /**
  * Paires (bouton, texte) qui se chevauchent ou sont à moins de 4 px, dans chaque carte :
@@ -80,10 +70,11 @@ for (const largeur of LARGEURS) {
       expect(
         await textesCoupes(
           page,
-          '.pastille__corps, .bandeau__actions .bouton, .filtre__libelle, .resultats__titres h2, .actif',
+          '.pastille__corps, .bandeau__actions .bouton, .menu-filtre__bouton, .resultats__titres h2, .actif, #hasard',
         ),
       ).toEqual([]);
-      expect(await selectsCoupes(page)).toEqual([]);
+      // Le titre « Catégories » respire au-dessus des pastilles.
+      expect(await ecart(page, '.categories__legende', '.pastilles')).toBeGreaterThanOrEqual(12);
       // Le texte d'exemple de la recherche tient dans le champ.
       const exemple = await page.locator('#recherche').evaluate((champ) => {
         const mesure = document.createElement('span');
@@ -144,7 +135,61 @@ for (const largeur of LARGEURS) {
       }
     });
 
+    test('filtres : les menus tiennent sur une ligne et s’ouvrent en bas de l’écran', async ({
+      page,
+    }) => {
+      await page.goto('/');
+      await expect(page.locator('.carte').first()).toBeVisible();
+      if (largeur >= 390) {
+        const hauts = await page
+          .locator('.menu-filtre__bouton')
+          .evaluateAll((b) => b.map((x) => Math.round(x.getBoundingClientRect().top)));
+        expect(new Set(hauts).size, 'niveau, outil et tri sur une ligne').toBe(1);
+      }
+      // Les pilules ne se touchent pas.
+      const boites = await page
+        .locator('.menu-filtre__bouton')
+        .evaluateAll((b) => b.map((x) => x.getBoundingClientRect().toJSON()));
+      for (let i = 0; i < boites.length; i += 1) {
+        for (let j = i + 1; j < boites.length; j += 1) {
+          const [a, b] = [boites[i], boites[j]];
+          const touche =
+            a.left < b.right + 4 &&
+            b.left < a.right + 4 &&
+            a.top < b.bottom + 4 &&
+            b.top < a.bottom + 4;
+          expect(touche, `pilules ${i} et ${j}`).toBe(false);
+        }
+      }
+
+      for (const menu of ['niveau', 'outil', 'tri']) {
+        await page.locator(`#filtre-${menu}`).click();
+        const liste = page.locator(`#filtre-${menu}-liste`);
+        await expect(liste).toBeVisible();
+        const panneau = await liste.evaluate((l) =>
+          l.parentElement.getBoundingClientRect().toJSON(),
+        );
+        expect(panneau.left).toBeGreaterThanOrEqual(0);
+        expect(panneau.right).toBeLessThanOrEqual(largeur + 1);
+        expect(Math.round(panneau.bottom)).toBe(800);
+        expect(
+          await textesCoupes(page, '.menu-filtre__option, .menu-filtre__nom, .menu-filtre__titre'),
+        ).toEqual([]);
+        // Le voile ferme le panneau.
+        await page.mouse.click(largeur / 2, 20);
+        await expect(liste).toBeHidden();
+      }
+      await page.locator('#filtre-outil').click();
+      await page
+        .locator('#filtre-outil-liste')
+        .getByRole('option', { name: /ChatGPT/ })
+        .click();
+      await expect(page.locator('#filtre-outil')).toHaveText('ChatGPT');
+      expect(await sansDefilementHorizontal(page)).toBe(true);
+    });
+
     test('sombre : accueil et fiche accessibles', async ({ page }) => {
+      test.slow();
       await page.emulateMedia({ colorScheme: 'dark' });
       await page.goto('/');
       await expect(page.locator('.carte').first()).toBeVisible();

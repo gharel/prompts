@@ -37,9 +37,11 @@ test('la fiche se ferme avec Échap et rend la main à la carte', async ({ page 
 test('les flèches passent à la fiche suivante de la liste filtrée', async ({ page }) => {
   await page.locator('label.pastille', { hasText: 'Formuler' }).click();
   const titres = await page.locator('.carte__titre').allTextContents();
+  // La navigation parcourt toutes les fiches filtrées, pas seulement le lot affiché.
+  const total = (await page.locator('#titre-resultats').textContent()).match(/\d+/)[0];
   await page.locator('.carte__lien').first().click();
   const fiche = page.getByRole('dialog');
-  await expect(fiche.locator('.fiche__position')).toHaveText(`Fiche 1 sur ${titres.length}`);
+  await expect(fiche.locator('.fiche__position')).toHaveText(`Fiche 1 sur ${total}`);
   await page.keyboard.press('ArrowRight');
   await expect(fiche.getByRole('heading', { level: 2 })).toHaveText(titres[1]);
   await fiche.getByRole('button', { name: /Fiche précédente/ }).click();
