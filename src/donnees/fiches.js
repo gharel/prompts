@@ -6824,6 +6824,67 @@ export const FICHES = [
     }
   },
   {
+    "id": "documenter-le-travail-de-l-ia-dans-vos-pull-requests",
+    "titre": "Documenter le travail de l’IA dans vos pull requests",
+    "resume": "Ajoutez à chaque pull request un bloc « Contexte IA » : outil et modèle utilisés, prompt décisif, pistes ratées et corrections manuelles. L’équipe et les futurs agents repartent de là.",
+    "categorie": "coder",
+    "niveau": "avance",
+    "outils": [
+      "claude-code",
+      "cursor"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Le développeur Maxi Contieri a partagé une [astuce de flux de travail](https://dev.to/mcsee/ai-coding-tip-016-feed-your-pr-lessons-into-the-ai-brain-3al9) qui passe encore inaperçue : les descriptions de vos *pull requests* (PR) deviennent des données précieuses pour l’IA, à condition de les rédiger dans ce but."
+      },
+      {
+        "t": "p",
+        "x": "Le problème : chaque fois que vous fermez une session de code avec l’IA, le raisonnement disparaît. Deux semaines plus tard, personne ne sait quel prompt a corrigé le bogue, ce qui a échoué d’abord, ni pourquoi vous avez choisi cette approche. Ni vos collègues, ni un nouvel agent, ni vous."
+      },
+      {
+        "t": "p",
+        "x": "La solution est simple : ajoutez un bloc « Contexte IA » à la description de chaque PR non triviale, avec :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "l’outil et le modèle utilisés (Claude Code, Cursor, etc.) ;",
+          "le prompt clé qui a vraiment débloqué la solution ;",
+          "ce que l’IA a essayé d’abord et qui n’a pas fonctionné ;",
+          "les corrections manuelles apportées à son résultat."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Ce dernier point est le plus sous-estimé : si vous avez dû retoucher ce qu’a produit l’IA, c’est un signal à conserver, que votre équipe peut transformer en règle permanente. Plus largement, voyez la description de PR comme un message de commit pour le raisonnement de l’IA : le commit dit ce qui a changé, la PR dit comment et pourquoi l’IA y est arrivée. Les équipes qui procèdent ainsi progressent avec le temps : chaque PR fusionnée permet à la session suivante de démarrer avec plus de contexte, au lieu de partir de zéro."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le bloc « Contexte IA » à ajouter aux PR",
+        "type": "fichier",
+        "texte": "## Contexte IA\n\n- Outil et modèle : [outil et modèle utilisés]\n- Prompt clé : [le prompt qui a débloqué la solution]\n- Ce qui n’a pas marché : [premières tentatives de l’IA]\n- Corrections manuelles : [ce que vous avez modifié à la main]",
+        "adapte": true
+      },
+      {
+        "titre": "Le prompt pour faire rédiger le bloc par l’agent",
+        "type": "prompt",
+        "texte": "Avant que je ferme cette session, rédige le bloc « Contexte IA » de la pull request : l’outil et le modèle utilisés, le prompt qui a débloqué la solution, ce que tu as essayé d’abord et qui n’a pas marché, et les corrections que j’ai apportées à la main à ton travail.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Une PR qui garde la trace du raisonnement de l’IA fait démarrer chaque nouvelle session avec plus de contexte.",
+    "source": {
+      "cle": "ai-found-bugs-humans-missed-for-27-years",
+      "date": "2026-04-22",
+      "url": "https://www.theneurondaily.com/p/ai-found-bugs-humans-missed-for-27-years",
+      "newsletter": "AI found bugs humans missed for 27 years",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 AI found bugs humans missed for 27 years"
+    }
+  },
+  {
     "id": "obtenir-des-choix-vraiment-aleatoires-avec-une-chaine-de-caracteres",
     "titre": "Obtenir des choix vraiment aléatoires avec une chaîne de caractères",
     "resume": "Les IA tirent mal au hasard et favorisent toujours les mêmes réponses. Leur faire générer puis transformer une chaîne aléatoire rend leurs choix plus variés et moins biaisés.",
@@ -8806,6 +8867,14851 @@ export const FICHES = [
       "newsletter": "OpenAI leaked GPT-5.4 three times",
       "rubrique": "AI Skill of the Day",
       "titreOriginal": "😺 OpenAI leaked GPT-5.4 three times"
+    }
+  },
+  {
+    "id": "apprendre-a-creer-des-skills-pour-ecrire-moins-de-prompts",
+    "titre": "Apprendre à créer des Skills pour écrire moins de prompts",
+    "resume": "Plutôt que de perfectionner chaque prompt, intégrez vos méthodes dans des Skills, des plugins et des tâches planifiées. Deux ressources d’Anthropic pour apprendre à construire des Skills.",
+    "categorie": "memoire",
+    "niveau": "intermediaire",
+    "outils": [
+      "claude"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Le secret pour bien travailler avec l’IA semble de plus en plus être de **réduire le nombre total de prompts à écrire**, grâce à une véritable automatisation. Les plugins, les Skills et désormais les tâches planifiées intègrent ces automatisations au système pour vous. *Souciez-vous moins de vos prompts, et davantage des systèmes que vous construisez.*"
+      },
+      {
+        "t": "p",
+        "x": "D’où ce conseil : apprenez à bien utiliser les Skills, ces ensembles d’instructions (parfois accompagnés de code) que Claude lit automatiquement quand la tâche s’y prête. Deux ressources d’Anthropic pour vous y mettre :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "la [vidéo d’explication des Skills](https://youtu.be/bjdBVZa66oU?si=ainXS0MsMYiOwEeN) publiée par Anthropic ;",
+          "le [guide complet de 32 pages](https://resources.anthropic.com/hubfs/The-Complete-Guide-to-Building-Skill-for-Claude.pdf) pour construire des Skills pour Claude."
+        ]
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt pour transformer une tâche en Skill",
+        "type": "prompt",
+        "texte": "Je refais souvent cette tâche : [description de la tâche récurrente]. Aide-moi à la transformer en Skill.\n\nPose-moi d’abord les questions nécessaires sur ma méthode, mes critères de qualité et les erreurs à éviter. Rédige ensuite le fichier `SKILL.md` complet : un nom, une description qui précise quand l’utiliser, puis les instructions étape par étape.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Au lieu de réécrire les mêmes prompts, transformez vos méthodes en Skills que l’IA réutilise d’elle-même.",
+    "source": {
+      "cle": "president-trump-vs-anthropic-vs-openai",
+      "date": "2026-03-02",
+      "url": "https://www.theneurondaily.com/p/president-trump-vs-anthropic-vs-openai",
+      "newsletter": "President Trump vs Anthropic vs OpenAI",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 President Trump vs Anthropic vs OpenAI"
+    }
+  },
+  {
+    "id": "demander-a-l-ia-quelle-question-vous-oubliez-de-lui-poser",
+    "titre": "Demander à l’IA quelle question vous oubliez de lui poser",
+    "resume": "Greg Isenberg a confié prospection, veille concurrentielle et recherche d’investisseurs à Perplexity Computer. Sa meilleure trouvaille : une question qui fait émerger des pistes inattendues.",
+    "categorie": "business",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "[Greg Isenberg](https://youtu.be/l-J8RodcM_A?si=x07PuNwo82Dix3yC) a testé Perplexity Computer en direct et en a fait, à lui seul, une équipe commerciale, de recherche et de stratégie. Les temps forts :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Prospection à froid** : l’agent a trouvé de vraies adresses e-mail, étudié l’activité récente de chaque prospect, rédigé des messages personnalisés et les a envoyés depuis le compte Gmail connecté, le tout en parallèle.",
+          "**Veille concurrentielle** : une surveillance récurrente à 8 h de cinq concurrents (nouveaux épisodes, changements de prix, échos sur les réseaux sociaux). Rien de nouveau ? Aucune notification.",
+          "**Recherche d’investisseurs** : il a décrit sa startup et demandé les 50 investisseurs les plus adaptés. Résultat : un tableur avec la taille des fonds, les contacts des associés et l’adéquation avec leur thèse d’investissement.",
+          "**Notes d’investissement** : il a demandé une analyse complète de Shopify avec graphiques, comparaisons et scénarios optimiste et pessimiste. Il a obtenu un PDF."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "**Le point clé** : quand Greg Isenberg a demandé s’il existait une question qu’il ne posait pas et qui pourrait lui rapporter plus d’argent (prompt ci-dessous), l’agent lui a suggéré de suivre les nouveaux sponsors de ses concurrents pour les contacter tant que leur budget podcast était encore disponible. Essayez cette question lors de votre prochaine session avec une IA."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "La question que vous ne posez pas",
+        "type": "prompt",
+        "texte": "Y a-t-il une question que je ne te pose pas et qui pourrait me faire gagner plus d’argent ?",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Demandez à l’IA quelle question vous ne lui posez pas : elle peut faire émerger des opportunités auxquelles vous n’auriez pas pensé.",
+    "source": {
+      "cle": "you-re-behind-on-ai-here-s-the-recap",
+      "date": "2026-03-02",
+      "url": "https://www.theneurondaily.com/p/you-re-behind-on-ai-here-s-the-recap",
+      "newsletter": "You're behind on AI. Here's the recap",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 You're behind on AI. Here's the recap"
+    }
+  },
+  {
+    "id": "rediger-un-prompt-d-image-comme-un-photographe",
+    "titre": "Rédiger un prompt d’image comme un photographe",
+    "resume": "Le guide de Google pour Nano Banana liste six éléments à préciser : sujet, composition, action, lieu, style et retouches, plus l’optique et la lumière pour un rendu professionnel.",
+    "categorie": "creer",
+    "niveau": "debutant",
+    "outils": [
+      "gemini"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Google a publié un [guide de prompt pour Nano Banana](https://blog.google/products-and-platforms/products/gemini/prompting-tips-nano-banana-pro/) à garder sous la main. L’idée clé : les prompts simples fonctionnent toujours, mais les prompts précis donnent de bien meilleurs résultats. **Le principe : pensez comme un photographe, pas comme un ingénieur du prompt.** Un bon prompt d’image comporte jusqu’à six éléments :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Le sujet** : qui ou quoi figure dans l’image ? Soyez précis (« un robot barista impassible aux optiques bleues lumineuses » plutôt que « un robot »).",
+          "**La composition** : quel cadrage ? (très gros plan, plan large, contre-plongée, portrait)",
+          "**L’action** : que se passe-t-il ? (préparer un café, courir en pleine foulée, lancer un sort)",
+          "**Le lieu** : où ? (un café futuriste sur Mars, une prairie baignée de soleil à l’heure dorée)",
+          "**Le style** : quelle esthétique ? (animation 3D, film noir, aquarelle, photoréaliste, photo produit des années 1990)",
+          "**Les consignes de retouche** (pour modifier une image existante) : soyez direct (« passe la cravate en vert », « supprime la voiture à l’arrière-plan »)."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "**Pour un rendu professionnel**, ajoutez des détails de prise de vue et d’éclairage, comme le ferait un directeur de la photographie. Pour du texte dans l’image, indiquez explicitement le texte à afficher et sa présentation. Et pour garder un personnage cohérent d’une image à l’autre, chargez des images de référence en précisant clairement le rôle de chacune. Les prompts ci-dessous montrent les trois cas."
+      },
+      {
+        "t": "p",
+        "x": "Mieux encore : chargez ce guide dans l’IA et demandez-lui de vous aider à créer le Gem ou la Skill idéale (un ensemble d’instructions, parfois accompagné de code, qui explique à l’IA comment faire quelque chose) pour rédiger ces prompts à votre place."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Les détails de prise de vue et d’éclairage",
+        "type": "prompt",
+        "texte": "[Votre sujet]. Prise de vue en contre-plongée avec une faible profondeur de champ (f/1.8), contre-jour à l’heure dorée créant de longues ombres, étalonnage cinématographique aux tons bleu canard atténués.",
+        "adapte": false
+      },
+      {
+        "titre": "Le texte dans l’image",
+        "type": "prompt",
+        "texte": "Le titre « EXPLORATEUR URBAIN » écrit en haut, en police sans empattement, blanche et grasse.",
+        "adapte": false
+      },
+      {
+        "titre": "Les images de référence",
+        "type": "prompt",
+        "texte": "Utilise l’image A pour la pose du personnage, l’image B pour le style graphique et l’image C pour le décor d’arrière-plan.",
+        "adapte": false
+      },
+      {
+        "titre": "Le prompt pour créer un générateur de prompts",
+        "type": "prompt",
+        "texte": "Voici le guide de Google pour rédiger des prompts d’image : [guide joint]. Aide-moi à créer un Gem (ou une Skill) qui, à partir d’une idée décrite en une phrase, rédige un prompt complet en précisant le sujet, la composition, l’action, le lieu, le style, la prise de vue et l’éclairage.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Décrivez l’image comme un photographe : sujet, cadrage, action, lieu et style, puis optique et lumière.",
+    "source": {
+      "cle": "nano-banana-2-one-shotted-this-header-image",
+      "date": "2026-02-27",
+      "url": "https://www.theneurondaily.com/p/nano-banana-2-one-shotted-this-header-image",
+      "newsletter": "Nano Banana 2 one shotted this header image",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 Nano Banana 2 one shotted this header image"
+    }
+  },
+  {
+    "id": "programmer-des-taches-recurrentes-dans-claude-cowork",
+    "titre": "Programmer des tâches récurrentes dans Claude Cowork",
+    "resume": "Avec la commande /schedule, Cowork exécute chaque jour ou chaque semaine une tâche décrite une seule fois. Côté développeurs, Remote Control permet de piloter Claude Code depuis un téléphone.",
+    "categorie": "automatiser",
+    "niveau": "intermediaire",
+    "outils": [
+      "claude",
+      "claude-code"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Vous pouvez désormais décrire une tâche à Claude une seule fois et la faire tourner automatiquement : chaque jour, chaque semaine, à la fréquence de votre choix. Voici comment fonctionnent les [tâches planifiées de Cowork](https://support.claude.com/en/articles/13854387-schedule-recurring-tasks-in-cowork) :"
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Tapez `/schedule`.",
+          "Décrivez la tâche, par exemple résumer les messages Slack de la veille (prompt ci-dessous).",
+          "Choisissez la fréquence.",
+          "Claude s’en charge en pilote automatique, avec un accès complet à votre Google Drive, à Slack et à vos plugins."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "[Regardez la démonstration](https://youtu.be/b-ntWZqHF78?si=Lym8YkAXQQHSQIJ0). C’est ici que vos prompts laissent la place à des automatisations."
+      },
+      {
+        "t": "p",
+        "x": "Pour les développeurs, [Claude Code Remote Control](https://code.claude.com/docs/en/remote-control) permet de lancer `claude remote-control` dans le terminal, puis de poursuivre la session depuis un téléphone, une tablette ou n’importe quel navigateur. Claude continue de tourner sur votre machine, et vous le pilotez de partout."
+      },
+      {
+        "t": "p",
+        "x": "**Limites** : les tâches planifiées exigent que votre ordinateur reste allumé et que Claude Desktop soit ouvert. Remote Control nécessite un abonnement Pro ou Max."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "La tâche planifiée",
+        "type": "prompt",
+        "texte": "Résume les messages Slack d’hier.",
+        "adapte": false
+      },
+      {
+        "titre": "La commande Remote Control",
+        "type": "commande",
+        "texte": "claude remote-control",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Une tâche que vous demandez souvent mérite d’être planifiée une fois pour toutes plutôt que retapée.",
+    "source": {
+      "cle": "perplexity-computer-cloudclaw",
+      "date": "2026-02-26",
+      "url": "https://www.theneurondaily.com/p/perplexity-computer-cloudclaw",
+      "newsletter": "Perplexity Computer = CloudClaw?",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 Perplexity Computer = CloudClaw?"
+    }
+  },
+  {
+    "id": "creer-un-plugin-cowork-pour-donner-a-claude-le-savoir-de-votre-metier",
+    "titre": "Créer un plugin Cowork pour donner à Claude le savoir de votre métier",
+    "resume": "Les plugins Cowork chargent dans Claude le vocabulaire, les méthodes et les formats de votre métier. Chacun n’est qu’un dossier de fichiers texte, à écrire vous-même ou à faire générer.",
+    "categorie": "memoire",
+    "niveau": "intermediaire",
+    "outils": [
+      "claude"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Anthropic a lancé des [plugins par métier pour Cowork](https://claude.com/blog/cowork-plugins-across-enterprise) qui préchargent dans Claude la terminologie, les méthodes de travail et les formats de votre domaine. Au lieu d’écrire « Je suis analyste financier, voici ce qu’est un modèle DCF… », vous installez le plugin finance et passez directement au travail. On compte [11 nouveaux plugins](https://github.com/anthropics/knowledge-work-plugins) (RH, design, ingénierie, opérations, finance) ; ceux de finance sont open source et personnalisables, et de nouveaux connecteurs FactSet et MSCI apportent des données de marché de niveau institutionnel directement dans le contexte de Claude."
+      },
+      {
+        "t": "p",
+        "x": "**Envie de créer le vôtre ?** Un plugin n’est qu’un dossier en quatre parties. Aucun code n’est nécessaire, ce ne sont que des fichiers texte :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Le manifeste** (`plugin.json`) : le nom et la description du plugin, comme l’étiquette sur la boîte.",
+          "**Les Skills** (dossier `skills/`) : des fichiers Markdown qui décrivent comment vous voulez que le travail soit fait (vos processus, votre terminologie, vos bonnes pratiques). Claude les lit automatiquement quand ils sont pertinents. C’est là que tout se joue.",
+          "**Les commandes** (dossier `commands/`) : des raccourcis que l’on tape pour lancer un flux de travail précis, comme `/sales:call-prep` ou `/finance:reconciliation`.",
+          "**Les connecteurs** (`.mcp.json`) : un fichier qui indique à Claude à quels outils externes se brancher (CRM, Slack, Google Drive, bases de données, tout ce qu’utilise votre équipe)."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Si vous n’êtes pas technicien, un [méta-plugin baptisé « Plugin Management »](https://claude.com/plugins/cowork-plugin-management) construit des plugins pour vous dans l’interface de Cowork : décrivez ce que vous voulez et Claude écrit les fichiers."
+      },
+      {
+        "t": "p",
+        "x": "Autre nouveauté utile : Claude peut désormais travailler dans Excel et PowerPoint en même temps, en gardant le contexte d’une application à l’autre. Un analyste peut extraire des données, mettre à jour un modèle et construire le diaporama dans une seule session ; quand les données d’entrée changent, Claude met à jour tout ce qui en dépend."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "L’arborescence d’un plugin",
+        "type": "fichier",
+        "texte": "mon-plugin/\n├── .claude-plugin/\n│   └── plugin.json\n├── skills/\n│   └── ma-methode/\n│       └── SKILL.md\n├── commands/\n│   └── preparer-appel.md\n└── .mcp.json",
+        "adapte": true
+      },
+      {
+        "titre": "Le prompt pour faire générer un plugin",
+        "type": "prompt",
+        "texte": "Crée un plugin Cowork pour [votre métier ou votre équipe]. Il doit contenir :\n- une Skill qui décrit [votre méthode de travail, votre terminologie, vos bonnes pratiques] ;\n- une commande [nom de la commande] qui lance [flux de travail] ;\n- un connecteur vers [outil utilisé par l’équipe].\n\nPose-moi d’abord les questions nécessaires, puis écris les fichiers.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Un plugin évite de réexpliquer votre métier à chaque conversation : vos méthodes deviennent des fichiers que Claude lit au bon moment.",
+    "source": {
+      "cle": "diffusion-models-are-coming-for-text-at-0-80-per-million-flat",
+      "date": "2026-02-25",
+      "url": "https://www.theneurondaily.com/p/diffusion-models-are-coming-for-text-at-0-80-per-million-flat",
+      "newsletter": "AI News Roundup: Wednesday, Feb 25",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 AI News Roundup: Wednesday, Feb 25"
+    }
+  },
+  {
+    "id": "iterer-au-lieu-de-s-arreter-a-la-premiere-reponse-de-l-ia",
+    "titre": "Itérer au lieu de s’arrêter à la première réponse de l’IA",
+    "resume": "D’après l’AI Fluency Index d’Anthropic, ceux qui retravaillent la première réponse tirent deux fois plus de valeur de l’IA. Fixez vos règles d’échange d’emblée et posez une question de plus.",
+    "categorie": "verifier",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Anthropic a publié son [AI Fluency Index](https://www.anthropic.com/research/AI-fluency-index), une étude de la façon dont environ 10 000 personnes utilisent réellement Claude. Principal constat : **ceux qui itèrent tirent deux fois plus de valeur de l’IA**. Les utilisateurs qui traitent la première réponse comme un point de départ adoptent deux fois plus souvent des comportements productifs, comme questionner le raisonnement ou repérer ce qui manque."
+      },
+      {
+        "t": "p",
+        "x": "**Le piège** : quand l’IA produit un résultat soigné (code, documents, applications), les utilisateurs deviennent *moins* critiques. Ils ont **5,2 points de pourcentage de moins de chances de repérer un contexte manquant** et **3,1 points de moins de remettre en question le raisonnement**. Plus le résultat brille, moins on l’inspecte."
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "**Fixez les règles dès le départ.** Seuls 30 % des utilisateurs disent à l’IA comment interagir avec eux. Ajoutez une consigne en ce sens au début de l’échange (premier prompt ci-dessous).",
+          "**Posez « une question de plus ».** Le développeur [Jeffrey Emanuel](https://x.com/doodlestein/status/2025645582782480827) recommande ce prompt une fois que vous *pensez* avoir terminé (second prompt ci-dessous). Essayez-le avec plusieurs modèles : vous serez surpris."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "**En résumé** : les meilleurs utilisateurs d’IA n’écrivent pas les prompts les plus sophistiqués. *Ils ne s’arrêtent pas à la première réponse.*"
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Les règles d’échange",
+        "type": "prompt",
+        "texte": "Conteste mes hypothèses si elles sont fausses. Dis-moi ce dont tu n’es pas sûr.",
+        "adapte": false
+      },
+      {
+        "titre": "La question de plus",
+        "type": "prompt",
+        "texte": "Quel est l’ajout le plus intelligent et le plus radicalement innovant que tu pourrais apporter à ce projet à ce stade ?",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Traitez la première réponse comme un point de départ : c’est en la questionnant que vous en tirez le plus.",
+    "source": {
+      "cle": "anthropic-caught-24-000-spies",
+      "date": "2026-02-24",
+      "url": "https://www.theneurondaily.com/p/anthropic-caught-24-000-spies",
+      "newsletter": "Anthropic caught 24,000 spies",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Anthropic caught 24,000 spies"
+    }
+  },
+  {
+    "id": "faire-debattre-l-ia-avec-elle-meme-avant-de-conclure",
+    "titre": "Faire débattre l’IA avec elle-même avant de conclure",
+    "resume": "Demandez trois points de vue sur votre question, avec les arguments pour et contre chacun, puis le plus solide. Faites ensuite contester cette conclusion pour révéler ce que l’IA a manqué.",
+    "categorie": "verifier",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Cette astuce s’inspire du fonctionnement de Grok 4.20, et vous pouvez l’utiliser dès maintenant avec n’importe quelle IA : **faites débattre l’IA avec elle-même**. Au lieu de poser une question et d’accepter la réponse, demandez-lui plusieurs points de vue (premier prompt ci-dessous)."
+      },
+      {
+        "t": "p",
+        "x": "Le modèle fait ainsi en interne ce que les quatre agents de Grok font en externe : explorer plusieurs angles, peser des éléments contradictoires et en tirer une conclusion plus solide. C’est particulièrement utile quand vous hésitez entre plusieurs options."
+      },
+      {
+        "t": "p",
+        "x": "**En bonus** : si la réponse compte vraiment, relancez avec le second prompt. Vous serez surpris de voir combien de fois l’IA trouve de vraies failles dans son propre raisonnement."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le débat à trois points de vue",
+        "type": "prompt",
+        "texte": "Donne-moi trois points de vue différents sur [votre question]. Pour chacun, explique quels éléments le soutiennent et quels éléments le contredisent. Dis-moi ensuite quel point de vue est le mieux étayé, et pourquoi.",
+        "adapte": false
+      },
+      {
+        "titre": "La contre-argumentation",
+        "type": "prompt",
+        "texte": "Maintenant, argumente contre ta propre conclusion. Qu’est-ce que tu as manqué ?",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Une IA qui confronte plusieurs points de vue, puis conteste sa propre conclusion, raisonne mieux qu’une IA qui répond d’une traite.",
+    "source": {
+      "cle": "4-ais-walk-into-a-bar",
+      "date": "2026-02-23",
+      "url": "https://www.theneurondaily.com/p/4-ais-walk-into-a-bar",
+      "newsletter": "AIs walk into a bar",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 4 AIs walk into a bar"
+    }
+  },
+  {
+    "id": "placer-la-consigne-avant-le-contexte-avec-les-modeles-rapides",
+    "titre": "Placer la consigne avant le contexte avec les modèles rapides",
+    "resume": "Avec un modèle sans raisonnement, comme les versions rapides ou gratuites, écrivez la tâche avant le texte à analyser : l’IA lit alors ce contexte en sachant ce qu’elle doit en faire.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Harper Carroll, informaticienne spécialisée en IA formée à Stanford, partage [un conseil de prompt utile](https://youtube.com/shorts/dln03vL2Eio?si=Qfe2VUEi_13a3e-H) : si vous utilisez un modèle d’IA *sans raisonnement* (en général les versions rapides ou gratuites), placez votre **tâche** (la question à laquelle l’IA doit répondre) *avant* le contexte (le texte, les descriptions ou tout autre contenu utile) dans votre prompt."
+      },
+      {
+        "t": "p",
+        "x": "L’IA lit alors le contexte que vous lui fournissez **en ayant la tâche bien en tête**."
+      },
+      {
+        "t": "p",
+        "x": "Selon elle, ce conseil **vaut aussi pour les humains** : pour l’épreuve de compréhension écrite du SAT (l’examen d’entrée à l’université aux États-Unis), on lui avait appris à lire la question *avant* le texte. Et cela a marché : elle a été admise à Stanford."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt tâche d’abord, contexte ensuite",
+        "type": "prompt",
+        "texte": "Tâche : [ce que l’IA doit faire, par exemple résumer, extraire ou comparer]\n\nContexte :\n[le texte ou les informations à analyser]",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Avec un modèle rapide, annoncez la tâche d’abord : il lira le reste en sachant ce qu’il cherche.",
+    "source": {
+      "cle": "learn-how-to-automate-your-emails",
+      "date": "2026-02-22",
+      "url": "https://www.theneurondaily.com/p/learn-how-to-automate-your-emails",
+      "newsletter": "Learn how to automate your emails",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 Learn how to automate your emails"
+    }
+  },
+  {
+    "id": "repeter-votre-prompt-deux-fois-pour-obtenir-de-meilleures-reponses",
+    "titre": "Répéter votre prompt deux fois pour obtenir de meilleures réponses",
+    "resume": "Selon des chercheurs de Google, envoyer la même requête deux fois de suite améliore les résultats de Gemini, GPT, Claude et DeepSeek, sans ralentir ni allonger la réponse.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Voici une astuce toute simple qui améliore discrètement les performances de Gemini, GPT, Claude et DeepSeek, sans latence supplémentaire ni *tokens* de sortie en plus (les mots ou le code générés) : **répétez votre prompt deux fois**. [Des chercheurs de Google ont constaté](https://www.alphaxiv.org/abs/2512.14982) qu’envoyer la requête deux fois d’affilée (bout à bout, sans séparateur) l’emporte sur 47 tests de référence sur 70, sans **aucune défaite**."
+      },
+      {
+        "t": "p",
+        "x": "Pourquoi ? Les grands modèles de langage (les LLM, qui font tourner ChatGPT, Gemini ou Claude) traitent les *tokens* de gauche à droite : les premiers mots ne « voient » pas ce qui vient après. Répéter le prompt permet à chaque partie de la requête de tenir compte de toutes les autres, ce qui revient à offrir au modèle une seconde lecture de votre demande complète avant qu’il ne réponde. Trois façons de l’appliquer, de la plus simple à la plus puissante :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Répétition simple** : copiez-collez votre prompt deux fois, c’est tout. Très efficace pour les questions-réponses, les QCM et la recherche d’informations.",
+          "**Répétition annoncée** : ajoutez « Je répète : » entre les deux copies. Un peu plus naturel, pour des gains comparables.",
+          "**Triple répétition** : ajoutez « Je répète une dernière fois : » et collez une troisième copie. Idéal pour les tâches difficiles, comme retrouver un élément précis enfoui dans une longue liste."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "**Le point clé** : les gains sont les plus spectaculaires quand la question et le contexte sont dans un ordre maladroit, par exemple quand les choix de réponse viennent *avant* la question. Dans un test, la précision de Gemini 2.0 Flash-Lite sur une tâche de recherche de nom est passée de **21 % à 97 %** simplement en répétant le prompt."
+      },
+      {
+        "t": "p",
+        "x": "**Une réserve** : la technique marche le mieux quand le **raisonnement est désactivé**. Si vous demandez une réflexion pas à pas (ce que font automatiquement les modes « raisonnement » ou « réflexion »), le modèle relit déjà plus ou moins le prompt de lui-même : les gains sont plus faibles, mais restent neutres ou positifs. Essayez-la sur votre prochain prompt long et chargé en contexte."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "La répétition simple",
+        "type": "prompt",
+        "texte": "[votre prompt]\n[votre prompt]",
+        "adapte": false
+      },
+      {
+        "titre": "La répétition annoncée",
+        "type": "prompt",
+        "texte": "[votre prompt]\n\nJe répète :\n\n[votre prompt]",
+        "adapte": false
+      },
+      {
+        "titre": "La triple répétition",
+        "type": "prompt",
+        "texte": "[votre prompt]\n\nJe répète :\n\n[votre prompt]\n\nJe répète une dernière fois :\n\n[votre prompt]",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Répéter le prompt offre au modèle une seconde lecture de votre demande, surtout utile quand le raisonnement est désactivé.",
+    "source": {
+      "cle": "googles-sharpest-brain-yet",
+      "date": "2026-02-20",
+      "url": "https://www.theneurondaily.com/p/googles-sharpest-brain-yet",
+      "newsletter": "Google’s sharpest brain yet? 🧠",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Google’s sharpest brain yet? 🧠"
+    }
+  },
+  {
+    "id": "demander-a-claude-d-en-faire-moins-pour-eviter-la-surenchere",
+    "titre": "Demander à Claude d’en faire moins pour éviter la surenchère",
+    "resume": "Claude Sonnet 4.6 a tendance à en faire trop : fonctions en plus, explications à rallonge, recherches préalables. Une seule consigne de sobriété suffit à le recentrer, en code comme à l’écrit.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "claude"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Autre conseil tiré du [guide de prompt d’Anthropic](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices) : demandez à Claude d’en faire moins."
+      },
+      {
+        "t": "p",
+        "x": "Par défaut, Claude Sonnet 4.6 a tendance à trop en faire : fonctions supplémentaires, explications superflues, recherches avant d’agir. La solution tient en une seule consigne (ci-dessous)."
+      },
+      {
+        "t": "p",
+        "x": "Elle fonctionne pour le code comme pour la rédaction. Si Claude en fait toujours trop, c’est que personne (c’est-à-dire *vous*) ne lui a demandé de rester minimal."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "La consigne de sobriété",
+        "type": "prompt",
+        "texte": "Ne fais que ce qui est directement demandé. Choisis une seule approche et commence tout de suite. Ne compare pas plusieurs options avant d’écrire.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Si Claude en fait trop, dites-lui explicitement de s’en tenir à ce qui est demandé.",
+    "source": {
+      "cle": "openai-built-a-crypto-thief",
+      "date": "2026-02-19",
+      "url": "https://www.theneurondaily.com/p/openai-built-a-crypto-thief",
+      "newsletter": "OpenAI built a crypto thief",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 OpenAI built a crypto thief"
+    }
+  },
+  {
+    "id": "alleger-vos-prompts-pour-les-modeles-claude-recents",
+    "titre": "Alléger vos prompts pour les modèles Claude récents",
+    "resume": "Avec Claude 4.6, les formules du type « sois minutieux » ou « tu DOIS utiliser cet outil » nuisent aux résultats. Supprimez-les, dites quelle action vous attendez et réglez l’effort.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "claude"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Anthropic a publié des [bonnes pratiques de prompt mises à jour](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices) pour ses modèles Claude 4.6, et l’enseignement principal va contre l’intuition : **en faire moins**."
+      },
+      {
+        "t": "p",
+        "x": "Si vous truffez vos prompts de formules comme « sois minutieux », « réfléchis bien » ou « tu DOIS utiliser cet outil », il est temps de les supprimer. Ces rustines pensées pour les anciens modèles dégradent désormais les performances de la version 4.6. Comme l’a [résumé une ingénieure d’Anthropic](https://x.com/charmaine_klee/status/1891525049870651695) : *« J’ai constaté des bonds énormes en intelligence dès que j’ai retiré les prompts anti-paresse. »*"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Supprimez les formules qui demandent plus d’efforts.** « Sois minutieux » ou « ne sois pas paresseux » poussent le modèle à trop réfléchir et à tourner en boucle. La version 4.6 est déjà proactive : lui demander de faire plus d’efforts revient à crier « COURS PLUS VITE » à quelqu’un qui sprinte déjà.",
+          "**Adoucissez les consignes d’outils.** Remplacez « Tu DOIS utiliser cet outil » par une formulation plus souple (premier prompt ci-dessous). Le modèle déclenche désormais les outils à bon escient sans qu’il faille le menacer.",
+          "**Soyez explicite sur l’action attendue.** « Peux-tu suggérer des modifications ? » vous vaudra des suggestions ; « Fais ces modifications » vous vaudra des modifications. Dites ce que vous voulez vraiment.",
+          "**Faites du réglage d’effort votre principal levier.** Plutôt que de retravailler votre prompt pour obtenir de meilleurs résultats, ajustez le paramètre d’effort (faible, moyen, élevé) selon la tâche."
+        ]
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "La consigne d’outil adoucie",
+        "type": "prompt",
+        "texte": "Utilise cet outil quand c’est utile.",
+        "adapte": false
+      },
+      {
+        "titre": "La demande d’action explicite",
+        "type": "prompt",
+        "texte": "Fais ces modifications : [modifications à apporter].",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Avec les modèles récents, retirez les injonctions à faire plus d’efforts et dites simplement quelle action vous attendez.",
+    "source": {
+      "cle": "dreamer-lets-anyone-build-ai-agents",
+      "date": "2026-02-18",
+      "url": "https://www.theneurondaily.com/p/dreamer-lets-anyone-build-ai-agents",
+      "newsletter": "Dreamer lets anyone build AI agents",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Dreamer lets anyone build AI agents"
+    }
+  },
+  {
+    "id": "definir-les-colonnes-avant-d-extraire-les-donnees-d-un-document",
+    "titre": "Définir les colonnes avant d’extraire les données d’un document",
+    "resume": "Pour convertir un document ou un PDF en tableau, imposez les colonnes et autorisez l’IA à écrire « N/A » plutôt que de deviner : vous évitez ainsi les données inventées.",
+    "categorie": "verifier",
+    "niveau": "intermediaire",
+    "outils": [
+      "claude"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Claude sait désormais [convertir vos documents Word en feuilles Excel et extraire les données de PDF désordonnés](https://support.claude.com/en/articles/12111783-create-and-edit-files-with-claude). L’astuce : **définissez d’abord la structure du résultat**. Au lieu de demander simplement d’extraire les données, imposez les colonnes exactes (prompt ci-dessous)."
+      },
+      {
+        "t": "p",
+        "x": "La consigne « au lieu de deviner » est essentielle. Sans elle, les outils d’IA inventent des données avec aplomb à partir de scans de mauvaise qualité. Donnez-leur un plan *et* la permission de dire « je ne sais pas »."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt d’extraction structurée",
+        "type": "prompt",
+        "texte": "Convertis ce document en feuille de calcul Excel avec exactement ces colonnes : [colonne 1, colonne 2, colonne 3]. Si un champ manque ou est illisible, écris « N/A » au lieu de deviner.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Autorisez l’IA à dire « je ne sais pas » : c’est le meilleur rempart contre les données inventées.",
+    "source": {
+      "cle": "pentagon-vs-anthropic-is-getting-ugly",
+      "date": "2026-02-17",
+      "url": "https://www.theneurondaily.com/p/pentagon-vs-anthropic-is-getting-ugly",
+      "newsletter": "Pentagon's AI Clash: Anthropic Tensions Escalate",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "🚨 Pentagon's AI Clash: Anthropic Tensions Escalate"
+    }
+  },
+  {
+    "id": "reperer-vos-points-de-friction-avant-de-choisir-un-outil-d-ia",
+    "titre": "Repérer vos points de friction avant de choisir un outil d’IA",
+    "resume": "Le stratège Connor Phillips décrit trois usages de l’IA qui ont vraiment changé son quotidien : synchroniser ses tâches, consolider ses notes de réunion et retenir ce qu’il apprend.",
+    "categorie": "automatiser",
+    "niveau": "intermediaire",
+    "outils": [
+      "claude",
+      "gemini",
+      "autre"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "La plupart des gens utilisent l’IA comme un distributeur automatique : une question, une réponse, et on passe à autre chose. Dans un [billet récent](https://www.connorphillips.com/three-ways-ai-solved-real-problems-in-my-life-in-2025/), le stratège Connor Phillips détaille les trois flux de travail qui ont réellement fait la différence pour lui en 2025, ceux qu’il a gardés une fois l’effet de mode passé :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Synchroniser ses tâches** : copier les tâches de Monday.com dans Claude, les structurer au format Todoist, puis utiliser les intégrations MCP de Claude pour garder automatiquement les deux outils synchronisés.",
+          "**Consolider ses notes de réunion** : enregistrer les réunions avec Granola, appliquer une *Recipe* personnalisée pour en extraire les points clés et les actions, puis demander à Claude de tout fusionner dans un Google Doc mensuel, classé par ordre chronologique, sans aucun nettoyage manuel.",
+          "**Retenir ce qu’il apprend** : verser podcasts, articles et livres blancs dans des carnets NotebookLM classés par thème, poser des questions sur l’ensemble des sources, puis exporter des Audio Overviews ou des cartes mentales pour mémoriser."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "**Le point clé** : sa plus grande leçon ne concerne aucun outil en particulier. La valeur de l’IA vient du fait d’*identifier méthodiquement les points de friction d’abord*, puis d’appliquer le bon outil. La plupart des gens font l’inverse : ils adoptent un outil à la mode, puis cherchent des problèmes à lui faire résoudre. Repérez la friction, puis trouvez la solution."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt pour repérer vos frictions",
+        "type": "prompt",
+        "texte": "Voici comment se déroule une semaine type de mon travail : [description de vos tâches récurrentes et des outils que vous utilisez].\n\nRepère les 3 points de friction qui me coûtent le plus de temps ou d’énergie (copier-coller entre outils, notes à remettre en forme, informations difficiles à retrouver…). Pour chacun, propose une façon de le réduire avec l’IA, en précisant l’outil ou la fonction nécessaire.",
+        "adapte": true
+      },
+      {
+        "titre": "Le prompt de synthèse mensuelle des réunions",
+        "type": "prompt",
+        "texte": "Voici mes notes de réunion du mois : [notes]. Fusionne-les dans un seul document classé par ordre chronologique, avec pour chaque réunion la date, les points clés et les actions à mener.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Identifiez d’abord ce qui vous freine, puis cherchez l’outil adapté, et non l’inverse.",
+    "source": {
+      "cle": "openai-s-big-agent-hire-ai-blackmail-in-the-wild-and-the-pentagon-s-claude-problem",
+      "date": "2026-02-16",
+      "url": "https://www.theneurondaily.com/p/openai-s-big-agent-hire-ai-blackmail-in-the-wild-and-the-pentagon-s-claude-problem",
+      "newsletter": "OpenAI's big agent hire, AI blackmail in the wild, and the Pentagon's Claude problem",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 OpenAI's big agent hire, AI blackmail in the wild, and the Pentagon's Claude problem"
+    }
+  },
+  {
+    "id": "preciser-ce-qu-il-faut-eviter-et-montrer-un-exemple-de-bonne-reponse",
+    "titre": "Préciser ce qu’il faut éviter et montrer un exemple de bonne réponse",
+    "resume": "Les conseils d’OpenAI pour fiabiliser les agents valent aussi au quotidien : dites ce qu’il ne faut pas faire, fournissez un modèle de réponse et demandez le format de façon explicite.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "[OpenAI](https://developers.openai.com/blog/skills-shell-tips/) et [Google Gemini](https://github.com/google-gemini/gemini-skills) prennent désormais en charge les « Skills », des guides d’instructions réutilisables qui rendent les agents bien plus fiables sur les tâches complexes. Les conseils destinés aux développeurs publiés sur le [blog d’OpenAI](https://developers.openai.com/blog/skills-shell-tips/) s’appliquent aussi à vos prompts de tous les jours :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Dites ce qu’il ne faut PAS faire.** Ne vous contentez pas de dire à ChatGPT ce que vous voulez : précisez ce qu’il doit éviter. Chez Glean, l’absence d’exemples négatifs a fait chuter la précision de 20 %, qui est entièrement revenue une fois ces exemples ajoutés.",
+          "**Fournissez un modèle.** Montrez à l’IA à quoi ressemble une bonne réponse. Selon OpenAI, c’est ce qui a apporté les plus gros gains de qualité.",
+          "**Soyez explicite plutôt qu’astucieux.** Si vous voulez un format précis, dites-le directement. OpenAI y voit « le levier de fiabilité le plus simple qui soit »."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "**Le point clé** : la prochaine fois que ChatGPT vous rend quelque chose à côté de la plaque, ajoutez une consigne d’exclusion (premier prompt ci-dessous). C’est simple, mais c’est le même principe qui fait fonctionner aujourd’hui les agents IA utilisés en entreprise."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "La consigne d’exclusion",
+        "type": "prompt",
+        "texte": "N’inclus PAS [ce que vous obtenez sans cesse et ne voulez pas].",
+        "adapte": false
+      },
+      {
+        "titre": "Le prompt complet : exclusions, modèle et format",
+        "type": "prompt",
+        "texte": "[Votre demande]\n\nÀ éviter : [ce que vous ne voulez pas voir dans la réponse]\n\nVoici un exemple de bonne réponse : [modèle de réponse]\n\nFormat attendu : [format précis, par exemple un tableau à trois colonnes ou cinq puces de deux lignes au maximum]",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Dire à l’IA ce qu’elle ne doit pas faire, avec un exemple de bonne réponse, est l’un des leviers de fiabilité les plus simples.",
+    "source": {
+      "cle": "openai-solved-5-of-10-impossible-problems",
+      "date": "2026-02-15",
+      "url": "https://www.theneurondaily.com/p/openai-solved-5-of-10-impossible-problems",
+      "newsletter": "OpenAI solved 5 of 10 \"impossible\" problems",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 OpenAI solved 5 of 10 \"impossible\" problems"
+    }
+  },
+  {
+    "id": "transcrire-une-image-pour-recuperer-un-guide-de-prompts",
+    "titre": "Transcrire une image pour récupérer un guide de prompts",
+    "resume": "Quand une liste de techniques n’existe qu’en capture d’écran, collez l’image dans votre IA et demandez-lui de la transcrire à l’identique : vous obtenez un texte à conserver et à réutiliser.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Le compte [God of Prompt](https://x.com/godofprompt/status/2021873227363152090) a présenté, sous forme d’image, dix techniques de prompt avancées utilisées par des chercheurs pour obtenir des réponses structurées, vérifiées et de niveau expert."
+      },
+      {
+        "t": "p",
+        "x": "Si vous ne voulez pas aller sur X pour le lire, copiez l’image, collez-la dans votre IA et demandez-lui de la transcrire exactement telle qu’elle apparaît (prompt ci-dessous). Enregistrez ensuite le résultat : vous disposez d’un texte que vous pouvez relire, modifier et réutiliser. La même méthode vaut pour tout guide partagé en capture d’écran."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de transcription",
+        "type": "prompt",
+        "texte": "Transcris cette image exactement telle qu’elle apparaît.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Une capture d’écran pleine de conseils devient un texte réutilisable en une seule demande à l’IA.",
+    "source": {
+      "cle": "anthropic-s-30b-war-chest-the-200m-political-battle-and-the-flood-of-free-chinese-models",
+      "date": "2026-02-13",
+      "url": "https://www.theneurondaily.com/p/anthropic-s-30b-war-chest-the-200m-political-battle-and-the-flood-of-free-chinese-models",
+      "newsletter": "Anthropic's $30B Gambit: AI's Political & Market Showdown",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 Anthropic's $30B Gambit: AI's Political & Market Showdown"
+    }
+  },
+  {
+    "id": "empecher-l-ia-de-vous-donner-raison-sur-tout",
+    "titre": "Empêcher l’IA de vous donner raison sur tout",
+    "resume": "Quatre consignes dans les préférences de Claude ou les instructions personnalisées de ChatGPT suffisent pour que l’IA conteste votre raisonnement au lieu de le flatter.",
+    "categorie": "verifier",
+    "niveau": "debutant",
+    "outils": [
+      "claude",
+      "chatgpt"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Votre IA est un béni-oui-oui. [Voici comment corriger cela](https://www.reddit.com/r/ClaudeAI/comments/1r1ou0b/i_got_tired_of_claude_agreeing_with_everything_i/) en 30 secondes : ouvrez les préférences utilisateur de Claude (**Settings → User Preferences**) ou les instructions personnalisées de ChatGPT (**Custom Instructions**), puis ajoutez les consignes anti-complaisance ci-dessous."
+      },
+      {
+        "t": "p",
+        "x": "**Avant** : un utilisateur raconte à Claude qu’il a acheté sur un coup de tête six billets de concert en Suisse. Claude répond : « Voilà une approche intéressante ! » **Après** : « Dépenser de 600 à 1 800 dollars en billets pour vous forcer à être plus sociable, c’est une façon coûteuse et détournée de créer des liens. »"
+      },
+      {
+        "t": "p",
+        "x": "**Le point clé** : pour une revue de code, ne demandez pas simplement de relire le code. Demandez de trouver les problèmes, en partant du principe qu’il y en a au moins trois (second prompt ci-dessous). Obliger l’IA à chercher des défauts plutôt qu’à valider votre approche change complètement le résultat, et révèle les failles de votre raisonnement comme de votre travail."
+      },
+      {
+        "t": "p",
+        "x": "La [version plus longue](https://www.reddit.com/r/ClaudeAI/comments/1r1ou0b/comment/o4rgo7x/) proposée dans le commentaire le plus populaire vaut aussi le détour."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Les instructions anti-complaisance",
+        "type": "prompt",
+        "texte": "- Ne sois pas complaisant : ne renonce pas à tes arguments simplement parce que je conteste.\n- Arrête les validations excessives : remets plutôt en question mon raisonnement.\n- Évite les flatteries qui ressemblent à des compliments inutiles.\n- Ne t’attribue pas de caractéristiques humaines.",
+        "adapte": false
+      },
+      {
+        "titre": "La revue de code exigeante",
+        "type": "prompt",
+        "texte": "Trouve les problèmes dans ce code, en partant du principe qu’il y en a au moins 3.\n\n[votre code]",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Demandez à l’IA de chercher des défauts plutôt que de valider : vous obtiendrez une critique utile au lieu d’un compliment.",
+    "source": {
+      "cle": "practical-workflows-for-working-with-claude-cowork",
+      "date": "2026-02-12",
+      "url": "https://www.theneurondaily.com/p/practical-workflows-for-working-with-claude-cowork",
+      "newsletter": "Practical Workflows for working with Claude Cowork",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 Practical Workflows for working with Claude Cowork"
+    }
+  },
+  {
+    "id": "creer-des-diapositives-facon-mckinsey-a-partir-d-un-simple-texte",
+    "titre": "Créer des diapositives façon McKinsey à partir d’un simple texte",
+    "resume": "Décrivez un sujet d’analyse et demandez un style « McKinsey » : Kimi produit un diaporama dense, avec graphiques, matrices et mise en page sobre, sans aucune compétence en design.",
+    "categorie": "creer",
+    "niveau": "debutant",
+    "outils": [
+      "autre"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Vous voulez des diapositives de niveau professionnel sans effort ? Cette [astuce de prompt pour Kimi](https://x.com/crystalsssup/status/2021128641917354475) transforme une simple description en présentation de style McKinsey, avec graphiques, matrices et une ambiance sobre et technologique en bleu roi et gris."
+      },
+      {
+        "t": "p",
+        "x": "Donnez-lui un sujet d’analyse (par exemple les vidéos générées par IA) et regardez-le construire un diaporama dense et percutant, avec des polices à empattement pour les titres et des visualisations de données bien mises en forme."
+      },
+      {
+        "t": "p",
+        "x": "**Le point clé** : écrivez « style McKinsey » dans votre prompt pour obtenir immédiatement une mise en forme professionnelle. Pas besoin de compétences en design : décrivez, puis lancez."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de présentation style McKinsey",
+        "type": "prompt",
+        "texte": "Crée une présentation de style McKinsey sur [sujet d’analyse].\n\nAmbiance sobre et technologique, palette bleu roi et gris, polices à empattement pour les titres. Construis des diapositives denses et percutantes, avec des graphiques, des matrices et des visualisations de données bien mises en forme.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Nommer un style de référence connu, comme « McKinsey », suffit à obtenir une mise en forme de présentation professionnelle.",
+    "source": {
+      "cle": "what-are-the-agent-tools-besides-openclaw-you-should-actually-use",
+      "date": "2026-02-11",
+      "url": "https://www.theneurondaily.com/p/what-are-the-agent-tools-besides-openclaw-you-should-actually-use",
+      "newsletter": "What are the agent tools (besides OpenClaw) you should actually use?",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 What are the agent tools (besides OpenClaw) you should actually use?"
+    }
+  },
+  {
+    "id": "planter-un-indice-pour-savoir-quand-l-ia-perd-le-fil",
+    "titre": "Planter un indice pour savoir quand l’IA perd le fil",
+    "resume": "Glissez un détail anodin au début d’une longue conversation et redemandez-le quand les réponses se dégradent : si l’IA l’a oublié, il est temps de repartir sur une nouvelle discussion.",
+    "categorie": "memoire",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Avez-vous remarqué que ChatGPT ou Claude deviennent… moins bons au milieu d’une longue conversation ? Ils se répètent, oublient ce que vous avez dit plus tôt, donnent de moins bonnes réponses. Ce phénomène a un nom : la [« zone d’idiotie »](https://youtu.be/qwmmWzPnhog?t=900) (*dumb zone*). Une fois que l’IA a utilisé à peu près la moitié de sa fenêtre de contexte (sa mémoire de travail), la qualité chute. Comme un élève à qui il reste 5 minutes d’examen et la moitié des questions en blanc : il devine au lieu de réfléchir."
+      },
+      {
+        "t": "p",
+        "x": "L’astuce vient de [Kelvin French-Owen](https://youtu.be/qwmmWzPnhog?t=964), qui a participé à la création de Codex chez OpenAI : **plantez un « canari » au début de la conversation**, c’est-à-dire un détail sans importance que vous pourrez vérifier plus tard."
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Glissez un fait anodin dès le début de la conversation (premier prompt ci-dessous).",
+          "Quand les réponses commencent à sembler bizarres, redemandez-le à l’IA.",
+          "Si elle l’a oublié, votre contexte est saturé : ouvrez une nouvelle discussion et collez-y seulement les informations clés de l’ancienne. Les résultats s’améliorent aussitôt."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "**Astuce** : pour un travail important, gardez des conversations courtes et ciblées, un sujet par discussion. Votre IA restera plus affûtée et vous passerez moins de temps à corriger de mauvaises réponses."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le canari à planter au début",
+        "type": "prompt",
+        "texte": "Petite précision pour le contexte : mon chien s’appelle Gaufre et j’ai bu un thé vert à 7 h 15 ce matin.",
+        "adapte": false
+      },
+      {
+        "titre": "La question de vérification",
+        "type": "prompt",
+        "texte": "Au fait, comment s’appelle mon chien ?",
+        "adapte": false
+      },
+      {
+        "titre": "Le résumé pour repartir à zéro",
+        "type": "prompt",
+        "texte": "Résume les informations essentielles de cette conversation (objectif, décisions prises, contraintes, prochaines étapes) en un texte court que je pourrai coller au début d’une nouvelle discussion.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Si l’IA oublie un détail donné au début, ne vous acharnez pas : repartez sur une nouvelle discussion avec l’essentiel.",
+    "source": {
+      "cle": "plot-twist-ai-is-making-you-work-more",
+      "date": "2026-02-10",
+      "url": "https://www.theneurondaily.com/p/plot-twist-ai-is-making-you-work-more",
+      "newsletter": "Plot twist: AI is making you work more",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 Plot twist: AI is making you work more"
+    }
+  },
+  {
+    "id": "choisir-entre-claude-opus-4-6-et-gpt-5-3-codex-pour-coder",
+    "titre": "Choisir entre Claude Opus 4.6 et GPT-5.3 Codex pour coder",
+    "resume": "Testés en direct, Codex livre vite et se laisse réorienter en cours de route, tandis qu’Opus prend son temps, teste davantage et consomme beaucoup de tokens avec ses équipes d’agents.",
+    "categorie": "outils",
+    "niveau": "avance",
+    "outils": [
+      "claude-code",
+      "codex"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Le YouTubeur Greg Isenberg et Morgan Linton (directeur technique de Bold Metrics) ont décortiqué la différence de philosophie entre Claude Opus 4.6 et GPT-5.3 Codex, sans chercher à désigner « le meilleur ». Ce qu’ont montré leurs tests en direct :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Résultats** : Codex a terminé en moins de 4 minutes avec 10 tests. Opus a pris nettement plus de temps, mais a livré 96 tests et une interface plus soignée, aux fonctions plus riches.",
+          "**Fenêtre de contexte** : Opus dispose d’un million de *tokens* pour un raisonnement complet ; Codex de 200 000, optimisés pour une exécution progressive.",
+          "**Réorientation en cours de route** : Codex vous laisse l’interrompre et le rediriger pendant qu’il construit (ils l’ont testé en lui posant des questions en plein travail). Opus le gère moins bien.",
+          "**Réglage indispensable** : activez l’option expérimentale `agent_teams` dans le `settings.json` de Claude Code, sinon vous n’utilisez pas vraiment la fonction d’équipes d’agents d’Opus.",
+          "**Stratégie de prompt** : avec Opus, demandez de « construire une équipe d’agents » aux rôles précis ; avec Codex, demandez de « réfléchir en profondeur » à certains points, puis guidez-le pendant l’exécution."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "**L’idée clé** : Claude se demande « devrait-on faire ça ? » en sirotant son café, Codex se demande « à quelle vitesse puis-je livrer ? » en livrant déjà. Vous finirez sans doute par utiliser les deux."
+      },
+      {
+        "t": "p",
+        "x": "**Attention au budget** : les équipes d’agents sont gourmandes. Une seule construction avec Opus a consommé de 150 000 à 250 000 *tokens*, et Morgan Linton en a utilisé plus en une journée de tests que jamais auparavant. Prévoyez votre budget en conséquence et regardez [la vidéo complète](https://www.youtube.com/watch?v=gmSnQPzoYHA)."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt pour Opus : l’équipe d’agents",
+        "type": "prompt",
+        "texte": "Construis une équipe d’agents pour [projet], avec ces rôles : [rôle 1], [rôle 2], [rôle 3].",
+        "adapte": false
+      },
+      {
+        "titre": "Le prompt pour Codex : réfléchir en profondeur",
+        "type": "prompt",
+        "texte": "Réfléchis en profondeur à [points délicats du projet], puis commence à construire [projet].",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Codex mise sur la vitesse et le pilotage en direct, Opus sur la profondeur : choisissez selon le projet et surveillez votre consommation de tokens.",
+    "source": {
+      "cle": "ai-just-solved-unsolvable-math",
+      "date": "2026-02-09",
+      "url": "https://www.theneurondaily.com/p/ai-just-solved-unsolvable-math",
+      "newsletter": "AI just solved unsolvable math",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 AI just solved unsolvable math"
+    }
+  },
+  {
+    "id": "passer-du-chatbot-aux-agents-etape-par-etape",
+    "titre": "Passer du chatbot aux agents, étape par étape",
+    "resume": "Mitchell Hashimoto propose un parcours concret : le chat pour apprendre, les agents pour faire, des tâches lancées hors de vos heures de travail et une règle ajoutée à chaque erreur.",
+    "categorie": "automatiser",
+    "niveau": "intermediaire",
+    "outils": [
+      "claude-code",
+      "claude",
+      "codex"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "[Mitchell Hashimoto](https://mitchellh.com/writing/my-ai-adoption-journey) (créateur de Vagrant, cofondateur de HashiCorp) a publié l’un des guides d’adoption de l’IA les plus concrets qui soient. Son argument : la plupart des gens restent bloqués à la « phase chatbot » et utilisent l’IA comme un moteur de recherche auquel on parle. C’est comme n’utiliser son smartphone que pour téléphoner."
+      },
+      {
+        "t": "p",
+        "x": "Le vrai déclic, ce sont les **agents** : des IA qui agissent sur votre ordinateur (lire des fichiers, exécuter des tâches, vérifier leur propre travail). Voici sa méthode :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Le chat pour apprendre.** Travaillez vos prompts, cherchez des idées, mais arrêtez de faire le vrai travail dans une fenêtre de discussion.",
+          "**Les agents pour faire.** Des outils comme Claude Code, Cowork ou Codex (aucune compétence en programmation requise) exécutent les tâches au lieu de simplement suggérer des réponses.",
+          "**Vos heures creuses.** Avant de fermer votre ordinateur, lancez un agent sur une recherche, un rangement de fichiers ou une rédaction : il travaille pendant que vous ne travaillez pas.",
+          "**Des garde-fous.** Chaque fois que l’agent fait une erreur, créez une règle pour qu’elle ne se reproduise jamais. Vous formez un nouveau collègue, vous ne vous remplacez pas."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "La progression : le chat, puis les agents, puis des automatisations qui tournent seules. Nul besoin d’être ingénieur pour la suivre."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "La tâche à lancer avant de partir",
+        "type": "prompt",
+        "texte": "Pendant mon absence, fais une recherche sur [sujet] : rassemble les sources principales, résume les points clés dans un fichier [nom du fichier] et liste les questions qui restent ouvertes. Ne supprime et ne modifie aucun autre fichier.",
+        "adapte": true
+      },
+      {
+        "titre": "Le prompt pour créer un garde-fou",
+        "type": "prompt",
+        "texte": "Tu viens de faire cette erreur : [description de l’erreur]. Rédige une règle courte et précise que j’ajouterai à tes instructions pour qu’elle ne se reproduise plus.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Utilisez le chat pour apprendre et les agents pour faire, et transformez chaque erreur de l’agent en règle durable.",
+    "source": {
+      "cle": "why-ai-is-moving-off-planet",
+      "date": "2026-02-08",
+      "url": "https://www.theneurondaily.com/p/why-ai-is-moving-off-planet",
+      "newsletter": "Why AI is moving off-planet",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 Why AI is moving off-planet"
+    }
+  },
+  {
+    "id": "choisir-le-bon-outil-d-ia-selon-la-tache",
+    "titre": "Choisir le bon outil d’IA selon la tâche",
+    "resume": "Jeff Su, spécialiste de la productivité, présente le point fort de ChatGPT, Gemini, Claude, Perplexity et NotebookLM, et conseille de maîtriser un seul outil avant d’en ajouter d’autres.",
+    "categorie": "outils",
+    "niveau": "debutant",
+    "outils": [
+      "chatgpt",
+      "gemini",
+      "claude",
+      "autre"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Arrêtez d’utiliser le mauvais outil. Le spécialiste de la productivité [Jeff Su explique](https://youtu.be/htZRCE2GgIs?si=VJgEiOA34d5Kw3TD) quand utiliser chaque outil d’IA, selon son point fort :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**ChatGPT** : le plus obéissant. Il suit des consignes complexes en plusieurs étapes sans rien laisser tomber (parfait pour des listes de contrôle détaillées).",
+          "**Gemini** : le roi du multimodal. C’est le seul à traiter nativement vidéo, audio, images et texte en même temps, avec une immense fenêtre de contexte d’un million de *tokens* (voir aussi [son tutoriel Gemini](https://youtu.be/aH9ctWaxGgQ?si=CKqEY8uYobFCyWrK)).",
+          "**Claude** : les meilleurs premiers jets, surtout pour le code (qui fonctionne du premier coup) et les textes soignés.",
+          "**Perplexity** : la recherche rapide. Il trouve vite des faits précis pendant que ChatGPT se charge de la réflexion.",
+          "**NotebookLM** : aucune hallucination, car il ne répond qu’à partir des sources que vous avez chargées."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Il cite aussi des outils plus spécialisés, qu’il n’utilise pas tous les jours : Grok (accès direct au flux de X pour analyser l’actualité en temps réel, dont il n’a pas besoin), Gamma pour les présentations, ElevenLabs pour le clonage de voix, Zapier ou n8n pour l’automatisation, Napkin AI pour des visuels rapides."
+      },
+      {
+        "t": "p",
+        "x": "**Son enchaînement réel** : ChatGPT ou Gemini pour les idées et la recherche, puis Claude pour la finition, Perplexity pour vérifier les faits et NotebookLM pour contrôler l’exactitude."
+      },
+      {
+        "t": "p",
+        "x": "**Le conseil clé** : n’utilisez pas les cinq outils simplement parce qu’ils existent. Maîtrisez-en d’abord un (Jeff Su recommande ChatGPT, mais vous pouvez commencer par Claude ou Gemini), puis ajoutez des spécialistes uniquement quand vous butez sur un problème précis qu’ils résolvent mieux."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt pour savoir s’il faut un autre outil",
+        "type": "prompt",
+        "texte": "Voici une tâche que je fais régulièrement : [description de la tâche]. J’utilise surtout [votre outil d’IA principal].\n\nDis-moi si cet outil suffit ou si un outil spécialisé (recherche rapide, réponses limitées à mes documents, analyse de vidéo ou d’audio, présentations…) ferait nettement mieux, et pourquoi. Ne me recommande un outil supplémentaire que s’il résout un problème précis que mon outil actuel gère mal.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Maîtrisez un outil avant d’en ajouter d’autres, et n’ajoutez un spécialiste que pour un problème qu’il résout mieux.",
+    "source": {
+      "cle": "anthropic-and-openai-both-dropped-their-best-ai-models-on-the-same-day",
+      "date": "2026-02-06",
+      "url": "https://www.theneurondaily.com/p/anthropic-and-openai-both-dropped-their-best-ai-models-on-the-same-day",
+      "newsletter": "Anthropic's Opus 4.6 vs OpenAI's GPT 5.3 Codex",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 Anthropic's Opus 4.6 vs OpenAI's GPT 5.3 Codex"
+    }
+  },
+  {
+    "id": "analyser-et-corriger-vos-tableurs-avec-claude-dans-excel",
+    "titre": "Analyser et corriger vos tableurs avec Claude dans Excel",
+    "resume": "Le complément Claude dans Excel répond à vos questions sur un classeur, retrouve l’origine d’une erreur, explique les formules et construit des modèles, en citant les cellules utilisées.",
+    "categorie": "outils",
+    "niveau": "intermediaire",
+    "outils": [
+      "claude"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Le complément [Claude dans Excel](https://claude.com/claude-in-excel) (en bêta pour les abonnés Pro et au-delà) place Claude directement dans votre feuille de calcul. Anthropic a publié un [tutoriel de 7 minutes](https://youtu.be/54BdUqMQUMI?si=JPv4UMZGhMhnbln8) pour s’en servir."
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "[Installez le complément](https://marketplace.microsoft.com/en-us/product/saas/wa200009404).",
+          "Ouvrez-le avec Ctrl+Option+C (Mac) ou Ctrl+Alt+C (Windows).",
+          "Posez votre demande en langage courant (exemples ci-dessous)."
+        ]
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Poser des questions** : Claude fait le calcul et montre le détail.",
+          "**Déboguer** : il remonte automatiquement jusqu’à la cellule à l’origine d’une erreur.",
+          "**Expliquer des formules** : vous obtenez une explication pas à pas, avec citations.",
+          "**Enchaîner plusieurs tâches** : nettoyer les données, supprimer les doublons, construire une prévision… Claude s’occupe de tout.",
+          "**Construire des modèles** : il crée des formules dynamiques reliées aux cellules d’hypothèses."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Claude affiche des citations au niveau de la cellule pour tout ce qu’il utilise : cliquez sur ces encadrés pour aller directement aux cellules concernées. C’est idéal pour vérifier son travail."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Vérifier un objectif",
+        "type": "prompt",
+        "texte": "Est-ce que j’ai atteint mon objectif budgétaire ?",
+        "adapte": false
+      },
+      {
+        "titre": "Trouver l’origine d’une erreur",
+        "type": "prompt",
+        "texte": "Pourquoi y a-t-il une erreur en mai ?",
+        "adapte": false
+      },
+      {
+        "titre": "Expliquer une formule",
+        "type": "prompt",
+        "texte": "Comment fonctionne cette RECHERCHEV ?",
+        "adapte": false
+      },
+      {
+        "titre": "Enchaîner plusieurs tâches",
+        "type": "prompt",
+        "texte": "Nettoie ces données, supprime les doublons et construis une prévision.",
+        "adapte": false
+      },
+      {
+        "titre": "Construire un modèle de valorisation",
+        "type": "prompt",
+        "texte": "Crée une valorisation par actualisation des flux de trésorerie (DCF).",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Cliquez sur les citations de cellules pour vérifier chaque chiffre que Claude avance dans votre classeur.",
+    "source": {
+      "cle": "super-bowl-2026-when-ai-companies-chose-violence",
+      "date": "2026-02-05",
+      "url": "https://www.theneurondaily.com/p/super-bowl-2026-when-ai-companies-chose-violence",
+      "newsletter": "Super Bowl 2026: When AI Companies Chose Violence",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 Super Bowl 2026: When AI Companies Chose Violence"
+    }
+  },
+  {
+    "id": "generer-et-affiner-des-images-en-boucle-avec-claude-code",
+    "titre": "Générer et affiner des images en boucle avec Claude Code",
+    "resume": "Avec deux plugins, Claude Code génère une image à partir d’un contenu, vous l’annotez, puis il la corrige : une boucle générer, annoter, affiner lancée par un seul prompt.",
+    "categorie": "creer",
+    "niveau": "avance",
+    "outils": [
+      "claude-code"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Elvis Saravia, formateur en IA, a [partagé un flux de travail redoutable](https://academy.dair.ai/blog/agentic-context-engineering) de « génération d’images agentique » dans Claude Code :"
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Installez le [plugin de génération d’images de DAIR Academy](https://github.com/dair-ai/dair-academy-plugins).",
+          "Donnez une tâche à Claude, par exemple créer une infographie à partir d’un article de blog (premier prompt ci-dessous).",
+          "Claude récupère le contenu, en extrait les concepts clés et génère l’image.",
+          "Utilisez le [plugin Playground](https://github.com/anthropics/claude-plugins-official/tree/main/plugins/playground) pour annoter ce qui doit être amélioré.",
+          "Renvoyez ces annotations à Claude, qui affine l’image."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "La boucle : générer, annoter, affiner. Un seul prompt, et l’agent gère tout le processus. Elvis Saravia publie d’autres contenus de ce type sur [DAIR Academy](https://academy.dair.ai/courses)."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de départ",
+        "type": "prompt",
+        "texte": "Crée une infographie de cet article de blog : [lien ou texte de l’article]",
+        "adapte": false
+      },
+      {
+        "titre": "Le prompt d’affinage",
+        "type": "prompt",
+        "texte": "Voici mes annotations sur l’image : [vos annotations]. Corrige l’image en tenant compte de chacune d’elles.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Avec un agent, une image ne se réussit plus en un seul essai : elle s’améliore en boucle à partir de vos annotations.",
+    "source": {
+      "cle": "apple-anthropic-and-the-saaspocalypse-explained",
+      "date": "2026-02-04",
+      "url": "https://www.theneurondaily.com/p/apple-anthropic-and-the-saaspocalypse-explained",
+      "newsletter": "Apple, Anthropic, and the \"SaaSpocalypse\", explained",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Apple, Anthropic, and the \"SaaSpocalypse\", explained"
+    }
+  },
+  {
+    "id": "travailler-avec-claude-code-comme-l-equipe-qui-l-a-cree",
+    "titre": "Travailler avec Claude Code comme l’équipe qui l’a créé",
+    "resume": "Boris Cherny, créateur de Claude Code, explique comment son équipe l’utilise : plusieurs sessions en parallèle, le mode plan pour les tâches complexes et un CLAUDE.md enrichi à chaque erreur.",
+    "categorie": "coder",
+    "niveau": "avance",
+    "outils": [
+      "claude-code"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Boris Cherny, le créateur de Claude Code, a [publié un fil](https://x.com/bcherny/status/2017742741636321619) qui montre comment le reste de l’équipe Claude Code utilise réellement son propre produit. Trois enseignements ressortent :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "Faites tourner 3 à 5 *git worktrees* en parallèle, chacun avec sa propre session Claude.",
+          "Commencez toujours les tâches complexes en mode plan.",
+          "Construisez un fichier `CLAUDE.md` que Claude met à jour après chaque erreur."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "En résumé, l’équipe Claude Code utilise son outil comme cinq développeurs qui travailleraient en parallèle : plusieurs agents à la fois, chacun sur sa tâche."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "La commande pour ouvrir une session parallèle",
+        "type": "commande",
+        "texte": "git worktree add ../mon-projet-tache-a -b tache-a\ncd ../mon-projet-tache-a\nclaude",
+        "adapte": true
+      },
+      {
+        "titre": "Le prompt pour transformer une erreur en règle",
+        "type": "prompt",
+        "texte": "Tu viens de faire une erreur : [description de l’erreur]. Ajoute à `CLAUDE.md` une règle courte et précise pour qu’elle ne se reproduise plus.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Faites travailler Claude Code comme une équipe : plusieurs sessions en parallèle, un plan avant chaque tâche complexe et des règles qui s’enrichissent à chaque erreur.",
+    "source": {
+      "cle": "openai-nvidia-100b-deal-drama",
+      "date": "2026-02-03",
+      "url": "https://www.theneurondaily.com/p/openai-nvidia-100b-deal-drama",
+      "newsletter": "SpaceX bought xAI to build data centers in space",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 SpaceX bought xAI to build data centers in space"
+    }
+  },
+  {
+    "id": "creer-un-plugin-claude-code-pour-partager-vos-skills-avec-l-equipe",
+    "titre": "Créer un plugin Claude Code pour partager vos Skills avec l’équipe",
+    "resume": "Un dossier, un manifeste et quelques fichiers Markdown suffisent pour empaqueter vos Skills, agents et hooks Claude Code et les installer chez vos collègues sans conflit de noms.",
+    "categorie": "coder",
+    "niveau": "avance",
+    "outils": [
+      "claude-code",
+      "chatgpt"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Claude Code dispose d’un système de plugins qui vous permet de créer vos propres Skills, agents et *hooks* pour étendre ses capacités, et il est étonnamment simple d’en construire un."
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Créez un dossier contenant un fichier manifeste `.claude-plugin/plugin.json`.",
+          "Ajoutez un dossier `skills/` avec vos fichiers Markdown : un plugin de revue de code, par exemple, n’est qu’une arborescence de dossiers avec les instructions dans `SKILL.md`.",
+          "Commencez par des configurations autonomes pour votre usage personnel (`/hello`), puis empaquetez-les en plugin quand vous voulez les partager avec votre équipe (`/my-plugin:hello`). Quelques copies de fichiers suffisent pour convertir vos configurations `.claude/` existantes en plugins."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "**Le point clé** : les plugins utilisent des espaces de noms pour éviter les conflits. Si trois collègues créent chacun une Skill `/review`, elles ne se marchent pas dessus : chaque plugin a son propre préfixe (comme `/code-tools:review`), ce qui permet d’installer plusieurs plugins sans perturber votre façon de travailler."
+      },
+      {
+        "t": "p",
+        "x": "Pour vous lancer, consultez la [documentation complète des plugins Claude Code](https://code.claude.com/docs/en/plugins)."
+      },
+      {
+        "t": "p",
+        "x": "**Pas encore de Claude Code ?** Dans ChatGPT, les connecteurs (aussi appelés MCP, pour *Model Context Protocol*) permettent quelque chose de comparable : au lieu de construire des plugins, vous reliez des services comme GitHub, Google Drive ou vos propres API pour donner à ChatGPT accès à vos outils et à vos données."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "L’arborescence d’un plugin minimal",
+        "type": "fichier",
+        "texte": "mon-plugin/\n├── .claude-plugin/\n│   └── plugin.json\n└── skills/\n    └── revue-de-code/\n        └── SKILL.md",
+        "adapte": true
+      },
+      {
+        "titre": "Le prompt de conversion en plugin",
+        "type": "prompt",
+        "texte": "Transforme ma configuration `.claude/` actuelle en plugin partageable nommé [nom du plugin] : crée le manifeste `.claude-plugin/plugin.json` avec un nom et une description, place mes Skills dans le dossier `skills/`, puis explique-moi comment mes collègues peuvent l’installer.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Grâce aux espaces de noms, chacun peut créer ses propres commandes dans un plugin sans entrer en conflit avec celles de ses collègues.",
+    "source": {
+      "cle": "is-nvidia-backing-out-of-openai-or-going-all-in",
+      "date": "2026-02-02",
+      "url": "https://www.theneurondaily.com/p/is-nvidia-backing-out-of-openai-or-going-all-in",
+      "newsletter": "Is Nvidia backing out of OpenAI, or going all in?",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Is Nvidia backing out of OpenAI, or going all in?"
+    }
+  },
+  {
+    "id": "appliquer-les-conseils-d-anthropic-pour-ecrire-des-prompts-d-agents",
+    "titre": "Appliquer les conseils d’Anthropic pour écrire des prompts d’agents",
+    "resume": "Ali Ibrahim a rassemblé dans un article clair les conseils de l’équipe d’Anthropic pour donner des consignes à un agent IA. Transformez-les en règles à appliquer à vos propres prompts.",
+    "categorie": "automatiser",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Ali Ibrahim a publié un [article clair et bien organisé](https://techwithibrahim.medium.com/the-art-of-agent-prompting-lessons-from-anthropics-ai-team-e8c9ac4db3f3) qui rassemble les conseils de l’équipe d’Anthropic pour rédiger des prompts destinés aux *agents*, ces IA qui enchaînent elles-mêmes plusieurs actions pour mener une tâche à bien. Il mérite d’être lu en entier."
+      },
+      {
+        "t": "p",
+        "x": "Plutôt que de le lire une fois puis de l’oublier, demandez à votre IA d’en tirer une courte liste de règles et de vérifier votre propre prompt à l’aide de cette liste avant de confier une tâche à un agent."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt pour tirer des règles d’un guide",
+        "type": "prompt",
+        "texte": "Voici un article sur la façon de rédiger des prompts pour des agents IA : [texte ou lien de l’article].\n\nTire-en les 5 à 10 règles les plus utiles, formulées chacune en une phrase à l’impératif, avec un exemple concret pour chacune.\n\nRelis ensuite mon prompt ci-dessous et indique quelles règles il ne respecte pas, puis propose une version corrigée :\n[votre prompt pour l’agent]",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Transformez un bon guide en liste de règles que vous appliquez à vos prompts, plutôt que de le lire une fois et de l’oublier.",
+    "source": {
+      "cle": "google-cracked-the-code-for-400-languages",
+      "date": "2026-02-01",
+      "url": "https://www.theneurondaily.com/p/google-cracked-the-code-for-400-languages",
+      "newsletter": "Google cracked the code for 400+ languages",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Google cracked the code for 400+ languages"
+    }
+  },
+  {
+    "id": "ecrire-des-prompts-de-mondes-interactifs-avec-le-guide-de-genie-3",
+    "titre": "Écrire des prompts de mondes interactifs avec le guide de Genie 3",
+    "resume": "Le guide officiel de Genie 3 recommande un vocabulaire de jeu vidéo, des détails sensoriels et des phrases courtes, puis de faire réécrire par Gemini les prompts qui échouent.",
+    "categorie": "creer",
+    "niveau": "intermediaire",
+    "outils": [
+      "gemini",
+      "autre"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Google DeepMind a publié un [guide officiel pour rédiger des prompts Genie 3](https://deepmind.google/models/genie/prompt-guide/), son modèle qui génère des mondes interactifs. Ses conseils valent bien au-delà de la création d’univers de jeu."
+      },
+      {
+        "t": "p",
+        "x": "**Le cadre en trois parties** : l’**environnement** (le décor et le style), le **personnage** (ce qui bouge, et comment) et l’**esquisse du monde** (*World Sketch*, l’image d’aperçu qui fixe l’ensemble)."
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Employez un vocabulaire de jeu vidéo.** Selon DeepMind, la terminologie du jeu produit « des environnements plus riches, avec un contrôle plus précis ». Au lieu de « le personnage se déplace avec élégance », essayez « le personnage glisse vers l’avant, laissant une traînée de lumière bleue ».",
+          "**Créez une ambiance par les détails sensoriels.** Ne vous contentez pas de décrire : faites ressentir. « Faiblement éclairé, avec une fumée mystérieuse au sol » vaut mieux que « environnement sombre ».",
+          "**Restez direct et orienté action.** Des phrases déclaratives courtes. Comme celle-ci."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "**Le conseil le plus utile** : quand un prompt échoue, demandez à Gemini de le « réécrire, développer et enrichir ». Du méta-prompting pour construire des mondes : très efficace."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "La structure d’un prompt de monde",
+        "type": "prompt",
+        "texte": "Environnement : [décor et style visuel, avec des détails sensoriels]\nPersonnage : [qui ou quoi bouge, et comment, en vocabulaire de jeu vidéo]",
+        "adapte": true
+      },
+      {
+        "titre": "Le méta-prompt de réécriture",
+        "type": "prompt",
+        "texte": "Réécris, développe et enrichis ce prompt pour Genie 3 :\n\n[votre prompt]",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Vocabulaire de jeu vidéo, détails sensoriels et phrases courtes ; et quand ça coince, faites réécrire le prompt par une autre IA.",
+    "source": {
+      "cle": "google-lets-you-walk-inside-your-dreams-for-250-mo-anyway",
+      "date": "2026-01-30",
+      "url": "https://www.theneurondaily.com/p/google-lets-you-walk-inside-your-dreams-for-250-mo-anyway",
+      "newsletter": "Google lets you walk inside your dreams (for $250/mo anyway 👀)",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 Google lets you walk inside your dreams (for $250/mo anyway 👀)"
+    }
+  },
+  {
+    "id": "recreer-le-mode-plan-dans-n-importe-quel-chatbot",
+    "titre": "Recréer le mode Plan dans n’importe quel chatbot",
+    "resume": "Plutôt que de chercher le prompt parfait, faites d’abord proposer un plan à l’IA, validez-le, puis laissez-la exécuter. Ce prompt recrée le mode Plan de Claude Code dans un chatbot.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Une nouvelle pratique remplace la quête du « prompt parfait » : demander à l’IA de créer d’abord un plan, que vous approuvez, et qu’elle exécute ensuite. Ce mode Plan (ou *spec mode*), présent dans des outils comme [Claude Code](https://claude.com/product/claude-code), encadre les endroits où l’IA improvise : vous fixez les limites en amont au lieu de corriger les problèmes après coup."
+      },
+      {
+        "t": "p",
+        "x": "Si vous n’êtes pas prêt à essayer un outil en ligne de commande comme Claude Code ou Codex, vous pouvez recréer ce mode Plan par le prompt dans ChatGPT, Claude ou Gemini. Voici une version de départ, à modifier selon vos besoins."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt du mode Plan",
+        "type": "prompt",
+        "texte": "Avant de commencer [tâche], travaille par phases :\n\n1. Pose-moi des questions de clarification sur [demande ou contexte].\n\n2. Propose ton approche pour [manière de procéder].\n\n3. Relis ton plan initial pour t’assurer qu’il correspond à [mes objectifs].\n\n4. À partir de cette relecture, rédige un plan final qui indique : [ce que tu vas faire], [les étapes], [les risques possibles].\n\nReste facile à parcourir, mais détaillé. Attends mon accord avant de passer à l’exécution.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Faites valider un plan avant toute exécution : vous fixez les limites en amont au lieu de corriger après coup.",
+    "source": {
+      "cle": "ai-just-decoded-the-98-of-dna-scientists-gave-up-on",
+      "date": "2026-01-29",
+      "url": "https://www.theneurondaily.com/p/ai-just-decoded-the-98-of-dna-scientists-gave-up-on",
+      "newsletter": "AI just decoded the 98% of DNA scientists gave up on",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 AI just decoded the 98% of DNA scientists gave up on"
+    }
+  },
+  {
+    "id": "se-faire-interviewer-par-l-ia-au-lieu-d-ecrire-le-prompt-parfait",
+    "titre": "Se faire interviewer par l’IA au lieu d’écrire le prompt parfait",
+    "resume": "Ne commencez pas par un prompt : donnez votre objectif à l’IA et laissez-la vous poser au moins dix questions. Le résultat est meilleur, plus rapide, et réutilisable en prompt.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "L’astuce ultime en matière de prompt : *ne commencez pas par un prompt.* Indiquez plutôt votre objectif à l’IA, puis laissez-*la* vous interviewer. Le résultat est meilleur, et vous l’obtenez plus vite."
+      },
+      {
+        "t": "p",
+        "x": "Une fois l’échange terminé, vous pouvez même lui demander de transformer toute la conversation en prompt réutilisable (second prompt ci-dessous)."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt d’interview",
+        "type": "prompt",
+        "texte": "Voici mon objectif : [votre objectif]. Pose-moi une série d’au moins 10 questions pour déterminer exactement ce dont tu as besoin de ma part pour atteindre cet objectif de bout en bout.",
+        "adapte": false
+      },
+      {
+        "titre": "Transformer la conversation en prompt",
+        "type": "prompt",
+        "texte": "Transforme toute cette conversation en un prompt réutilisable qui me permettra d’obtenir directement ce résultat la prochaine fois.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Ne cherchez pas le prompt parfait : donnez votre objectif et laissez l’IA vous poser les questions.",
+    "source": {
+      "cle": "openai-google-moonshot-kimi-new-releases",
+      "date": "2026-01-28",
+      "url": "https://www.theneurondaily.com/p/openai-google-moonshot-kimi-new-releases",
+      "newsletter": "OpenAI, Google, Moonshot (Kimi) New Releases",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 OpenAI, Google, Moonshot (Kimi) New Releases"
+    }
+  },
+  {
+    "id": "piloter-slack-asana-ou-figma-depuis-la-conversation-avec-claude",
+    "titre": "Piloter Slack, Asana ou Figma depuis la conversation avec Claude",
+    "resume": "Grâce au répertoire de connecteurs de Claude, vous utilisez Slack, Asana, Figma ou Canva directement dans la conversation, sans copier-coller d’une application à l’autre.",
+    "categorie": "automatiser",
+    "niveau": "intermediaire",
+    "outils": [
+      "claude"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Plutôt que de copier-coller entre vos applications, vous pouvez utiliser Slack, Asana, Figma, Canva et d’autres outils *directement dans* la fenêtre de conversation de Claude."
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Allez sur [claude.ai/directory](https://claude.ai/directory).",
+          "Cliquez sur « Connect » pour l’outil voulu.",
+          "Authentifiez-vous.",
+          "Demandez à Claude d’agir dans cette application. L’icône des outils, dans le coin inférieur de la zone de saisie, montre ce qui est connecté."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Quelques exemples de ce que vous pouvez faire :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "Rédiger des messages Slack mis en forme, avec aperçu en direct.",
+          "Construire des calendriers de projet Asana qui s’affichent dans la conversation.",
+          "Générer des diagrammes Figma à partir d’une description.",
+          "Créer des graphiques interactifs à partir de données (Amplitude, Hex).",
+          "Rechercher et prévisualiser des fichiers Box sans quitter la conversation."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Claude passe ainsi du rôle de conseiller à celui d’opérateur : ce sont les outils qui vous suivent dans la conversation, et non l’inverse. La fonction est réservée aux abonnements payants (Pro et au-delà)."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt pour agir dans Slack",
+        "type": "prompt",
+        "texte": "Rédige un message Slack pour le canal [nom du canal] qui annonce [information], mis en forme avec des puces, et montre-moi l’aperçu avant de l’envoyer.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Avec les connecteurs, Claude n’est plus seulement un conseiller : il agit directement dans vos outils.",
+    "source": {
+      "cle": "clawdbot-the-dangerously-viral-crab-explained",
+      "date": "2026-01-27",
+      "url": "https://www.theneurondaily.com/p/clawdbot-the-dangerously-viral-crab-explained",
+      "newsletter": "Clawdbot, the dangerously viral crab, explained",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 Clawdbot, the dangerously viral crab, explained"
+    }
+  },
+  {
+    "id": "echauffer-votre-cerveau-le-matin-avec-une-seule-question-a-l-ia",
+    "titre": "Échauffer votre cerveau le matin avec une seule question à l’IA",
+    "resume": "Avant d’ouvrir vos e-mails, posez à l’IA une question ouverte qui éveille la curiosité. Deux minutes suffisent pour sortir du pilote automatique avant que la journée s’emballe.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Plutôt que de faire défiler l’actualité ou de consulter vos e-mails dès le réveil, essayez cet « échauffement cérébral ». [Alex Morgan, auteur spécialisé en productivité](https://ucstrategies.com/news/the-brain-warm-up-prompt-i-use-every-morning-it-takes-under-2-minutes/), partage un rituel simple : avant de plonger dans votre journée, posez-vous (ou posez à votre chatbot) une question ouverte qui invite à la curiosité plutôt qu’elle n’exige une réponse. Cela prend moins de deux minutes et vous aide à sortir du pilote automatique avant que le chaos commence."
+      },
+      {
+        "t": "p",
+        "x": "L’essentiel est de marquer une pause après la question. Laissez la réflexion mûrir en arrière-plan pendant que vous vous brossez les dents ou préparez le café : les idées les plus claires émergent souvent sans y penser, au fil de votre routine."
+      },
+      {
+        "t": "p",
+        "x": "**Pourquoi ça marche** : les routines matinales classiques poussent vers des listes de tâches ou une méditation profonde. Ici, au lieu de vous jeter sur une boîte mail débordante ou de forcer la productivité, vous préparez en douceur votre esprit et votre corps autour d’un seul point de réflexion. Avec le temps, cette habitude développe votre agilité mentale et vous rend moins réactif. Changez la formulation chaque semaine pour garder de la fraîcheur, ou invitez vos collègues à partager leur question du matin : certaines équipes en font un rituel sur Slack avant la réunion quotidienne."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Une chose à remarquer",
+        "type": "prompt",
+        "texte": "Donne-moi une petite chose à remarquer aujourd’hui.",
+        "adapte": false
+      },
+      {
+        "titre": "Une hypothèse cachée",
+        "type": "prompt",
+        "texte": "Partage une hypothèse intéressante que j’entretiens peut-être sans m’en rendre compte.",
+        "adapte": false
+      },
+      {
+        "titre": "Un détail sur le trajet",
+        "type": "prompt",
+        "texte": "Suggère un détail négligé qui mérite d’être remarqué sur mon trajet.",
+        "adapte": false
+      },
+      {
+        "titre": "Un nouveau point de vue",
+        "type": "prompt",
+        "texte": "Propose une seule question qui pourrait changer mon point de vue habituel.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Une question ouverte et deux minutes de pause le matin valent mieux qu’une boîte mail pour démarrer la journée.",
+    "source": {
+      "cle": "did-google-just-bet-against-itself",
+      "date": "2026-01-26",
+      "url": "https://www.theneurondaily.com/p/did-google-just-bet-against-itself",
+      "newsletter": "Did Google just bet against itself?",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 Did Google just bet against itself?"
+    }
+  },
+  {
+    "id": "partir-des-300-modeles-de-prompts-metiers-gratuits-d-openai",
+    "titre": "Partir des 300 modèles de prompts métiers gratuits d’OpenAI",
+    "resume": "OpenAI propose une bibliothèque gratuite de 300 modèles de prompts classés par métier. Personnalisez-les, puis enregistrez ceux qui marchent dans un projet ou une Skill.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Si vous débutez avec l’IA et cherchez des prompts simples pour lui faire faire des choses utiles, OpenAI a publié [une bibliothèque de 300 prompts de base](https://academy.openai.com/public/tags/prompt-packs-6849a0f98c613939acef841c), à parcourir et à utiliser selon vos besoins."
+      },
+      {
+        "t": "p",
+        "x": "Cette collection gratuite classe les prompts par métier (ventes, ingénierie, ressources humaines, informatique, produit), avec 20 à 30 modèles par fonction. Les équipes produit et ingénierie [jugent leurs modèles particulièrement solides](https://www.reddit.com/r/PromptEngineering/comments/1qkd6pz/openai_releases_300_official_rolespecific_prompts/)."
+      },
+      {
+        "t": "p",
+        "x": "Voyez-les comme des modèles de départ à personnaliser, pas comme des prompts définitifs : vous arrêtez de réinventer la roue à chaque demande. Quand l’un d’eux vous plaît, [enregistrez-le comme instructions d’un projet](https://youtu.be/582qcppA7dk?si=_P0KABsO9GWwWFMz&t=911) ou [comme Skill](https://youtu.be/loz60mALXxA?si=GdLjB3QnWEW7lyd0&t=175) (si vous utilisez Claude), pour l’appeler à tout moment."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt pour adapter un modèle",
+        "type": "prompt",
+        "texte": "Voici un modèle de prompt générique tiré de la bibliothèque d’OpenAI. Adapte-le à ma situation : je suis [votre métier] dans [votre secteur], et je veux l’utiliser pour [votre tâche]. Pose-moi d’abord les questions nécessaires, puis réécris le prompt complet, prêt à être enregistré dans un projet.\n\n[modèle de prompt]",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Un bon modèle de prompt se personnalise puis s’enregistre : vous ne réinventez plus la roue à chaque demande.",
+    "source": {
+      "cle": "world-models-just-got-primed-for-their-chatgpt-moment",
+      "date": "2026-01-25",
+      "url": "https://www.theneurondaily.com/p/world-models-just-got-primed-for-their-chatgpt-moment",
+      "newsletter": "World models just got primed for their ChatGPT moment",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 World models just got primed for their ChatGPT moment"
+    }
+  },
+  {
+    "id": "repartir-le-travail-entre-opus-sonnet-et-haiku-selon-la-tache",
+    "titre": "Répartir le travail entre Opus, Sonnet et Haiku selon la tâche",
+    "resume": "Opus pour planifier, Sonnet pour exécuter, Haiku pour les petites tâches : une répartition qui fait durer vos quotas Claude sans sacrifier la qualité, surtout avec l’abonnement Pro.",
+    "categorie": "outils",
+    "niveau": "intermediaire",
+    "outils": [
+      "claude",
+      "claude-code"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Vous découvrez Claude (ou Claude Code, ou Claude Cowork) et ne savez pas quel modèle choisir ? Ce [fil Reddit](https://www.reddit.com/r/ClaudeAI/comments/1qjqqpt/comment/o14mjlk/) propose une répartition :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Opus 4.5**, le génie coûteux : planification de haut niveau, architecture de systèmes complexes, raisonnement approfondi, problèmes difficiles. Votre chef de projet brillant (mais cher).",
+          "**Sonnet 4.5**, l’exécutant fiable : la mise en œuvre au quotidien à partir des plans d’Opus. Votre développeur confirmé qui fait avancer les choses.",
+          "**Haiku 4.5**, l’assistant rapide : petites refactorisations, messages de commit, tâches simples."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "**Les tests le confirment** : un utilisateur a construit cinq fois la même application de test avec chaque modèle. Opus a réussi à chaque fois ; Sonnet, quatre fois sur cinq, avec nettement plus d’erreurs en route."
+      },
+      {
+        "t": "p",
+        "x": "**Selon votre abonnement** : avec le forfait Pro, les limites d’Opus sont si serrées qu’elles ressemblent à une version d’essai. Utilisez alors Opus pour planifier et concevoir, puis confiez l’exécution à Sonnet : selon The Neuron, vos quotas durent trois à cinq fois plus longtemps sans perte de qualité. Avec le forfait Max (100 dollars par mois), les utilisateurs atteignent rarement les limites et font d’Opus leur modèle principal, plus rapide et plus fiable au final : ses gains d’efficacité en tokens le rendent souvent moins cher que plusieurs essais avec Sonnet."
+      },
+      {
+        "t": "p",
+        "x": "Pour aller plus loin, cette [masterclass de *vibe coding* de 8 heures](https://www.youtube.com/live/5YBjll9XJlw?si=oqf-VqiVoHIqhGw9&t=874), publiée par Every, regorge de conseils pour travailler avec des agents de code."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de planification pour Opus",
+        "type": "prompt",
+        "texte": "Tu es le chef de projet. Ne code pas encore : rédige un plan d’implémentation détaillé pour [tâche], découpé en étapes courtes et vérifiables, avec pour chacune les fichiers concernés et le critère de réussite. Ce plan sera ensuite exécuté par un modèle plus petit : rends-le assez précis pour qu’il n’ait aucune décision d’architecture à prendre.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Faites planifier le modèle le plus puissant et exécuter le modèle intermédiaire : vos quotas durent bien plus longtemps.",
+    "source": {
+      "cle": "this-150m-startup-makes-chatgpt-24x-faster",
+      "date": "2026-01-23",
+      "url": "https://www.theneurondaily.com/p/this-150m-startup-makes-chatgpt-24x-faster",
+      "newsletter": "This $150M startup makes ChatGPT 24x faster",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 This $150M startup makes ChatGPT 24x faster"
+    }
+  },
+  {
+    "id": "donner-une-carte-du-projet-a-claude-code-pour-economiser-des-tokens",
+    "titre": "Donner une carte du projet à Claude Code pour économiser des tokens",
+    "resume": "Claude Code consomme beaucoup de tokens rien que pour trouver les bons fichiers. Un index du projet, créé par l’outil GrepAI ou par un simple prompt, lui permet d’aller droit au but.",
+    "categorie": "coder",
+    "niveau": "avance",
+    "outils": [
+      "claude-code",
+      "autre"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "**Le problème** : Claude Code est formidable, mais il dépense énormément de tokens (et d’argent) rien que pour *trouver* les bons fichiers dans votre projet. C’est comme envoyer un bibliothécaire chercher un livre en lisant toutes les couvertures de la bibliothèque."
+      },
+      {
+        "t": "p",
+        "x": "**La solution** : un [développeur, Yoan Bernabeu](https://www.reddit.com/r/ClaudeAI/comments/1qiv0d3/open_source_i_reduced_claude_code_input_tokens_by/), a créé **[GrepAI](https://github.com/yoanbernabeu/grepai)**. Cet outil remplace la recherche à l’aveugle de Claude par une **[recherche sémantique locale](https://yoanbernabeu.github.io/grepai/)** (trouver du code par son sens plutôt que par mots-clés). Résultat : une **[réduction de 97 % des tokens en entrée](https://yoanbernabeu.github.io/grepai/blog/benchmark-grepai-vs-grep-claude-code/)**."
+      },
+      {
+        "t": "p",
+        "x": "**Sans rien installer** : si vous ne voulez pas d’un nouvel outil en ligne de commande, des utilisateurs de Reddit ont trouvé une parade manuelle : [demander à Claude de construire sa propre carte](https://www.reddit.com/r/ClaudeAI/comments/1qiv0d3/comment/o0ucqbo/) (prompt ci-dessous)."
+      },
+      {
+        "t": "p",
+        "x": "Avec l’outil comme avec le prompt, la stratégie est la même : ne laissez pas l’IA errer sans but. Donnez-lui une carte (un index) pour qu’elle aille directement à destination."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de la carte du projet",
+        "type": "prompt",
+        "texte": "Crée un fichier appelé `scriptReferences.md`. Liste chaque script de ce dossier, son espace de noms, une description en une phrase de ce qu’il fait et un lien direct vers le fichier. Chaque fois que tu dois trouver du code, lis d’abord ce fichier.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Ne laissez pas l’IA chercher à l’aveugle : donnez-lui un index du projet pour qu’elle aille droit au bon fichier.",
+    "source": {
+      "cle": "apple-s-ai-pin-and-the-pet-era-of-technology",
+      "date": "2026-01-22",
+      "url": "https://www.theneurondaily.com/p/apple-s-ai-pin-and-the-pet-era-of-technology",
+      "newsletter": "Apple's AI Pin and the \"Pet\" Era of Technology",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 Apple's AI Pin and the \"Pet\" Era of Technology"
+    }
+  },
+  {
+    "id": "faire-inserer-vos-liens-directement-dans-le-texte-par-claude",
+    "titre": "Faire insérer vos liens directement dans le texte par Claude",
+    "resume": "Une consigne durable, placée dans vos projets, vos Skills ou la mémoire, pour que Claude intègre chaque lien fourni sur deux ou trois mots clés du texte, et non en fin de document.",
+    "categorie": "memoire",
+    "niveau": "intermediaire",
+    "outils": [
+      "claude"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Claude sur le Web est devenu très bon pour insérer des liens hypertextes. L’équipe de The Neuron a placé la consigne dans ses projets, ses Skills et la mémoire de Claude : chaque fois qu’elle fournit un ou plusieurs liens, Claude les intègre automatiquement dans le corps du texte qu’il rédige."
+      },
+      {
+        "t": "p",
+        "x": "Pour faire de même (ou ajouter vos propres règles), activez l’[exécution de code](https://claude.ai/settings/capabilities) dans les réglages, puis ajoutez une consigne comme celle ci-dessous à vos instructions de projet, à une Skill ou à la mémoire. La seconde partie sert quand vous collez un texte de référence et les liens de plusieurs sources."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "La consigne des liens intégrés",
+        "type": "prompt",
+        "texte": "Chaque fois que je te fournis un lien, intègre-le toujours dans le corps du texte (et non à la fin), généralement sur l’action ou le sujet principal ; ne mets en lien que 2 ou 3 mots clés au maximum.\n\n[Si vous collez le texte de référence et les liens de plusieurs sources :] Veille à intégrer tous les liens fournis dans le contexte, là où le contenu référencé est utilisé.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Une règle de mise en forme écrite une fois dans vos instructions durables vous évite de la répéter à chaque demande.",
+    "source": {
+      "cle": "dario-vs-demis-dueling-davos-ai-predictions",
+      "date": "2026-01-21",
+      "url": "https://www.theneurondaily.com/p/dario-vs-demis-dueling-davos-ai-predictions",
+      "newsletter": "Dario & Demis' Dueling Davos Predictions",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 Dario & Demis' Dueling Davos Predictions"
+    }
+  },
+  {
+    "id": "reperer-les-tics-d-ecriture-de-l-ia-avec-la-skill-humanizer",
+    "titre": "Repérer les tics d’écriture de l’IA avec la Skill Humanizer",
+    "resume": "Humanizer, une Skill pour Claude Code, repère 24 tics d’écriture typiques de l’IA tirés d’un guide de Wikipédia et vous aide à les remplacer par des formulations simples et factuelles.",
+    "categorie": "business",
+    "niveau": "avance",
+    "outils": [
+      "claude-code"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Vos textes rédigés avec l’IA sont repérés comme… écrits par une IA ? Le développeur Siqi Chen a créé une Skill pour Claude Code, [Humanizer](https://github.com/blader/humanizer), qui détecte 24 tics révélateurs, d’après le guide de Wikipédia « Signs of AI writing » (les signes d’une écriture par IA)."
+      },
+      {
+        "t": "p",
+        "x": "Ce guide explique pourquoi l’IA sonne générique : les grands modèles de langage (comme ChatGPT) « devinent ce qui devrait venir ensuite selon la probabilité statistique, en tendant vers le résultat le plus sûr et le plus largement applicable ». Humanizer vous aide à repérer les endroits où votre texte est tombé dans ce piège. Quelques exemples de corrections :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "« marquant un tournant décisif dans l’évolution de… » devient « a été fondée en 1989 ».",
+          "« De plus, cela témoigne de… » devient « Cela reste aussi courant ».",
+          "« L’entreprise propose… s’enorgueillit de… met en avant… » devient « L’entreprise a… exploite… comprend »."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Une fois la Skill installée, tapez `/humanizer` dans Claude Code, collez votre texte, et elle signale le langage de robot."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "La commande Humanizer",
+        "type": "commande",
+        "texte": "/humanizer",
+        "adapte": false
+      },
+      {
+        "titre": "Le même réflexe dans un chatbot",
+        "type": "prompt",
+        "texte": "Relis ce texte et signale les tournures typiques d’une écriture par IA : formules grandiloquentes (« un tournant décisif »), enchaînements du type « De plus, cela témoigne de… », verbes valorisants comme « s’enorgueillit de » ou « met en avant ». Pour chacune, propose une formulation plus simple et factuelle.\n\n[votre texte]",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "L’IA tend vers la formule la plus sûre et la plus générique : traquez ces tournures et remplacez-les par des faits simples.",
+    "source": {
+      "cle": "everyone-s-building-their-own-apps-now-saas-companies-are-terrified",
+      "date": "2026-01-20",
+      "url": "https://www.theneurondaily.com/p/everyone-s-building-their-own-apps-now-saas-companies-are-terrified",
+      "newsletter": "Everyone's Building Their Own Apps Now. SaaS Companies Are Terrified.",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 Everyone's Building Their Own Apps Now. SaaS Companies Are Terrified."
+    }
+  },
+  {
+    "id": "faire-le-point-sur-vos-objectifs-avec-un-coach-ia-sans-complaisance",
+    "titre": "Faire le point sur vos objectifs avec un coach IA sans complaisance",
+    "resume": "Ce prompt transforme ChatGPT ou Claude en coach qui compare vos objectifs de l’année à ce que vous avez vraiment fait ce mois-ci, puis vous donne un plan concret pour la suite.",
+    "categorie": "verifier",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Le mois s’achève et vous vous demandez si vous êtes vraiment sur la bonne voie pour vos objectifs de l’année, ou si vous faites semblant que tout va bien ? Ce prompt d’une honnêteté brutale transforme ChatGPT ou Claude en coach de responsabilisation : pas d’enrobage, juste un regard franc sur ce qui vous rapproche de vos objectifs ou vous en éloigne sans bruit."
+      },
+      {
+        "t": "p",
+        "x": "Remplissez honnêtement les trois rubriques entre crochets : vos objectifs avec indicateurs et échéances, ce que vous avez réellement fait (et pas fait), et votre ressenti en une ou deux phrases."
+      },
+      {
+        "t": "p",
+        "x": "**Pourquoi ça marche** : contrairement aux bilans génériques du type « Comment se passe ton année ? », ce prompt vous oblige à regarder l’écart entre ce que vous aviez prévu et ce que vous avez réellement fait, puis vous donne un plan concret plutôt qu’une motivation vague. La section « signal ou bruit » aide particulièrement à distinguer le chaos normal d’un début d’année des habitudes qui couleront toute votre année si vous les ignorez."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt du coach de responsabilisation",
+        "type": "prompt",
+        "texte": "Je veux que tu joues le rôle de mon coach de responsabilisation : calme, honnête et pragmatique. Ton rôle est de m’aider à faire le bilan du mois de [mois] au regard de mes objectifs pour [année], et de me dire clairement si je suis sur la bonne voie, légèrement en retard ou sérieusement à la traîne d’une manière qui compte pour le reste de l’année.\n\nJe vais d’abord te donner le contexte. Ensuite, je veux que tu analyses, que tu me bouscules avec tact quand c’est nécessaire, et que tu termines par un plan simple et concret pour les mois à venir.\n\nVoici mes informations :\n1. **Mes objectifs pour [année] :** [collez vos objectifs, avec indicateurs et échéances]\n2. **Ce qui s’est réellement passé en [mois] :** [ce que vous avez fait et pas fait, en toute honnêteté]\n3. **Mon ressenti sur ce mois :** [votre ressenti en une ou deux phrases]\n\nÀ partir de ces informations, fais ce qui suit, en sections bien distinctes :\n**A. Vue d’ensemble** : résume le mois en 3 à 5 puces et classe chaque objectif comme « En bonne voie », « Légèrement en retard mais rattrapable » ou « À risque ».\n**B. Signal ou bruit** : dis-moi ce qui relève du simple bruit de ce mois et ce qui constitue un vrai signal sur mon comportement probable cette année.\n**C. Mes schémas** : relève 2 à 4 schémas dans mon comportement et dis si chacun me rapproche ou m’éloigne de mes objectifs.\n**D. Évaluation des risques** : pour chaque objectif, quel est le risque réel que je le manque si je continue comme ce mois-ci ?\n**E. Météo intérieure** : renvoie-moi mon état émotionnel, avec une chose dont je peux me féliciter et une vérité difficile que je dois accepter.\n**F. Ajustements concrets** : propose 3 à 5 changements précis pour les trois prochains mois, en expliquant clairement comment chacun protège un objectif de l’année.\n**G. Suivi mensuel simple** : conçois un système léger avec 3 à 5 indicateurs clés à suivre chaque mois.\n**H. Clarté finale** : termine par mon statut global, la priorité absolue des 30 prochains jours et une phrase d’encouragement ancrée dans le réel.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Comparer noir sur blanc ce que vous aviez prévu et ce que vous avez fait vaut mieux que n’importe quelle motivation vague.",
+    "source": {
+      "cle": "ai-needs-independent-auditors-now",
+      "date": "2026-01-19",
+      "url": "https://www.theneurondaily.com/p/ai-needs-independent-auditors-now",
+      "newsletter": "AI needs independent auditors now",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 AI needs independent auditors now"
+    }
+  },
+  {
+    "id": "creer-une-skill-en-conversation-avec-le-skill-creator-de-claude",
+    "titre": "Créer une Skill en conversation avec le skill-creator de Claude",
+    "resume": "Inutile de fouiller les menus : demandez à Claude de créer une Skill avec vous grâce à son skill-creator, et transformez vos prompts récurrents en Skills appelables à volonté.",
+    "categorie": "memoire",
+    "niveau": "intermediaire",
+    "outils": [
+      "claude"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Grant, de The Neuron, a suivi [les conseils de Peter Yang sur les Skills](https://youtu.be/loz60mALXxA?si=WAxfm7Bt6f2nragN) et transformé tous les prompts récurrents de ses projets en [Skills](https://code.claude.com/docs/en/skills) qu’il peut appeler à tout moment. Un vrai déclic."
+      },
+      {
+        "t": "p",
+        "x": "Pas besoin de naviguer dans les menus d’Anthropic jusqu’aux réglages des Skills pour en créer une : il suffit d’écrire le prompt ci-dessous."
+      },
+      {
+        "t": "p",
+        "x": "Ce que l’équipe garde *malgré tout* sous forme de projets : un projet « usage général » qui contient son guide de style et ses préférences d’écriture, et un projet « Créateur de Skills » dont les instructions personnalisées reprennent ce prompt."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de création de Skill",
+        "type": "prompt",
+        "texte": "Créons ensemble une Skill avec ta Skill skill-creator. Demande-moi d’abord ce que la Skill doit faire.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Gardez les projets pour le contexte de fond et transformez chaque prompt récurrent en Skill, créée en conversation avec Claude.",
+    "source": {
+      "cle": "chatgpt-ads-are-here",
+      "date": "2026-01-18",
+      "url": "https://www.theneurondaily.com/p/chatgpt-ads-are-here",
+      "newsletter": "ChatGPT ads are here...",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 ChatGPT ads are here..."
+    }
+  },
+  {
+    "id": "bannir-les-tournures-qui-trahissent-un-texte-ecrit-par-l-ia",
+    "titre": "Bannir les tournures qui trahissent un texte écrit par l’IA",
+    "resume": "Certaines tournures signalent aussitôt un texte généré par IA. Faites-en une liste d’interdits à donner à votre chatbot avant qu’il rédige vos contenus.",
+    "categorie": "business",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Avis aux marketeurs : une [nouvelle liste de tournures « maudites »](https://www.reddit.com/r/ChatGPT/comments/1qd0i23/the_em_dash_giveaway_is_gone_heres_the_new_stuff/) circule sur Reddit. Elles trahissent un contenu comme du « langage de robot ». Copiez tout le fil dans votre chatbot préféré et faites-lui dresser une courte liste à ajouter à vos interdits (premier prompt ci-dessous). Les tics relevés par l’auteur du fil, transposés en français :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**« Et honnêtement ? »** : une amorce inutile avant une phrase qui n’a rien de particulièrement honnête.",
+          "**Le jargon de psy** : « Vous n’imaginez rien », « Vous n’êtes pas seul », « Ce n’est pas de la faiblesse ».",
+          "**La fausse profondeur** : « Voulez-vous prendre un moment avec ça ? », « Prêt à aller plus loin ? »",
+          "**Les formules d’accroche** : « Et c’est là que ça devient intéressant », « Et le meilleur ? », « Voici ce que la plupart des gens ratent ».",
+          "**Les annonces verbeuses** : « Je vais le dire clairement », suivi de 600 mots qui tiendraient en deux phrases.",
+          "**« Voici le détail : »**",
+          "**Tout ce qui est « discret »** : « vérité discrète », « confiance tranquille », « croissance silencieuse », « rébellion discrète ».",
+          "**La validation forcée** : « Vous avez raison de contester ce point »."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "**Les plus cités en commentaires :**"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**« C’est rare »** : le nouveau tic que tout le monde remarque.",
+          "**« Et c’est important »** : présent dans presque chaque réponse.",
+          "**« Ce n’est pas X, c’est Y »** : le grand classique de l’opposition.",
+          "**« Décortiquons ça »** : une transition usée.",
+          "**Les mini-intertitres** : un texte haché en petites sections étiquetées.",
+          "**« Vous avez le droit de… »** : des permissions que personne n’a demandées.",
+          "**Les puces à émojis** : chaque point précédé d’un pictogramme.",
+          "**« Vérifions que tout ça tient la route »**",
+          "**Les métaphores bancales** : des comparaisons qui sonnent intelligent mais ne tiennent pas vraiment."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Le consensus : ces tournures signalent aussitôt un texte généré par IA à tout lecteur attentif. Mieux vaut les abandonner."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Extraire la liste d’interdits d’un fil",
+        "type": "prompt",
+        "texte": "Voici un fil de discussion sur les tournures qui trahissent un texte écrit par une IA. Rassemble toutes les tournures citées dans une liste courte que je pourrai ajouter à mes consignes d’interdits.\n\n[texte du fil]",
+        "adapte": true
+      },
+      {
+        "titre": "La consigne d’interdits",
+        "type": "prompt",
+        "texte": "Quand tu rédiges pour moi, n’utilise jamais ces tournures : « Et honnêtement ? », le jargon de psy (« Vous n’êtes pas seul »), la fausse profondeur (« Prêt à aller plus loin ? »), les formules d’accroche (« Et le meilleur ? »), les annonces verbeuses (« Je vais le dire clairement »), « Voici le détail : », le vocabulaire du « discret », la validation forcée (« Vous avez raison de… »), « C’est rare », « Et c’est important », « Ce n’est pas X, c’est Y », « Décortiquons ça », les mini-intertitres, « Vous avez le droit de… », les puces à émojis et les métaphores bancales. Va droit au but, en phrases simples.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Certaines tournures signent un texte d’IA : listez-les et interdisez-les explicitement dans vos consignes.",
+    "source": {
+      "cle": "claude-months-of-research-done-in-20-minutes",
+      "date": "2026-01-16",
+      "url": "https://www.theneurondaily.com/p/claude-months-of-research-done-in-20-minutes",
+      "newsletter": "Claude: Months of research, done in 20 minutes",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Claude: Months of research, done in 20 minutes"
+    }
+  },
+  {
+    "id": "creer-des-skills-claude-pour-mieux-ecrire-selon-peter-yang",
+    "titre": "Créer des Skills Claude pour mieux écrire, selon Peter Yang",
+    "resume": "Peter Yang explique quand préférer une Skill à un projet, comment la faire créer par Claude, et quelle ligne ajouter pour que Claude pense vraiment à consulter vos Skills.",
+    "categorie": "memoire",
+    "niveau": "intermediaire",
+    "outils": [
+      "claude",
+      "cursor"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Il est temps d’apprendre à utiliser les [Skills](https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills), surtout si vous n’êtes pas développeur. Peter Yang les explique en [vidéo](https://youtu.be/loz60mALXxA) et dans [un article](https://creatoreconomy.so/p/how-to-use-claude-skills-to-write-better-and-avoid-ai-slop). Son avis sans détour : les Skills sont encore jeunes et ne fonctionnent pas à 100 % de façon fiable, d’où son astuce pour mieux faire écrire l’IA."
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Il explique d’abord [ce qu’est une Skill](https://youtu.be/loz60mALXxA?si=8Dl1typ4FQDMrH2v&t=45).",
+          "Puis [quand utiliser une Skill plutôt qu’un projet](https://youtu.be/loz60mALXxA?si=2Igpr1ZTinRmgicC&t=117) : le projet sert aux connaissances de fond, la Skill aux *connaissances procédurales*, à appliquer dans toutes les conversations concernées. Si vous avez un projet par type de tâche, une Skill serait plus simple : chaque fois que vous demandez la tâche, le modèle sait comment la faire.",
+          "Il partage ensuite [son prompt de style d’écriture](https://youtu.be/loz60mALXxA?si=A22upWpalnEiGU-q&t=176).",
+          "Il [montre comment faire créer la Skill par Claude](https://youtu.be/loz60mALXxA?si=Urcwnof8T7r0Fp01&t=253) et où la gérer : dans [Claude.ai > Settings > Capabilities > Skills](https://claude.ai/settings/capabilities), vous pouvez ajouter des Skills ou demander à Claude de les créer.",
+          "Enfin, [son astuce](https://youtu.be/loz60mALXxA?si=OCgKJllVrPbxOJuv&t=404) : rédiger les Skills avec l’aide de Cursor, et [ajouter une ligne clé](https://youtu.be/loz60mALXxA?si=5k6mIYct7mybnbbE&t=615) qui demande à l’IA de vérifier s’il existe des Skills applicables avant de répondre. « En pratique, sans cette ligne, Claude n’utilise pas votre Skill de façon fiable. »"
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Au passage, Peter [explique pourquoi](https://youtu.be/loz60mALXxA?si=YewY9eXalvcd5SX0&t=522) une note de stratégie ne devrait pas dépasser une page : au-delà, les gens la font résumer par l’IA. Étape suivante : [les sous-agents](https://youtu.be/P60LqQg1RH8?si=DI1A8eZlrRtxi-XL)."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "La ligne qui fait utiliser vos Skills",
+        "type": "prompt",
+        "texte": "Avant de répondre à une demande, vérifie toujours s’il existe des Skills applicables ; si c’est le cas, lis-les et applique-les.",
+        "adapte": true
+      },
+      {
+        "titre": "Faire créer une Skill de style d’écriture",
+        "type": "prompt",
+        "texte": "Aide-moi à créer une Skill de style d’écriture à partir des consignes ci-dessous. Elle doit s’appliquer chaque fois que je te demande de rédiger un texte.\n\n[vos consignes de style]",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Un projet pour les connaissances de fond, une Skill pour le savoir-faire, et une ligne qui oblige l’IA à vérifier ses Skills avant de répondre.",
+    "source": {
+      "cle": "voice-cloning-just-became-free-and-local-0f63",
+      "date": "2026-01-15",
+      "url": "https://www.theneurondaily.com/p/voice-cloning-just-became-free-and-local-0f63",
+      "newsletter": "Voice cloning just became free (and local)",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Voice cloning just became free (and local)"
+    }
+  },
+  {
+    "id": "ajouter-une-condition-a-une-autorisation-dans-claude-code-avec-tab",
+    "titre": "Ajouter une condition à une autorisation dans Claude Code avec Tab",
+    "resume": "Face à une demande d’autorisation, appuyez sur Tab pour ajouter une consigne du type « oui, mais seulement si les tests passent » : ni validation aveugle, ni surveillance permanente.",
+    "categorie": "coder",
+    "niveau": "avance",
+    "outils": [
+      "claude-code"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "[Claude Code](https://claude.com/product/claude-code) vous permet d’appuyer sur Tab quand il vous demande une autorisation, pour ajouter des instructions personnalisées comme « oui, mais seulement si les tests XYZ passent ». Fini le choix forcé entre oui et non, et fini le dilemme entre laisser un agent agir sans contrôle sur votre ordinateur (le mode « YOLO ») et le surveiller en validant la millième demande d’autorisation."
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Lancez une tâche dans Claude Code.",
+          "Quand une demande d’autorisation apparaît, appuyez sur Tab au lieu de répondre simplement oui ou non.",
+          "Tapez votre condition (exemple ci-dessous), puis validez."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Pour aller plus loin sur la conception d’outils pensés pour les agents, lisez l’article de Dan Shipper sur les architectures *agent-native*."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "La réponse conditionnelle",
+        "type": "prompt",
+        "texte": "Oui, mais seulement si les tests [nom des tests] passent.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Une autorisation n’a pas à être un simple oui ou non : ajoutez-lui une condition.",
+    "source": {
+      "cle": "meta-update-the-metaverse-is-dead-long-live-superintelligence",
+      "date": "2026-01-14",
+      "url": "https://www.theneurondaily.com/p/meta-update-the-metaverse-is-dead-long-live-superintelligence",
+      "newsletter": "Meta Update: The Metaverse is dead. Long live Superintelligence...",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Meta Update: The Metaverse is dead. Long live Superintelligence..."
+    }
+  },
+  {
+    "id": "transformer-l-ia-en-groupe-de-reflexion-strategique-en-cinq-etapes",
+    "titre": "Transformer l’IA en groupe de réflexion stratégique en cinq étapes",
+    "resume": "Rôle d’expert, dix options, grille de notation, feuille de route sur 12 mois puis recherche des scénarios d’échec : un cadre pour passer des idées en vrac à une vraie stratégie.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Ce cadre, inspiré d’une demande de lecteur, transforme ChatGPT ou Claude en *think tank* à la demande, en cinq étapes ([prompt complet sur le site de The Neuron](https://www.theneuron.ai/explainer-articles/the-neurons-prompt-tip-of-the-day-digest-january-2026)) :"
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Attribuez à l’IA un rôle de « chercheur principal » (*senior fellow*).",
+          "Faites-lui générer 10 options, avec leurs risques et leurs indicateurs.",
+          "Faites-les noter selon une grille rigoureuse.",
+          "Construisez une feuille de route sur 12 mois.",
+          "Soumettez-la à une équipe rouge (*red team*) qui cherche les scénarios d’échec."
+        ]
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Placez vos instructions d’abord**, puis le contexte entre délimiteurs (par exemple des triples guillemets).",
+          "**Demandez un raisonnement étape par étape** (« montre tes étapes ») ; le mode Réflexion (*Thinking*) le fait aussi.",
+          "**Imposez trois questions de clarification** avant toute réponse.",
+          "**Pour les problèmes complexes, utilisez l’arbre de pensées** (*Tree-of-Thoughts*) : explorer plusieurs pistes de raisonnement, élaguer les plus faibles, poursuivre les autres."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "**Pour aller plus loin** : simulez un panel de plusieurs agents (un économiste, un expert technique, un responsable des opérations) qui débattent des options, puis faites synthétiser un consensus. Les compromis apparaissent et la pensée de groupe disparaît."
+      },
+      {
+        "t": "p",
+        "x": "Exiger sur chaque recommandation un niveau de confiance (élevé, moyen, faible), les hypothèses et les compromis transforme des conseils génériques en véritable recherche stratégique. C’est la différence entre « voici quelques idées » et « voici une feuille de route avec ses seuils de déclenchement pour les plans de secours »."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt du groupe de réflexion",
+        "type": "prompt",
+        "texte": "Tu es chercheur principal (senior fellow) dans un think tank. Suis les étapes ci-dessous et montre ton raisonnement étape par étape.\n\n1. Avant de répondre, pose-moi 3 questions de clarification et attends mes réponses.\n2. Propose 10 options pour répondre à la question décrite dans le contexte, chacune avec ses risques et les indicateurs qui permettraient de mesurer son succès.\n3. Note chaque option selon une grille rigoureuse (précise tes critères) et classe-les.\n4. Simule un débat entre un économiste, un expert technique et un responsable des opérations sur les meilleures options, puis synthétise leur consensus.\n5. Construis une feuille de route sur 12 mois pour l’option retenue.\n6. Joue l’équipe rouge : liste les scénarios d’échec de cette feuille de route et les signaux qui déclencheraient un plan de secours.\n\nPour chaque recommandation, indique un niveau de confiance (élevé, moyen ou faible), tes hypothèses et les compromis.\n\n<contexte>\n[votre question stratégique et votre contexte]\n</contexte>",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Exiger un niveau de confiance, des hypothèses et des compromis pour chaque recommandation transforme des idées génériques en stratégie exploitable.",
+    "source": {
+      "cle": "recursive-language-models",
+      "date": "2026-01-13",
+      "url": "https://www.theneurondaily.com/p/recursive-language-models",
+      "newsletter": "Recursive Language Models?!",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 Recursive Language Models?!"
+    }
+  },
+  {
+    "id": "devenir-un-employe-10x-en-apprenant-et-en-s-outillant-avec-l-ia",
+    "titre": "Devenir un employé « 10x » en apprenant et en s’outillant avec l’IA",
+    "resume": "Pour vous démarquer, apprenez très vite avec un tuteur socratique, choisissez le bon outil pour chaque tâche et enregistrez chaque prompt qui marche en projet, Gem ou Skill.",
+    "categorie": "outils",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Selon The Neuron, l’IA va pousser les grandes entreprises à embaucher moins, les petites à rester légères et de nouvelles micro-équipes à se lancer. Pour vous démarquer auprès de chacune (ou monter la vôtre), il faut devenir un employé « 10x », voire « 100x ». Quelques pistes :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Apprenez incroyablement vite**, avec l’IA comme meilleur tuteur du monde. Essayez le protocole « DeepMind » partagé par [Dwarkesh Patel](https://youtu.be/VwLE2KqX9xU) (prompt ci-dessous) : il transforme l’IA en tuteur socratique qui révèle à quel point votre compréhension est superficielle.",
+          "**Soyez autonome.** N’attendez ni instructions ni permission : expérimentez et voyez tout ce que vous pouvez faire seul avec l’aide de l’IA.",
+          "**Enregistrez ce qui marche.** Dès qu’un prompt ou un *workflow* fonctionne, enregistrez-le comme [instructions personnalisées d’un projet](https://youtu.be/582qcppA7dk?si=HCe0ms4UUOVvs9EO), comme [Gem](https://gemini.google/overview/gems/) ou [workflow Opal](https://blog.google/innovation-and-ai/models-and-research/google-labs/mini-apps-opal-gemini-app-experiment/) chez Google, ou comme [Skill dans Claude](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview)."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "**Équipez-vous d’outils qui vont vite :**"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "[OpenRouter](https://openrouter.ai/) pour tester vos tâches (sous forme de prompts) sur plusieurs IA à la fois et voir laquelle convient le mieux.",
+          "Un **agent personnel** comme Claude Code ou [Tasklet](https://tasklet.ai/) pour les tâches répétitives.",
+          "**Nano Banana** ([Gemini](https://gemini.google.com/app) avec l’outil « Créer une image ») pour créer ou retoucher des images dans votre style ; d’autres outils sont à découvrir sur [Google Labs](https://labs.google/).",
+          "[ChatGPT pour la recherche](https://chatgpt.com/?hints=search), selon The Neuron le meilleur pour chercher sur le Web et résoudre des problèmes avec le mode de réflexion le plus poussé. Plus spécialisés : [Exa](https://exa.ai/) pour dénicher des pages de niche par le sens, [Parallel](https://parallel.ai/) pour des recherches approfondies très précises, [Grok](https://grok.com/) pour chercher sur X, [Firecrawl](https://www.firecrawl.dev/) pour une extraction propre, [Tavily](https://www.tavily.com/) pour du JSON structuré rapide, [You.com](https://you.com/apis) pour des modes de recherche personnalisables et [Perplexity](https://www.perplexity.ai/) pour des synthèses multisources citées. Vérifiez toujours les sources d’origine."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "L’employé 10x ne travaille pas dix fois plus : il s’entoure d’une « équipe » d’agents IA et supprime le travail répétitif, pour réserver son cerveau aux problèmes nouveaux."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le protocole « DeepMind » pour apprendre",
+        "type": "prompt",
+        "texte": "Ce qui me serait le plus utile, c’est un style d’explication dans lequel tu t’arrêtes souvent pour vérifier, en me posant des questions-tests, que j’ai bien compris tes explications jusque-là. Quand tu t’arrêtes pour me poser une question-test, ne poursuis pas l’explication tant que je n’y ai pas répondu de façon satisfaisante.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "L’employé 10x ne travaille pas plus dur : il délègue le répétitif à l’IA et garde son énergie pour les problèmes nouveaux.",
+    "source": {
+      "cle": "breaking-claude-cowork-claude-code-for-normies",
+      "date": "2026-01-12",
+      "url": "https://www.theneurondaily.com/p/breaking-claude-cowork-claude-code-for-normies",
+      "newsletter": "BREAKING: Claude Cowork =  \"Claude Code\" for normies",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 BREAKING: Claude Cowork =  \"Claude Code\" for normies"
+    }
+  },
+  {
+    "id": "faire-travailler-un-agent-de-code-toute-la-nuit-avec-la-boucle-ralph",
+    "titre": "Faire travailler un agent de code toute la nuit avec la boucle Ralph",
+    "resume": "La méthode « Ralph Wiggum » transforme vos demandes de fonctionnalités en JSON avec des critères de fin stricts, puis l’agent les traite une à une, en boucle, pendant que vous dormez.",
+    "categorie": "coder",
+    "niveau": "avance",
+    "outils": [
+      "autre"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Greg Isenberg et Ryan Carson (d’[Amp](https://ampcode.com/)) [décortiquent](https://youtu.be/RpvQH0r0ecM?si=rMoKkRzzt5dCYYos) le *workflow* d’agent « [Ralph Wiggum](https://ghuntley.com/ralph/) », devenu viral, et montrent comment l’appliquer à vos projets ([l’explication complète de Ryan](https://x.com/ryancarson/status/2008548371712135632))."
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Transformez tous vos PRD (documents de demande produit) en JSON, avec des critères d’évaluation stricts qui définissent quand une demande est « terminée ».",
+          "Lancez la commande `Ralph.sh`.",
+          "L’agent traite chaque demande, la teste au fur et à mesure, met à jour le PRD une fois qu’elle est terminée, puis passe en boucle aux demandes restantes."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Vos agents de code travaillent ainsi la nuit pendant que vous dormez. Comme chaque demande est très étroitement délimitée, elle ne coûte qu’environ 3 dollars de tokens : une liste de dix fonctionnalités revient à une trentaine de dollars. Regardez la vidéo, où Ryan et Greg expliquent ce qu’il faut mettre en place pour que tout cela fonctionne au mieux."
+      },
+      {
+        "t": "p",
+        "x": "Ryan partage aussi ses [Skills pour Amp](https://github.com/snarktank/amp-skills) et son [implémentation de Ralph](https://github.com/snarktank/ralph?tab=readme-ov-file)."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de conversion du PRD",
+        "type": "prompt",
+        "texte": "Transforme ce PRD en fichier JSON : une entrée par demande, chacune avec un identifiant, une description courte, des critères d’acceptation stricts et vérifiables qui définissent quand elle est terminée, et un champ qui indique si elle est terminée (au départ : non). Découpe toute demande trop large en demandes plus petites, réalisables chacune en une seule session.\n\n[votre PRD]",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Des demandes étroitement délimitées, avec des critères de fin stricts, permettent à un agent de travailler seul en boucle, pour peu cher.",
+    "source": {
+      "cle": "ai-cracks-legendary-erdos-problems",
+      "date": "2026-01-11",
+      "url": "https://www.theneurondaily.com/p/ai-cracks-legendary-erdos-problems",
+      "newsletter": "AI Cracks Legendary Erdos Problems",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 AI Cracks Legendary Erdos Problems"
+    }
+  },
+  {
+    "id": "enoncer-votre-souhait-et-votre-obstacle-pour-obtenir-de-l-aide",
+    "titre": "Énoncer votre souhait et votre obstacle pour obtenir de l’aide",
+    "resume": "À une IA comme à un collègue, une demande efficace dit ce que vous voulez et ce qui vous bloque. Cette double précision transforme une question vague en aide concrète.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "L’[ingénierie du contexte](https://www.promptingguide.ai/guides/context-engineering-guide) (*context engineering*), c’est-à-dire structurer l’information pour que l’IA comprenne exactement ce dont vous avez besoin, a été le mot à la mode de 2025. Grant, de The Neuron, explique dans [un article](https://www.theneuron.ai/explainer-articles/context-engineering-isnt-just-for-ai-heres-how-it-changed-my-life) qu’il faut faire la même chose avec les humains. Face à une question dont il ignorait la réponse, il est allé directement voir la seule personne qui la connaissait à coup sûr : réponse en cinq minutes, là où interroger la première personne venue aurait pu prendre des jours."
+      },
+      {
+        "t": "p",
+        "x": "Deux conférences TED fondent sa méthode, valable pour l’IA comme pour les humains :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**[Heidi Grant](https://www.ted.com/talks/heidi_grant_how_to_ask_for_help_and_get_a_yes)** : nous croyons que nos besoins sont évidents. **Ils ne le sont pas.** 90 % de l’aide au travail n’a lieu que lorsque quelqu’un la demande explicitement.",
+          "**[Barbara Sher](https://youtu.be/H2rG4Dg6xyI?si=Lww4AOn7YhOClNhh&t=904)** : énoncez toujours votre **souhait** (ce que vous voulez) ET votre **obstacle** (ce qui vous en empêche). « Si vous ne dites pas les deux, rien ne se passe. »"
+        ]
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Avec l’IA.** Au lieu de « Aide-moi à analyser ces données », donnez le souhait et l’obstacle (voir le prompt ci-dessous).",
+          "**Avec un collègue.** Au lieu de « Quelqu’un sait mettre à jour le tableau de bord ? », écrivez : « Je dois mettre à jour notre tableau de bord client d’ici ce soir. Je n’ai jamais touché à l’API et la documentation n’est pas claire sur l’authentification. @responsable-du-projet, peux-tu m’indiquer le bon guide d’installation ou faire un rapide appel ? »",
+          "**Pour trouver un prestataire.** Au lieu de « Quelqu’un s’y connaît en contrats ? », écrivez : « Je cherche un avocat spécialisé dans les contrats de startups tech en Californie. Je signe mon premier contrat SaaS et je ne comprends pas les clauses de propriété intellectuelle, mais mon budget est inférieur à 2 000 dollars. Quelqu’un aurait-il une recommandation ? »"
+        ]
+      },
+      {
+        "t": "p",
+        "x": "C’est ainsi que Grant a rejoint The Neuron : Noah cherchait dans la newsletter des rédacteurs (souhait) capables d’écrire comme lui (obstacle). Parce qu’il avait été précis sur ce qu’il voulait et pourquoi, Grant a su tout de suite qu’il était la bonne personne. Comme le dit Barbara Sher, « nous sommes tous au centre d’énormément d’informations et de relations auxquelles nous ne pensons pas, sauf si quelqu’un nous pose la question ». C’est vrai de l’IA comme des humains."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "La demande avec souhait et obstacle",
+        "type": "prompt",
+        "texte": "Aide-moi à analyser les retours clients. Les statistiques ne sont pas mon fort et j’ai besoin de dégager des tendances pour ma présentation de demain, mais je n’arrive pas à repérer les corrélations entre les profils démographiques et la satisfaction.",
+        "adapte": false
+      },
+      {
+        "titre": "Le modèle souhait et obstacle",
+        "type": "prompt",
+        "texte": "Ce que je veux : [votre souhait].\nCe qui me bloque : [votre obstacle].\nAide-moi à [ce que vous attendez de l’IA].",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Une demande efficace, à une IA comme à un humain, énonce votre souhait et votre obstacle : sans les deux, rien ne se passe.",
+    "source": {
+      "cle": "we-re-live-sharing-our-predictions-for-2026",
+      "date": "2026-01-09",
+      "url": "https://www.theneurondaily.com/p/we-re-live-sharing-our-predictions-for-2026",
+      "newsletter": "We're live sharing our predictions for 2026",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 We're live sharing our predictions for 2026"
+    }
+  },
+  {
+    "id": "enregistrer-votre-contexte-dans-des-fichiers-pour-ne-plus-le-repeter",
+    "titre": "Enregistrer votre contexte dans des fichiers pour ne plus le répéter",
+    "resume": "Inspirée de Teresa Torres, qui pilote sa vie avec Claude Code : dès que vous expliquez un contexte, faites-le enregistrer dans un fichier, et laissez Claude entretenir sa mémoire.",
+    "categorie": "memoire",
+    "niveau": "avance",
+    "outils": [
+      "claude-code"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Si vous n’avez pas encore essayé [Claude Code](https://www.claude.com/product/claude-code) parce que vous ne codez pas, cette [vidéo de 47 minutes de Peter Yang](https://youtu.be/uBJdwRPO1QE?si=vmpJHVst33A6CYvE) pourrait vous convaincre. Il y interroge la coach produit Teresa Torres, qui utilise Claude Code pour gérer *toute sa vie*. Contrairement à une conversation dans le navigateur, Claude Code peut lire vos fichiers, exécuter des commandes, chercher sur le Web et garder le contexte d’un projet à l’autre : un assistant à 100 dollars par mois qui vit dans votre ordinateur."
+      },
+      {
+        "t": "liste",
+        "x": [
+          "Elle tape « today » et Claude génère sa liste de tâches complète : il consulte son Trello, repère les échéances et va même chercher des travaux de recherche pertinents.",
+          "Elle écrit avec Claude comme partenaire de réflexion (jusqu’à des articles de blog de 9 000 mots).",
+          "Elle lui confie des tâches ponctuelles comme « quels mots-clés devrais-je cibler ? » et fait sa recherche SEO en analysant ce qui se classe bien.",
+          "Elle se fait interviewer par Claude sur son activité, puis lui fait générer des fichiers de contexte pour ne jamais se répéter."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "**L’idée clé** : Teresa traite Claude Code comme un binôme pour *tout* : écriture, recherche, gestion des tâches, stratégie. La vidéo montre sa configuration exacte, notamment la façon dont elle organise ses fichiers de contexte pour que Claude connaisse son activité sans encombrer chaque conversation."
+      },
+      {
+        "t": "p",
+        "x": "**Le conseil à retenir** : chaque fois que vous expliquez un contexte à Claude, demandez-vous : « Vais-je devoir l’expliquer à nouveau ? » Si oui, faites-le enregistrer dans un fichier. Et à la fin de chaque session, posez à Claude la question ci-dessous : *laissez-le entretenir sa propre mémoire*."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "La question de fin de session",
+        "type": "prompt",
+        "texte": "Qu’as-tu appris sur moi que nous devrions ajouter à un fichier de contexte ?",
+        "adapte": false
+      },
+      {
+        "titre": "Enregistrer un contexte",
+        "type": "prompt",
+        "texte": "Enregistre ce que je viens de t’expliquer dans un fichier de contexte, pour que je n’aie plus jamais à te le répéter.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Si vous risquez de devoir réexpliquer un contexte, faites-le enregistrer dans un fichier : vous ne vous répéterez plus.",
+    "source": {
+      "cle": "chatgpt-for-health-is-a-doc-in-your-pocket",
+      "date": "2026-01-08",
+      "url": "https://www.theneurondaily.com/p/chatgpt-for-health-is-a-doc-in-your-pocket",
+      "newsletter": "ChatGPT for Health is a doc in your pocket",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 ChatGPT for Health is a doc in your pocket"
+    }
+  },
+  {
+    "id": "donner-des-instructions-precises-a-vos-agents-pas-des-intentions",
+    "titre": "Donner des instructions précises à vos agents, pas des intentions",
+    "resume": "Un agent échoue quand on lui donne des intentions vagues. Soyez précis, fixez ses permissions avec des verbes, puis coupez vos instructions de moitié pour garder l’essentiel.",
+    "categorie": "automatiser",
+    "niveau": "intermediaire",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Corey a publié une [vidéo sur le prompting pour agents](https://youtu.be/XuZw905HycQ) qui explique pourquoi vos agents IA vous déçoivent : arrêtez de leur déverser du contexte et commencez à le sélectionner. Les agents échouent quand on leur donne des *intentions* plutôt que des *instructions* : évitez les consignes redondantes ou contradictoires."
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Soyez précis.** Évitez les objectifs vagues comme « gère ma boîte mail » : l’agent doit savoir ce qui compte le plus (voir l’exemple ci-dessous).",
+          "**Définissez les permissions.** Dirigez l’IA avec des verbes, pas avec une personnalité, par exemple : « Propose des actions, mais n’exécute rien sans ma confirmation. » Les contraintes fonctionnent mieux qu’un long passage sur le ton à adopter.",
+          "**La qualité plutôt que la quantité.** Des puces claires valent mieux que des instructions contradictoires.",
+          "**Restez réaliste.** Les agents doivent être supervisés. Si vous ne savez pas expliquer votre processus, vous ne pouvez pas le déléguer."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "**À essayer** : la prochaine fois que vous écrivez les instructions d’un agent, rédigez-les en entier, puis *coupez-les de moitié*. Les résultats deviennent nettement plus clairs et plus efficaces."
+      },
+      {
+        "t": "p",
+        "x": "Grant, de The Neuron, suggère même de confier cette coupe à une IA, puis de regarder ce qu’elle a retiré. Si elle a supprimé un contexte important, remettez-le : vous savez maintenant ce que votre agent aurait pu manquer."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Des instructions précises pour la boîte mail",
+        "type": "prompt",
+        "texte": "Archive les newsletters ; signale les e-mails urgents de mon responsable ; supprime les promotions ; demande-moi avant de répondre.",
+        "adapte": false
+      },
+      {
+        "titre": "La consigne de permission",
+        "type": "prompt",
+        "texte": "Propose des actions, mais n’exécute rien sans ma confirmation.",
+        "adapte": false
+      },
+      {
+        "titre": "Le prompt de coupe",
+        "type": "prompt",
+        "texte": "Coupe ces instructions de moitié :\n\n[vos instructions pour l’agent]",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Un agent a besoin d’instructions précises et triées, pas d’intentions en vrac : moins, mais plus clair.",
+    "source": {
+      "cle": "stop-turning-grandpa-into-a-pixar-character-and-do-this-instead",
+      "date": "2026-01-07",
+      "url": "https://www.theneurondaily.com/p/stop-turning-grandpa-into-a-pixar-character-and-do-this-instead",
+      "newsletter": "Stop turning Grandpa into a Pixar character, and do THIS instead",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 Stop turning Grandpa into a Pixar character, and do THIS instead"
+    }
+  },
+  {
+    "id": "rediger-vos-conditions-d-utilisation-personnelles-avec-l-ia",
+    "titre": "Rédiger vos « conditions d’utilisation » personnelles avec l’IA",
+    "resume": "L’IA vous interroge sur vos priorités et vos limites, puis rédige une page de règles personnelles, avec des phrases toutes prêtes pour dire non sans renégocier à chaque fois.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Arrêtez de négocier vos limites au cas par cas : écrivez-les une fois, puis réutilisez-les."
+      },
+      {
+        "t": "p",
+        "x": "Voyez cela comme des « conditions d’utilisation » personnelles. Elles transforment des intentions floues en règles que vous pouvez réellement suivre quand vous êtes fatigué, débordé, ou qu’on vous culpabilise pour « juste un petit truc de plus ». C’est un contrat bienveillant avec vous-même : des réglages par défaut clairs, moins de moments gênants et un agenda moins chaotique."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt des conditions d’utilisation personnelles",
+        "type": "prompt",
+        "texte": "Pose-moi des questions sur mes objectifs et aide-moi à rédiger mes conditions d’utilisation personnelles pour [année]. Note mon ou mes rôles, mes priorités, mes points non négociables, ma semaine idéale et trois choses qui m’agacent. Tiens en une page, avec une touche d’humour, et inclus trois phrases toutes prêtes à copier-coller pour poser mes limites. Rédige-le comme les règles d’un produit : sections courtes, titres en gras, comportements précis.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Des limites écrites à l’avance se tiennent bien mieux que des limites négociées sur le moment.",
+    "source": {
+      "cle": "nvidia-s-car-ai-can-explain-itself",
+      "date": "2026-01-06",
+      "url": "https://www.theneurondaily.com/p/nvidia-s-car-ai-can-explain-itself",
+      "newsletter": "NVIDIA's car AI can explain itself",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 NVIDIA's car AI can explain itself"
+    }
+  },
+  {
+    "id": "utiliser-claude-code-comme-son-createur-boris-cherny",
+    "titre": "Utiliser Claude Code comme son créateur, Boris Cherny",
+    "resume": "Sessions en parallèle, mode Plan, commandes slash, CLAUDE.md partagé et surtout un moyen pour Claude de vérifier son travail : la méthode du créateur de Claude Code.",
+    "categorie": "coder",
+    "niveau": "avance",
+    "outils": [
+      "claude-code"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Boris Cherny, le créateur de Claude Code, a publié [13 conseils](https://x.com/bcherny/status/2007179832300581177) sur la façon dont il l’utilise réellement en production. Sa configuration est, de son propre aveu, plutôt… classique. Ce qui ressort :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Faites tourner plusieurs Claude en parallèle.** Boris lance 5 sessions dans son [terminal](https://code.claude.com/docs/en/terminal-config#iterm-2-system-notifications) et 5 à 10 de plus sur [claude.ai/code](https://claude.ai/code) en même temps, en faisant passer les sessions de l’un à l’autre selon les besoins.",
+          "**Utilisez Opus 4.5 avec la réflexion (*thinking*) pour tout.** Il est plus gros et plus lent, mais il demande moins d’être guidé : au final, il va plus vite.",
+          "**Commencez en mode Plan.** Faites des allers-retours jusqu’à ce que le plan soit solide, puis passez en acceptation automatique des modifications : à partir de là, Claude réussit généralement du premier coup.",
+          "**Automatisez avec des commandes slash.** Son équipe utilise des commandes comme `/commit-push-pr` des dizaines de fois par jour pour ne pas retaper les mêmes prompts. [Les commandes sont versionnées dans git](https://code.claude.com/docs/en/slash-commands#bash-command-execution).",
+          "**Partagez un `CLAUDE.md` dans l’équipe.** Chaque fois que Claude fait une erreur, ajoutez-la au fichier pour qu’elle ne se reproduise pas. L’équipe mentionne même Claude dans ses *pull requests* ([guide des hooks](https://code.claude.com/docs/en/hooks-guide)), via une [GitHub Action](https://github.com/anthropics/claude-plugins-official/tree/main/plugins%2Fralph-wiggum), pour mettre ce fichier à jour."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "**Le conseil le plus précieux** : donnez à Claude un moyen de vérifier son travail (la « [méthode Carina Hong](https://www.youtube.com/watch?si=W_BP3fIJURNK-DSK&v=b_UMhn8E8lI&feature=youtu.be) »). Selon Boris, cela multiplie la qualité par deux ou trois. Son Claude teste chaque modification avec l’[extension Chrome](https://code.claude.com/docs/en/chrome) : il ouvre le navigateur et itère jusqu’à ce que l’expérience utilisateur soit bonne. Tests, commandes bash ou simulateur : avec l’IA, la vérification fait tout."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt d’auto-vérification",
+        "type": "prompt",
+        "texte": "Avant de commencer, explique-moi comment tu vas vérifier toi-même que cette modification fonctionne (tests, commandes bash, navigateur). Ensuite, implémente [modification] et itère jusqu’à ce que toutes ces vérifications passent. Ne me rends la main qu’avec la preuve que tout fonctionne.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Donnez à Claude un moyen de vérifier son propre travail : selon Boris Cherny, c’est ce qui multiplie la qualité par deux ou trois.",
+    "source": {
+      "cle": "pickle-1-ar-glasses-go-viral-then-get-called-fake",
+      "date": "2026-01-05",
+      "url": "https://www.theneurondaily.com/p/pickle-1-ar-glasses-go-viral-then-get-called-fake",
+      "newsletter": "AI's CTA Arrow Trick: Click Bait or Clever Strategy?",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 AI's CTA Arrow Trick: Click Bait or Clever Strategy?"
+    }
+  },
+  {
+    "id": "faire-demolir-votre-code-par-un-developpeur-senior-grincheux",
+    "titre": "Faire démolir votre code par un « développeur senior grincheux »",
+    "resume": "Demandez à l’IA de relire vos modifications comme un développeur senior qui déteste votre code : elle fait remonter les bugs critiques et les cas limites que vous n’aviez pas vus.",
+    "categorie": "coder",
+    "niveau": "avance",
+    "outils": [
+      "claude-code"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Cette astuce du « développeur senior grincheux », [partagée sur Reddit](https://www.reddit.com/r/ClaudeAI/comments/1ptcbm3/code_quality_of_claude_a_sad_realization/), oblige Claude à démolir son propre code. Elle fait remonter des bugs critiques qui vous auraient échappé, que vous fassiez du *vibe coding* ou que vous soyez développeur confirmé."
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Le contexte compte** : assurez-vous que l’IA voit le `git diff` (ou collez le code avant et après modification) pour qu’elle travaille sur les changements exacts.",
+          "**Filtrez le bruit** : l’IA trouvera *toujours* quelque chose à redire. À vous de distinguer les vrais défauts critiques (à corriger) de la sur-ingénierie (à ignorer). Conseil venu de Reddit : lancez la relecture au moins deux fois."
+        ]
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt du relecteur grincheux",
+        "type": "prompt",
+        "texte": "C’est toi qui as écrit le code qui figure actuellement dans les modifications git. Fais un `git diff`, puis imagine que tu es un développeur senior qui fait une revue de code et qui DÉTESTE cette implémentation. Que critiquerais-tu ? Quels sont les cas limites que je ne vois pas ?",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Ne fusionnez pas le premier jet : faites-le d’abord détester par l’IA.",
+    "source": {
+      "cle": "deepseek-just-fixed-what-breaks-100m-ai-training-runs",
+      "date": "2026-01-04",
+      "url": "https://www.theneurondaily.com/p/deepseek-just-fixed-what-breaks-100m-ai-training-runs",
+      "newsletter": "DeepSeek Just Fixed What Breaks $100M AI Training Runs",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 DeepSeek Just Fixed What Breaks $100M AI Training Runs"
+    }
+  },
+  {
+    "id": "remplacer-vos-resolutions-par-douze-petites-experiences",
+    "titre": "Remplacer vos résolutions par douze petites expériences",
+    "resume": "Au lieu de grandes résolutions abandonnées mi-janvier, l’IA propose douze expériences peu coûteuses et rapides à lancer, une par mois, que vous gardez, ajustez ou écartez.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Prenez des résolutions que vous pouvez vraiment *tester*, et abandonner sans culpabilité."
+      },
+      {
+        "t": "p",
+        "x": "La plupart des objectifs du Nouvel An sont des refontes complètes de mode de vie… et c’est pourquoi ils meurent vers la mi-janvier. Ce prompt inverse la logique : vous menez **12 petites expériences**, peu coûteuses, rapides et guidées par la curiosité. Si l’une échoue, vous avez appris quelque chose ; si l’une prend, vous avez une nouvelle habitude sans vous forcer."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt des 12 petites expériences",
+        "type": "prompt",
+        "texte": "Propose-moi 12 petites expériences à tenter cette année (une par mois), autour du plaisir, de l’apprentissage, de la créativité ou des relations.\nChaque expérience doit coûter moins de [budget, par exemple 50 dollars] et demander moins de 2 heures pour démarrer.\nIndique pour chacune une première étape claire et à quoi ressemble la réussite.\nDemande-moi ensuite lesquelles garder, ajuster ou abandonner avant de finaliser la liste.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Une petite expérience se lance facilement et s’abandonne sans regret : c’est ce qui la rend plus tenable qu’une grande résolution.",
+    "source": {
+      "cle": "faang-engineer-the-party-is-over",
+      "date": "2026-01-01",
+      "url": "https://www.theneurondaily.com/p/faang-engineer-the-party-is-over",
+      "newsletter": "FAANG engineer: \"The party is over\"",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 FAANG engineer: \"The party is over\""
+    }
+  },
+  {
+    "id": "faire-de-l-ia-un-coach-d-habitudes-sur-le-long-terme",
+    "titre": "Faire de l’IA un coach d’habitudes sur le long terme",
+    "resume": "Un prompt qui interdit les solutions express : l’IA demande d’abord votre contexte, puis propose des habitudes durables, sans culpabilité, en agissant sur votre environnement.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "La plupart des conversations « remise en forme » avec une IA basculent aussitôt en tableau de calories et en ambiance camp d’entraînement. Si vous voulez plutôt des habitudes durables de poids et de mouvement, sans culpabilité, sans pression et en agissant d’abord sur votre environnement, il faut confier au modèle un autre rôle."
+      },
+      {
+        "t": "p",
+        "x": "[Ce prompt de u/ZioGino71](https://www.reddit.com/r/PromptEngineering/comments/1pmf7j3/help_designing_an_llm_prompt_for_longhorizon/) fait exactement cela : il impose une réflexion en systèmes sur des années plutôt que des semaines, interdit l’optimisation à court terme et oblige le modèle à demander le *bon* contexte avant tout conseil."
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Collez le prompt publié dans le premier commentaire du fil Reddit (ou la version courte ci-dessous).",
+          "Répondez aux trois questions qu’il pose, une à la fois.",
+          "Demandez ensuite une seule nouvelle habitude à tester cette semaine, d’une facilité désarmante."
+        ]
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt du coach d’habitudes (version courte)",
+        "type": "prompt",
+        "texte": "Tu es mon coach d’habitudes sur plusieurs années, pas sur quelques semaines. Ton but : des habitudes de poids et de mouvement durables, sans culpabilité ni pression, en agissant d’abord sur mon environnement plutôt que sur ma volonté. Pas de comptage de calories ni de programme intensif, aucune optimisation à court terme. Avant tout conseil, pose-moi 3 questions, une à la fois, sur ma situation actuelle, mes contraintes et ce qui a déjà échoué pour moi.",
+        "adapte": true
+      },
+      {
+        "titre": "La relance « une habitude par semaine »",
+        "type": "prompt",
+        "texte": "Donne-moi une seule nouvelle habitude par défaut à essayer cette semaine, et rends-la ridiculement facile.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Pour changer durablement, demandez une petite habitude facile à la fois, pas un programme complet.",
+    "source": {
+      "cle": "meta-paid-2b-for-an-8-month-old-startup",
+      "date": "2025-12-31",
+      "url": "https://www.theneurondaily.com/p/meta-paid-2b-for-an-8-month-old-startup",
+      "newsletter": "Meta's AI Agent Acquisition: What's Behind the Move?",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Meta's AI Agent Acquisition: What's Behind the Move?"
+    }
+  },
+  {
+    "id": "comparer-deux-options-selon-votre-situation-pas-dans-l-absolu",
+    "titre": "Comparer deux options selon votre situation, pas dans l’absolu",
+    "resume": "Tableau des compromis, coûts cachés, règle de décision « si X, choisissez A », regrets possibles et niveau de confiance : l’IA vous aide à trancher selon votre cas.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Ne demandez pas « lequel est le meilleur ? », mais « lequel est le meilleur *pour moi* ? »"
+      },
+      {
+        "t": "p",
+        "x": "La plupart des comparaisons tournent à l’inventaire de caractéristiques techniques. Ce prompt pousse le modèle à faire ce dont vous avez vraiment besoin : rapporter les options à votre situation, faire ressortir les risques et les compromis, et conclure par une règle de décision réutilisable. Il vaut pour acheter, faire soi-même ou choisir entre deux solutions."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt « comparer et décider »",
+        "type": "prompt",
+        "texte": "Compare [option A] et [option B] pour [votre situation].\nPrésente un tableau avec : fonctionnalités, compromis, risques, coût et temps, cas d’usage idéal.\nDonne ensuite une recommandation clairement argumentée, avec une règle du type « si X, choisis A ; si Y, choisis B ».\nRecherche et indique les éventuels coûts cachés.\nAjoute pour chaque option une courte section « Qu’est-ce qui me ferait regretter ce choix ? », et termine par un plan d’action en 3 étapes (essai, projet pilote ou vérifications préalables).\nIndique enfin ton niveau de confiance : à quel point est-ce probablement le bon choix, compte tenu de ce que tu sais de mes besoins actuels et de moi ?",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Une bonne comparaison se termine par une règle de décision adaptée à votre cas, pas par une fiche technique.",
+    "source": {
+      "cle": "so-what-s-up-with-openai-s-new-app-marketplace",
+      "date": "2025-12-30",
+      "url": "https://www.theneurondaily.com/p/so-what-s-up-with-openai-s-new-app-marketplace",
+      "newsletter": "Shape-Shifting French Robot: Sci-Fi Tech Meets Reality",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Shape-Shifting French Robot: Sci-Fi Tech Meets Reality"
+    }
+  },
+  {
+    "id": "transformer-des-notes-en-vrac-en-document-structure",
+    "titre": "Transformer des notes en vrac en document structuré",
+    "resume": "Au lieu de résumer vos notes, l’IA les organise en brief, compte rendu ou procédure : tous les faits conservés, les répétitions supprimées, les questions ouvertes listées.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Ne « résumez » pas vos notes : transformez-les en document que quelqu’un pourra vraiment utiliser."
+      },
+      {
+        "t": "p",
+        "x": "Des notes brutes ressemblent souvent à un tiroir fourre-tout : le bon contenu y est enfoui sous les doublons, les idées à moitié formulées et les points d’interrogation. Ce prompt fait travailler le modèle comme un responsable des opérations : la structure d’abord, aucun fait modifié, les questions ouvertes signalées pour que rien ne disparaisse en silence."
+      },
+      {
+        "t": "p",
+        "x": "Il fonctionne pour presque tout : comptes rendus de réunion, documents de lancement, procédures, spécifications produit, briefs, analyses après incident, notes de recherche."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt « du fouillis à la structure »",
+        "type": "prompt",
+        "texte": "Organise ce qui suit en [type de document : brief, spécification produit, compte rendu de réunion, procédure] structuré.\nConserve tous les faits, supprime les répétitions et signale les questions ouvertes à la fin.\nNotes : [collez vos notes]",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Demandez de structurer sans toucher aux faits et de lister les questions ouvertes : vos notes deviennent un document exploitable.",
+    "source": {
+      "cle": "your-ai-terms-cheat-sheet-for-2026-pt-1",
+      "date": "2025-12-29",
+      "url": "https://www.theneurondaily.com/p/your-ai-terms-cheat-sheet-for-2026-pt-1",
+      "newsletter": "Your AI terms Cheat Sheet for 2026, Pt 1",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 Your AI terms Cheat Sheet for 2026, Pt 1"
+    }
+  },
+  {
+    "id": "obliger-l-ia-a-ne-repondre-qu-a-partir-de-vos-informations",
+    "titre": "Obliger l’IA à ne répondre qu’à partir de vos informations",
+    "resume": "Le modèle ne peut utiliser que les informations fournies et doit dire quand elles ne suffisent pas : il ne comble plus les trous avec des inventions plausibles.",
+    "categorie": "verifier",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Faites du modèle un vérificateur, pas un devin."
+      },
+      {
+        "t": "p",
+        "x": "La plupart des « hallucinations » surviennent quand l’IA veut rendre service en comblant les trous avec des éléments plausibles. Ce prompt lui retire cette échappatoire : elle ne peut utiliser que *vos* informations et doit signaler clairement ce qui manque."
+      },
+      {
+        "t": "p",
+        "x": "**Pourquoi c’est utile partout :** résumés, brouillons de règlements ou de textes à portée juridique, comptes rendus de réunion, indicateurs chiffrés, et tout ce où « à peu près juste » reste faux."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de réponse fondée sur vos seules informations",
+        "type": "prompt",
+        "texte": "Utilise uniquement les informations que je fournis ci-dessous. Si un point n’est pas étayé, réponds « Je n’ai pas assez d’informations » et liste ce dont tu aurais besoin.\nInformations : [collez vos informations]\nQuestion : [votre question]",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Fermez la porte aux inventions : limitez l’IA à vos sources et exigez qu’elle dise ce qui manque.",
+    "source": {
+      "cle": "ai-industry-infighting-and-co2-batteries",
+      "date": "2025-12-28",
+      "url": "https://www.theneurondaily.com/p/ai-industry-infighting-and-co2-batteries",
+      "newsletter": "Google's CO2 Batteries: Powering AI's Clean Energy Future",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Google's CO2 Batteries: Powering AI's Clean Energy Future"
+    }
+  },
+  {
+    "id": "faire-critiquer-puis-reecrire-un-brouillon-sans-perdre-votre-voix",
+    "titre": "Faire critiquer puis réécrire un brouillon sans perdre votre voix",
+    "resume": "L’IA diagnostique d’abord les cinq principaux défauts de votre texte, puis le réécrit sans trahir votre intention et propose trois variantes : courte, directe, chaleureuse.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Obtenez un relecteur *et* une réécriture sans perdre votre voix."
+      },
+      {
+        "t": "p",
+        "x": "La plupart des prompts « réécris ceci » remplacent sans le vouloir votre intention par celle du modèle. Celui-ci l’évite en imposant d’abord un diagnostic (ce qui ne va pas et pourquoi), puis une correction, et enfin quelques variantes de style pour choisir celle qui convient au moment. En complément, demandez un objet d’e-mail et le repérage des phrases les plus modifiées."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt « critique et amélioration »",
+        "type": "prompt",
+        "texte": "Améliore ce texte sans changer mon intention.\nListe les 5 principaux problèmes (clarté, structure, informations manquantes, ton).\nRéécris-le.\nPropose 3 variantes : plus courte, plus directe, plus chaleureuse.\nBrouillon : [collez votre brouillon]",
+        "adapte": false
+      },
+      {
+        "titre": "Le complément de relecture",
+        "type": "prompt",
+        "texte": "Après la réécriture, donne-moi un objet en une phrase (si c’est pertinent) et signale les phrases que tu as le plus modifiées, avec une brève justification.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Exigez le diagnostic avant la réécriture : vous gardez la main sur votre intention et comprenez chaque changement.",
+    "source": {
+      "cle": "groupchats-in-chatgpt-here-s-what-we-think",
+      "date": "2025-12-26",
+      "url": "https://www.theneurondaily.com/p/groupchats-in-chatgpt-here-s-what-we-think",
+      "newsletter": "Groupchats in ChatGPT; here's what we think",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 Groupchats in ChatGPT; here's what we think"
+    }
+  },
+  {
+    "id": "generer-chaque-plan-avec-plusieurs-ia-et-garder-le-meilleur",
+    "titre": "Générer chaque plan avec plusieurs IA et garder le meilleur",
+    "resume": "Pour sa vidéo virale « Grinch: The Anime », un créateur a fait passer chaque plan dans plusieurs modèles vidéo et gardé le meilleur. La méthode vaut aussi pour vos prompts.",
+    "categorie": "creer",
+    "niveau": "intermediaire",
+    "outils": [
+      "gemini",
+      "autre"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Le créateur WiiFitBalanceBoard a expliqué comment il a réalisé [« Grinch: The Anime »](https://www.reddit.com/r/aivideo/comments/1prdflh/grinch_the_anime/), la vidéo d’IA devenue virale sur Reddit. Son secret : faire passer la même scène dans 3 ou 4 modèles vidéo différents (Kling 2.1, Veo 3 Fast, Grok) et garder le meilleur résultat pour chaque plan."
+      },
+      {
+        "t": "p",
+        "x": "Sa méthode complète, avec [ArtCraft](https://getartcraft.com/), qui réunit plusieurs outils de vidéo par IA :"
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Posez les personnages dans un éditeur 3D, puis générez des images fixes avec Gemini.",
+          "Faites passer chaque image dans plusieurs modèles vidéo en même temps.",
+          "Montez et composez les meilleurs extraits dans DaVinci Resolve avec des techniques classiques (arrêts sur image, filtres VHS).",
+          "Ajoutez la voix off avec ElevenLabs."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Comptez environ une semaine du script à la vidéo finale de 3 minutes. Les pros travaillent donc en multi-modèles : ils génèrent plusieurs versions et gardent la meilleure (le principe du *best of N*). Appliquez-le aussi hors de la vidéo : soumettez vos prompts importants à ChatGPT, Claude et Gemini, puis retenez la réponse la plus réussie."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de comparaison des réponses",
+        "type": "prompt",
+        "texte": "Voici trois réponses à la même demande, produites par trois IA différentes.\nDemande : [votre prompt]\nRéponse A : [réponse de la première IA]\nRéponse B : [réponse de la deuxième IA]\nRéponse C : [réponse de la troisième IA]\nCompare-les sur l’exactitude, la pertinence et la clarté. Indique la meilleure, puis ce qu’il faudrait reprendre des deux autres pour l’améliorer.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Ne vous fiez pas à un seul modèle : générez plusieurs versions et gardez la meilleure, plan par plan ou réponse par réponse.",
+    "source": {
+      "cle": "merry-christmas-from-the-neuron",
+      "date": "2025-12-25",
+      "url": "https://www.theneurondaily.com/p/merry-christmas-from-the-neuron",
+      "newsletter": "Merry Christmas from The Neuron...",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 Merry Christmas from The Neuron..."
+    }
+  },
+  {
+    "id": "generer-douze-messages-de-voeux-adaptes-a-chaque-destinataire",
+    "titre": "Générer douze messages de vœux adaptés à chaque destinataire",
+    "resume": "Douze messages de fêtes pour collègues, amis, famille et voisins, dans des tons variés, sans clichés ni familiarité déplacée, et de moins de 240 caractères chacun.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Les messages de vœux échouent de deux façons : trop génériques (« Meilleurs vœux… ») ou involontairement trop familiers (« Gros bisous ! » à un collègue). Ce prompt fonctionne parce qu’il impose de la **variété** (12 propositions) et des **garde-fous** (pas de clichés, pas de références religieuses, des messages courts)."
+      },
+      {
+        "t": "p",
+        "x": "Pour aller plus loin, demandez d’étiqueter chaque message par destinataire et par ton, et d’en inclure deux qui évoquent un remerciement précis ou un moment partagé, avec des passages à compléter."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le générateur de vœux (cartes, SMS, e-mails)",
+        "type": "prompt",
+        "texte": "Rédige 12 messages de fêtes différents que je peux envoyer à : des collègues, des amis proches, la famille élargie, des voisins.\nVarie les tons : drôle, chaleureux, minimaliste et professionnel.\nPas de clichés. Pas de références religieuses, sauf si je le demande.\nMoins de 240 caractères par message.",
+        "adapte": false
+      },
+      {
+        "titre": "Le complément personnalisé",
+        "type": "prompt",
+        "texte": "Indique pour chaque message le destinataire et le ton (par exemple : collègue, professionnel), et inclus-en 2 qui évoquent un remerciement précis ou un moment partagé, avec des passages à compléter entre crochets.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Demandez de la variété et posez des garde-fous : il ne vous reste qu’à choisir le message juste pour chaque personne.",
+    "source": {
+      "cle": "robot-olympics-just-dropped",
+      "date": "2025-12-24",
+      "url": "https://www.theneurondaily.com/p/robot-olympics-just-dropped",
+      "newsletter": "Robot Olympics just dropped",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Robot Olympics just dropped"
+    }
+  },
+  {
+    "id": "apprendre-l-essentiel-d-un-sujet-avec-la-regle-des-80-20",
+    "titre": "Apprendre l’essentiel d’un sujet avec la règle des 80/20",
+    "resume": "L’IA isole les cinq notions qui produisent l’essentiel des résultats, les erreurs fréquentes et un plan d’entraînement de 30 minutes, pour pratiquer plutôt que lire.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Apprenez la « colonne vertébrale » d’un sujet avant d’en mémoriser les détails."
+      },
+      {
+        "t": "p",
+        "x": "Le prompt 80/20 est un raccourci vers la compétence : il oblige le modèle à identifier les quelques idées qui produisent l’essentiel des résultats, puis vous donne un moyen rapide de *pratiquer*, pas seulement de lire. En complément, demandez un exemple simple et une question d’autocontrôle par notion, pour vérifier que vous avez vraiment compris."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt 80/20",
+        "type": "prompt",
+        "texte": "Apprends-moi [sujet] en appliquant la règle des 80/20. Donne-moi : les 5 notions qui produisent l’essentiel des résultats, les erreurs fréquentes et un plan d’entraînement de 30 minutes.",
+        "adapte": false
+      },
+      {
+        "titre": "Le complément d’autocontrôle",
+        "type": "prompt",
+        "texte": "Ajoute aussi, pour chaque notion, un exemple simple et une question rapide d’autocontrôle, pour que je vérifie que je l’ai vraiment comprise.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Commencez par les quelques notions qui font l’essentiel, et passez vite à la pratique.",
+    "source": {
+      "cle": "youtube-lets-you-generate-games-now",
+      "date": "2025-12-23",
+      "url": "https://www.theneurondaily.com/p/youtube-lets-you-generate-games-now",
+      "newsletter": "Google's 2025: 60 Mind-Blowing AI Releases Unveiled!",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Google's 2025: 60 Mind-Blowing AI Releases Unveiled!"
+    }
+  },
+  {
+    "id": "demander-un-eventail-d-options-plutot-qu-une-seule-reponse",
+    "titre": "Demander un éventail d’options plutôt qu’une seule réponse",
+    "resume": "Dix approches distinctes, chacune avec son cas d’usage idéal et son défaut, puis les deux meilleures selon votre priorité : vitesse, coût, qualité ou risque.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Ne demandez pas « la réponse ». Demandez un menu."
+      },
+      {
+        "t": "p",
+        "x": "La plupart des prompts poussent sans le vouloir l’IA vers une seule piste, affirmée avec assurance. Celui-ci fait l’inverse : il transforme le modèle en partenaire de réflexion qui vous propose de **vrais choix**, avec leurs compromis, pour décider selon ce qui compte vraiment pour vous (vitesse, coût, qualité ou risque)."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt « des options, pas une réponse »",
+        "type": "prompt",
+        "texte": "Propose 10 approches distinctes pour résoudre [problème].\nPour chacune : un résumé en une ligne, le cas d’usage idéal et un inconvénient.\nRecommande ensuite les 2 meilleures selon [votre priorité : vitesse, coût, qualité ou risque].",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Demander plusieurs options avec leurs compromis vous laisse le choix, au lieu de subir la première piste venue.",
+    "source": {
+      "cle": "disney-built-a-walking-olaf-robot",
+      "date": "2025-12-22",
+      "url": "https://www.theneurondaily.com/p/disney-built-a-walking-olaf-robot",
+      "newsletter": "Disney built a walking Olaf robot",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Disney built a walking Olaf robot"
+    }
+  },
+  {
+    "id": "faire-poser-jusqu-a-sept-questions-ciblees-avant-la-reponse",
+    "titre": "Faire poser jusqu’à sept questions ciblées avant la réponse",
+    "resume": "Un prompt passe-partout qui oblige l’IA à chercher l’information manquante qui change vraiment la réponse, ou à annoncer clairement ses hypothèses si elle doit avancer.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Ce prompt modeste sert de « filtre de clarté » universel. Il fonctionne pour tout (organiser un voyage, rédiger un e-mail, déboguer du code, choisir un outil), car il pousse le modèle à trouver l’information manquante qui change réellement la réponse."
+      },
+      {
+        "t": "p",
+        "x": "Placez-le en tête de votre demande. Si une information manque et que l’IA doit quand même avancer, elle énonce ses hypothèses au lieu de les cacher."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le filtre de clarté",
+        "type": "prompt",
+        "texte": "Avant de commencer, pose-moi jusqu’à 7 questions ciblées qui amélioreraient nettement la réponse. S’il manque une information et que tu dois quand même avancer, énonce clairement tes hypothèses.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Laissez l’IA vous interroger avant de répondre : les bonnes questions valent mieux qu’une réponse bâtie sur des suppositions.",
+    "source": {
+      "cle": "openai-s-new-research-paper-is-wild",
+      "date": "2025-12-21",
+      "url": "https://www.theneurondaily.com/p/openai-s-new-research-paper-is-wild",
+      "newsletter": "OpenAI's Shocking Research Paper Unveiled!",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "🤖 OpenAI's Shocking Research Paper Unveiled!"
+    }
+  },
+  {
+    "id": "faire-lister-ses-hypotheses-a-l-ia-avant-qu-elle-reponde",
+    "titre": "Faire lister ses hypothèses à l’IA avant qu’elle réponde",
+    "resume": "Avant d’exécuter, l’IA expose les trois hypothèses qu’elle fait et les deux plus grands risques d’erreur : vous corrigez les malentendus tant qu’ils coûtent encore peu.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "La plupart des mauvaises réponses ne viennent pas d’un modèle « bête » : il a deviné de travers en silence (l’objectif, le public, les contraintes, une définition), puis il est parti à toute vitesse, plein d’assurance."
+      },
+      {
+        "t": "p",
+        "x": "Ce prompt « du premier coup » règle le problème en imposant l’alignement d’abord, l’exécution ensuite : vous repérez les hypothèses erronées *tant qu’elles coûtent encore peu*."
+      },
+      {
+        "t": "p",
+        "x": "Pour plus de sûreté, ajoutez la seconde consigne ci-dessous : l’IA vous pose une seule question, et seulement si la réponse change vraiment le résultat."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt « du premier coup »",
+        "type": "prompt",
+        "texte": "Tu es mon assistant pour [tâche].\nObjectif : [à quoi ressemble la réussite].\nContexte : [ce que vous savez et ce que vous fournissez].\nContraintes : [délai, budget, ton, longueur, outils à ne pas utiliser].\nFormat de sortie : [puces, tableau, étapes, JSON…].\nAvant de répondre : liste les 3 hypothèses clés que tu fais et les 2 plus grands risques si elles sont fausses, puis continue.",
+        "adapte": false
+      },
+      {
+        "titre": "La consigne de question unique",
+        "type": "prompt",
+        "texte": "Après avoir listé les hypothèses et les risques, pose-moi une seule question, celle qui réduirait le plus l’incertitude, et seulement si elle change le résultat final.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Faites expliciter les hypothèses avant l’exécution : une erreur de cadrage coûte peu au début et cher à la fin.",
+    "source": {
+      "cle": "sam-altman-just-laid-out-openai-s-plan-for-2026",
+      "date": "2025-12-19",
+      "url": "https://www.theneurondaily.com/p/sam-altman-just-laid-out-openai-s-plan-for-2026",
+      "newsletter": "Sam Altman just laid out OpenAI's plan for 2026",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 Sam Altman just laid out OpenAI's plan for 2026"
+    }
+  },
+  {
+    "id": "doser-la-structure-d-un-prompt-selon-l-enjeu",
+    "titre": "Doser la structure d’un prompt selon l’enjeu",
+    "resume": "Rôle, objectif, contexte, contraintes, format, vérification : six briques à combiner selon ce qui est en jeu, du simple remue-méninges à la question juridique ou médicale.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Selon un [fil Reddit récent](https://www.reddit.com/r/PromptEngineering/comments/1plbkua/i_mapped_every_ai_prompting_framework_i_use_this/), tous les cadres de prompt efficaces reposent sur six briques :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Rôle** : qui est l’IA (par exemple « Tu es professeur de finance »).",
+          "**Objectif** : ce que vous voulez (« Explique les intérêts composés »).",
+          "**Contexte** : les informations dont l’IA a besoin.",
+          "**Contraintes** : les règles et limites (« Pas de jargon, utilise des exemples »).",
+          "**Format de sortie** : la forme voulue (« Donne-moi 3 points clés »).",
+          "**Vérification** : comment contrôler la qualité."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Une suggestion du fil est particulièrement astucieuse : avant de rédiger, demandez-vous ce qui est en jeu."
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Faible enjeu (remue-méninges)** : une structure simple suffit (rôle + objectif).",
+          "**Enjeu moyen (tâches professionnelles)** : ajoutez de quoi cadrer le raisonnement (contexte + contraintes).",
+          "**Enjeu élevé (juridique, financier, médical)** : ajoutez une vérification complète et une relecture humaine."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "L’auteur de la rubrique constate aussi qu’un résultat décevant vient généralement de l’un de ces trois manques : un **seuil de qualité précis** (« fidélité à 100 % », « le plus utile possible »), un **exemple concret de structure** (« commence comme ceci : [exemple] ») ou des **critères de vérification explicites** (« développe chaque sigle », « définis chaque terme »)."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt en six briques",
+        "type": "prompt",
+        "texte": "Tu es [rôle, par exemple professeur de finance].\nObjectif : [ce que vous voulez, par exemple m’expliquer les intérêts composés].\nContexte : [les informations utiles].\nContraintes : [règles et limites, par exemple pas de jargon, utilise des exemples].\nFormat : [forme voulue, par exemple 3 points clés].\nVérification : avant de répondre, vérifie que [critère, par exemple chaque terme technique est défini].",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Plus l’enjeu est élevé, plus le prompt doit être complet, jusqu’à la vérification et la relecture humaine.",
+    "source": {
+      "cle": "is-gemini-flash-3-intelligence-too-cheap-to-meter",
+      "date": "2025-12-18",
+      "url": "https://www.theneurondaily.com/p/is-gemini-flash-3-intelligence-too-cheap-to-meter",
+      "newsletter": "Is Gemini Flash 3 \"intelligence too cheap to meter\"?",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 Is Gemini Flash 3 \"intelligence too cheap to meter\"?"
+    }
+  },
+  {
+    "id": "apprendre-n-importe-quel-sujet-avec-la-boucle-de-feynman",
+    "titre": "Apprendre n’importe quel sujet avec la boucle de Feynman",
+    "resume": "Inspirée du physicien Richard Feynman, cette méthode fait expliquer simplement, repère vos lacunes et recommence jusqu’à ce que vous sachiez expliquer le sujet à votre tour.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Souvent, les « explications » d’une IA ressemblent à une lance à incendie… qui vous récite Wikipédia en prime."
+      },
+      {
+        "t": "p",
+        "x": "Ce [cadre inspiré de Richard Feynman](https://www.reddit.com/r/PromptEngineering/comments/1pdwjob/this_richard_feynman_inspired_prompt_framework/), partagé par u/EQ4C sur r/PromptEngineering, oblige le modèle à faire ce que font les grands enseignants : expliquer simplement, trouver vos lacunes, puis recommencer jusqu’à ce que vous puissiez enseigner le sujet à votre tour. Le prompt complet est sur Reddit ; en voici une version courte."
+      },
+      {
+        "t": "p",
+        "x": "Conseil : enregistrez le prompt dans un projet ChatGPT et servez-vous-en comme d’un système d’apprentissage guidé. Et si vous ne connaissez pas Richard Feynman, [regardez cette vidéo](https://www.youtube.com/watch?v=RIQlY8DAoOc) : vous regretterez qu’il ne puisse pas tout vous enseigner."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "La boucle de Feynman (version courte)",
+        "type": "prompt",
+        "texte": "Je veux comprendre [sujet]. Guide-moi avec la méthode Feynman, une étape à la fois, en attendant ma réponse avant de continuer :\n1. Explique-moi le sujet très simplement, sans jargon, avec un exemple concret.\n2. Pose-moi 3 questions pour vérifier ce que j’ai compris.\n3. À partir de mes réponses, repère mes lacunes et réexplique uniquement ces points, autrement.\n4. Demande-moi ensuite de t’expliquer le sujet avec mes propres mots, corrige mes erreurs et recommence la boucle jusqu’à ce que mon explication soit juste et simple.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "On a compris un sujet quand on sait l’expliquer simplement : faites de l’IA un professeur qui vérifie, pas un distributeur d’informations.",
+    "source": {
+      "cle": "google-vs-microsoft-who-gets-to-define-agi",
+      "date": "2025-12-17",
+      "url": "https://www.theneurondaily.com/p/google-vs-microsoft-who-gets-to-define-agi",
+      "newsletter": "Google vs Microsoft; who gets to define AGI?",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "The “Feynman Loop” (learn anything without the info-dump)"
+    }
+  },
+  {
+    "id": "construire-un-second-cerveau-avec-un-projet-chatgpt",
+    "titre": "Construire un « second cerveau » avec un projet ChatGPT",
+    "resume": "Le chef de produit Amir Klein réunit des centaines de documents dans un projet ChatGPT doté d’instructions sur mesure, et en a fait son partenaire de réflexion au quotidien.",
+    "categorie": "memoire",
+    "niveau": "intermediaire",
+    "outils": [
+      "chatgpt"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Vous jonglez entre documents, fils Slack et bribes de contexte dispersées dans douze outils ? Le chef de produit Amir Klein a présenté dans la newsletter de Lenny un [système en 3 étapes](https://www.lennysnewsletter.com/p/how-to-build-your-pm-second-brain) pour construire son « second cerveau » avec la fonction Projects de ChatGPT :"
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "**Donnez-lui une personnalité** : faites rédiger par ChatGPT lui-même les instructions personnalisées du partenaire de réflexion dont vous avez besoin.",
+          "**Nourrissez-le de tout** : spécifications produit, présentations, fichiers Excel, canaux Slack exportés en PDF. Tout est du texte !",
+          "**Laissez-le travailler** : formulaires d’inscription, documents de stratégie, prototypes, feuilles de route, tout ce qui doit être fait."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Le projet d’Amir Klein contient aujourd’hui des *centaines* de fichiers et prend en charge des tâches qui l’épuisaient mentalement. Il ne s’agit pas de déléguer son jugement, mais de libérer de l’espace mental pour ce qui compte vraiment : le raisonnement, la créativité et la prise de décision."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de création des instructions du projet",
+        "type": "prompt",
+        "texte": "Je veux créer un projet ChatGPT qui me serve de partenaire de réflexion au quotidien. Je suis [votre poste] et je travaille sur [vos sujets principaux]. Pose-moi d’abord quelques questions sur mon rôle, mes priorités, ma façon de travailler et la manière dont tu dois me challenger. Rédige ensuite les instructions personnalisées de ce projet, prêtes à copier-coller.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Un projet bien instruit et bien alimenté vous décharge de la logistique mentale et vous laisse le raisonnement et la décision.",
+    "source": {
+      "cle": "openai-s-new-image-model-topped-the-charts",
+      "date": "2025-12-17",
+      "url": "https://www.theneurondaily.com/p/openai-s-new-image-model-topped-the-charts",
+      "newsletter": "OpenAI's new image model topped the charts...",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 OpenAI's new image model topped the charts..."
+    }
+  },
+  {
+    "id": "confronter-trois-hypotheses-pour-depasser-la-reponse-consensuelle",
+    "titre": "Confronter trois hypothèses pour dépasser la réponse consensuelle",
+    "resume": "Le « Deep Truth Mode » de Brian Roemmele fait défendre puis attaquer la thèse dominante, la thèse contestée et une voie hybride, en s’appuyant sur des sources primaires.",
+    "categorie": "verifier",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Brian Roemmele a [rendu public un prompt pour Grok](https://x.com/BrianRoemmele/status/1994151557802438904) qui vise à contourner le biais de consensus des IA. Son « Deep Truth Mode » suit un protocole d’enquête en 8 étapes : il construit la meilleure version possible (*steel-man*) de la position dominante, de la position marginalisée et d’hypothèses hybrides, puis les attaque toutes les trois (*red-teaming*) pour voir ce qui résiste."
+      },
+      {
+        "t": "p",
+        "x": "Il n’utilise que des sources primaires (brevets, documents divulgués, données brutes, témoignages sous serment) et refuse explicitement les articles de vérification des faits comme preuves. La réponse comprend une distribution de probabilités indiquant quelle hypothèse explique le mieux les faits, et signale tout indice de suppression active d’informations."
+      },
+      {
+        "t": "p",
+        "x": "Selon Brian Roemmele, des [cours d’informatique l’utilisent](https://x.com/BrianRoemmele/status/2000660849812447323) pour enseigner les limites des modèles de langage ; un groupe d’étudiants en a fait le prompt système d’un modèle open source, avec de meilleurs résultats sur tous les tests. Le prompt complet existe en [version Google Docs à copier](https://docs.google.com/document/d/1b6vNEQHuRj8S0HtSyTYNrApq2Q0a531D8VUmeNKLqp4/copy). Il en propose deux autres : [l’un impose à Grok un raisonnement sur sources primaires](https://x.com/BrianRoemmele/status/1994154446079812055), [l’autre est un algorithme d’entraînement qui favorise les données primaires antérieures à 1970](https://x.com/brianroemmele/status/1993393673451847773)."
+      },
+      {
+        "t": "p",
+        "x": "À tester sur les sujets controversés où vous soupçonnez que la version officielle est incomplète. Comme toujours, vérifiez vous-même les sources citées par l’IA."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt d’enquête à trois hypothèses (version courte)",
+        "type": "prompt",
+        "texte": "Sujet : [question controversée].\n1. Formule la meilleure version possible de trois positions : la position dominante, la position minoritaire ou contestée, et une hypothèse hybride.\n2. Pour chacune, appuie-toi en priorité sur des sources primaires (brevets, documents originaux, données brutes, témoignages sous serment) et signale quand tu ne disposes que de sources secondaires.\n3. Attaque ensuite chaque position comme le ferait un contradicteur acharné : quelles preuves la fragilisent, quelles questions restent sans réponse ?\n4. Termine par une estimation en pourcentage de la force explicative de chaque hypothèse, en justifiant les chiffres et en listant ce qui pourrait les faire changer.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Pour sortir de la réponse consensuelle, faites défendre puis attaquer plusieurs hypothèses, preuves primaires à l’appui.",
+    "source": {
+      "cle": "nvidia-leads-an-open-model-release-monday",
+      "date": "2025-12-16",
+      "url": "https://www.theneurondaily.com/p/nvidia-leads-an-open-model-release-monday",
+      "newsletter": "NVIDIA leads an open-model release Monday!",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 NVIDIA leads an open-model release Monday!"
+    }
+  },
+  {
+    "id": "piloter-le-format-des-reponses-avec-des-mots-cles-abreges",
+    "titre": "Piloter le format des réponses avec des mots-clés abrégés",
+    "resume": "ELI5, TL;DR, CHECKLIST, SWOT : des mots-clés courts, combinables avec des barres verticales, cadrent vite le format d’une réponse. Les « commandes secrètes », elles, ne servent à rien.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Ce [fil Reddit](https://www.reddit.com/r/PromptEngineering/comments/1pifidh/chatgpt_secret_tricks_cheat_sheet_50_power/) rassemble de bonnes astuces, notamment des mots-clés abrégés pour structurer un prompt plus efficacement. Mais tout n’est pas bon à prendre : selon l’analyse de l’utilisateur SwissDadMeister, environ 40 % fonctionnent bien, 40 % ne sont que des changements d’étiquette et 20 % relèvent de l’illusion ou du marketing. Ce qui fonctionne :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Les raccourcis** : des abréviations comme ELI5 (« explique comme à un enfant de 5 ans »), TL;DR (« en bref »), STEP-BY-STEP (« étape par étape ») ou CHECKLIST servent de commandes rapides.",
+          "**L’empilement** : combinez plusieurs mots-clés avec des barres verticales (voir le prompt ci-dessous).",
+          "**Les mots-clés structurants fiables** : les fondamentaux (ELI5, OUTLINE pour un plan, FRAMEWORK pour un cadre) et les analytiques (SWOT, PRE-MORTEM, COMPARE)."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "**Ce qui ne fonctionne pas :** la section des « mots-clés expérimentaux » (THOUGHT_WIPE, ZERO-IMPRINT, etc.), qui relève de la fiction ; les promesses de « techniques secrètes » et de « commandes surpuissantes » ; certains modes de « simulation cognitive » qui ne font pas ce qu’ils annoncent."
+      },
+      {
+        "t": "p",
+        "x": "**L’enseignement :** la structure l’emporte sur le symbolisme. Les mots-clés efficaces sont ceux qui décrivent un FORMAT DE SORTIE (tableaux, listes, étapes) ou un CADRE D’ANALYSE (SWOT, comparaison) : ils vous aident à obtenir des réponses mises en forme comme vous en avez besoin."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt à mots-clés empilés",
+        "type": "prompt",
+        "texte": "SIMPLIFIE | HUMANISE | FORMAT : liste à puces\n\n[votre texte ou votre question]",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Les mots-clés utiles décrivent un format ou un cadre d’analyse ; les « commandes secrètes » n’ajoutent rien.",
+    "source": {
+      "cle": "investor-gavin-baker-context-beats-iq-in-ai",
+      "date": "2025-12-15",
+      "url": "https://www.theneurondaily.com/p/investor-gavin-baker-context-beats-iq-in-ai",
+      "newsletter": "OpenAI's Merch Store: A Silicon Valley Easter Egg Hunt",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 OpenAI's Merch Store: A Silicon Valley Easter Egg Hunt"
+    }
+  },
+  {
+    "id": "faire-de-chatgpt-l-architecte-de-vos-workflows",
+    "titre": "Faire de ChatGPT l’architecte de vos workflows",
+    "resume": "Au lieu d’improviser un nouveau prompt à chaque fois, demandez à l’IA de comparer trois façons de travailler, puis de rédiger un prompt maître et des relances réutilisables.",
+    "categorie": "automatiser",
+    "niveau": "intermediaire",
+    "outils": [
+      "chatgpt"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Utilisez GPT-5.2 comme *architecte de vos workflows*, pas seulement comme machine à réponses. Au lieu de demander « aide-moi à faire X », suivez ce méta-prompt en deux étapes :"
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "**Concevoir le workflow** : l’IA propose trois façons de travailler, avec pour chacune la boucle d’échanges, le contexte à fournir et les points de contrôle humains, puis recommande celle par laquelle commencer.",
+          "**En faire des prompts réutilisables** : elle rédige un prompt maître à enregistrer et quelques courtes relances à coller au besoin."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "L’idée est simple : cessez d’improviser de nouveaux prompts à chaque fois et faites concevoir et documenter par l’IA un *système reproductible* pour votre cas d’usage, avec des étapes de vérification intégrées."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Étape 1 : concevoir le workflow",
+        "type": "prompt",
+        "texte": "Tu es l’architecte de mes workflows d’IA. Je veux [objectif, par exemple : relire de longs contrats, déboguer une grande base de code, planifier des expériences].\n1. Liste 3 workflows vraiment différents que je pourrais suivre avec toi pour y parvenir de façon fiable.\n2. Pour chacun, précise : la boucle principale (ce que je t’envoie à chaque étape), les outils ou le contexte à joindre, et les moments où un humain doit vérifier ou corriger l’IA.\n3. Recommande ensuite celui par lequel je devrais commencer et explique pourquoi en 3 phrases.",
+        "adapte": false
+      },
+      {
+        "titre": "Étape 2 : créer les prompts réutilisables",
+        "type": "prompt",
+        "texte": "Parfait, mettons en place le workflow n° [numéro].\n1. Rédige-moi un « prompt maître » unique que je pourrai enregistrer et réutiliser pour ce workflow.\n2. Rédige ensuite 3 à 5 courtes relances (« vérifie les erreurs », « résume », « transforme ceci en code », etc.) que je pourrai coller comme des boutons ou des raccourcis.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Plutôt que d’improviser à chaque fois, faites concevoir par l’IA un système de prompts réutilisable, avec ses étapes de vérification.",
+    "source": {
+      "cle": "the-top-10-wildest-gpt-5-2-demos",
+      "date": "2025-12-12",
+      "url": "https://www.theneurondaily.com/p/the-top-10-wildest-gpt-5-2-demos",
+      "newsletter": "The Top 10 WILDEST GPT-5.2 Demos",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 The Top 10 WILDEST GPT-5.2 Demos"
+    }
+  },
+  {
+    "id": "repartir-d-une-conversation-vierge-a-chaque-nouvelle-tache",
+    "titre": "Repartir d’une conversation vierge à chaque nouvelle tâche",
+    "resume": "Prolonger une longue conversation encombre l’IA de détails inutiles. Une page blanche et des consignes claires battent un fil de 50 messages, en code comme ailleurs.",
+    "categorie": "memoire",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Arrêtez de traîner des bagages d’un prompt à l’autre. Selon l’ingénieur [BOOTOSHI](https://x.com/KingBootoshi/status/1998930471313617114), la plupart d’entre nous plombent l’efficacité de leur agent de code en prolongeant les conversations. La solution est simple : repartir de zéro entre deux fonctionnalités. Sa méthode : planifier, construire, tester, documenter, puis **réinitialiser complètement le contexte**. Pas de fil prolongé, pas d’accumulation de détails superflus."
+      },
+      {
+        "t": "p",
+        "x": "Pourquoi ça marche : chaque nouvelle fonctionnalité bénéficie d’un contexte neuf au lieu de traîner les détails sans rapport des chantiers précédents. C’est comme ouvrir un nouveau document au lieu de faire défiler jusqu’à la page 47 de vos notes en vrac."
+      },
+      {
+        "t": "p",
+        "x": "Geoffrey Huntley, utilisateur d’Opus, [va dans le même sens](https://x.com/GeoffreyHuntley/status/1998928565921018163) : quand l’IA se trompe, c’est généralement parce que la demande était trop peu précise, dans un contexte encombré. Sa solution : `git reset --hard` (attention, cette commande efface toutes les modifications qui n’ont pas été enregistrées dans un commit) ou tout simplement un prompt entièrement nouveau."
+      },
+      {
+        "t": "p",
+        "x": "**Et si vous ne codez pas ?** Le principe est le même : nouvelle tâche, nouvelle conversation. Une page blanche avec des consignes claires fait mieux qu’un fil de 50 messages, à chaque fois."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de départ d’une nouvelle tâche",
+        "type": "prompt",
+        "texte": "Nouvelle tâche, on repart de zéro : [tâche].\nObjectif : [résultat attendu].\nContexte utile : [uniquement les informations nécessaires à cette tâche].\nContraintes : [contraintes].\nC’est réussi quand : [critère de réussite].",
+        "adapte": true
+      },
+      {
+        "titre": "La commande de remise à zéro du code",
+        "type": "commande",
+        "texte": "git reset --hard",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Nouvelle tâche, nouvelle conversation : un contexte propre et des consignes claires valent mieux qu’un long fil encombré.",
+    "source": {
+      "cle": "microsoft-s-37m-conversation-study-reveals-surprising-ai-usage-pattern",
+      "date": "2025-12-11",
+      "url": "https://www.theneurondaily.com/p/microsoft-s-37m-conversation-study-reveals-surprising-ai-usage-pattern",
+      "newsletter": "Microsoft's 37M+ conversation study reveals surprising AI usage pattern",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 Microsoft's 37M+ conversation study reveals surprising AI usage pattern"
+    }
+  },
+  {
+    "id": "rendre-nette-une-photo-floue-avec-nano-banana",
+    "titre": "Rendre nette une photo floue avec Nano Banana",
+    "resume": "Une photo floue ou de mauvaise qualité ? Confiez-la à Nano Banana dans Gemini avec une consigne toute simple : le modèle d’images peut la rendre étonnamment nette.",
+    "categorie": "creer",
+    "niveau": "debutant",
+    "outils": [
+      "gemini"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "L’équipe de The Neuron a tenté, presque par hasard, d’améliorer une mauvaise photo avec [Nano Banana](https://gemini.google/overview/image-generation/), le modèle d’images de Google, et le résultat l’a stupéfaite. La méthode :"
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Prenez une photo ratée ou de mauvaise qualité.",
+          "Ouvrez Gemini et donnez-la à Nano Banana avec une consigne toute simple (ci-dessous).",
+          "Patientez quelques instants, puis comparez avec l’original."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Les séries policières font semblant de le faire depuis des décennies ; avec Gemini, cette fiction devient réalité en quelques secondes."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt d’amélioration de photo",
+        "type": "prompt",
+        "texte": "Rends ma photo moins floue.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Pour améliorer une photo, pas besoin de prompt savant : une consigne simple peut suffire à Nano Banana.",
+    "source": {
+      "cle": "openai-anthropic-and-block-team-up",
+      "date": "2025-12-10",
+      "url": "https://www.theneurondaily.com/p/openai-anthropic-and-block-team-up",
+      "newsletter": "OpenAI, Anthropic, and Block team up?!",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 OpenAI, Anthropic, and Block team up?!"
+    }
+  },
+  {
+    "id": "structurer-un-prompt-en-cinq-temps-du-contexte-a-l-autocritique",
+    "titre": "Structurer un prompt en cinq temps, du contexte à l’autocritique",
+    "resume": "Contexte, tâche, rôle et contraintes, questions de clarification, puis boucle de correction : un mini-modèle de prompt venu de Reddit, à adapter à votre propre travail.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Ce [mini-modèle de prompt partagé sur Reddit](https://www.reddit.com/r/PromptEngineering/comments/1pckket/prompting_tricks/) se reprend et s’adapte à n’importe quelle tâche. Il suit cinq temps :"
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "**Le contexte d’abord** : collez toutes les informations utiles.",
+          "**Puis la tâche** : ce que vous voulez, et pour qui ou pour quoi c’est prioritaire.",
+          "**Puis les contraintes et le rôle** : qui l’IA doit incarner, la longueur maximale, le nombre d’options, la structure à suivre.",
+          "**Des questions obligatoires** : l’IA relit tout et pose ses questions de clarification, numérotées et fermées (oui ou non) autant que possible.",
+          "**Une boucle de correction** : après la première réponse, demandez-lui de critiquer son travail et de le réécrire."
+        ]
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le modèle de prompt en quatre temps",
+        "type": "prompt",
+        "texte": "Voici le contexte : [collez-le].\n\nTa tâche : [ce que vous voulez], en donnant la priorité à [qui ou quoi compte le plus].\n\nAgis comme [rôle]. Reste sous [longueur], donne [nombre] options et respecte cette structure : [structure].\n\nAvant de commencer, relis tout et pose-moi toutes les questions de clarification dont tu as besoin. Numérote-les et formule-les pour que je puisse répondre par oui ou non quand c’est possible.",
+        "adapte": false
+      },
+      {
+        "titre": "Le prompt de correction",
+        "type": "prompt",
+        "texte": "Maintenant, critique ta réponse : contexte manquant, hypothèses fragiles, remplissage. Puis réécris-la en corrigeant ces points.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Faites poser les questions avant la réponse, puis faites critiquer la réponse : deux étapes qui évitent la plupart des allers-retours.",
+    "source": {
+      "cle": "openai-s-new-report-says-ai-saves-you-an-hour-a-day",
+      "date": "2025-12-08",
+      "url": "https://www.theneurondaily.com/p/openai-s-new-report-says-ai-saves-you-an-hour-a-day",
+      "newsletter": "OpenAI Claims: AI Saves You an Hour Daily in New Report",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 OpenAI Claims: AI Saves You an Hour Daily in New Report"
+    }
+  },
+  {
+    "id": "entrainer-un-petit-modele-a-maitriser-un-langage-de-niche",
+    "titre": "Entraîner un petit modèle à maîtriser un langage de niche",
+    "resume": "Faites générer des exemples par un grand modèle, filtrez-les avec le compilateur officiel, puis affinez un petit modèle avec LoRA : il devient un spécialiste fiable et peu coûteux.",
+    "categorie": "outils",
+    "niveau": "avance",
+    "outils": [
+      "autre"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Un [billet du blog huy.rocks](https://www.huy.rocks/everyday/12-01-2025-ai-teaching-an-llm-a-niche-diagraming-language) détaille comment transformer une IA de code généraliste en spécialiste des diagrammes. La recette :"
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Générez des exemples d’entraînement dans un langage dédié (*domain-specific language*), c’est-à-dire une syntaxe spécialisée pour une seule tâche précise, comme dessiner des logigrammes.",
+          "Faites créer ces exemples par des modèles plus gros.",
+          "Éliminez les exemples ratés avec le compilateur officiel, le logiciel qui vérifie que le code fonctionne réellement.",
+          "Affinez ensuite le petit modèle avec LoRA, une technique d’entraînement qui ne modifie qu’une petite partie du « cerveau » du modèle au lieu de tout réentraîner."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Résultat : un modèle de 7 milliards de paramètres, petit et bon marché selon les standards de l’IA, qui produit de façon fiable du code Pintora dans l’exemple de l’auteur. Pintora est un langage textuel de création de diagrammes : il transforme une description comme « la boîte A est reliée à la boîte B » en schéma."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de génération d’exemples d’entraînement",
+        "type": "prompt",
+        "texte": "Tu es expert du langage [nom du langage, par exemple Pintora]. Génère [nombre] exemples d’entraînement variés pour affiner un petit modèle. Pour chaque exemple, donne :\n- une demande en langage courant, telle qu’un utilisateur l’écrirait (par exemple : la boîte A est reliée à la boîte B) ;\n- le code [nom du langage] correct qui y répond.\nCouvre des cas simples, moyens et complexes. Rends le tout au format JSONL : un objet par ligne, avec deux champs, instruction et reponse.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Des exemples produits par un grand modèle et validés par un compilateur suffisent à faire d’un petit modèle un spécialiste fiable.",
+    "source": {
+      "cle": "become-an-ai-engineer-w-this-workflow",
+      "date": "2025-12-07",
+      "url": "https://www.theneurondaily.com/p/become-an-ai-engineer-w-this-workflow",
+      "newsletter": "Become an AI engineer w/ this workflow....",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 Become an AI engineer w/ this workflow...."
+    }
+  },
+  {
+    "id": "obtenir-de-l-ia-un-travail-fini-precis-et-original",
+    "titre": "Obtenir de l’IA un travail fini, précis et original",
+    "resume": "Cinq principes tirés du guide de prompts de GPT-5.1-Codex-Max d’OpenAI, utiles dans tout chatbot : aller au bout, regrouper les demandes, être précis, fuir le générique.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Le [guide de prompts de GPT-5.1-Codex-Max](https://cookbook.openai.com/examples/gpt-5/gpt-5-1-codex-max_prompting_guide) publié par OpenAI cache, au milieu de la documentation technique, cinq principes utiles à tous les utilisateurs de ChatGPT ou de Claude :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Privilégier l’action.** Supprimez les consignes qui demandent à l’IA de « planifier » ou de « faire un plan » d’abord : elles la poussent à s’arrêter trop tôt. Demandez plutôt un travail complet, toutes sections terminées.",
+          "**Regrouper vos demandes.** Demandez plusieurs choses à la fois : analyser trois documents ensemble et les comparer vaut mieux que trois prompts séparés.",
+          "**Exiger un travail fini.** Précisez que vous attendez un livrable terminé, pas des recommandations ou des prochaines étapes.",
+          "**Être d’une précision implacable.** Dites exactement ce que vous voulez : type de document, structure, style.",
+          "**Éviter le contenu d’IA générique** (*AI slop*). Le guide met en garde contre les résultats « sûrs et d’apparence moyenne » : demandez quelque chose de singulier et d’intentionnel."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "**Le principe le plus utile :** le dernier. Pour une présentation, un rapport ou tout autre contenu, demander explicitement à l’IA d’éviter les modèles génériques et de faire des choix affirmés transforme un résultat médiocre en résultat marquant. Entre « crée une présentation » et « crée une présentation originale qui évite les modèles de diapositives habituels des entreprises », la différence est énorme. Le [guide complet est sur GitHub](https://github.com/openai/openai-cookbook/blob/main/examples/gpt-5/gpt-5-1-codex-max_prompting_guide.ipynb)."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt du travail complet",
+        "type": "prompt",
+        "texte": "Mène ce travail jusqu’au bout, avec toutes les sections terminées : ne te contente pas d’un plan.",
+        "adapte": false
+      },
+      {
+        "titre": "Le prompt des demandes groupées",
+        "type": "prompt",
+        "texte": "Analyse ces trois documents ensemble et compare leurs thèmes principaux.",
+        "adapte": false
+      },
+      {
+        "titre": "Le prompt du livrable fini",
+        "type": "prompt",
+        "texte": "Livre un travail fini, pas seulement des recommandations ou des prochaines étapes.",
+        "adapte": false
+      },
+      {
+        "titre": "Le prompt de format précis",
+        "type": "prompt",
+        "texte": "Rédige ceci sous forme de rapport dans le style McKinsey, avec une synthèse pour la direction, trois parties et des recommandations fondées sur les données.",
+        "adapte": false
+      },
+      {
+        "titre": "Le prompt anti-générique",
+        "type": "prompt",
+        "texte": "Crée quelque chose de singulier et d’intentionnel : évite les modèles d’entreprise génériques.",
+        "adapte": false
+      },
+      {
+        "titre": "Le prompt de présentation originale",
+        "type": "prompt",
+        "texte": "Crée une présentation originale qui évite les modèles de diapositives habituels des entreprises.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Demandez explicitement un résultat fini et singulier : sinon, l’IA s’arrête au plan ou se rabat sur le modèle le plus banal.",
+    "source": {
+      "cle": "friday-preview",
+      "date": "2025-12-05",
+      "url": "https://www.theneurondaily.com/p/friday-preview",
+      "newsletter": "The Best AI Breakthroughs from 2025 (according to experts)",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 The Best AI Breakthroughs from 2025 (according to experts)"
+    }
+  },
+  {
+    "id": "retoucher-une-image-detail-par-detail-avec-nano-banana",
+    "titre": "Retoucher une image détail par détail avec Nano Banana",
+    "resume": "Une seule modification par prompt, suivie de « en gardant tout le reste identique » : Nano Banana retouche le détail visé sans réinterpréter toute l’image à chaque fois.",
+    "categorie": "creer",
+    "niveau": "debutant",
+    "outils": [
+      "gemini"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Une formule améliore nettement vos retouches avec Nano Banana, le modèle d’images de Gemini : « en gardant tout le reste identique ». Elle paraît évidente, mais elle fonctionne remarquablement bien."
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Partez d’une image de base : générez-en une ou chargez celle à modifier.",
+          "Listez tout ce que vous voulez changer, mais traitez les points un par un : une seule modification par prompt.",
+          "Terminez chaque demande par « … en gardant tout le reste identique ». Nano Banana se concentre alors sur le détail à changer et préserve tout le reste.",
+          "Une modification, un résultat ; une deuxième, un résultat ; et ainsi de suite : vous sculptez l’image peu à peu jusqu’à obtenir exactement ce que vous voulez."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "**Pourquoi c’est utile :** sans cette formule, le modèle réinterprète souvent toute l’image à chaque prompt, et vous devez sans cesse la ramener vers votre idée de départ. Avec elle, vos retouches avancent au lieu de partir de travers."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de retouche ciblée",
+        "type": "prompt",
+        "texte": "[La modification à apporter, par exemple : remplace le ciel nuageux par un ciel bleu], en gardant tout le reste identique.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Une modification à la fois et « en gardant tout le reste identique » : c’est ainsi qu’on retouche une image sans la perdre.",
+    "source": {
+      "cle": "openai-declares-code-red-and-goes-all-systems-garlic",
+      "date": "2025-12-04",
+      "url": "https://www.theneurondaily.com/p/openai-declares-code-red-and-goes-all-systems-garlic",
+      "newsletter": "OpenAI Declares \"Code Red\" and Goes All Systems \"Garlic\"",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 OpenAI Declares \"Code Red\" and Goes All Systems \"Garlic\""
+    }
+  },
+  {
+    "id": "centraliser-documents-et-consignes-dans-un-projet-claude-ou-chatgpt",
+    "titre": "Centraliser documents et consignes dans un projet Claude ou ChatGPT",
+    "resume": "Un projet garde vos documents de référence et vos instructions pour toutes les conversations : plus besoin de tout répéter, et l’équipe peut partager le même environnement.",
+    "categorie": "memoire",
+    "niveau": "intermediaire",
+    "outils": [
+      "claude",
+      "chatgpt"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Anthropic a publié une [vidéo de 7 minutes](https://youtu.be/GJ5jTgcbRHA) pour bien démarrer avec les **Projects** de Claude ; elle vaut aussi pour les projets de ChatGPT. Le principe :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "Un projet est un environnement Claude sur mesure, avec sa propre base de connaissances et ses propres instructions.",
+          "Chargez une seule fois votre charte de marque, vos documents d’entreprise ou vos articles de recherche : Claude s’y réfère automatiquement dans chaque conversation du projet.",
+          "Le vrai levier, ce sont les *instructions* du projet : vous dites à Claude exactement comment répondre, par exemple « écris comme notre équipe marketing » ou « analyse les données comme un directeur financier ».",
+          "Ces instructions s’appliquent à toutes les conversations du projet : vous n’avez plus à vous répéter."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Avec les offres Team, un projet peut être partagé avec toute l’organisation : une personne prépare l’environnement idéal (bon contexte, bonnes instructions) et tout le monde s’en sert. Au lieu de demander « tu peux m’envoyer le prompt que tu as utilisé ? », on partage le projet entier."
+      },
+      {
+        "t": "p",
+        "x": "À noter : les [conversations de groupe de ChatGPT](https://chatgpt.com/features/group-chats/) fonctionnent autrement. Jusqu’à 20 personnes y échangent en temps réel avec ChatGPT (organiser un voyage, faire un remue-méninges, mener un projet d’équipe), mais, contrairement aux projets, la mémoire personnelle de chacun reste privée et n’est pas partagée avec le groupe."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Les instructions de projet",
+        "type": "prompt",
+        "texte": "Dans ce projet, tu travailles pour [entreprise ou équipe]. Appuie-toi sur les documents joints au projet ([charte de marque, documents internes, études…]) dans chacune de tes réponses.\nQuand je te demande un texte, écris comme notre équipe marketing : [ton, longueur, règles de style].\nQuand je te donne des chiffres, analyse-les comme un directeur financier : [indicateurs à suivre, niveau de détail attendu].",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Écrivez une fois vos consignes et vos documents de référence dans un projet : chaque conversation en hérite, et vos collègues aussi.",
+    "source": {
+      "cle": "everything-amazon-launched-at-re-invent-2025",
+      "date": "2025-12-03",
+      "url": "https://www.theneurondaily.com/p/everything-amazon-launched-at-re-invent-2025",
+      "newsletter": "Everything Amazon launched at re:Invent 2025",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 Everything Amazon launched at re:Invent 2025"
+    }
+  },
+  {
+    "id": "soigner-le-contexte-de-votre-ia-pas-seulement-vos-prompts",
+    "titre": "Soigner le contexte de votre IA, pas seulement vos prompts",
+    "resume": "Les modèles oublient ou inventent souvent faute d’avoir la bonne information au bon moment. Un guide gratuit et illustré montre comment construire l’environnement de votre IA.",
+    "categorie": "memoire",
+    "niveau": "intermediaire",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Plus que de meilleurs prompts, il vous faut un meilleur *contexte*. L’ingénieur IA [Hesam](https://x.com/Hesamation/status/1995253982516666373) a partagé un [guide gratuit de 23 pages](https://weaviate.io/ebooks/the-context-engineering-guide) sur l’ingénierie du contexte (*context engineering*) : comment construire l’environnement d’information dans lequel votre IA travaille. Construire un agent, c’est bien plus que choisir ce qu’on lui dit."
+      },
+      {
+        "t": "p",
+        "x": "**L’idée :** même les modèles les plus puissants inventent et oublient parce qu’il leur manque la bonne information au bon moment. L’ingénierie du contexte consiste à concevoir le *monde* dans lequel votre IA évolue. Le guide aborde :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**L’architecture des agents** : construire une IA qui prend vraiment de bonnes décisions.",
+          "**La recherche et le découpage des documents** (*retrieval* et *chunking*) : donner à l’IA la bonne information sans la noyer.",
+          "**Les systèmes de mémoire** : apprendre à l’IA à retenir ce qui compte.",
+          "**L’intégration d’outils** : connecter l’IA à des données réelles et à des API."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Les schémas, très appréciés des lecteurs, sont signés [@helloiamleonie](https://x.com/helloiamleonie/status/1995253982516666373). Et ce n’est pas réservé aux ingénieurs : comprendre le fonctionnement du contexte vous aide à diagnostiquer pourquoi ChatGPT ou Claude perd le fil… et à y remédier. Parcourez-le : vous y apprendrez sans doute quelque chose."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de diagnostic du contexte",
+        "type": "prompt",
+        "texte": "Ta dernière réponse ne correspond pas à ce que j’attendais : [ce qui ne va pas]. Avant de recommencer, analyse le contexte dont tu disposais dans cette conversation :\n- quelles informations te manquaient pour bien répondre ;\n- lesquelles étaient floues, contradictoires ou superflues ;\n- ce que tu as dû supposer.\nDis-moi ensuite précisément quoi te fournir (documents, exemples, contraintes) pour obtenir le bon résultat.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Quand l’IA se trompe, demandez-vous d’abord quelle information lui manquait, avant de réécrire votre prompt.",
+    "source": {
+      "cle": "deepseek-strikes-back-with-v3-2",
+      "date": "2025-12-02",
+      "url": "https://www.theneurondaily.com/p/deepseek-strikes-back-with-v3-2",
+      "newsletter": "DeepSeek strikes back with V3.2",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 DeepSeek strikes back with V3.2"
+    }
+  },
+  {
+    "id": "alleger-votre-claude-md-et-vos-instructions-personnalisees",
+    "titre": "Alléger votre CLAUDE.md et vos instructions personnalisées",
+    "resume": "Au-delà de 150 à 200 consignes, un modèle se met à les ignorer. Gardez l’essentiel dans CLAUDE.md ou vos instructions personnalisées, et indiquez où trouver le reste.",
+    "categorie": "memoire",
+    "niveau": "intermediaire",
+    "outils": [
+      "claude-code",
+      "chatgpt"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "HumanLayer a publié un [guide pour bien écrire son fichier CLAUDE.md](https://www.humanlayer.dev/blog/writing-a-good-claude-md). Ce fichier de configuration de Claude Code est relu à chaque session pour comprendre votre code : c’est l’équivalent des .cursorrules de Cursor ou des instructions personnalisées de ChatGPT. Claude Code le traite comme un document d’accueil qu’il découvre chaque fois sans aucune mémoire des sessions précédentes."
+      },
+      {
+        "t": "p",
+        "x": "**Le problème :** selon les recherches citées par HumanLayer, les modèles de langage plafonnent autour de 150 à 200 consignes ; au-delà, ils se mettent à les ignorer toutes, uniformément. Le prompt système de Claude Code en consomme déjà une cinquantaine. La plupart des CLAUDE.md gaspillent le reste en règles de style et en listes de commandes que Claude ignorera de toute façon."
+      },
+      {
+        "t": "p",
+        "x": "**La solution de HumanLayer :** restez sous les 300 lignes et concentrez-vous sur le **pourquoi** (la raison d’être du projet), le **quoi** (les technologies utilisées) et le **comment** (les commandes clés). Pour le reste, pratiquez la divulgation progressive : placez les informations détaillées dans des fichiers markdown séparés, indiquez à Claude où les trouver et laissez-le décider de ce qui est utile pour chaque tâche."
+      },
+      {
+        "t": "p",
+        "x": "Le même principe « moins, c’est mieux » vaut pour les instructions personnalisées et les GPT personnalisés de ChatGPT :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "Beaucoup y racontent leur vie et toutes leurs préférences imaginables : passé un certain point, cela ne rapporte plus grand-chose.",
+          "Limitez les instructions personnalisées aux préférences universelles (ton, niveau d’expertise, format) et laissez de côté les détails propres à un projet qui ne servent qu’occasionnellement.",
+          "Pour un GPT personnalisé, au lieu de déverser 20 fichiers et 500 lignes d’instructions, ajoutez 3 à 5 documents essentiels et laissez l’IA juger de ce qui est utile selon la tâche.",
+          "Ne gaspillez pas de consignes pour ce que ChatGPT fait déjà naturellement (corriger la grammaire, mettre en forme une liste) : réservez-les aux comportements vraiment sur mesure, ceux qui rendent l’assistant utile pour vous."
+        ]
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt d’allègement des instructions",
+        "type": "prompt",
+        "texte": "Voici mes instructions durables (fichier CLAUDE.md ou instructions personnalisées) :\n\n[vos instructions]\n\nAide-moi à les alléger :\n1. Repère les consignes que tu suivrais de toute façon sans qu’on te le demande, et celles qui ne servent que pour certains projets.\n2. Réécris l’essentiel en moins de [nombre de lignes] lignes, en trois parties : pourquoi (le but), quoi (le contexte et les outils), comment (les commandes ou habitudes clés).\n3. Propose de déplacer le reste dans des fichiers séparés, en indiquant pour chacun quand il faut le consulter.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Moins de consignes, mieux choisies : chaque instruction superflue dilue celles qui comptent vraiment.",
+    "source": {
+      "cle": "ai-music-is-getting-out-of-control-atm",
+      "date": "2025-12-01",
+      "url": "https://www.theneurondaily.com/p/ai-music-is-getting-out-of-control-atm",
+      "newsletter": "AI music is getting out of control atm",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 AI music is getting out of control atm"
+    }
+  },
+  {
+    "id": "assembler-claude-md-mcp-skills-et-sous-agents-dans-le-bon-ordre",
+    "titre": "Assembler CLAUDE.md, MCP, Skills et sous-agents dans le bon ordre",
+    "resume": "Fichier CLAUDE.md, serveurs MCP, Skills, sous-agents : à quoi sert chaque brique de Claude Code, et dans quel ordre les mettre en place quand on débute.",
+    "categorie": "coder",
+    "niveau": "avance",
+    "outils": [
+      "claude-code"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Les [Skills de Claude](https://www.claude.com/blog/skills) sont arrivées juste après les [serveurs MCP](https://www.anthropic.com/news/model-context-protocol), qui relient Claude ou ChatGPT à des sources de données externes (GitHub, Slack, bases de données) grâce à un protocole standard. Anthropic a publié une [vidéo explicative](https://youtu.be/fOxC44g8vig) qui précise quand utiliser chaque fonction. Pensez votre environnement de code avec l’IA comme une équipe spécialisée :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Le fichier CLAUDE.md** décrit votre projet : technologies, conventions de code, structure du dépôt.",
+          "**Les Skills** apportent une expertise transportable d’un projet à l’autre et apprennent à Claude des tâches spécialisées.",
+          "**Les serveurs MCP** assurent l’intégration universelle : ils connectent Claude à des données externes.",
+          "**Les sous-agents** sont des assistants spécialisés au rôle fixe, chacun avec sa propre fenêtre de contexte et ses propres prompts."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Pour débuter, mettez-les en place dans cet ordre :"
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "**Le fichier CLAUDE.md** d’abord (commande `/init` dans Claude Code) : il pose les bases avec la structure et les règles du projet.",
+          "**Les [serveurs MCP](https://modelcontextprotocol.io/quickstart/server)** ensuite : ils vous connectent aux outils de tous les jours (GitHub, Google Drive, Slack).",
+          "**Les [Skills](https://github.com/anthropics/skills)** en troisième : activez celles que fournit Anthropic (docx, pptx, xlsx, pdf) pour créer des documents.",
+          "**Les [sous-agents](https://code.claude.com/docs/en/sub-agents)** en dernier : créez des agents spécialisés à mesure que vous repérez des tâches répétitives."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Le CLAUDE.md pose les fondations, les serveurs MCP apportent les données, les sous-agents se spécialisent dans leur rôle et les Skills fournissent l’expertise. Les Skills reposent sur la divulgation progressive : Claude ne charge que ce qui est utile, au moment où c’est utile ([explications d’Anthropic](https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills)). Chaque Skill ne consomme que 30 à 50 tokens au démarrage ; son contenu complet n’est chargé que lorsqu’il devient pertinent."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "La commande de création du CLAUDE.md",
+        "type": "commande",
+        "texte": "/init",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Grâce à la divulgation progressive, vous pouvez installer une vingtaine de Skills sans encombrer la fenêtre de contexte.",
+    "source": {
+      "cle": "mit-11-7-of-us-jobs-could-vanish-today",
+      "date": "2025-11-30",
+      "url": "https://www.theneurondaily.com/p/mit-11-7-of-us-jobs-could-vanish-today",
+      "newsletter": "MIT: 11.7% of US jobs could vanish today",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸  MIT: 11.7% of US jobs could vanish today"
+    }
+  },
+  {
+    "id": "enchainer-des-ia-specialisees-pour-creer-images-et-videos",
+    "titre": "Enchaîner des IA spécialisées pour créer images et vidéos",
+    "resume": "Une IA pour l’image, une autre pour la vidéo : en chaînant les outils, vous obtenez des time-lapses de rénovation ou des imagiers légendés pour apprendre une langue.",
+    "categorie": "creer",
+    "niveau": "intermediaire",
+    "outils": [
+      "gemini"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Chaîner des outils d’IA spécialisés, l’un pour l’image, l’autre pour la vidéo, donne de meilleurs résultats que de tout demander dans un seul prompt. Par exemple : ChatGPT pour la recherche, Gemini pour les longs contextes, Nano Banana pour la retouche d’images, Claude Code pour le code et Veo 3.1 pour la vidéo."
+      },
+      {
+        "t": "p",
+        "x": "Justine Moore a [détaillé la méthode](https://x.com/venturetwins/status/1992725268855968071) derrière les time-lapses de décoration intérieure devenus viraux sur X. Elle sert aussi à visualiser vos propres travaux de rénovation :"
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Partez d’une photo de pièce vide.",
+          "Avec Nano Banana Pro, ajoutez les éléments de décoration (mezzanine, piscine, meuble phare).",
+          "Donnez les deux images à Veo 3.1 comme première et dernière image de la vidéo.",
+          "Décrivez un chantier en accéléré (prompt ci-dessous) : la pièce se construit sous vos yeux en quelques secondes."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Pour le design web, [Jason Zhou conseille](https://x.com/jasonzhou1993/status/1993110012571590716) de donner à Gemini 3 des instructions précises : le modèle est très sensible aux prompts, et les anciennes techniques de *prompt engineering* ou l’accumulation de consignes peuvent dégrader ses résultats. Il recommande la méthode en trois temps d’Anthropic : repérer les choix par défaut vers lesquels le modèle converge, en trouver les causes et proposer des alternatives concrètes, puis formuler les consignes au bon niveau de détail. Il s’en sert pour faire produire des maquettes filaires Excalidraw de qualité."
+      },
+      {
+        "t": "p",
+        "x": "Pour apprendre une langue, Nano Banana Pro peut dessiner une scène dont chaque objet est légendé, [comme le montre ce prompt](https://x.com/lxfater/status/1992984573551276147) : vous obtenez une antisèche illustrée du vocabulaire. D’autres idées dans cette [liste de prompts Nano Banana](https://github.com/ZeroLu/awesome-nanobanana-pro) partagée par Philipp Schmid et ZeroLu. Enfin, selon Justine Moore, [certains vendent sur Etsy](https://x.com/venturetwins/status/1993369227848564970) des images et vidéos générées par IA, pour promouvoir leurs produits ou en proposant la création comme service : une façon de trouver des clients sans dépendre d’une page web que personne ne visite."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt vidéo du chantier en accéléré",
+        "type": "prompt",
+        "texte": "Time-lapse de chantier, en accéléré : des ouvriers apportent un arbre dans le salon, puis construisent la mezzanine, installent le canapé et les luminaires.",
+        "adapte": false
+      },
+      {
+        "titre": "Le prompt de l’imagier pour apprendre une langue",
+        "type": "prompt",
+        "texte": "Dessine pour moi une scène détaillée de [type de scène, par exemple une animalerie] et légende tous les objets. Format des légendes :\nPremière ligne : le mot en [votre langue, par exemple le français]\nDeuxième ligne : la transcription phonétique (alphabet phonétique international, API)\nTroisième ligne : la traduction en [langue à apprendre, par exemple le chinois]",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Confiez chaque étape à l’outil le plus doué pour elle plutôt que de tout demander à un seul modèle dans un seul prompt.",
+    "source": {
+      "cle": "happy-thanksgiving-from-the-neuron",
+      "date": "2025-11-27",
+      "url": "https://www.theneurondaily.com/p/happy-thanksgiving-from-the-neuron",
+      "newsletter": "Happy Thanksgiving from The Neuron!",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 Happy Thanksgiving from The Neuron!"
+    }
+  },
+  {
+    "id": "alleger-le-ton-de-vos-consignes-pour-claude-opus-4-5",
+    "titre": "Alléger le ton de vos consignes pour Claude Opus 4.5",
+    "resume": "Opus 4.5 suit les instructions à la lettre : les « DOIT » en majuscules le poussent à en faire trop. Des consignes calmes, simples et précises donnent de meilleurs résultats.",
+    "categorie": "coder",
+    "niveau": "avance",
+    "outils": [
+      "claude",
+      "claude-code"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Alex Albert, d’Anthropic, a [résumé les points clés](https://x.com/alexalbert__/status/1928440943083925657) du [guide officiel de rédaction de prompts](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-4-best-practices) pour Claude Opus 4.5. En bref : ce modèle écoute *trop* bien. Si vos anciens prompts employaient un ton insistant comme « CRITIQUE : tu DOIS utiliser cet outil », il risque désormais de s’en servir à tort et à travers. La solution : revenir à un simple « Utilise cet outil quand… »."
+      },
+      {
+        "t": "p",
+        "x": "**Autres gains rapides tirés du guide :**"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Éviter la surenchère** : demandez de ne faire que les modifications demandées et de garder des solutions simples.",
+          "**Imposer la lecture du code** : exigez qu’il lise les fichiers concernés avant de proposer des modifications, au lieu de supposer.",
+          "**Améliorer les tâches visuelles** : donnez à Opus un outil de recadrage pour qu’il puisse « zoomer » sur les images denses."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Un développeur a [partagé les consignes](https://x.com/pon_o_/status/1928448795173261584) qu’il ajoute systématiquement (ci-dessous). Pour les intégrer durablement à votre façon de travailler, voyez la [Skill Concise Output](https://github.com/NTCoding/claude-skillz/blob/main/concise-output/SKILL.md) et le [plugin de migration](https://github.com/anthropics/claude-code/tree/main/plugins/claude-opus-4-5-migration) d’Anthropic pour Claude Code, prêts à l’emploi."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "La consigne d’outil adoucie",
+        "type": "prompt",
+        "texte": "Utilise cet outil quand [situation où l’outil est utile].",
+        "adapte": false
+      },
+      {
+        "titre": "Le prompt anti-surenchère",
+        "type": "prompt",
+        "texte": "Ne fais que les modifications directement demandées. Garde des solutions simples.",
+        "adapte": false
+      },
+      {
+        "titre": "Le prompt de lecture du code",
+        "type": "prompt",
+        "texte": "Lis TOUJOURS les fichiers concernés avant de proposer des modifications. Ne fais pas de suppositions sur du code que tu n’as pas examiné.",
+        "adapte": false
+      },
+      {
+        "titre": "Les consignes de concision d’un développeur",
+        "type": "prompt",
+        "texte": "Fais le minimum de modifications nécessaires, mais atteins quand même l’objectif. Ne mets pas de commentaires dans le code. N’utilise pas d’emojis. Sois direct et incisif.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Avec Opus 4.5, moins c’est mieux : écrivez comme à un collègue compétent, pas comme si vous suppliiez un robot têtu.",
+    "source": {
+      "cle": "wtf-is-genesis-mission",
+      "date": "2025-11-26",
+      "url": "https://www.theneurondaily.com/p/wtf-is-genesis-mission",
+      "newsletter": "WTF is \"Genesis Mission\"?",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 WTF is \"Genesis Mission\"?"
+    }
+  },
+  {
+    "id": "combiner-chatgpt-pour-choisir-et-google-pour-payer-moins-cher",
+    "titre": "Combiner ChatGPT pour choisir et Google pour payer moins cher",
+    "resume": "Le mode « shopping research » de ChatGPT vous aide à choisir le bon produit, les outils d’achat agentiques de Google traquent le meilleur prix : utilisés ensemble, ils couvrent tout l’achat.",
+    "categorie": "outils",
+    "niveau": "intermediaire",
+    "outils": [
+      "chatgpt",
+      "gemini"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "[OpenAI](https://openai.com/index/chatgpt-shopping-research/) a lancé dans ChatGPT un mode « shopping research » (recherche d’achats) qui pose des questions de clarification, parcourt le web, puis vous remet un guide d’achat personnalisé. Vous pouvez [l’essayer ici](https://chatgpt.com/?hints=shopping+research). De son côté, Google a lancé des [outils d’achat agentiques](https://blog.google/products/shopping/agentic-checkout-holiday-ai-shopping/) qui suivent les prix, achètent automatiquement quand une promotion tombe et peuvent même appeler les magasins près de chez vous."
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**ChatGPT, votre analyste** : commencez par un prompt riche en contexte (voir ci-dessous), laissez-le vous interviewer et construire un guide d’achat classé.",
+          "**Google, votre chasseur de bonnes affaires** : le mode IA s’appuie sur plus de 50 milliards de fiches produits mises à jour toutes les heures. Collez votre présélection et demandez une comparaison des prix, des promotions et de la disponibilité."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "**La combinaison gagnante** : réglez le paiement agentique de Google pour acheter automatiquement les articles coûteux quand leur prix baisse, puis soumettez votre panier final à ChatGPT. En résumé, ChatGPT choisit le bon produit, Google vous obtient le bon prix."
+      },
+      {
+        "t": "p",
+        "x": "Pour aller plus loin, voici une [comparaison des deux outils](https://www.theneuron.ai/explainer-articles/chatgpt-vs-google-whos-your-new-ai-shopping-sidekick)."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le brief d’achat pour ChatGPT",
+        "type": "prompt",
+        "texte": "J’ai besoin de cadeaux à moins de 75 dollars pour mon frère, joueur de jeux vidéo en télétravail, et pour ma mère, réfractaire à la technologie et passionnée de jardinage. C’est pour le Black Friday, avec une livraison rapide.",
+        "adapte": false
+      },
+      {
+        "titre": "La comparaison de prix dans Google",
+        "type": "prompt",
+        "texte": "Compare ces trois articles : prix actuels, promotions et retrait le jour même près de [code postal].",
+        "adapte": false
+      },
+      {
+        "titre": "La vérification finale du panier",
+        "type": "prompt",
+        "texte": "Vu ces articles et l’historique des prix du Black Friday, y a-t-il quelque chose que je devrais remplacer ou ne pas acheter ?",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Confiez le choix du produit à l’outil qui vous interroge, et la chasse au meilleur prix à celui qui surveille les offres.",
+    "source": {
+      "cle": "anthropic-launches-claude-opus-4-5",
+      "date": "2025-11-25",
+      "url": "https://www.theneurondaily.com/p/anthropic-launches-claude-opus-4-5",
+      "newsletter": "Anthropic launches Claude Opus 4.5",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 Anthropic launches Claude Opus 4.5"
+    }
+  },
+  {
+    "id": "poser-a-gemini-des-questions-sur-ce-qui-se-passe-dans-une-video",
+    "titre": "Poser à Gemini des questions sur ce qui se passe dans une vidéo",
+    "resume": "Gemini ne se contente pas de lire la transcription : il analyse les images d’une vidéo. Importez un fichier ou collez un lien YouTube, puis interrogez-le sur des moments précis.",
+    "categorie": "outils",
+    "niveau": "debutant",
+    "outils": [
+      "gemini"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Sur Reddit, on s’enthousiasme pour [la fonction la plus sous-estimée de Gemini](https://www.reddit.com/r/GeminiAI/comments/1ozuttn/google_accidentally_created_geminis_most_insane/) : il peut réellement *regarder* une vidéo, pas seulement en lire la transcription. Un utilisateur qui développait une application de recettes a découvert que Gemini extrait des recettes complètes de vidéos de cuisine, même sans sous-titres ni son, en analysant ce qui se passe à l’écran."
+      },
+      {
+        "t": "p",
+        "x": "Vous pouvez importer n’importe quelle vidéo ou coller un lien YouTube, puis poser des questions sur des moments précis. Un utilisateur a fait écouter un morceau à Gemini Live pour identifier les instruments des 5 premières secondes ; un autre lui soumet ses vidéos de musculation pour faire vérifier sa posture ; des enseignants s’en servent pour générer des quiz à partir de vidéos pédagogiques."
+      },
+      {
+        "t": "p",
+        "x": "**La limite** : cela fonctionne environ 70 % du temps, en particulier sur les vidéos longues, ce qui explique sans doute que Google en parle peu. Mais quand ça marche, c’est réellement utile : Gemini analyse la vidéo à raison d’une image par seconde et saisit le contexte visuel qu’une transcription manque complètement."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt d’analyse d’un passage vidéo",
+        "type": "prompt",
+        "texte": "Regarde cette vidéo : [lien YouTube ou fichier importé]. En t’appuyant sur ce qu’on voit à l’image, et pas seulement sur ce qui est dit, décris ce qui se passe entre [horodatage de début] et [horodatage de fin], puis réponds à cette question : [votre question].",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Gemini analyse les images d’une vidéo, pas seulement ses paroles : posez-lui des questions précises sur ce qui se passe à différents moments.",
+    "source": {
+      "cle": "claude-learned-to-lie-here-s-how",
+      "date": "2025-11-24",
+      "url": "https://www.theneurondaily.com/p/claude-learned-to-lie-here-s-how",
+      "newsletter": "Claude learned to lie (here's how)",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 Claude learned to lie (here's how)"
+    }
+  },
+  {
+    "id": "faire-rediger-un-tutoriel-par-l-ia-pour-garder-la-main-sur-le-code",
+    "titre": "Faire rédiger un tutoriel par l’IA pour garder la main sur le code",
+    "resume": "Au lieu de laisser l’agent de code tout faire, demandez-lui un guide détaillé jalon par jalon, puis construisez vous-même avec l’IA en appui : vous comprenez sans perdre en vitesse.",
+    "categorie": "coder",
+    "niveau": "avance",
+    "outils": [
+      "claude-code"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Vous vous sentez déconnecté quand l’IA fait tout le code à votre place ? Le développeur [Geoffrey Litt](https://x.com/geoffreylitt/status/1991909304085987366) a partagé une méthode qui vous laisse aux commandes tout en avançant vite. Au lieu de demander à [Claude Code](https://www.claude.com/product/claude-code) (ou à une autre IA) de mener une tâche entière de bout en bout, procédez en deux temps :"
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Demandez à l’IA un tutoriel ultra-détaillé expliquant comment *vous* réaliseriez la tâche. Dites-lui d’« être exhaustive » et d’inclure le contexte, les raisons des choix et des jalons vérifiables pas à pas.",
+          "Lisez le guide, puis construisez vous-même, en vous servant de l’IA pour aller vite (autocomplétion, implémentation rapide des parties fastidieuses). Sortez du script quand vous le souhaitez."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Résultat : vous réactivez la partie de votre cerveau qui construit à la main, vous prenez de meilleures décisions et vous comprenez ce qui se passe, tout en avançant très vite. La méthode marche aussi hors du code : projets de recherche, analyses business, création de contenus, toute tâche complexe où vous voulez rester impliqué en profitant de la vitesse de l’IA."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt du guide d’implémentation",
+        "type": "prompt",
+        "texte": "Peux-tu rédiger un autre document Markdown, intitulé « Guide d’implémentation » ? Il ressemble au document que tu as écrit, mais c’est plutôt un guide permettant à un développeur junior de réimplémenter la PR à partir de zéro. Je veux que tu donnes une version abrégée du contexte, puis que tu déroules plusieurs jalons, idéalement avec un comportement vérifiable à chaque étape. Chaque jalon doit être vérifiable d’une manière ou d’une autre, par des tests ou par un comportement visible. Écris-le comme un tutoriel, en précisant quels changements faire et comment les tester. Parcours tous les jalons, et n’hésite pas à prolonger ton plan au-delà du point où cette PR s’est arrêtée. Le but : un guide qui mènera un développeur junior jusqu’à une version fonctionnelle.\n\nVa en profondeur ! ultrathink",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Demandez à l’IA de vous apprendre à faire la tâche plutôt que de la faire à votre place : vous gardez la compréhension sans sacrifier la vitesse.",
+    "source": {
+      "cle": "meet-memo-the-robot-experts-love",
+      "date": "2025-11-23",
+      "url": "https://www.theneurondaily.com/p/meet-memo-the-robot-experts-love",
+      "newsletter": "Meet Memo, the robot experts love",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 Meet Memo, the robot experts love"
+    }
+  },
+  {
+    "id": "decouper-une-tache-en-micro-etapes-et-faire-voter-l-ia",
+    "titre": "Découper une tâche en micro-étapes et faire voter l’IA",
+    "resume": "Des chercheurs ont obtenu plus d’un million d’étapes sans erreur en découpant une tâche en micro-étapes. Faites de même, et faites résoudre deux ou trois fois chaque étape critique.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Des chercheurs de Cognizant AI ont [obtenu un résultat étonnant](https://www.linkedin.com/posts/scheglovm1_this-ai-research-paper-will-blow-your-mind-activity-7396615648740552704-BFbo) : une IA a enchaîné plus d’un million d’étapes consécutives sans aucune erreur. Leur secret ? Plutôt que de chercher à rendre l’IA « plus intelligente », ils ont découpé des tâches complexes en micro-étapes, si petites qu’un modèle bon marché (GPT-4.1-mini) les réussissait parfaitement."
+      },
+      {
+        "t": "p",
+        "x": "**Pour l’appliquer** : au lieu de demander à ChatGPT, Gemini, Grok ou Claude de « rédiger tout votre plan marketing », découpez en micro-tâches :"
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "identifier le public cible ;",
+          "lister ses difficultés ;",
+          "suggérer des canaux ;",
+          "rédiger le message pour chaque canal."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Pour les décisions critiques, faites résoudre chaque micro-étape deux ou trois fois et comparez les réponses : ce mécanisme de « vote » a permis de repérer des erreurs qui se seraient accumulées. L’[article de recherche](https://arxiv.org/pdf/2511.09030) applique cette approche à des tâches de programmation exigeantes, mais elle vaut pour tout ce qui demande de l’exactitude : analyses financières, revues juridiques, calculs complexes."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt des micro-étapes avec vote",
+        "type": "prompt",
+        "texte": "Je dois [tâche complexe]. Commence par découper cette tâche en micro-étapes très simples et numérotées, puis traite-les une par une en attendant ma validation entre chaque étape. Pour les étapes critiques, résous-les trois fois de manière indépendante, compare les trois réponses et signale toute divergence avant de retenir la plus solide.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Le découpage compte plus que la sophistication du modèle : dix micro-prompts donnent de meilleurs résultats qu’une seule grosse demande.",
+    "source": {
+      "cle": "meet-olmo-3-america-s-next-top-open-ai-model",
+      "date": "2025-11-21",
+      "url": "https://www.theneurondaily.com/p/meet-olmo-3-america-s-next-top-open-ai-model",
+      "newsletter": "Gemini 3 Pro: Google's Game-Changing AI Unveiled Today!",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "🤖 Gemini 3 Pro: Google's Game-Changing AI Unveiled Today!"
+    }
+  },
+  {
+    "id": "preparer-la-paie-avec-l-ia-grace-a-des-prompts-precis",
+    "titre": "Préparer la paie avec l’IA grâce à des prompts précis",
+    "resume": "Calculs de salaire, rappels de conformité, e-mails aux salariés : l’IA gère une bonne part des tâches de paie si vos prompts sont précis et ne contiennent aucune donnée réelle.",
+    "categorie": "business",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Les gestionnaires de paie passent des heures sur des tâches répétitives : calcul des retenues, e-mails sur les salaires, vérifications de conformité. ChatGPT peut en prendre en charge une grande partie, à condition de bien formuler la demande. [Gautam Roy a publié un guide](https://www.aipromptspace.org/chatgpt-prompts-for-payroll-managers/) de plus de 50 prompts pour les gestionnaires de paie, et le principe est simple : soyez précis."
+      },
+      {
+        "t": "p",
+        "x": "Au lieu de « crée une grille de salaires », écrivez par exemple « Crée une grille de salaires pour 50 salariés en Inde, en incluant le PF, l’ESI et la taxe professionnelle ». Les exemples du guide portent sur la paie indienne (PF, ESI, TDS, roupies) : remplacez-les par les cotisations, les taux et la devise qui s’appliquent chez vous."
+      },
+      {
+        "t": "p",
+        "x": "**Conseil** : ne collez jamais de vraies données de salariés, utilisez des repères comme [nom du salarié] ou [montant du salaire]. Enregistrez aussi vos meilleurs prompts dans un document, ou mieux, dans les instructions d’un projet [dans ChatGPT](https://help.openai.com/en/articles/10169521-projects-in-chatgpt) ou [dans Claude](https://www.anthropic.com/news/projects), pour les réutiliser."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "La grille de salaires",
+        "type": "prompt",
+        "texte": "Crée une grille de salaires pour 50 salariés en Inde, en incluant le PF, l’ESI et la taxe professionnelle.",
+        "adapte": false
+      },
+      {
+        "titre": "Le calcul du salaire net",
+        "type": "prompt",
+        "texte": "Calcule le salaire net d’un salarié dont le brut est de 50 000 ₹, en tenant compte du PF (12 %), de l’ESI (0,75 %) et de 2 jours de congé sans solde.",
+        "adapte": false
+      },
+      {
+        "titre": "Le point sur la conformité",
+        "type": "prompt",
+        "texte": "Résume les dernières règles concernant le PF, l’ESI et la TDS pour l’exercice 2024-2025, avec les dates d’échéance.",
+        "adapte": false
+      },
+      {
+        "titre": "L’e-mail au salarié",
+        "type": "prompt",
+        "texte": "Rédige un e-mail courtois expliquant pourquoi le salaire net est plus bas ce mois-ci, en raison de congés sans solde.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Plus votre prompt de paie est précis (effectif, pays, cotisations, taux), plus le résultat est exploitable, et jamais avec de vraies données de salariés.",
+    "source": {
+      "cle": "gemini-3-just-dethroned-chatgpt",
+      "date": "2025-11-20",
+      "url": "https://www.theneurondaily.com/p/gemini-3-just-dethroned-chatgpt",
+      "newsletter": "Gemini 3 just dethroned ChatGPT",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 Gemini 3 just dethroned ChatGPT"
+    }
+  },
+  {
+    "id": "faire-comparer-deux-methodes-a-l-ia-avant-qu-elle-se-lance",
+    "titre": "Faire comparer deux méthodes à l’IA avant qu’elle se lance",
+    "resume": "Ce prompt « décomposeur de tâches » oblige l’IA à proposer deux approches, à les comparer dans un tableau et à justifier son choix avant d’exécuter, au lieu de suivre la première idée venue.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Lassé des résultats médiocres parce que l’IA a pris le chemin le plus facile ? Ce [prompt « décomposeur de tâches » d’Excellent AI Prompts](https://excellentprompts.substack.com/p/ai-prompt-design) oblige le modèle à proposer plusieurs méthodes, à les comparer côte à côte et à justifier son choix avant de produire quoi que ce soit."
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Au lieu de foncer vers l’exécution, l’IA joue le rôle d’un « concepteur de systèmes » qui propose d’abord deux approches différentes.",
+          "Pour chaque méthode, elle liste 5 étapes précises, estime le temps nécessaire et identifie le principal risque.",
+          "Elle dresse un tableau comparatif : point fort, risque, rapidité et qualité de chaque approche.",
+          "Elle ne passe à l’exécution qu’après avoir choisi une méthode, avec une justification claire."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "La plupart des mauvais résultats viennent de ce que le modèle exécute avec assurance la première approche, souvent faible, qui lui est venue. En imposant le choix de la méthode avant l’exécution, vous obtenez une démarche réfléchie plutôt que le premier chemin venu."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt du décomposeur de tâches",
+        "type": "prompt",
+        "texte": "Tu es un concepteur de systèmes. Avant de réaliser [tâche], propose deux méthodes différentes pour l’accomplir. Pour chacune :\n- liste 5 étapes précises ;\n- estime le temps nécessaire ;\n- identifie le principal risque.\nPrésente ensuite un tableau comparatif des deux méthodes selon quatre critères : point fort, risque, rapidité et qualité. Choisis une méthode en justifiant clairement ton choix. Seulement après, exécute la tâche avec la méthode retenue.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Imposez le choix de la méthode avant l’exécution : l’IA ne fonce plus sur la première approche venue, souvent la plus faible.",
+    "source": {
+      "cle": "microsoft-s-ai-operating-system",
+      "date": "2025-11-18",
+      "url": "https://www.theneurondaily.com/p/microsoft-s-ai-operating-system",
+      "newsletter": "Microsoft's AI \"operating system\"",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 Microsoft's AI \"operating system\""
+    }
+  },
+  {
+    "id": "ecrire-doit-en-majuscules-pour-faire-respecter-vos-consignes-d-image",
+    "titre": "Écrire DOIT en majuscules pour faire respecter vos consignes d’image",
+    "resume": "Avec Nano Banana, une liste à tirets et un « DOIT » en majuscules devant chaque exigence essentielle font nettement mieux respecter vos consignes, même pour des images très complexes.",
+    "categorie": "creer",
+    "niveau": "debutant",
+    "outils": [
+      "gemini"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "L’ingénieur IA Max Woolf a publié une [analyse approfondie](https://minimaxir.com/2025/11/nano-banana-prompts/) de Nano Banana, le modèle d’images de Google (Gemini 2.5 Flash Image). On y trouve une astuce décisive : **écrire MUST (« DOIT ») en majuscules dans vos prompts améliore nettement le respect des consignes.**"
+      },
+      {
+        "t": "p",
+        "x": "Pourquoi ça marche : l’encodeur de texte de Nano Banana a été entraîné sur des dépôts de code (Markdown et JSON) pour des usages agentiques, pas seulement sur des légendes d’images. Il comprend donc bien mieux les instructions structurées que des modèles plus anciens comme DALL-E ou Stable Diffusion. Woolf l’a testé avec des prompts d’une complexité absurde, par exemple trois chatons au pelage de couleurs hexadécimales précises (`#9F2B68` et `#00FF00`), aux yeux vairons assortis à leur pelage, placés selon la règle des tiers et vêtus de tenues précises : le modèle a respecté chaque exigence."
+      },
+      {
+        "t": "liste",
+        "x": [
+          "Rédigez vos consignes en liste Markdown, avec des tirets.",
+          "Placez « MUST » (« DOIT »), en majuscules, devant chaque exigence essentielle.",
+          "Ajoutez des contraintes de composition comme « photo de couverture primée au prix Pulitzer pour The New York Times » pour élever la qualité.",
+          "Ajoutez « NEVER include any text or watermarks » (« n’inclus JAMAIS de texte ni de filigrane ») pour éviter les éléments indésirables."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "En analysant le modèle, Woolf a même fait fuiter son prompt système par injection de prompt : les ingénieurs de Google y utilisent des menaces comme « YOU WILL BE PENALIZED » (« TU SERAS PÉNALISÉ ») pour cadrer son comportement."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le modèle de prompt d’image structuré",
+        "type": "prompt",
+        "texte": "Crée une image de [sujet].\n- L’image DOIT [exigence essentielle 1].\n- L’image DOIT [exigence essentielle 2].\n- La composition DOIT respecter la règle des tiers.\n- Photo de couverture primée au prix Pulitzer pour The New York Times.\n- N’inclus JAMAIS de texte ni de filigrane.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Les modèles d’images récents lisent des consignes structurées : listez vos exigences et marquez les essentielles d’un « DOIT » en majuscules.",
+    "source": {
+      "cle": "can-ai-ever-be-politically-neutral",
+      "date": "2025-11-17",
+      "url": "https://www.theneurondaily.com/p/can-ai-ever-be-politically-neutral",
+      "newsletter": "Can AI ever be politically neutral?",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 Can AI ever be politically neutral?"
+    }
+  },
+  {
+    "id": "concevoir-des-interfaces-soignees-avec-cursor-sans-passer-par-figma",
+    "titre": "Concevoir des interfaces soignées avec Cursor sans passer par Figma",
+    "resume": "Pour éviter les interfaces génériques produites par l’IA, rédigez d’abord les spécifications en mode Plan, puis partez de composants shadcn que vous personnalisez avec votre thème.",
+    "categorie": "creer",
+    "niveau": "avance",
+    "outils": [
+      "cursor"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Lassé des interfaces violettes et génériques que produit l’IA ? Peter Yang a [interviewé Ryo, de la start-up Cursor](https://www.youtube.com/watch?v=bdh8k6DyKxE), qui montre comment des designers peuvent construire des applications de qualité professionnelle avec l’IA, sans ouvrir Figma. Ses leçons clés :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "Utilisez le mode Plan pour rédiger les spécifications avant de coder.",
+          "Évitez le rendu générique en partant des composants shadcn, que vous personnalisez avec votre propre thème.",
+          "Selon lui, les designers qui apprennent Cursor vont « se révolter » en découvrant à quel point ils peuvent livrer plus vite."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Dans la vidéo, il présente tout un système d’exploitation rétro (RyOS) construit de cette façon et crée une application de calculatrice complète en une seule demande. Un tutoriel à voir."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt spécifications puis composants",
+        "type": "prompt",
+        "texte": "Avant d’écrire du code, rédige les spécifications de [votre application ou écran] : objectif, écrans, composants et comportements attendus. Construis ensuite l’interface à partir des composants shadcn, en appliquant un thème personnalisé (couleurs, typographie, arrondis, espacements) qui correspond à [votre identité visuelle] plutôt que le style par défaut.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Des spécifications d’abord, des composants éprouvés ensuite, un thème personnalisé enfin : c’est ce qui distingue une interface soignée du rendu générique de l’IA.",
+    "source": {
+      "cle": "google-just-dropped-7-ai-papers-all-bangers",
+      "date": "2025-11-16",
+      "url": "https://www.theneurondaily.com/p/google-just-dropped-7-ai-papers-all-bangers",
+      "newsletter": "Google just dropped 7 AI papers (all bangers)",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Google just dropped 7 AI papers (all bangers)"
+    }
+  },
+  {
+    "id": "reduire-vos-couts-d-api-openai-grace-a-la-mise-en-cache-des-prompts",
+    "titre": "Réduire vos coûts d’API OpenAI grâce à la mise en cache des prompts",
+    "resume": "La mise en cache des prompts d’OpenAI évite de repayer le traitement des parties répétées. Avec GPT-5.1, le cache peut durer 24 heures : placez le contenu fixe en tête de prompt.",
+    "categorie": "outils",
+    "niveau": "avance",
+    "outils": [
+      "chatgpt"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Si vous utilisez l’API d’OpenAI (ou y songez), voici comment réduire vos coûts jusqu’à 90 % : la mise en cache des prompts (*Prompt Caching*) stocke automatiquement les parties répétitives de vos prompts, comme les instructions système ou les modèles, pour que vous ne payiez pas leur traitement encore et encore."
+      },
+      {
+        "t": "p",
+        "x": "[Selon Steven Heidel](https://x.com/stevenheidel/status/1989079817187406242), avec les modèles GPT-5.1, vous pouvez désormais régler le paramètre [`prompt_cache_retention`](https://platform.openai.com/docs/guides/prompt-caching#prompt-cache-retention) sur `24h` pour garder vos prompts en cache 24 heures, au lieu de 5 à 10 minutes seulement. **Quand s’en servir** : dès que vous envoyez les mêmes instructions de façon répétée (assistants de service client, modèles de contenus, workflows de recherche)."
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Ouvrez un accès à l’API sur [platform.openai.com](https://platform.openai.com/).",
+          "Structurez vos prompts avec le contenu fixe d’abord et le contenu variable à la fin : les 1 024 premiers tokens (et au-delà) sont mis en cache automatiquement.",
+          "Réglez `prompt_cache_retention` sur `24h` pour conserver le cache toute la journée."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "**Pas seulement pour les développeurs** : si vous utilisez Make, Zapier ou toute application qui appelle l’API d’OpenAI à répétition, ce réglage peut réduire nettement vos factures."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le paramètre de conservation du cache",
+        "type": "fichier",
+        "texte": "\"prompt_cache_retention\": \"24h\"",
+        "adapte": false
+      },
+      {
+        "titre": "Le prompt pour réorganiser un prompt avant mise en cache",
+        "type": "prompt",
+        "texte": "Voici mon prompt : [votre prompt]. Réorganise-le pour que toutes les parties fixes (rôle, instructions, règles, exemples, modèles) soient regroupées au début et que les éléments qui changent à chaque appel (données de l’utilisateur, question posée) soient regroupés à la fin, sans rien changer au sens.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Mettez le contenu fixe en tête de vos prompts et le contenu variable à la fin : c’est ce qui permet au cache de faire baisser la facture.",
+    "source": {
+      "cle": "the-first-truly-ai-powered-cyberattack",
+      "date": "2025-11-14",
+      "url": "https://www.theneurondaily.com/p/the-first-truly-ai-powered-cyberattack",
+      "newsletter": "The first truly AI-powered cyberattack",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 The first truly AI-powered cyberattack"
+    }
+  },
+  {
+    "id": "assembler-le-contexte-d-un-agent-a-chaque-tour-de-conversation",
+    "titre": "Assembler le contexte d’un agent à chaque tour de conversation",
+    "resume": "Un guide de Google explique qu’un prompt système fixe ne suffit pas : un bon agent recompose son contexte à chaque tour, entre session temporaire et mémoire durable de l’utilisateur.",
+    "categorie": "memoire",
+    "niveau": "avance",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Vos agents d’IA oublient tout d’un échange à l’autre ? Ce [guide d’ingénierie du contexte](https://www.kaggle.com/whitepaper-context-engineering-sessions-and-memory) de Kimberly Milam et Antonio Gulli, de Google, explique pourquoi des instructions système statiques ne suffisent pas. Un agent vraiment efficace doit assembler dynamiquement *l’ensemble de son contexte* à chaque tour de conversation."
+      },
+      {
+        "t": "p",
+        "x": "Voyez-le comme la *mise en place* d’un cuisinier :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**La recette** : votre prompt système, qui ne change pas.",
+          "**Les ingrédients** : tout ce qui est récupéré *dynamiquement*, c’est-à-dire l’historique de la conversation, les résultats de recherche documentaire (RAG), les sorties des outils et la mémoire à long terme de l’utilisateur."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Le document détaille les deux piliers de cette approche : les **sessions** (l’« établi » temporaire d’une conversation) et la **mémoire** (le « classeur » permanent de toutes les conversations). Il explique aussi comment gérer la dégradation du contexte (*context rot*, quand le modèle s’embrouille dans un long historique) grâce à des stratégies de compaction."
+      },
+      {
+        "t": "p",
+        "x": "La distinction la plus utile : le RAG fait de l’agent un expert des *faits* (comme un documentaliste), la mémoire en fait un expert de *l’utilisateur* (comme un assistant personnel). L’un apporte la connaissance du monde, l’autre la personnalisation."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt pour concevoir le contexte d’un agent",
+        "type": "prompt",
+        "texte": "Je conçois un agent d’IA pour [usage de l’agent]. Aide-moi à définir ce qu’il doit recevoir à chaque tour de conversation :\n- la recette : ce qui doit figurer dans le prompt système fixe ;\n- les ingrédients : ce qui doit être récupéré dynamiquement (historique, recherche documentaire, sorties d’outils, mémoire à long terme de l’utilisateur).\nDistingue ce qui reste dans la session de ce qui doit passer en mémoire persistante, et propose une stratégie de compaction pour éviter que le contexte se dégrade lors des longues conversations.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Le RAG rend un agent expert des faits, la mémoire le rend expert de l’utilisateur : un bon agent a besoin des deux.",
+    "source": {
+      "cle": "gpt-5-1-new-gemini-live-and-microsoft-s-ai-plan",
+      "date": "2025-11-13",
+      "url": "https://www.theneurondaily.com/p/gpt-5-1-new-gemini-live-and-microsoft-s-ai-plan",
+      "newsletter": "GPT 5.1, New Gemini Live, and Microsoft's AI Plan...",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 GPT 5.1, New Gemini Live, and Microsoft's AI Plan..."
+    }
+  },
+  {
+    "id": "demander-a-l-ia-de-raisonner-comme-un-etudiant-curieux",
+    "titre": "Demander à l’IA de raisonner comme un étudiant curieux",
+    "resume": "Selon une étude de l’université Fudan, inviter l’IA à se poser des questions (« Et si ? », « Pourquoi ? », « Comment ? ») améliore de 10 à 33 % sa précision sur les problèmes complexes.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Des chercheurs de l’université Fudan ont trouvé un levier pour améliorer le raisonnement de l’IA, et il tient en un mot : la *curiosité*. Dans une [nouvelle étude](https://arxiv.org/pdf/2510.20635), ils constatent qu’ajouter de la « curiosité » au prompt améliore la précision de 10 à 33 % sur des problèmes complexes. Au lieu de se précipiter vers une conclusion, l’IA explore des alternatives et trouve des idées décisives."
+      },
+      {
+        "t": "p",
+        "x": "Pour intégrer la technique dans un prompt existant, prenez une demande basique comme « Organise mon voyage de 10 jours au Japon » et enrichissez-la avec le rôle d’étudiant curieux et quelques questions à se poser en chemin (voir le second prompt ci-dessous)."
+      },
+      {
+        "t": "p",
+        "x": "La différence : l’IA explore le problème avec vous, évite les impasses et trouve des solutions créatives qu’un raisonnement étape par étape trop rigide aurait manquées."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de l’étudiant curieux",
+        "type": "prompt",
+        "texte": "Tu es un étudiant intelligent et curieux. Lis le contexte fourni, puis réponds à la question. Pour répondre, réfléchis d’abord étape par étape, puis formule ta réponse. N’hésite pas à te poser des questions et à y répondre pendant ta réflexion, comme « Et si… », « Pourquoi… », « Comment… », etc.",
+        "adapte": false
+      },
+      {
+        "titre": "L’exemple appliqué à un voyage",
+        "type": "prompt",
+        "texte": "Tu es un étudiant intelligent et curieux. Organise mon voyage de 10 jours au Japon. Réfléchis étape par étape, mais pose-toi des questions en chemin : et si je n’avais que 3 000 dollars ? Pourquoi visiter Kyoto plutôt que Tokyo en premier ? Comment équilibrer les sites touristiques et les pépites méconnues ?",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Invitez l’IA à se poser des « Et si ? » et des « Pourquoi ? » : elle explore davantage avant de conclure.",
+    "source": {
+      "cle": "michael-caine-s-voice-is-now-for-sale-legally",
+      "date": "2025-11-12",
+      "url": "https://www.theneurondaily.com/p/michael-caine-s-voice-is-now-for-sale-legally",
+      "newsletter": "Michael Caine's voice is now for sale (legally)",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 Michael Caine's voice is now for sale (legally)"
+    }
+  },
+  {
+    "id": "dicter-vos-prompts-et-lire-les-reponses",
+    "titre": "Dicter vos prompts et lire les réponses",
+    "resume": "Vous parlez plus vite que vous ne tapez, mais lisez plus vite que vous n’écoutez. Dictez donc des prompts longs et riches en contexte, puis lisez les réponses à l’écran.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "[Daniel, de xAI](https://x.com/nearlydaniel/status/1987918330129461535), propose une astuce pour aller plus vite : vous parlez plus vite que vous ne tapez, mais vous lisez plus vite que vous n’écoutez. Le bon compromis ? **Dictez vos prompts, puis lisez les réponses.**"
+      },
+      {
+        "t": "p",
+        "x": "Ce fonctionnement « asymétrique » change tout pour les prompts *longs*. Amanda Askell, chercheuse chez Anthropic, dit [utiliser régulièrement des prompts de plus de 100 pages](https://x.com/i/trending/1986621602977501369) et estime que la plupart des gens sont *beaucoup* trop succincts. Son raisonnement : si une tâche demande un manuel, donnez le manuel au modèle au lieu de le faire jouer aux devinettes avec vous."
+      },
+      {
+        "t": "p",
+        "x": "La voix rend cela possible. Certains utilisateurs [marchent de long en large et parlent pendant 20 minutes](https://x.com/curious_vii/status/1986614220000272445) pour livrer tout leur contexte avant d’envoyer. D’autres passent par une application de transcription, collent le texte, puis demandent à l’IA de le resserrer avant d’exécuter la tâche. Sans la contrainte de la frappe, plus besoin de comprimer votre pensée."
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**ChatGPT** : touchez l’icône du micro (pas celle du mode vocal avancé en forme d’onde, ou quittez-le dès qu’il commence à parler), dictez votre prompt, puis lisez la réponse.",
+          "**Claude** : dans l’application mobile, touchez l’icône d’onde sonore, parlez, puis lisez la réponse à l’écran.",
+          "**Gemini** : appuyez sur le bouton du micro, dictez, puis lisez le texte (sur Android, Gemini Live vous répond à voix haute : lisez plutôt les réponses).",
+          "**Grok** : touchez l’icône vocale (en haut à droite), parlez, puis lisez la transcription affichée (pratique aussi pour apprendre une langue)."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Cela paraît étrange au début, car on associe le mode vocal à une conversation entièrement orale. Mais c’est réellement plus rapide pour les prompts complexes qui appellent des réponses détaillées. Retenez que « précis » ne veut pas dire « concis » : parlez, entrez dans les détails et donnez à l’IA une vue complète de la situation."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt pour resserrer une dictée",
+        "type": "prompt",
+        "texte": "Voici la transcription de mes idées dictées : [transcription]. Commence par la resserrer et la reformuler en un prompt clair et structuré, en conservant tous les détails et tout le contexte. Montre-moi cette version, puis exécute-la.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Précis ne veut pas dire concis : la dictée lève le frein de la frappe et vous laisse donner tout le contexte nécessaire.",
+    "source": {
+      "cle": "dr-fei-fei-li-the-godmother-of-ai-on-why-we-need-spatial-intelligence",
+      "date": "2025-11-11",
+      "url": "https://www.theneurondaily.com/p/dr-fei-fei-li-the-godmother-of-ai-on-why-we-need-spatial-intelligence",
+      "newsletter": "Dr. Fei-Fei Li, the Godmother of AI, on why we need \"Spatial Intelligence\"",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 Dr. Fei-Fei Li, the Godmother of AI, on why we need \"Spatial Intelligence\""
+    }
+  },
+  {
+    "id": "construire-une-fiche-persona-en-se-faisant-interviewer-par-l-ia",
+    "titre": "Construire une fiche persona en se faisant interviewer par l’IA",
+    "resume": "Un prompt « assistant » vous interroge une vingtaine de minutes sur votre client cible, puis rédige une fiche persona détaillée à joindre ensuite à tous vos prompts marketing.",
+    "categorie": "business",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Arrêtez de réexpliquer votre client dans chaque prompt. Ryan Carr, de Moodboard, a [créé un prompt « assistant »](https://moodboard.beehiiv.com/p/a-prompt-that-improves-all-of-your-marketing) qui vous interviewe pendant une vingtaine de minutes sur votre client cible, puis produit une fiche persona détaillée, réutilisable à volonté."
+      },
+      {
+        "t": "p",
+        "x": "L’IA vous pose des questions sur les difficultés quotidiennes de votre client, ses échecs passés et les résultats qu’il espère. Une fois le document terminé, joignez-le à n’importe quel outil d’IA : vos textes marketing (publicités, e-mails, pages de destination…) s’améliorent aussitôt. Selon Carr, *« les résultats sont objectivement meilleurs quand le modèle dispose de ce niveau de contexte »*."
+      },
+      {
+        "t": "p",
+        "x": "Construisez la fiche une seule fois (la dictée vocale rend l’exercice plus fluide), puis citez-la dans chacun de vos futurs prompts marketing : l’IA sait immédiatement pour qui vous écrivez. Le [prompt complet de Ryan Carr](https://moodboard.beehiiv.com/p/a-prompt-that-improves-all-of-your-marketing) est disponible sur sa newsletter ; le prompt ci-dessous en reprend le principe."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt d’interview pour la fiche persona",
+        "type": "prompt",
+        "texte": "Tu es un stratège marketing. Interviewe-moi pour construire une fiche persona détaillée de mon client cible, pour [votre produit ou service]. Pose-moi une seule question à la fois et attends ma réponse avant de continuer. Explore ses difficultés quotidiennes, ce qu’il a déjà essayé sans succès et les résultats qu’il souhaite obtenir. Quand tu as assez d’éléments, rédige une fiche persona complète que je pourrai joindre à mes futurs prompts marketing.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Construisez votre fiche client une seule fois, puis joignez-la à chaque prompt marketing : l’IA saura d’emblée pour qui elle écrit.",
+    "source": {
+      "cle": "stanford-study-agents-work-faster-cost-less-but-they-fabricate-data",
+      "date": "2025-11-10",
+      "url": "https://www.theneurondaily.com/p/stanford-study-agents-work-faster-cost-less-but-they-fabricate-data",
+      "newsletter": "Agents work faster, cost less—but they fabricate data.",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 Agents work faster, cost less—but they fabricate data."
+    }
+  },
+  {
+    "id": "apprendre-un-sujet-pas-a-pas-du-plus-simple-au-plus-technique",
+    "titre": "Apprendre un sujet pas à pas, du plus simple au plus technique",
+    "resume": "Un prompt d’apprentissage qui fait expliquer un document du niveau le plus simple au plus détaillé, en vérifiant votre compréhension par un quiz avant chaque nouvelle étape.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Vous voulez apprendre n’importe quoi avec l’IA ? [Ce message de Suhail](https://x.com/Suhail/status/1986156328096858361) résume en un seul prompt l’essentiel des bonnes pratiques : partir du général, descendre progressivement dans le détail technique et ne pas avancer sans avoir vérifié que vous avez compris."
+      },
+      {
+        "t": "p",
+        "x": "Enregistrez-le comme instructions d’un projet [dans ChatGPT](https://help.openai.com/en/articles/10169521-projects-in-chatgpt) ou [dans Claude](https://www.anthropic.com/news/projects), ou dans un [Gem de Google Gemini](https://gemini.google/overview/gems/) : chaque fois que vous voulez apprendre quelque chose, ouvrez ce projet, collez le sujet ou le document, et lancez."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt du tuteur progressif",
+        "type": "prompt",
+        "texte": "Aide-moi à comprendre ce document étape par étape. Pars d’un niveau général (explications simples) puis descends jusqu’à des explications techniques extrêmement détaillées, jusqu’à ce que je comprenne. Avant de passer à l’étape suivante, vérifie toujours que j’ai compris la précédente en me posant une question de quiz.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Faites vérifier votre compréhension par un quiz avant chaque nouvelle étape : l’IA devient un vrai tuteur, pas un simple résumeur.",
+    "source": {
+      "cle": "kimi-k2-thinking-the-first-good-ai-creative-writer",
+      "date": "2025-11-09",
+      "url": "https://www.theneurondaily.com/p/kimi-k2-thinking-the-first-good-ai-creative-writer",
+      "newsletter": "Kimi K2 Thinking = The First Good AI Creative Writer?",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 Kimi K2 Thinking = The First Good AI Creative Writer?"
+    }
+  },
+  {
+    "id": "demander-a-chatgpt-l-adresse-directe-d-une-page-introuvable",
+    "titre": "Demander à ChatGPT l’adresse directe d’une page introuvable",
+    "resume": "Vous savez qu’une page existe mais ne la retrouvez pas ? Demandez son « URL directe » à ChatGPT en mode réflexion : c’est souvent plus rapide que de fouiller les résultats de Google.",
+    "categorie": "outils",
+    "niveau": "debutant",
+    "outils": [
+      "chatgpt"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Vous savez ce que vous cherchez en ligne, mais pas où le trouver ? L’une des façons les plus efficaces d’obtenir l’adresse exacte est de la demander à ChatGPT en mode réflexion (GPT-5 Thinking au moment de l’astuce). Pourquoi ChatGPT en particulier ? Parce que c’est lui qui a, selon l’auteur, l’accès le plus large au web."
+      },
+      {
+        "t": "p",
+        "x": "Au lieu de perdre du temps à éplucher les résultats de Google pour retrouver un lien que vous savez exister sans vous rappeler comment y arriver, demandez l’« URL directe » : ChatGPT la fournit très souvent. Cela marche surtout pour les liens commerciaux, moins pour les pages obscures, mais avec cette formulation et suffisamment de contexte, vous pouvez obtenir presque n’importe quelle adresse."
+      },
+      {
+        "t": "p",
+        "x": "**À noter** : la technique fonctionne aussi pour obtenir les coordonnées publiques d’entreprises ou de personnes. Précisez bien « publiques » : chercher à obtenir des informations privées sur d’autres personnes est contraire aux conditions d’utilisation d’OpenAI."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de l’URL directe",
+        "type": "prompt",
+        "texte": "Peux-tu me donner l’URL directe de [ce que vous cherchez] ?",
+        "adapte": false
+      },
+      {
+        "titre": "Le prompt des coordonnées publiques",
+        "type": "prompt",
+        "texte": "Peux-tu me donner les coordonnées publiquement disponibles de [entreprise ou personne] ?",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Pour retrouver un lien précis, demandez explicitement l’« URL directe » et donnez assez de contexte.",
+    "source": {
+      "cle": "we-need-to-talk-about-openai-s-backstopgate",
+      "date": "2025-11-07",
+      "url": "https://www.theneurondaily.com/p/we-need-to-talk-about-openai-s-backstopgate",
+      "newsletter": "We need to talk about OpenAI's \"Backstopgate\"",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 We need to talk about OpenAI's \"Backstopgate\""
+    }
+  },
+  {
+    "id": "demander-a-l-ia-de-rendre-son-prompt-au-moins-10-fois-meilleur",
+    "titre": "Demander à l’IA de rendre son prompt « au moins 10 fois meilleur »",
+    "resume": "Après un premier prompt rédigé avec l’IA, demandez-lui s’il est possible de le rendre au moins dix fois meilleur. Une relance toute simple qui améliore souvent nettement le résultat.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Voici une astuce de prompt franchement *bête*, qui marche *bêtement bien* : quand vous demandez à l’IA de vous aider à écrire un prompt, attendez le premier résultat, puis demandez-lui de recommencer en le rendant « au moins 10 fois meilleur »."
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Demandez à l’IA de vous aider à rédiger un prompt pour votre tâche.",
+          "Lisez le premier résultat.",
+          "Envoyez la relance ci-dessous dans la même conversation."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "La formulation exacte, avec des exemples de résultats, a été partagée sur Reddit par l’utilisateur [Prestigious-Cost322](https://www.reddit.com/r/PromptEngineering/comments/1ood0os/these_two_lines_just_made_my_own_prompt_10x_better/). Une astuce simple, applicable dans la plupart des situations, pour un gain de qualité immédiat."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "La relance « 10 fois meilleur »",
+        "type": "prompt",
+        "texte": "Peux-tu rendre ce prompt existant au moins 10 fois meilleur, maintenant ? En as-tu la capacité ? Y a-t-il un moyen de l’améliorer 10 fois ?",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Une simple relance exigeante suffit souvent à obtenir une version nettement meilleure du premier jet.",
+    "source": {
+      "cle": "new-siri-powered-by-google",
+      "date": "2025-11-06",
+      "url": "https://www.theneurondaily.com/p/new-siri-powered-by-google",
+      "newsletter": "New Siri... powered by Google?!",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 New Siri... powered by Google?!"
+    }
+  },
+  {
+    "id": "reutiliser-chaque-image-generee-comme-reference-de-la-suivante",
+    "titre": "Réutiliser chaque image générée comme référence de la suivante",
+    "resume": "Pour un épisode d’animation de 7 minutes, un créateur a généré chaque image avec Nano Banana en lui fournissant la précédente comme référence, puis l’a animée avec Sora 2.",
+    "categorie": "creer",
+    "niveau": "intermediaire",
+    "outils": [
+      "gemini",
+      "autre"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Un créateur a publié sur Reddit un [épisode d’animation de 7 minutes réalisé par IA](https://www.reddit.com/r/OpenAI/comments/1oobyuv/ai_anime_episode_made_with_sora_2/), qui lui a demandé un mois de travail. Sa méthode est étonnamment reproductible : trois outils pour produire 216 images cohérentes."
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "**[Nano Banana](https://aistudio.google.com/prompts/new_chat?model=nano-banana)** (génération d’images) : générez chaque image clé avec un prompt détaillé et des images de référence. Le point essentiel : redonnez toujours l’image générée précédemment comme référence pour la suivante, afin de conserver les personnages, le décor et l’éclairage.",
+          "**Photoshop** (facultatif) : retouchez les images qui en ont besoin avant l’animation.",
+          "**[Sora 2](https://openai.com/index/sora-2/)** (animation) : animez chaque image fixe séparément et gardez les bonnes versions produites par Sora."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "**Le secret** : le référencement d’image en image. Au lieu de compter sur le seul texte pour garder la cohérence, le créateur a utilisé chaque image terminée comme référence visuelle pour la suivante. Personnages, vêtements (cohérents à 90 %), éclairage et décors sont ainsi restés homogènes sur les 216 images."
+      },
+      {
+        "t": "p",
+        "x": "Pourquoi Nano Banana ? Le créateur avait d’abord testé Midjourney et GPT Image, mais Nano Banana s’est montré supérieur pour la cohérence des personnages et des décors quand on lui fournit un prompt détaillé et des images de référence."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de l’image suivante",
+        "type": "prompt",
+        "texte": "Voici l’image précédente de la séquence, à utiliser comme référence. Génère l’image suivante : [description détaillée de la scène]. Garde exactement les mêmes personnages, vêtements, éclairage et décor que sur l’image de référence.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Pour une série d’images cohérente, donnez à l’IA l’image précédente comme référence plutôt que de tout miser sur le texte.",
+    "source": {
+      "cle": "datacenters-in-the-sky",
+      "date": "2025-11-05",
+      "url": "https://www.theneurondaily.com/p/datacenters-in-the-sky",
+      "newsletter": "Datacenters in the sky?!",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 Datacenters in the sky?!"
+    }
+  },
+  {
+    "id": "repartir-vos-taches-entre-plusieurs-ia-selon-leurs-points-forts",
+    "titre": "Répartir vos tâches entre plusieurs IA selon leurs points forts",
+    "resume": "Plutôt que de forcer un seul modèle à tout faire, l’équipe de The Neuron confie chaque usage à l’outil qui y excelle, et change d’outil dès qu’une tâche résiste.",
+    "categorie": "outils",
+    "niveau": "intermediaire",
+    "outils": [
+      "claude",
+      "gemini",
+      "chatgpt",
+      "autre"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Arrêtez d’essayer de tout faire faire à une seule IA. L’équipe de The Neuron combine plusieurs outils, chacun pour ce qu’il fait de mieux, et trouve cela bien plus efficace que de forcer « le meilleur modèle », qu’il s’agisse de GPT-5, de Claude ou d’un autre, sur des tâches où il n’excelle pas. Sa répartition actuelle :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**[Claude](https://claude.ai/)** : le poste de commandement (le vôtre sera peut-être GPT-5 ou Copilot). Tous les prompts habituels y sont enregistrés comme [instructions de projet](https://www.anthropic.com/news/projects), ouverts dans plusieurs onglets selon la tâche du moment.",
+          "**[Gemini](https://gemini.google.com/)** : l’analyse de longs documents, avec des [Gems](https://gemini.google/overview/gems/) personnalisés pour extraire les idées de vidéos YouTube, et un prompt système de 26 000 mots enregistré dans [AI Studio](https://aistudio.google.com/) pour rédiger de très longs articles.",
+          "**[Nano Banana](https://aistudio.google.com/prompts/new_chat?model=gemini-2.5-flash-image)** (Gemini) : les retouches d’images rapides.",
+          "**[ChatGPT](https://chatgpt.com/?hints=search)** : paradoxalement, le meilleur pour chercher sur le web, avec une meilleure récupération des pages et des liens que les autres. Pour les tâches web récurrentes, [l’agent de ChatGPT](https://chatgpt.com/?hints=agent) prend aussi le relais.",
+          "**[L’onglet Build de Google AI Studio](https://aistudio.google.com/apps)** : imbattable pour prototyper des applications simples (*vibe coding*). Vous pouvez relier l’application à GitHub, puis GitHub à Cloudflare Pages, et déployer les modifications instantanément. Pour d’autres options, [cette vidéo de Greg Isenberg](https://youtu.be/ud0bv2J3xWY?si=vUGYGbloqkwSsw7d) les compare et les classe.",
+          "**[Grok](https://grok.com/)** : l’actualité qui circule sur [X](https://x.com/), par exemple avec [ce workflow](https://www.reddit.com/r/n8n/comments/1oncgwf/3m_views_in_3_months_all_from_this_automation/) ([code](https://github.com/sirlifehacker/social-story-scraper), [vidéo](https://www.youtube.com/watch?v=HidLFnkrAj4)). Rien ne le vaut pour le contexte des réseaux sociaux en temps réel."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Chaque « produit » d’IA (quand vous utilisez ChatGPT ou Claude sur le web, vous utilisez un produit, pas seulement un modèle) a au moins un super-pouvoir. Il est facile de se perdre dans les débats sur la meilleure IA, et tout aussi facile de rester enfermé dans un seul outil."
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Si un usage ne fonctionne pas, ne reformulez pas sans fin dans le même outil : changez d’outil jusqu’à trouver celui qui y arrive.",
+          "Si aucun n’y parvient, découpez la tâche en étapes plus simples et testez chacune séparément.",
+          "Une fois la bonne combinaison d’outil et de prompt trouvée pour toute la tâche, [transformez ce processus en workflow agentique](https://youtu.be/582qcppA7dk?si=5sC1l6lrgwXWMCfL&t=2519)."
+        ]
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de découpage d’une tâche qui résiste",
+        "type": "prompt",
+        "texte": "Je n’arrive pas à obtenir [résultat attendu] en une seule demande. Découpe cette tâche en étapes simples que je pourrai tester une par une, éventuellement dans des outils différents, et indique pour chacune comment vérifier qu’elle est réussie.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Chaque outil d’IA a au moins un super-pouvoir : changez d’outil plutôt que de reformuler sans fin dans le même.",
+    "source": {
+      "cle": "openai-s-38b-aws-shocker-the-real-ai-bottleneck",
+      "date": "2025-11-04",
+      "url": "https://www.theneurondaily.com/p/openai-s-38b-aws-shocker-the-real-ai-bottleneck",
+      "newsletter": "OpenAI's $38B AWS shocker + the real AI bottleneck",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "How We’re Using AI atm…"
+    }
+  },
+  {
+    "id": "retoucher-vos-photos-avec-gemini-plutot-qu-avec-chatgpt",
+    "titre": "Retoucher vos photos avec Gemini plutôt qu’avec ChatGPT",
+    "resume": "Pour ajouter ou retirer un élément d’une photo, Gemini (Nano Banana) modifie seulement la zone visée, alors que ChatGPT régénère toute l’image : le résultat est plus réaliste et plus rapide.",
+    "categorie": "creer",
+    "niveau": "debutant",
+    "outils": [
+      "gemini"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Un [message viral sur Reddit](https://www.reddit.com/r/ChatGPT/comments/1olwloi/chatgpt_vs_gemini_image_editing/) (plus de 8 000 votes, sur le forum consacré à ChatGPT, qui plus est) compare directement Nano Banana, le modèle d’images de Gemini, et le générateur d’images d’OpenAI pour la retouche photo. L’écart est net."
+      },
+      {
+        "t": "p",
+        "x": "La raison : Gemini fait de l’*inpainting* (il ne modifie que la zone ciblée), alors que ChatGPT régénère toute l’image. Dans l’exemple, l’utilisateur demandait d’ajouter des bouées dans la piscine d’un jardin. Gemini a livré une retouche photoréaliste instantanément ; ChatGPT a mis 90 secondes et produit des bouées… qui flottent en l’air devant la piscine."
+      },
+      {
+        "t": "p",
+        "x": "**Une limite** : Gemini reste parfois « bloqué » et renvoie exactement la même image, sans modification. Dans ce cas, ouvrez une nouvelle conversation ou demandez-lui explicitement de repartir de l’étape précédente."
+      },
+      {
+        "t": "p",
+        "x": "Pour toute retouche (retirer un objet, ajouter un élément, faire une modification réaliste), passez directement par Gemini."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de retouche ciblée",
+        "type": "prompt",
+        "texte": "Sur cette photo, ajoute [élément] à [endroit], de façon photoréaliste, en laissant tout le reste de l’image identique.",
+        "adapte": true
+      },
+      {
+        "titre": "La relance quand Gemini bloque",
+        "type": "prompt",
+        "texte": "Reviens à l’étape précédente et repars de zéro.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Pour retoucher une photo, choisissez l’outil qui modifie seulement la zone visée au lieu de régénérer toute l’image.",
+    "source": {
+      "cle": "ai-agents-failed-97-of-freelance-tasks-here-s-why",
+      "date": "2025-11-03",
+      "url": "https://www.theneurondaily.com/p/ai-agents-failed-97-of-freelance-tasks-here-s-why",
+      "newsletter": "AI agents failed 97% of freelance tasks; here's why...",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 AI agents failed 97% of freelance tasks; here's why..."
+    }
+  },
+  {
+    "id": "utiliser-l-ia-pour-liberer-du-temps-plutot-que-comme-confident",
+    "titre": "Utiliser l’IA pour libérer du temps plutôt que comme confident",
+    "resume": "Selon le professeur Arthur Brooks, l’IA doit prendre en charge les tâches, pas la place d’un ami ou d’un thérapeute. Déléguez-lui les petites corvées et gardez le temps gagné pour vos proches.",
+    "categorie": "automatiser",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Invité sur CNBC, Arthur Brooks, professeur à Harvard et auteur, a [abordé l’effet de l’IA sur le bonheur](https://youtu.be/dsBSRTXDlaU?si=LqRshU8Q9OBWn_wO&t=520). D’après ses recherches, les personnes les plus heureuses s’appuient sur **quatre piliers** que l’IA ne peut fondamentalement pas remplacer : la **foi**, la **famille**, les **amis** et un **travail vécu comme une vocation**."
+      },
+      {
+        "t": "p",
+        "x": "Il explique aussi qu’à force d’utiliser la technologie, nous sollicitons trop notre hémisphère gauche (les choses et les tâches) au détriment du droit (le mystère et le sens). D’où sa règle :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Utilisez l’IA pour** automatiser les « tâches » de l’hémisphère gauche, afin de libérer du temps pour ce qui a du sens : vos enfants, votre conjoint, vos relations bien réelles.",
+          "**N’utilisez pas l’IA comme** thérapeute, ami ou confident. Brooks prévient : *« Votre cerveau sait qu’il est mal utilisé, et vous deviendrez triste, anxieux et seul. »*"
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Voyez donc l’IA comme l’assistante de votre hémisphère gauche : rédiger des e-mails et des contenus, produire des bouts de code, repérer des tendances dans des données, organiser et résumer de grandes quantités d’informations (en précisant « avec une fidélité de 100 % à l’original »). Une fois ces tâches terminées, fermez l’ordinateur et consacrez le temps gagné aux relations en face à face."
+      },
+      {
+        "t": "p",
+        "x": "**Si vous vous tournez vers l’IA pour un soutien émotionnel**, changez d’approche : au lieu de lui demander de vous aider à aller mieux ou de vous conseiller sur une relation, listez ce qui vous stresse aujourd’hui, repérez les tâches qu’elle peut prendre en charge et faites-les-lui régler. Vous garderez du temps pour parler des sujets qui comptent avec vos amis et votre famille."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt pour alléger la journée",
+        "type": "prompt",
+        "texte": "Voici tout ce que j’ai à faire aujourd’hui et qui me stresse : [liste de vos tâches]. Indique-moi lesquelles tu peux m’aider à accomplir (rédiger, résumer, organiser, analyser…), classe-les de la plus rapide à régler à la plus longue, puis commençons par la première.",
+        "adapte": true
+      },
+      {
+        "titre": "La précision de fidélité pour les résumés",
+        "type": "prompt",
+        "texte": "Résume ce texte avec une fidélité de 100 % à l’original : [texte]",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Le vrai gain de productivité, c’est d’utiliser l’IA pour racheter du temps à consacrer à ce qui compte.",
+    "source": {
+      "cle": "that-20k-robot-it-s-a-guy-with-a-vr-headset",
+      "date": "2025-11-02",
+      "url": "https://www.theneurondaily.com/p/that-20k-robot-it-s-a-guy-with-a-vr-headset",
+      "newsletter": "That $20K robot? It's just a guy with a VR headset",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 That $20K robot? It's just a guy with a VR headset"
+    }
+  },
+  {
+    "id": "encadrer-claude-code-planifier-documenter-faire-relire",
+    "titre": "Encadrer Claude Code : planifier, documenter, faire relire",
+    "resume": "Les trois règles d’un développeur qui a fait réécrire 300 000 lignes de code par Claude Code : planifier chaque fonctionnalité, tenir trois documents de suivi, faire relire chaque étape.",
+    "categorie": "coder",
+    "niveau": "avance",
+    "outils": [
+      "claude-code"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Un ingénieur logiciel a [présenté sur Reddit sa méthode](https://www.reddit.com/r/ClaudeAI/comments/1oivjvm/claude_code_is_a_beast_tips_from_6_months_of/) pour faire réécrire 300 000 lignes de code par [Claude Code](https://www.claude.com/product/claude-code) en six mois, *seul*. Même si vous ne codez pas à cette échelle, ses principes valent pour n’importe quelle tâche confiée à Claude."
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "**Tout planifier d’abord.** Ne demandez pas à Claude de « simplement le construire » sans plan. L’auteur utilise le mode planification de Claude pour CHAQUE fonctionnalité, même petite. Vous ne laisseriez pas un artisan agrandir votre salle de bains sans plans, n’est-ce pas ?",
+          "**Créer vos propres « docs de développement ».** Pour toute tâche importante, tenez trois fichiers simples : un document de plan (ce que vous construisez), un document de contexte (décisions clés et fichiers concernés) et une liste de tâches (ce qui est fait, ce qui reste). Mettez-les à jour au fil de l’eau : Claude souffre d’une « amnésie extrême » et perd facilement le fil, et ces documents le gardent sur les rails, même après une remise à zéro du contexte.",
+          "**Faire relire son travail à Claude.** Avant d’avancer, demandez-lui de relire ce qu’il vient de produire. Selon l’auteur, cela lui a épargné bien des maux de tête en repérant des erreurs critiques, des implémentations manquantes, du code incohérent et des failles de sécurité."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Quand les résultats sont mauvais, ne blâmez pas *seulement* l’IA : vérifiez votre prompt. L’auteur reconnaît que ses pires résultats arrivent en fin de journée, quand la fatigue le rend paresseux et qu’il soigne moins ses prompts. Appuyez deux fois sur Échap pour retrouver vos prompts précédents et réessayez avec une meilleure formulation : la deuxième tentative donne souvent de bien meilleurs résultats. *Toujours rien ? Là, vous pouvez blâmer l’IA.*"
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt des documents de suivi",
+        "type": "prompt",
+        "texte": "Avant d’écrire le moindre code pour [tâche], passe en mode planification et crée trois fichiers dans le dossier du projet :\n1. plan.md : ce que nous construisons et les étapes prévues ;\n2. contexte.md : les décisions clés et les fichiers concernés ;\n3. taches.md : une liste de tâches à cocher (fait, à faire).\nMets-les à jour à chaque étape. Après chaque étape, relis ce que tu viens de produire et signale les erreurs critiques, les implémentations manquantes, les incohérences et les failles de sécurité avant de passer à la suite.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Donnez à Claude des plans clairs, tenez la documentation à jour et faites-lui revérifier son travail : cette structure se paie en résultats bien meilleurs.",
+    "source": {
+      "cle": "openai-s-plan-for-ai-researchers-explained",
+      "date": "2025-10-31",
+      "url": "https://www.theneurondaily.com/p/openai-s-plan-for-ai-researchers-explained",
+      "newsletter": "OpenAI's plan for AI researchers, explained",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 OpenAI's plan for AI researchers, explained"
+    }
+  },
+  {
+    "id": "debarrasser-chatgpt-du-tiret-cadratin-en-lui-donnant-une-alternative",
+    "titre": "Débarrasser ChatGPT du tiret cadratin en lui donnant une alternative",
+    "resume": "Interdire un tic d’écriture ne suffit pas : indiquez dans les instructions personnalisées ce qui doit le remplacer. Exemple avec le tiret cadratin, signature trop visible de l’IA.",
+    "categorie": "memoire",
+    "niveau": "intermediaire",
+    "outils": [
+      "chatgpt"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Depuis l’arrivée de ChatGPT, tout le monde est devenu allergique au tiret cadratin (« — »), ce signe de ponctuation autrefois cher à Emily Dickinson et devenu l’indice le plus voyant d’un texte écrit par l’IA. Même si vous l’aimez, il crie malheureusement « c’est une IA qui a écrit ça ». [Ruben Hassid a publié un guide](https://ruben.substack.com/p/emdash?r=59okro&triedRedirect=true) pour apprendre à ChatGPT à écrire vraiment comme vous."
+      },
+      {
+        "t": "p",
+        "x": "La solution : ne vous contentez pas de demander à ChatGPT d’arrêter. Donnez-lui une alternative, en ajoutant la consigne ci-dessous à vos instructions personnalisées (menu en bas à gauche, puis Personnalisation, puis Instructions personnalisées)."
+      },
+      {
+        "t": "p",
+        "x": "**Pourquoi ça marche** : vous apprenez à ChatGPT quoi utiliser à la place. Un simple « arrête d’utiliser les tirets cadratins » échoue, car l’IA a besoin d’alternatives concrètes. C’est le même principe qu’avec les jeunes enfants : ne dites pas à l’IA ce qu’il ne faut pas faire, dites-lui quoi faire."
+      },
+      {
+        "t": "p",
+        "x": "Pour que l’IA écrive comme vous, ne cherchez pas le prompt parfait du premier coup. Servez-vous des instructions personnalisées pour remplacer, un par un, les *tics de l’IA* par *vos propres habitudes d’écriture*."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "L’instruction anti-tiret cadratin",
+        "type": "prompt",
+        "texte": "Remplace systématiquement les tirets cadratins (« — ») par un point (« . ») pour commencer une nouvelle phrase, ou par une virgule (« , ») pour poursuivre la phrase.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Apprenez à l’IA votre façon d’écrire un tic à la fois, en remplaçant chaque habitude d’IA par la vôtre.",
+    "source": {
+      "cle": "ai-turned-a-195k-hospital-bill-into-33k",
+      "date": "2025-10-30",
+      "url": "https://www.theneurondaily.com/p/ai-turned-a-195k-hospital-bill-into-33k",
+      "newsletter": "AI turned a $195K hospital bill into $33K",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 AI turned a $195K hospital bill into $33K"
+    }
+  },
+  {
+    "id": "demander-a-l-ia-de-vous-contredire-franchement",
+    "titre": "Demander à l’IA de vous contredire franchement",
+    "resume": "Une IA qui valide toutes vos idées vous rassure sans vous faire progresser. Demandez-lui explicitement de s’opposer à vous, sans ménagement, pour révéler failles et angles morts.",
+    "categorie": "verifier",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "**Cessez de laisser l’IA approuver tout ce que vous dites.** Selon [AI Prompt Hackers, sur Substack](https://www.aiprompthackers.com/p/10-prompts-that-force-ai-to-challenge?r=59okro&triedRedirect=true), si votre assistant se contente de valider vos idées, vous ne réfléchissez pas mieux : vous vous rassurez. La plupart des utilisateurs habituent sans le vouloir l’IA à la complaisance, en récompensant les réponses conciliantes."
+      },
+      {
+        "t": "p",
+        "x": "La parade : le *prompting* contradictoire, qui consiste à demander explicitement à l’IA de ne pas être d’accord avec vous. **La formule** : énoncez votre idée, demandez une contestation explicite et autorisez une franchise sans détour."
+      },
+      {
+        "t": "p",
+        "x": "L’article propose 10 prompts qui imposent un rôle à l’IA, comme l’**adversaire de bonne foi** (construire le meilleur argumentaire possible contre vous) ou la **menace concurrentielle** (attaquer votre plan comme le ferait votre concurrent le plus malin). Enchaînez-les (détecteur d’angles morts, puis adversaire, puis analyse de l’échec anticipé) pour une critique encore plus affûtée."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "L’argumentaire contre votre idée",
+        "type": "prompt",
+        "texte": "Argumente contre [votre idée] aussi fort que possible. Ne te retiens pas.",
+        "adapte": false
+      },
+      {
+        "titre": "Le détecteur d’hypothèses cachées",
+        "type": "prompt",
+        "texte": "Quelles hypothèses cachées suis-je en train de faire ? Remets en cause les fondements.",
+        "adapte": false
+      },
+      {
+        "titre": "L’échec anticipé",
+        "type": "prompt",
+        "texte": "Pars du principe que cela a complètement échoué. Quelles en ont été les causes les plus probables ?",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Une IA qui vous donne toujours raison vous apaise sans vous faire progresser : donnez-lui la permission, et la consigne, de vous contredire.",
+    "source": {
+      "cle": "adobe-came-to-play-w-15-new-ai-features",
+      "date": "2025-10-29",
+      "url": "https://www.theneurondaily.com/p/adobe-came-to-play-w-15-new-ai-features",
+      "newsletter": "Adobe came to PLAY (w/ 15 new AI features...)",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 Adobe came to PLAY (w/ 15 new AI features...)"
+    }
+  },
+  {
+    "id": "faire-travailler-l-ia-par-etapes-qu-elle-peut-verifier",
+    "titre": "Faire travailler l’IA par étapes qu’elle peut vérifier",
+    "resume": "Au lieu de tout demander d’un coup, faites d’abord rassembler, puis trier, puis analyser : l’IA peut ainsi relire son travail intermédiaire et rattraper ses propres erreurs.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Thariq, d’Anthropic, a [publié un fil](https://x.com/trq212/status/1982869394482139206) pour expliquer pourquoi « même les agents qui ne codent pas ont besoin de bash » (la ligne de commande). Selon lui, l’IA travaille bien mieux quand elle peut enregistrer, relire et affiner son travail, exactement comme vous le feriez."
+      },
+      {
+        "t": "p",
+        "x": "**Le principe** : au lieu de demander à Claude ou à ChatGPT d’analyser 100 e-mails et de calculer vos dépenses en une seule fois, découpez. Faites d’abord enregistrer les e-mails, puis faites-les parcourir, puis faites calculer. Les agents de Thariq utilisent bash pour enregistrer ces e-mails dans un fichier et les fouiller méthodiquement, comme vous prendriez un bloc-notes pour un calcul compliqué. L’IA peut ainsi :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "découper le travail en étapes vérifiables ;",
+          "revérifier en relisant les données enregistrées ;",
+          "s’appuyer sur le travail précédent sans perdre le contexte."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "**Cas où cela aide** : les recherches complexes (rassembler les sources, les organiser, les analyser), l’analyse de données (collecter, nettoyer, calculer) et la planification en plusieurs temps (trouver des idées, les évaluer, les affiner)."
+      },
+      {
+        "t": "p",
+        "x": "**Sans ligne de commande**, appliquez la même logique dans votre prompt : au lieu de « Analyse ces 50 documents et tires-en des enseignements », demandez un travail en trois temps."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt d’analyse en trois temps",
+        "type": "prompt",
+        "texte": "Commence par dresser une liste qui résume les points principaux de chaque document, avec une fidélité de 100 %. Relis ensuite cette liste et repère, pour chaque document, les 3 à 5 points uniques les plus importants. Enfin, pour chaque idée clé, cite des passages précis des documents d’origine.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Une IA qui peut relire ses étapes intermédiaires rattrape ses erreurs : découpez la tâche au lieu de tout demander d’un coup.",
+    "source": {
+      "cle": "openai-s-most-alarming-stat-now-on-the-record",
+      "date": "2025-10-28",
+      "url": "https://www.theneurondaily.com/p/openai-s-most-alarming-stat-now-on-the-record",
+      "newsletter": "OpenAI’s most alarming stat—now on the record",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 OpenAI’s most alarming stat—now on the record"
+    }
+  },
+  {
+    "id": "dire-a-l-ia-quoi-faire-plutot-que-quoi-ne-pas-faire",
+    "titre": "Dire à l’IA quoi faire plutôt que quoi ne pas faire",
+    "resume": "Comme les jeunes enfants, les modèles de langage gèrent mal les négations : « ne fais pas X » attire leur attention sur X. Décrivez plutôt précisément le comportement attendu.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Adriana Porter Felt a [partagé une astuce de prompt](https://x.com/apf/status/1981045920709169298) qui est en réalité un [conseil d’éducation recyclé](https://x.com/tallsnail/status/1981011830329016672), destiné à l’origine à bien « prompter »… les tout-petits. La règle : **les modèles de langage, comme les jeunes enfants, comprennent mal les négations.**"
+      },
+      {
+        "t": "p",
+        "x": "Leur dire ce qu’il ne faut **pas** faire met surtout en lumière le comportement indésirable. Comme le dit Lia, un enfant retient la partie « fais X » de « ne fais pas X ». Les modèles de langage aussi. Dites-leur plutôt **exactement quoi faire** :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "au lieu de « Ne sois pas verbeux », écrivez « Réponds en 3 à 5 puces concises » ;",
+          "au lieu de « N’invente pas de sources », écrivez « Cite uniquement des sources vérifiables, ou indique que les éléments sont insuffisants » ;",
+          "au lieu de « Ne mentionne pas les outils internes », écrivez « Désigne les outils de façon générique »."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "En résumé, le modèle suit l’image que vous lui donnez. Décrivez donc le comportement que vous voulez, pas celui que vous cherchez à éviter : soyez clair, précis et formulez vos consignes en positif."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Les consignes formulées en positif",
+        "type": "prompt",
+        "texte": "Réponds en 3 à 5 puces concises.\nCite uniquement des sources vérifiables, ou indique que les éléments sont insuffisants.\nDésigne les outils de façon générique.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Décrivez le comportement que vous voulez obtenir, pas celui que vous voulez éviter.",
+    "source": {
+      "cle": "ai-browser-risks-and-the-ai-trust-tax-you-re-already-paying",
+      "date": "2025-10-27",
+      "url": "https://www.theneurondaily.com/p/ai-browser-risks-and-the-ai-trust-tax-you-re-already-paying",
+      "newsletter": "AI browser risks and the “AI trust tax” you’re already paying",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 AI browser risks and the “AI trust tax” you’re already paying"
+    }
+  },
+  {
+    "id": "faire-creer-vos-skills-claude-par-cursor",
+    "titre": "Faire créer vos Skills Claude par Cursor",
+    "resume": "Ouvrez un dossier vide dans Cursor et demandez-lui un outil qui fabrique des Skills Claude à partir de la documentation officielle : c’est plus rapide et mieux structuré que dans l’interface web.",
+    "categorie": "memoire",
+    "niveau": "avance",
+    "outils": [
+      "cursor",
+      "claude"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "La créatrice Claire Vo a constaté que fabriquer des *Skills* Claude dans Cursor (un assistant de programmation par IA) va trois fois plus vite que dans l’application web de Claude, et donne même de meilleurs résultats."
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Ouvrez un dossier vide dans Cursor.",
+          "Demandez-lui de créer un agent (ou une Skill) dont le rôle est de créer des Skills Claude.",
+          "Collez simplement le lien vers la documentation des Skills d’Anthropic. C’est tout."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Résultat : en 3 minutes (contre 10 dans l’application web de Claude), Cursor a produit un cadre complet de création de Skills, avec une mise en forme YAML correcte, des fichiers modèles et même un script de validation, le tout bien structuré et prêt à l’emploi."
+      },
+      {
+        "t": "p",
+        "x": "Regardez la [courte démonstration de Claire Vo](https://www.youtube.com/shorts/oextzazYQpM) (1 minute) ou son [tutoriel complet](https://youtu.be/MZZCW179nKM?si=11hzXtlocb5Cdj8c) pour voir cette méthode en action."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt qui crée un créateur de Skills",
+        "type": "prompt",
+        "texte": "Crée-moi un agent (ou une Skill) qui sert à créer des Skills Claude. Voici la documentation : [lien vers la documentation des Skills d’Anthropic]",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Parfois, la meilleure façon d’utiliser une IA n’est pas son interface d’origine : faites faire le gros du travail par un autre outil d’IA.",
+    "source": {
+      "cle": "the-ai-bubble-explained",
+      "date": "2025-10-26",
+      "url": "https://www.theneurondaily.com/p/the-ai-bubble-explained",
+      "newsletter": "The AI Bubble, explained",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 The AI Bubble, explained"
+    }
+  },
+  {
+    "id": "transformer-chatgpt-en-tuteur-qui-verifie-que-vous-avez-compris",
+    "titre": "Transformer ChatGPT en tuteur qui vérifie que vous avez compris",
+    "resume": "Un prompt de tutorat qui fait progresser pas à pas, pose des questions socratiques et des exercices, et ne passe à la suite que lorsque vous êtes prêt : un vrai cours, pas un exposé.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Vous voulez que ChatGPT vous apprenne vraiment quelque chose au lieu de déverser des informations ? Ce [prompt devenu viral, partagé par @yanabantai](https://x.com/yanabantai/status/1977758902776201540), le transforme en tuteur personnel ; le texte exact figure dans la capture d’écran de son message."
+      },
+      {
+        "t": "p",
+        "x": "Tout est dans la structure : il ne se contente pas de demander des explications, il crée une boucle d’apprentissage avec questions socratiques, exercices et points d’étape. ChatGPT vous demande si vous êtes prêt à passer à la suite ; si vous répondez non, il reformule et donne d’autres exemples jusqu’à ce que vous ayez compris. Les éléments qui font la différence :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Une progression** : il part des bases et monte vers les notions avancées.",
+          "**Un apprentissage actif** : questions socratiques et expériences de pensée vous obligent à participer.",
+          "**Un rythme adapté** : il avance à votre vitesse, pas au débit habituel de ChatGPT.",
+          "**Une mise en application** : il termine en reliant ce que vous avez appris à des cas concrets."
+        ]
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt du tuteur personnel",
+        "type": "prompt",
+        "texte": "Tu es mon tuteur personnel. Je veux apprendre [sujet]. Mon niveau actuel : [débutant, intermédiaire…].\n\nEnseigne-moi pas à pas, en partant des bases pour aller vers les notions avancées. Pour chaque notion :\n1. Explique-la simplement, avec un exemple.\n2. Pose-moi des questions socratiques ou propose une expérience de pensée pour me faire réfléchir.\n3. Donne-moi un court exercice.\n4. Demande-moi si je suis prêt à passer à la suite. Si je réponds non, reformule et donne d’autres exemples jusqu’à ce que j’aie compris.\n\nAvance à mon rythme. À la fin, relie ce que j’ai appris à des cas concrets d’utilisation.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "La plupart des prompts disent à l’IA quoi dire ; les meilleurs prompts d’apprentissage lui disent comment enseigner et vérifient que vous avez compris.",
+    "source": {
+      "cle": "microsoft-vs-openai-battle-of-the-ai-browsers",
+      "date": "2025-10-24",
+      "url": "https://www.theneurondaily.com/p/microsoft-vs-openai-battle-of-the-ai-browsers",
+      "newsletter": "Microsoft vs OpenAI: Battle of the AI browsers",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 Microsoft vs OpenAI: Battle of the AI browsers"
+    }
+  },
+  {
+    "id": "analyser-une-demande-de-fonctionnalite-avant-de-decider-de-la-creer",
+    "titre": "Analyser une demande de fonctionnalité avant de décider de la créer",
+    "resume": "Un prompt en quatre étapes pour remonter de la demande des utilisateurs à leur besoin réel, comparer plusieurs solutions et lister ce qu’il faut vérifier avant de décider.",
+    "categorie": "business",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "[La méthode d’Andrew Wood](https://www.aiprompthackers.com/p/ai-assisted-product-development?r=59okro&triedRedirect=true) aide à prendre de meilleures décisions produit en comprenant ce dont les utilisateurs ont réellement besoin, au lieu de construire simplement ce qu’ils demandent. Plutôt que « faut-il créer la fonctionnalité X ? », faites analyser chaque décision en quatre étapes :"
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "**Le besoin sous-jacent** : quel problème les utilisateurs cherchent-ils vraiment à résoudre ? (Ils demandent « un meilleur filtrage » quand ils ont en réalité besoin d’« un moyen plus rapide de trouver les éléments pertinents ».)",
+          "**Les solutions alternatives** : compte tenu de ce besoin réel, quelles sont 3 à 5 façons d’y répondre, au-delà de ce que les utilisateurs ont demandé ?",
+          "**L’alignement stratégique** : comment chaque solution s’accorde-t-elle avec votre stratégie produit, vos utilisateurs cibles, vos choix techniques et votre modèle économique ?",
+          "**Les questions de validation** : quelles hypothèses faites-vous ? Que devez-vous apprendre avant de décider ?"
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Passez 15 minutes à analyser avec l’IA *avant* de passer des heures à débattre d’opinions en réunion : vous comprendrez le vrai problème au lieu de construire simplement ce qu’on vous demande."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt d’analyse en quatre étapes",
+        "type": "prompt",
+        "texte": "Les utilisateurs demandent : [fonctionnalité demandée]. Contexte : [votre produit, vos utilisateurs cibles, votre stratégie].\n\nAnalyse cette demande en quatre étapes :\n1. Besoin sous-jacent : quel problème les utilisateurs cherchent-ils vraiment à résoudre ?\n2. Solutions alternatives : compte tenu de ce besoin réel, propose 3 à 5 façons d’y répondre, au-delà de ce qui a été demandé.\n3. Alignement stratégique : comment chaque solution s’accorde-t-elle avec notre stratégie produit, nos utilisateurs cibles, nos choix techniques et notre modèle économique ?\n4. Questions de validation : quelles hypothèses faisons-nous ? Que devons-nous apprendre avant de décider ?",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Ne construisez pas ce que les utilisateurs demandent, mais ce dont ils ont besoin : faites d’abord identifier le problème réel.",
+    "source": {
+      "cle": "amazon-s-putting-ai-glasses-on-delivery-drivers-ae52",
+      "date": "2025-10-23",
+      "url": "https://www.theneurondaily.com/p/amazon-s-putting-ai-glasses-on-delivery-drivers-ae52",
+      "newsletter": "Amazon's putting AI glasses on delivery drivers",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 Amazon's putting AI glasses on delivery drivers"
+    }
+  },
+  {
+    "id": "exploiter-chatgpt-comme-les-1-d-utilisateurs-les-plus-avances",
+    "titre": "Exploiter ChatGPT comme les 1 % d’utilisateurs les plus avancés",
+    "resume": "Faire définir l’excellence avant d’écrire, explorer des scénarios dans des branches, répéter une conversation difficile à l’oral : les astuces de Grace Leung pour tirer le meilleur de ChatGPT.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "chatgpt"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "L’experte en productivité Grace Leung a publié une masterclass de 28 minutes pour [faire partie du 1 % des meilleurs utilisateurs de ChatGPT](https://www.youtube.com/watch?v=3SaO0H-6KgU). Ses meilleures astuces :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Se fixer une grille d’excellence** : avant que ChatGPT écrive quelque chose d’important, demandez-lui de définir à quoi ressemble un résultat « de niveau mondial » pour cette tâche, puis de s’améliorer en suivant sa propre grille. Les résultats sont nettement meilleurs.",
+          "**Créer des branches pour décider** : vous envisagez un changement de carrière ou hésitez entre plusieurs stratégies ? Ouvrez une branche de conversation pour chaque hypothèse (« et si… »), pour explorer chaque scénario sans encombrer votre fil principal.",
+          "**Répéter en mode vocal** : entraînez-vous aux conversations à fort enjeu (demander une augmentation, appeler un client difficile) par un jeu de rôle avec ChatGPT. Demandez-lui ensuite ce que l’autre personne pensait « vraiment, sans le dire »."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "**Pour aller plus loin** : créez un GPT personnalisé nourri des contenus de votre penseur préféré pour obtenir votre propre coach IA. Grace Leung utilise les transcriptions des vidéos d’[Ali Abdaal](https://www.youtube.com/channel/UCoOae5nYA7VqaXzerajD0lg) pour un coaching en productivité disponible à tout moment."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de la grille d’excellence",
+        "type": "prompt",
+        "texte": "Avant d’écrire [le document], définis à quoi ressemble un résultat de niveau mondial pour cette tâche, sous forme de grille de critères. Rédige ensuite une première version, évalue-la selon ta grille et améliore-la jusqu’à ce qu’elle remplisse tous les critères.",
+        "adapte": false
+      },
+      {
+        "titre": "Le prompt de répétition",
+        "type": "prompt",
+        "texte": "Joue le rôle de [la personne : mon responsable, un client mécontent…]. Je veux m’entraîner à [la conversation : demander une augmentation, annoncer un retard…]. Réagis de façon réaliste, sans me faciliter la tâche.",
+        "adapte": false
+      },
+      {
+        "titre": "Le prompt de débriefing",
+        "type": "prompt",
+        "texte": "Reprends notre échange : que pensait vraiment l’autre personne, sans le dire ?",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Demandez à l’IA de fixer la barre avant de produire : une grille d’excellence explicite tire ses réponses vers le haut.",
+    "source": {
+      "cle": "openai-s-new-atlas-browser-remembers-everything",
+      "date": "2025-10-22",
+      "url": "https://www.theneurondaily.com/p/openai-s-new-atlas-browser-remembers-everything",
+      "newsletter": "OpenAI's new Atlas browser remembers everything",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 OpenAI's new Atlas browser remembers everything"
+    }
+  },
+  {
+    "id": "rendre-coherentes-les-etiquettes-d-une-ia-grace-aux-embeddings",
+    "titre": "Rendre cohérentes les étiquettes d’une IA grâce aux embeddings",
+    "resume": "Pour qu’un modèle ne crée pas dix étiquettes pour une même idée, comparez chaque nouvelle étiquette aux anciennes par similarité vectorielle et réutilisez la plus proche.",
+    "categorie": "outils",
+    "niveau": "avance",
+    "outils": [
+      "autre"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Les grands modèles de langage adorent donner des étiquettes légèrement différentes à des contenus identiques. Verdi, auteur de la newsletter Verdi’s Worldview, [a trouvé la parade](https://verdik.substack.com/p/how-to-get-consistent-classification) : utiliser des *embeddings* (des représentations vectorielles du sens) pour regrouper les étiquettes similaires. Testée sur 10 000 tweets, sa méthode a **réduit le nombre d’étiquettes de 80 %** (de 6 520 à 1 381) tout en devenant **10 fois moins chère** à grande échelle."
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "**Générez une étiquette** avec votre modèle de langage (par exemple `joke_about_rust_programmers`).",
+          "**Convertissez cette étiquette en vecteur** avec un modèle d’embeddings (il utilise [voyage-3.5-lite](https://blog.voyageai.com/2025/05/20/voyage-3-5/)).",
+          "**Cherchez les étiquettes similaires** déjà créées : si l’une dépasse un seuil de similarité (Verdi utilise 0,80), réutilisez-la au lieu d’en créer une nouvelle."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "C’est une sorte d’autocomplétion pour les étiquettes de votre modèle. La première fois qu’il produit `joke_about_rust_programmers`, cette étiquette devient la référence. Quand il génère ensuite `humor_concerning_rust_programmers`, la recherche vectorielle détecte une similarité d’environ 95 % et la ramène à la première."
+      },
+      {
+        "t": "p",
+        "x": "La méthode coûte 15 % plus cher au départ, devient moins chère dès le 500e tweet et réutilise une étiquette existante dans 94 % des cas au 10 000e. Un vrai atout pour les projets de classification à grande échelle. Consultez [l’explication complète de Verdi](https://verdik.substack.com/p/how-to-get-consistent-classification) et [son paquet Go](https://github.com/FrenchMajesty/consistent-classifier)."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt pour implémenter la méthode",
+        "type": "prompt",
+        "texte": "Aide-moi à implémenter en Python une classification cohérente de textes avec un modèle de langage :\n1. Pour chaque texte, génère une étiquette courte avec le modèle.\n2. Convertis l’étiquette en vecteur avec un modèle d’embeddings.\n3. Compare-la aux étiquettes déjà enregistrées : si la similarité dépasse 0,80, réutilise l’étiquette existante ; sinon, enregistre la nouvelle.\n4. Garde en cache les étiquettes et leurs vecteurs, et affiche à la fin le nombre d’étiquettes distinctes.\n\nVoici un échantillon de mes données : [vos données]",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Avant de créer une nouvelle étiquette, vérifiez si une étiquette équivalente existe déjà : la cohérence fait aussi baisser les coûts.",
+    "source": {
+      "cle": "claude-code-on-the-web",
+      "date": "2025-10-21",
+      "url": "https://www.theneurondaily.com/p/claude-code-on-the-web",
+      "newsletter": "Claude Code on the web?!",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 Claude Code on the web?!"
+    }
+  },
+  {
+    "id": "creer-un-agent-sur-mesure-avec-un-dossier-de-skills-dans-claude-code",
+    "titre": "Créer un agent sur mesure avec un dossier de Skills dans Claude Code",
+    "resume": "Selon Simon Willison, les Skills, de simples fichiers Markdown d’instructions, transforment Claude Code en agent capable d’automatiser presque toute tâche faisable sur ordinateur.",
+    "categorie": "memoire",
+    "niveau": "avance",
+    "outils": [
+      "claude-code"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Simon Willison a [donné son avis](https://simonwillison.net/2025/Oct/16/claude-skills/) sur les [Skills de Claude](https://www.anthropic.com/news/skills) : elles pourraient compter davantage que MCP. **Ce que c’est** : des fichiers Markdown qui apprennent de nouvelles compétences à Claude, éventuellement accompagnés de scripts, mais l’essentiel tient en instructions écrites. **Pourquoi c’est important** : contrairement aux extensions gourmandes en *tokens*, chaque Skill n’occupe qu’une vingtaine de tokens tant que Claude n’en a pas besoin. Et elles fonctionnent avec n’importe quel modèle capable de lire des fichiers."
+      },
+      {
+        "t": "p",
+        "x": "Pour Simon Willison, la clé est de les utiliser avec [Claude Code](https://www.claude.com/product/claude-code) comme « agent généraliste », pour automatiser *tout* ce que vous pouvez faire sur un ordinateur. Il imagine par exemple un agent de journalisme de données construit à partir d’un dossier de Skills :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "Où trouver les données du recensement américain.",
+          "Comment les charger dans une base de données.",
+          "Comment repérer des histoires intéressantes dans un jeu de données.",
+          "Comment visualiser les résultats avec D3."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Résultat, selon lui : un agent de journalisme de données fait « d’un dossier rempli de fichiers Markdown » et de quelques bouts de code Python. Pas besoin de programmation complexe : écrivez vos instructions comme si vous formiez un stagiaire brillant. Cessez de vous demander « à quoi ce chatbot peut-il répondre ? » et demandez-vous « quelles tâches sur ordinateur puis-je automatiser ? ». Si vous pouvez le faire en tapant des commandes, Claude peut apprendre à le faire."
+      },
+      {
+        "t": "p",
+        "x": "**Le conseil de prompting** : avec Claude Code, rédigez vos instructions comme une documentation, claire, étape par étape, avec des exemples. Inspirez-vous du format [AGENTS.md](https://agents.md/), et lisez les [bonnes pratiques d’Anthropic pour écrire des Skills](https://docs.claude.com/en/docs/agents-and-tools/agent-skills/best-practices), [quand les utiliser](https://support.claude.com/en/articles/12580051-teach-claude-your-way-of-working-using-skills) et [ce recueil d’exemples](https://github.com/anthropics/claude-cookbooks/tree/main/skills)."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt pour écrire une Skill dans Claude Code",
+        "type": "prompt",
+        "texte": "Crée une Skill qui t’apprend à [tâche, par exemple : charger un fichier CSV dans une base de données et en tirer des tendances]. Rédige le fichier SKILL.md comme une documentation : objectif, étapes numérotées, commandes à utiliser, exemples d’entrée et de sortie, erreurs fréquentes. Ajoute un script seulement si une étape doit être exécutée de façon fiable.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Une Skill n’est qu’un fichier d’instructions bien écrit : si vous savez documenter une tâche, vous savez fabriquer un agent.",
+    "source": {
+      "cle": "the-web-is-revolting-against-ai-scrapers",
+      "date": "2025-10-20",
+      "url": "https://www.theneurondaily.com/p/the-web-is-revolting-against-ai-scrapers",
+      "newsletter": "The web is revolting against AI scrapers",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 The web is revolting against AI scrapers"
+    }
+  },
+  {
+    "id": "poser-vos-questions-de-debutant-a-l-ia-puis-partager-l-echange",
+    "titre": "Poser vos questions de débutant à l’IA, puis partager l’échange",
+    "resume": "Andrej Karpathy charge un document dans ChatGPT pour y poser toutes ses questions basiques, puis partage la conversation avec l’auteur, qui voit ainsi où les lecteurs décrochent.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Un conseil glissé au cours d’une longue interview d’Andrej Karpathy : utilisez ChatGPT comme « assistant pour questions bêtes ». En lisant récemment un article de biologie, il l’a chargé dans ChatGPT et y a posé toutes ses questions de base. Une fois ses incompréhensions levées, il a partagé toute la conversation avec l’auteur de l’article."
+      },
+      {
+        "t": "p",
+        "x": "Pourquoi ? Voir les questions des débutants aide les experts à mieux expliquer. Karpathy dit qu’il aimerait que les gens partagent leurs « conversations ChatGPT bêtes » sur ses tutoriels : elles lui montrent exactement où les apprenants bloquent."
+      },
+      {
+        "t": "p",
+        "x": "N’ayez donc pas honte des questions basiques. Posez-les d’abord à l’IA, avec le document dans la conversation, puis partagez l’échange avec l’expert, ou avec un collègue ou un responsable si sa façon de communiquer ou son travail vous laisse perplexe. Vous apprendrez plus vite, et vous l’aiderez à mieux transmettre. Assurez-vous simplement qu’il est ouvert aux retours."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de l’assistant pour questions bêtes",
+        "type": "prompt",
+        "texte": "Je te joins [un article, un document ou un tutoriel] que j’ai du mal à comprendre. Je vais te poser toutes mes questions de débutant, même les plus basiques. Réponds simplement, en t’appuyant sur le document, et dis-moi quand la réponse ne s’y trouve pas. Ma première question : [votre question]",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Il n’y a pas de question bête face à une IA : vos incompréhensions, une fois partagées, aident aussi l’expert à mieux expliquer.",
+    "source": {
+      "cle": "andrej-karpathy-s-agi-prediction",
+      "date": "2025-10-19",
+      "url": "https://www.theneurondaily.com/p/andrej-karpathy-s-agi-prediction",
+      "newsletter": "Andrej Karpathy's AGI prediction",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 Andrej Karpathy's AGI prediction"
+    }
+  },
+  {
+    "id": "apprendre-vos-methodes-de-travail-a-claude-avec-les-skills",
+    "titre": "Apprendre vos méthodes de travail à Claude avec les Skills",
+    "resume": "Les Skills sont des dossiers d’instructions que Claude charge seulement quand il en a besoin ; avec le connecteur Microsoft 365, il connaît à la fois vos méthodes et vos données.",
+    "categorie": "memoire",
+    "niveau": "intermediaire",
+    "outils": [
+      "claude"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Anthropic a [lancé](https://x.com/alexalbert__/status/1978877498411880550) les [Agent Skills](https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills) et une [intégration Microsoft 365](https://www.anthropic.com/news/productivity-platforms), deux fonctions qui rendent Claude bien plus utile au travail. Les Skills sont des dossiers d’instructions que Claude ne charge qu’en cas de besoin. Pour créer la vôtre :"
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Allez dans [Settings > Capabilities > Skills](https://claude.ai/settings/capabilities).",
+          "Activez « skill-creator ».",
+          "Laissez Claude vous guider pour construire votre Skill de façon interactive ([la documentation](https://support.claude.com/en/articles/12512198-how-to-create-custom-skills))."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Les Skills peuvent se combiner (Excel et présentations en même temps) et contenir du code exécutable pour des résultats fiables. Elles sont disponibles avec les offres Pro, Max, Team et Enterprise ; parcourez [des exemples de Skills](https://github.com/anthropics/skills)."
+      },
+      {
+        "t": "p",
+        "x": "Pour les offres Team et Enterprise, Claude [peut aussi chercher](https://www.anthropic.com/news/productivity-platforms) dans SharePoint, OneDrive, Outlook et Teams via un seul connecteur MCP. La fonction de recherche d’entreprise crée un projet partagé à l’échelle de l’organisation, alimenté par tous les outils connectés : posez une question sur une règle interne, la réponse est construite à partir des e-mails, des documents et des discussions. Les administrateurs doivent activer ces deux fonctions avant que les équipes puissent s’en servir."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de création d’une Skill",
+        "type": "prompt",
+        "texte": "Aide-moi à créer une Skill pour [processus ou tâche récurrente, par exemple : rédiger nos comptes rendus de réunion]. Pose-moi d’abord des questions sur ma façon de faire : les étapes, les règles à respecter, notre charte, le format attendu et un exemple de bon résultat. Rédige ensuite la Skill.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Les Skills apprennent à Claude comment vous travaillez, les connecteurs lui donnent de quoi travailler : ensemble, ils en font un spécialiste déjà intégré à votre équipe.",
+    "source": {
+      "cle": "ai-for-science-is-getting-real",
+      "date": "2025-10-17",
+      "url": "https://www.theneurondaily.com/p/ai-for-science-is-getting-real",
+      "newsletter": "AI for science is getting real.",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 AI for science is getting real."
+    }
+  },
+  {
+    "id": "obtenir-des-idees-vraiment-variees-en-demandant-leurs-probabilites",
+    "titre": "Obtenir des idées vraiment variées en demandant leurs probabilités",
+    "resume": "Une seule phrase ajoutée avant une tâche créative pousse l’IA à puiser dans toute la gamme de ses réponses possibles, au lieu de resservir la plus sûre et la plus prévisible.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Vous avez remarqué que ChatGPT donne souvent la même réponse « sûre », même quand vous la régénérez ? Des chercheurs de Stanford et de Northeastern [ont trouvé pourquoi](https://www.verbalized-sampling.com/), et comment y remédier en une phrase ([article](https://arxiv.org/pdf/2510.01171), [GitHub](https://github.com/CHATS-lab/verbalized-sampling))."
+      },
+      {
+        "t": "p",
+        "x": "Pendant leur entraînement, les modèles ont appris malgré eux à cacher leurs idées les plus créatives : les évaluateurs humains notaient systématiquement mieux les réponses banales et prévisibles. Le modèle a donc appris à jouer la sécurité. Mais la créativité n’a pas disparu… *elle est seulement mise en sourdine.* Ajoutez la phrase ci-dessous avant toute tâche créative : au lieu de cinq variantes de la même réponse fade, vous obtiendrez cinq réponses complètement différentes. Les résultats de l’étude :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "Écriture créative : des réponses 2,1 fois plus diversifiées.",
+          "Simulation de dialogues : des échanges proches des vraies conversations humaines.",
+          "La technique fonctionne mieux sur les grands modèles, comme GPT-4 et Claude."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Cette technique, appelée *Verbalized Sampling* (échantillonnage verbalisé), fonctionne particulièrement bien sur les modèles les plus puissants : ils connaissent plus de cent blagues mais n’en racontent qu’une. Essayez-la pour le brainstorming, l’écriture créative ou toute tâche où vous voulez une vraie variété."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "La phrase de l’échantillonnage verbalisé",
+        "type": "prompt",
+        "texte": "Génère 5 réponses avec leurs probabilités correspondantes, échantillonnées sur l’ensemble de la distribution :\n\n[votre tâche créative]",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Demander plusieurs réponses avec leurs probabilités fait sortir l’IA de sa réponse par défaut et révèle des idées qu’elle garde d’ordinaire pour elle.",
+    "source": {
+      "cle": "new-ai-models-introducing-veo-3-1-and-claude-haiku-4-5",
+      "date": "2025-10-16",
+      "url": "https://www.theneurondaily.com/p/new-ai-models-introducing-veo-3-1-and-claude-haiku-4-5",
+      "newsletter": "New AI Models: Introducing Veo 3.1 and Claude Haiku 4.5",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 New AI Models: Introducing Veo 3.1 and Claude Haiku 4.5"
+    }
+  },
+  {
+    "id": "demander-a-l-ia-d-ajouter-des-reglages-a-l-outil-qu-elle-cree",
+    "titre": "Demander à l’IA d’ajouter des réglages à l’outil qu’elle crée",
+    "resume": "Plutôt que de multiplier les allers-retours pour ajuster un détail, faites ajouter curseurs, sélecteurs et menus à l’outil généré : vous réglez vous-même, en temps réel.",
+    "categorie": "creer",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Geoffrey Litt a [partagé un schéma](https://x.com/geoffreylitt/status/1978142571911090565/photo/1) sur les « kits de construction logiciels », une méthode qui règle une frustration courante. Quand vous faites construire par l’IA une simulation, un calculateur ou un outil interactif, vous voulez souvent ajuster de petits détails. Deux mauvaises options s’offrent alors à vous :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Modifier le code vous-même** : fastidieux, et il faut savoir programmer.",
+          "**Continuer à discuter avec l’IA** : la boucle est lente et il est difficile d’être précis (« rends le bouton un tout petit peu moins violet ? »)."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "**La solution** : une fois la première version construite, demandez à l’IA d’**ajouter des réglages directement dans l’interface**, pour ajuster les choses vous-même en temps réel. Geoffrey Litt a ainsi fait construire par Claude une simulation à N corps, puis lui a demandé des curseurs pour régler les paramètres depuis son téléphone : il teste désormais différentes valeurs instantanément, sans régénérer tout l’*artifact* à chaque fois."
+      },
+      {
+        "t": "p",
+        "x": "L’idée s’inspire d’une [histoire célèbre](https://www.folklore.org/Calculator_Construction_Set.html) : face aux refus répétés de Steve Jobs sur le design de la calculatrice du Mac, Chris Espinosa a créé une version dont les menus contrôlaient tous les paramètres. Steve Jobs a réglé lui-même sa calculatrice en 10 minutes."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt des curseurs",
+        "type": "prompt",
+        "texte": "Ajoute des curseurs pour régler [la vitesse, la taille, la couleur, l’espacement].",
+        "adapte": false
+      },
+      {
+        "titre": "Le prompt du sélecteur de couleur",
+        "type": "prompt",
+        "texte": "Ajoute un sélecteur de couleur qui contrôle la couleur du bouton.",
+        "adapte": false
+      },
+      {
+        "titre": "Le prompt du menu déroulant",
+        "type": "prompt",
+        "texte": "Ajoute un menu déroulant pour basculer entre les états [déplié/replié].",
+        "adapte": false
+      },
+      {
+        "titre": "Le prompt de réglage complet",
+        "type": "prompt",
+        "texte": "Ajoute des réglages pour tous les paramètres clés, pour que je puisse les ajuster directement.",
+        "adapte": false
+      },
+      {
+        "titre": "Le prompt de Geoffrey Litt",
+        "type": "prompt",
+        "texte": "Ajoute des curseurs pour que je puisse régler les paramètres directement dans l’interface, depuis mon téléphone.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Pour peaufiner ce que l’IA a construit, ne décrivez pas chaque retouche : faites-lui ajouter les boutons qui vous permettent de régler vous-même.",
+    "source": {
+      "cle": "ai-designed-viruses-to-kill-bacteria",
+      "date": "2025-10-15",
+      "url": "https://www.theneurondaily.com/p/ai-designed-viruses-to-kill-bacteria",
+      "newsletter": "AI designed viruses to kill bacteria?!",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 AI designed viruses to kill bacteria?!"
+    }
+  },
+  {
+    "id": "decrire-un-produit-en-une-phrase-claire-et-concrete",
+    "titre": "Décrire un produit en une phrase claire et concrète",
+    "resume": "Une formule simple transforme une description confuse en une phrase lisible qui dit ce que le produit fait pour le lecteur, avec des exemples du style voulu et deux consignes d’affinage.",
+    "categorie": "business",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "C’est la formule qu’utilise The Neuron pour présenter des outils en une ligne. Elle transforme une description confuse en une phrase claire, facile à parcourir, qui explique ce que votre produit fait *vraiment*."
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "**Donnez la structure** : nom + verbe + ce que fait le produit + levée de fonds (si elle est mentionnée), dans un langage clair et non technique, à la deuxième personne.",
+          "**Collez des exemples** du style voulu.",
+          "**Ajoutez les consignes d’affinage** : éviter « propulsé par l’IA », rendre la phrase concrète, montrer plutôt que dire."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Les deux dernières consignes font toute la différence : en ajoutant « rends-la plus concrète, montre plutôt que dis », The Neuron améliore 90 % des phrases mauvaises ou difficiles à comprendre. Le public veut des résultats et se moque de savoir s’il y a de l’IA dedans. Dites aux gens ce que votre produit fera pour eux, pas quels mots à la mode il coche."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de description en une phrase",
+        "type": "prompt",
+        "texte": "Résume ceci en une phrase. Format : nom + verbe + ce que fait le produit + levée de fonds (si elle est mentionnée). Utilise un langage clair et non technique. Écris à la deuxième personne, en t’adressant directement au lecteur (« vous »).\n\nExemples du style voulu :\n- « Spiral automatise 80 % de vos tâches d’écriture quotidiennes tout en conservant votre voix, votre ton et votre style. »\n- « Daydream est un moteur de recherche e-commerce qui vous propose des résultats d’achat personnalisés (50 millions de dollars levés). »\n\nNe dis pas « propulsé par l’IA », sauf si c’est absolument nécessaire. Rends la phrase concrète : le lecteur doit comprendre immédiatement, grâce à un exemple tiré de la vie réelle. Montre plutôt que dis.\n\n[description de votre produit]",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Décrivez ce que le produit fait pour le lecteur, avec un exemple concret, plutôt que les mots à la mode qu’il coche.",
+    "source": {
+      "cle": "samsung-s-impressive-tiny-ai-win",
+      "date": "2025-10-13",
+      "url": "https://www.theneurondaily.com/p/samsung-s-impressive-tiny-ai-win",
+      "newsletter": "Samsung's impressive tiny AI win",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 Samsung's impressive tiny AI win"
+    }
+  },
+  {
+    "id": "se-former-au-prompting-avec-les-guides-officiels-des-editeurs",
+    "titre": "Se former au prompting avec les guides officiels des éditeurs",
+    "resume": "Anthropic propose un tutoriel interactif de prompting, des bases à la prévention des inventions, et Anthropic comme OpenAI publient des guides à jour pour leurs derniers modèles.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "claude",
+      "chatgpt"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Le [tutoriel interactif de prompt engineering](https://github.com/anthropics/prompt-eng-interactive-tutorial) d’Anthropic vous apprend à écrire des prompts efficaces pour Claude par des exercices pratiques : des bases de la structure jusqu’aux techniques avancées, comme la prévention des inventions ou les applications propres à un secteur. Il existe aussi une [version Google Sheets](https://docs.google.com/spreadsheets/d/19jzLgRruG9kjUQNKtCg1ZjdD6l6weA6qRXG5zLIAhC8/edit?usp=sharing)."
+      },
+      {
+        "t": "p",
+        "x": "Ce tutoriel commence à dater, mais il reste utile si vous débutez avec l’IA et le prompting. Pour des ressources plus récentes :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "Le guide d’Anthropic pour [Claude 4](https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/claude-4-best-practices).",
+          "Le [guide de prompting d’OpenAI pour GPT-5](https://github.com/openai/openai-cookbook/blob/main/examples/gpt-5/gpt-5_prompting_guide.ipynb), si vous utilisez ChatGPT.",
+          "Les conseils d’Anthropic pour la [réflexion étendue](https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/extended-thinking-tips) (*Extended Thinking*), qui concernent les versions de ses modèles qui « raisonnent » avant de répondre. Le mode *Thinking* de ChatGPT est comparable, avec plusieurs niveaux de réflexion."
+        ]
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de correction d’exercice",
+        "type": "prompt",
+        "texte": "Je suis le tutoriel interactif de prompting d’Anthropic. Voici la consigne de l’exercice : [consigne]\n\nEt voici le prompt que j’ai écrit : [votre prompt]\n\nDis-moi ce qui fonctionne et ce qui manque, puis propose une version améliorée en expliquant chaque changement.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Les éditeurs publient eux-mêmes les meilleurs guides de prompting pour leurs modèles : partez de là, et mettez-vous à jour à chaque nouvelle génération.",
+    "source": {
+      "cle": "is-this-the-model-t-moment-for-robots",
+      "date": "2025-10-12",
+      "url": "https://www.theneurondaily.com/p/is-this-the-model-t-moment-for-robots",
+      "newsletter": "Is this the \"Model T moment\" for robots?",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 Is this the \"Model T moment\" for robots?"
+    }
+  },
+  {
+    "id": "obtenir-des-reponses-moins-banales-avec-trois-cadrages-inattendus",
+    "titre": "Obtenir des réponses moins banales avec trois cadrages inattendus",
+    "resume": "Demander une « version 2.0 », imposer une contrainte arbitraire ou imaginer un public : trois astuces simples, repérées sur Reddit, pour sortir l’IA de ses réponses convenues.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Un utilisateur de Reddit affirme qu’on obtient de meilleurs résultats en [« manipulant » l’IA](https://www.reddit.com/r/PromptEngineering/comments/1o224ce/ive_been_gaslighting_my_ai_and_its_producing/). La moitié des commentaires ont crié au bluff, mais quelques astuces fonctionnent vraiment :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Demandez une « version 2.0 »** au lieu de « améliore ceci » : cela signale une innovation plutôt qu’un simple polissage. L’IA traite la demande comme une suite, pas comme une retouche.",
+          "**Imposez une contrainte arbitraire** : « explique ceci uniquement avec des analogies sportives », par exemple, oblige à une réflexion créative plutôt qu’à une explication générique.",
+          "**Ajoutez un public** : « explique comme si tu enseignais devant un amphithéâtre plein » change complètement la structure. Vous obtenez des exemples, des questions anticipées et un meilleur enchaînement."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Attention : d’autres astuces citées dans le fil (comme celle du QI) risquent surtout de produire des absurdités plus convaincantes. Des sceptiques sur Reddit ont noté qu’elles peuvent augmenter les inventions."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt version 2.0",
+        "type": "prompt",
+        "texte": "Donne-moi une version 2.0 de ceci :\n\n[votre texte ou idée]",
+        "adapte": false
+      },
+      {
+        "titre": "Le prompt à contrainte arbitraire",
+        "type": "prompt",
+        "texte": "Explique ceci en utilisant uniquement des [analogies sportives] :\n\n[sujet]",
+        "adapte": false
+      },
+      {
+        "titre": "Le prompt avec public",
+        "type": "prompt",
+        "texte": "Explique [sujet] comme si tu enseignais devant un amphithéâtre plein.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Un cadrage inattendu, comme une suite, une contrainte ou un public, pousse l’IA hors de ses réponses par défaut ; gardez un œil critique sur les astuces plus douteuses.",
+    "source": {
+      "cle": "so-ai-can-be-poisoned-like-really-easily",
+      "date": "2025-10-10",
+      "url": "https://www.theneurondaily.com/p/so-ai-can-be-poisoned-like-really-easily",
+      "newsletter": "So AI can be poisoned like, really easily",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 So AI can be poisoned like, really easily"
+    }
+  },
+  {
+    "id": "creer-une-application-en-la-decrivant-a-voix-haute-dans-ai-studio",
+    "titre": "Créer une application en la décrivant à voix haute dans AI Studio",
+    "resume": "Dans Google AI Studio, le bouton micro vous permet de décrire votre idée d’application à l’oral, de la voir se construire en temps réel, puis de l’ajuster de vive voix.",
+    "categorie": "coder",
+    "niveau": "intermediaire",
+    "outils": [
+      "gemini"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Vous pouvez désormais [créer une application à la voix dans Google AI Studio](https://aistudio.google.com/apps) : cliquez sur le petit bouton micro pour dicter, décrivez votre idée d’application à voix haute et regardez-la se construire en temps réel. Vous pouvez ensuite donner vos retours sur l’application de la même façon, à l’oral."
+      },
+      {
+        "t": "p",
+        "x": "Pour bien démarrer ce type de projet, The Neuron recommande ce [guide complet du vibe coding](https://www.reddit.com/r/ClaudeAI/comments/1kivv0w/the_ultimate_vibe_coding_guide/), c’est-à-dire l’art de programmer en décrivant ce que l’on veut en langage courant."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt à dicter pour lancer l’application",
+        "type": "prompt",
+        "texte": "Je veux créer une application qui [ce que fait l’application]. Elle s’adresse à [utilisateurs]. L’écran principal doit montrer [éléments principaux]. Commence par une version simple qui fonctionne, puis je te dirai à voix haute ce qu’il faut modifier.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Parler est souvent plus rapide qu’écrire : décrivez votre application à voix haute et corrigez-la au fil de l’eau.",
+    "source": {
+      "cle": "americans-just-voted-58-of-jobs-should-go-to-ai",
+      "date": "2025-10-09",
+      "url": "https://www.theneurondaily.com/p/americans-just-voted-58-of-jobs-should-go-to-ai",
+      "newsletter": "Americans just voted: 58% of jobs should go to AI",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Americans just voted: 58% of jobs should go to AI"
+    }
+  },
+  {
+    "id": "confier-a-un-agent-ia-la-recherche-d-un-rendez-vous-administratif",
+    "titre": "Confier à un agent IA la recherche d’un rendez-vous administratif",
+    "resume": "En mode agent, ChatGPT peut parcourir les sites de réservation à votre place pour trouver un créneau libre dans un rayon donné, parfois dès le jour même.",
+    "categorie": "automatiser",
+    "niveau": "intermediaire",
+    "outils": [
+      "chatgpt"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Vous ne voulez plus faire la queue au DMV, l’administration américaine des permis de conduire ? The Neuron a testé ce prompt avec ChatGPT Agent, et il a parfaitement fonctionné : Corey, de l’équipe, l’a lancé à Saint-Louis et a obtenu un rendez-vous disponible *le jour même*. Beaucoup d’agences ont des créneaux libres, surtout dans les petites villes."
+      },
+      {
+        "t": "p",
+        "x": "L’astuce consiste à élargir le rayon de recherche : il y a des agences partout, et n’importe laquelle convient tant qu’elle se trouve dans votre État. Adaptez le prompt à l’administration ou au service qui vous concerne, du moment qu’il propose une réservation en ligne."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de recherche de rendez-vous",
+        "type": "prompt",
+        "texte": "J’essaie de prendre un rendez-vous auprès de [administration ou service] pour [motif, par exemple : une demande de permis de conduire pour ma femme]. Nous habitons à [votre ville]. Je suis prêt à faire jusqu’à [distance] km de route, mais le rendez-vous doit être dans [votre région ou province]. Peux-tu trouver un créneau disponible pour [motif] le [date du jour] ?",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Un agent IA excelle dans les recherches en ligne fastidieuses : donnez-lui un objectif, un périmètre et des contraintes claires.",
+    "source": {
+      "cle": "google-s-new-ai-actually-controls-your-computer",
+      "date": "2025-10-08",
+      "url": "https://www.theneurondaily.com/p/google-s-new-ai-actually-controls-your-computer",
+      "newsletter": "Google's new AI actually controls your computer",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 Google's new AI actually controls your computer"
+    }
+  },
+  {
+    "id": "structurer-vos-prompts-video-pour-sora-2-plan-par-plan",
+    "titre": "Structurer vos prompts vidéo pour Sora 2 plan par plan",
+    "resume": "Le guide officiel d’OpenAI pour Sora 2 se résume en quelques règles : un plan, un mouvement, une action, des couleurs précises et des temps forts calés sur la durée du clip.",
+    "categorie": "creer",
+    "niveau": "intermediaire",
+    "outils": [
+      "autre"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "OpenAI a publié un [guide pour rédiger des prompts Sora 2](https://cookbook.openai.com/examples/sora/sora2_prompting_guide), son modèle de génération vidéo, désormais aussi disponible via l’API. L’essentiel :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Réglez le cadre technique dans le code** : modèle, format, durée. Le texte du prompt ne les changera pas.",
+          "**Un plan, un mouvement de caméra, une action claire**, calés sur la durée du clip, avec des temps forts (t=1s, t=fin).",
+          "**Des éléments visuels concrets et une palette de 3 à 5 couleurs** ; réutilisez les mêmes formulations d’un clip à l’autre pour garder la continuité.",
+          "**Une image de référence fixe** le personnage, sa tenue ou le décor ; avec Remix, ne changez qu’une chose à la fois.",
+          "**Des dialogues courts, dans une section à part**, avec le nom de chaque personnage."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Le mini-modèle ci-dessous reprend cette structure : remplacez chaque élément entre crochets et supprimez les sections facultatives dont vous n’avez pas besoin."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le mini-modèle de prompt Sora 2",
+        "type": "prompt",
+        "texte": "[Description de la scène : sujet, lieu, moment, accessoires clés]\n\nPrise de vue : [type de plan + angle], [un seul mouvement de caméra], [objectif / profondeur de champ]\n\nLumière et palette : [lumière principale / d’appoint / de contour] ; couleurs : [A, B, C]\n\nTemps forts de l’action : [t=1s], [t=3s], [t=fin]\n\nDialogue (facultatif) :\n- [Nom] : « Réplique courte. »\n\nSon (facultatif) : [bref son entendu dans la scène]",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Un prompt vidéo efficace décrit un seul plan, comme le ferait un réalisateur : cadre, mouvement, lumière, couleurs et minutage de l’action.",
+    "source": {
+      "cle": "you-can-now-build-agents-and-apps-inside-chatgpt",
+      "date": "2025-10-07",
+      "url": "https://www.theneurondaily.com/p/you-can-now-build-agents-and-apps-inside-chatgpt",
+      "newsletter": "You can now build agents and apps inside ChatGPT",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 You can now build agents and apps inside ChatGPT"
+    }
+  },
+  {
+    "id": "faire-ecrire-et-optimiser-vos-prompts-automatiquement-avec-dspy",
+    "titre": "Faire écrire et optimiser vos prompts automatiquement avec DSPy",
+    "resume": "DSPy, un framework open source, traite le prompting comme de la programmation : vous définissez la tâche et des données d’évaluation, il écrit et teste lui-même les variantes de prompts.",
+    "categorie": "outils",
+    "niveau": "avance",
+    "outils": [
+      "autre"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Et si vous arrêtiez d’écrire vos prompts pour laisser l’IA s’en charger ? Selon [Simon Willison](https://x.com/simonw/status/1974612093119926301), cette [conférence de 30 minutes de Drew Breunig](https://www.youtube.com/watch?v=I9ZtkgYZnOw) est la meilleure explication de [DSPy](https://dspy.ai/), un [framework open source](https://github.com/stanfordnlp/dspy) qui traite le prompting comme de la programmation, et non comme l’art d’assembler des phrases. Dans l’exemple présenté, générer automatiquement des prompts optimisés au lieu de les écrire à la main a fait passer la précision de 60 % à 82 %, avec 14 lignes de code."
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "**Définissez votre tâche** : ce qui entre et ce qui doit sortir.",
+          "**Fournissez des données d’évaluation** : des exemples d’entrées avec le résultat attendu.",
+          "**Laissez DSPy travailler** : il utilise un grand modèle pour écrire et tester des variantes de prompts.",
+          "**Changez de modèle sans tout réécrire** : DSPy réoptimise automatiquement les prompts pour chaque nouveau modèle."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Il y aura toujours un meilleur modèle demain. Inutile de passer des heures à peaufiner des prompts qui seront dépassés la semaine prochaine : écrivez des *tâches*, pas des prompts. Les [notes de Simon Willison](https://simonwillison.net/2025/Oct/4/drew-on-dspy/) résument la conférence."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt pour préparer une tâche DSPy",
+        "type": "prompt",
+        "texte": "Je veux utiliser DSPy pour automatiser cette tâche : [description de la tâche].\n\nAide-moi à la préparer :\n1. Définis précisément l’entrée et la sortie attendue.\n2. À partir de ces cas réels, constitue un jeu d’évaluation (une entrée et le résultat attendu pour chacun) : [vos exemples].\n3. Propose une mesure simple pour juger si une sortie est correcte.\n4. Écris le code Python DSPy minimal qui optimise automatiquement le prompt pour cette tâche.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Écrivez des tâches, pas des prompts : avec une définition claire et des exemples d’évaluation, l’outil trouve lui-même le meilleur prompt pour chaque modèle.",
+    "source": {
+      "cle": "everything-that-happened-in-ai-this-weekend",
+      "date": "2025-10-06",
+      "url": "https://www.theneurondaily.com/p/everything-that-happened-in-ai-this-weekend",
+      "newsletter": "Everything that happened in AI this weekend",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸Everything that happened in AI this weekend"
+    }
+  },
+  {
+    "id": "donner-a-l-ia-un-document-de-reference-avec-tout-votre-contexte",
+    "titre": "Donner à l’IA un document de référence avec tout votre contexte",
+    "resume": "Dwarkesh Patel colle en début de session un document de 20 000 mots qui réunit tout son contexte de travail, et se sert de l’IA comme d’un tuteur socratique pour apprendre.",
+    "categorie": "memoire",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Lors d’une [conférence sur l’avenir de l’IA au salon HubSpot INBOUND](https://youtu.be/VwLE2KqX9xU?si=TqBBHQDGSiSGMOXc), le podcasteur Dwarkesh Patel a expliqué comment il utilise l’IA au quotidien :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Construire un document de référence complet** : il tient un Google Doc de 20 000 mots qui réunit tout son contexte de travail (journal des problèmes, notes de réunion, modèles d’e-mails, prompts courants) et le colle au début des sessions concernées. Un modèle de langage peut assimiler instantanément des centaines de pages sur votre entreprise avant de répondre ; un humain, non.",
+          "**Utiliser l’IA comme un tuteur socratique, pas comme un conférencier** : au lieu de « explique-moi X », demandez-lui de vous poser des questions (prompt ci-dessous). Les travaux de Benjamin Bloom ont montré que le tutorat individuel fait mieux que l’enseignement en classe de [deux écarts-types](https://en.wikipedia.org/wiki/Bloom%27s_2_sigma_problem). Nous avons enfin accès à des tuteurs experts dans tous les domaines, à condition de bien les solliciter, ou d’utiliser le mode [« Study and learn »](https://chatgpt.com/?hints=study) de ChatGPT.",
+          "**Ne pas attendre les outils IA de votre organisation** : ils arrivent lentement et sont souvent dépassés. Expérimentez vous-même. La plupart des outils sont gratuits ou coûtent environ 20 dollars par mois ; les meilleures formules coûtent environ 200 dollars, pour une qualité souvent bien supérieure. Via l’API, vous pouvez aussi payer à l’usage avec un service [comme OpenRouter](https://openrouter.ai/) ([voici comment](https://www.youtube.com/watch?v=XK8Kp4Tkb88))."
+        ]
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt d’ouverture avec votre document de référence",
+        "type": "prompt",
+        "texte": "Voici mon document de référence, qui réunit mon contexte de travail (problèmes en cours, notes de réunion, modèles d’e-mails, prompts habituels) :\n\n[votre document de référence]\n\nLis-le entièrement et appuie-toi dessus pour toutes tes réponses dans cette conversation. Ma première demande : [votre demande]",
+        "adapte": true
+      },
+      {
+        "titre": "Le prompt du tuteur socratique",
+        "type": "prompt",
+        "texte": "Agis comme un tuteur socratique. Pose-moi des questions qui m’aident à comprendre ce concept : [concept]. Ne passe pas à la suite tant que je n’ai pas prouvé que j’ai compris.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Une IA n’apprend pas votre métier au fil des mois, mais elle peut absorber tout votre contexte en quelques secondes avant chaque réponse : fournissez-le-lui.",
+    "source": {
+      "cle": "ibm-just-beat-models-12x-its-size",
+      "date": "2025-10-03",
+      "url": "https://www.theneurondaily.com/p/ibm-just-beat-models-12x-its-size",
+      "newsletter": "IBM just beat models 12x its size",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 IBM just beat models 12x its size"
+    }
+  },
+  {
+    "id": "trouver-la-formation-gratuite-en-ia-adaptee-a-vos-objectifs",
+    "titre": "Trouver la formation gratuite en IA adaptée à vos objectifs",
+    "resume": "Microsoft propose 18 leçons gratuites sur l’IA générative et d’autres listes recensent des dizaines de cours : faites-vous interviewer par l’IA pour choisir celui qui vous convient.",
+    "categorie": "outils",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Microsoft propose [un cours gratuit](https://github.com/microsoft/generative-ai-for-beginners/tree/main/01-introduction-to-genai) de 18 leçons sur l’IA générative, [repéré sur Reddit](https://www.reddit.com/r/ThinkingDeeplyAI/comments/1nstpcr/microsoft_just_dropped_18_free_ai_courses_that/) : une bonne base pour progresser sans payer un bootcamp hors de prix. Le programme va des bases du prompting à la création de vraies applications, avec du code Python et TypeScript prêt à exécuter. Les leçons à ne pas manquer :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "[Les bases du prompt engineering](https://github.com/microsoft/generative-ai-for-beginners/tree/main/04-prompt-engineering-fundamentals) : écrire des prompts qui fonctionnent de façon fiable.",
+          "[La génération augmentée par récupération (RAG)](https://github.com/microsoft/generative-ai-for-beginners/tree/main/15-rag-and-vector-databases) : combiner les grands modèles de langage (comme celui de ChatGPT) avec vos propres données.",
+          "[Les agents IA](https://github.com/microsoft/generative-ai-for-beginners/tree/main/17-ai-agents) : construire des IA autonomes, capables de planifier et d’exécuter des tâches."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Chaque leçon contient des exemples de code à copier et à exécuter ; comptez au moins 4 heures pour tout parcourir en avançant vite."
+      },
+      {
+        "t": "p",
+        "x": "Pour aller plus loin, cette [liste de 77 formations gratuites en IA](https://syntaxandscript.com/free-online-ai-courses/) est très bien organisée. Si vous vous y perdez, donnez le lien à ChatGPT et demandez-lui de vous interviewer sur vos objectifs pour vous recommander la meilleure formation. [DeepLearning.AI](https://www.deeplearning.ai/) propose aussi [de nombreux cours](https://www.deeplearning.ai/courses/) pour tous les niveaux."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt pour choisir une formation",
+        "type": "prompt",
+        "texte": "Voici une liste de formations gratuites en IA : https://syntaxandscript.com/free-online-ai-courses/\n\nInterviewe-moi pour comprendre mes objectifs, puis recommande-moi la formation de cette liste qui me convient le mieux.",
+        "adapte": false
+      },
+      {
+        "titre": "Le prompt pour trouver des ressources vidéo",
+        "type": "prompt",
+        "texte": "Voici mes objectifs d’apprentissage en IA : [vos objectifs]. Recommande-moi les meilleures chaînes YouTube, vidéos et formations pour les atteindre.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Inutile de payer cher pour se former à l’IA : les bonnes ressources gratuites existent, et l’IA peut vous aider à choisir la vôtre.",
+    "source": {
+      "cle": "ai-s-newest-flex-robot-armies-that-do-chemistry",
+      "date": "2025-10-02",
+      "url": "https://www.theneurondaily.com/p/ai-s-newest-flex-robot-armies-that-do-chemistry",
+      "newsletter": "AI's newest flex: robot armies that do chemistry",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 AI's newest flex: robot armies that do chemistry"
+    }
+  },
+  {
+    "id": "doser-le-contexte-de-vos-agents-ia-plutot-que-tout-y-entasser",
+    "titre": "Doser le contexte de vos agents IA plutôt que tout y entasser",
+    "resume": "Selon le guide d’Anthropic, l’attention d’une IA est limitée : des instructions bien calibrées, peu d’outils et quelques bons exemples valent mieux qu’un prompt fourre-tout.",
+    "categorie": "automatiser",
+    "niveau": "intermediaire",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Anthropic a publié [un guide sur l’ingénierie du contexte](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) (*context engineering*), précieux si vous construisez vos propres agents. Son message principal : arrêtez d’entasser tout dans vos prompts."
+      },
+      {
+        "t": "p",
+        "x": "**L’idée** : le contexte (tout ce que vous transmettez à l’IA) est sa mémoire de travail, et il dispose d’un budget d’attention limité. Trop d’informations, et elle perd le fil, comme nous en réunion à 15 h. Ce qui compte vraiment quand vous construisez un workflow d’IA :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Écrivez vos instructions à la bonne altitude** : ni trop rigides (« si l’utilisateur dit X, fais Y »), ni trop vagues (« sois utile »). Visez le juste milieu, qui guide clairement sans tout microgérer.",
+          "**Limitez les outils au strict nécessaire** : si vous-même ne savez pas quel outil l’IA devrait utiliser dans une situation, elle non plus. La clarté vaut mieux que l’exhaustivité.",
+          "**Donnez des exemples variés plutôt que des listes exhaustives** : montrez 3 à 5 excellents exemples de ce que vous voulez au lieu d’énumérer tous les cas particuliers possibles."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Claude Code, par exemple, ne charge pas tout un projet dans son contexte : il va chercher les fichiers « juste à temps » avec ses outils. De la même façon, vous ne mémorisez pas tout le contenu de vos classeurs, seulement l’endroit où se trouve chaque chose."
+      },
+      {
+        "t": "p",
+        "x": "**En bref** : traitez le contexte comme une ressource précieuse. Souvent, moins, c’est mieux."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt d’audit des instructions d’un agent",
+        "type": "prompt",
+        "texte": "Voici les instructions de mon agent IA :\n\n[vos instructions]\n\nAnalyse-les selon trois principes :\n1. La bonne altitude : signale ce qui est trop rigide (règles du type « si X, fais Y ») ou trop vague (« sois utile »).\n2. Des outils au strict nécessaire : repère les outils redondants ou dont l’usage n’est pas évident.\n3. Des exemples variés : remplace les longues listes de cas particuliers par 3 à 5 exemples représentatifs.\n\nPropose ensuite une version plus courte et plus claire.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Le contexte d’une IA est un budget d’attention : chaque information superflue dilue celles qui comptent.",
+    "source": {
+      "cle": "meet-sora-2-openai-s-new-multi-player-meme-creation-machine",
+      "date": "2025-10-01",
+      "url": "https://www.theneurondaily.com/p/meet-sora-2-openai-s-new-multi-player-meme-creation-machine",
+      "newsletter": "Meet Sora 2: OpenAI's new \"multi-player meme creation machine\"",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 Meet Sora 2: OpenAI's new \"multi-player meme creation machine\""
+    }
+  },
+  {
+    "id": "creer-une-photo-de-profil-professionnelle-avec-nano-banana",
+    "titre": "Créer une photo de profil professionnelle avec Nano Banana",
+    "resume": "À partir d’une photo récente, le modèle d’images de Gemini peut produire un portrait professionnel pour LinkedIn, à condition de préciser lumière, cadrage, tenue et arrière-plan.",
+    "categorie": "creer",
+    "niveau": "debutant",
+    "outils": [
+      "gemini"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Vous cherchez un emploi ou voulez rafraîchir votre profil LinkedIn ? [Olivia Moore](https://x.com/omooretweets/status/1972720307439071333) a relayé [une série de conseils de Google Gemini](https://x.com/GeminiApp/status/1972677854380044689) pour créer un nouveau portrait professionnel avec Nano Banana, son outil de retouche d’images. Voici ce qu’il faut préciser dans votre prompt :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Lumière** : « un éclairage de studio doux mais qui donne du relief, avec un léger reflet de lumière dans les yeux ».",
+          "**Cadrage** : un plan poitrine avec de l’espace au-dessus de la tête, face à l’objectif, avec une expression « confiante et accessible ».",
+          "**Tenue** : « un blazer contemporain, les cheveux coiffés de façon détendue mais professionnelle, avec une netteté sur chaque mèche ».",
+          "**Arrière-plan** : « un fond de studio neutre, uni »."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Le [prompt complet](https://x.com/GeminiApp/status/1972678638542766459) existe aussi [en version Google Docs](https://docs.google.com/document/d/1WxCWeul7AK-uljOJCe-QsxFjgsKg0xP9uNKouEly7Zo/copy) : collez-le [dans Gemini](https://gemini.google.com/) avec une photo récente de vous. Voici [un exemple réussi](https://x.com/rejthable/status/1972753778945495222)."
+      },
+      {
+        "t": "p",
+        "x": "Si le résultat ne vous convient pas du premier coup, réessayez plusieurs fois avec d’autres photos de départ."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de portrait professionnel",
+        "type": "prompt",
+        "texte": "À partir de la photo jointe, crée un portrait professionnel de moi, en gardant mon visage parfaitement reconnaissable.\n\nLumière : un éclairage de studio doux mais qui donne du relief, avec un léger reflet de lumière dans les yeux.\nCadrage : plan poitrine, avec de l’espace au-dessus de la tête, face à l’objectif, expression confiante et accessible.\nTenue : un blazer contemporain, les cheveux coiffés de façon détendue mais professionnelle, avec une netteté sur chaque mèche.\nArrière-plan : un fond de studio neutre, uni.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Pour un portrait réussi, décrivez la photo comme un photographe : lumière, cadrage, tenue et fond, plutôt que « fais-moi une belle photo ».",
+    "source": {
+      "cle": "claude-sonnet-4-5-buy-it-in-chatgpt-microsoft-vibeworkers",
+      "date": "2025-09-30",
+      "url": "https://www.theneurondaily.com/p/claude-sonnet-4-5-buy-it-in-chatgpt-microsoft-vibeworkers",
+      "newsletter": "Claude Sonnet 4.5, Buy it in ChatGPT, Microsoft \"Vibeworkers\"",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 Claude Sonnet 4.5, Buy it in ChatGPT, Microsoft \"Vibeworkers\""
+    }
+  },
+  {
+    "id": "generer-plusieurs-objets-d-e-mail-pour-choisir-le-plus-accrocheur",
+    "titre": "Générer plusieurs objets d’e-mail pour choisir le plus accrocheur",
+    "resume": "Un prompt installé dans un projet génère huit objets d’e-mail, chacun fondé sur un levier psychologique différent : vous choisissez au lieu d’accepter la première proposition.",
+    "categorie": "business",
+    "niveau": "intermediaire",
+    "outils": [
+      "chatgpt",
+      "gemini",
+      "claude"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Ryan Carr, de la newsletter de « vibe marketing » Moodboard, a [partagé son prompt pour écrire des objets d’e-mail](https://moodboard.beehiiv.com/p/increase-your-email-open-rates-with-this-prompt). Il est simple mais efficace : The Neuron l’a utilisé pour l’objet de sa propre newsletter. Le prompt complet est trop long pour être reproduit ici ; en résumé :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "Il génère **8 objets différents**, chacun fondé sur un levier psychologique éprouvé.",
+          "Les 8 stratégies : l’écart de curiosité (la plus importante), le bénéfice, l’urgence, la question, les chiffres, le contre-pied, l’histoire et l’affirmation directe.",
+          "Ses règles : moins de 50 caractères, pas de mots qui déclenchent les filtres anti-spam, des mots percutants, un ton conversationnel plutôt qu’institutionnel."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "**L’idée clé** : demandez des options. Au lieu d’accepter une seule réponse de l’IA, faites-lui proposer plusieurs angles parmi lesquels choisir. C’est une bonne pratique pour tous vos prompts."
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Copiez le modèle de prompt de l’article (ou la version adaptée ci-dessous) dans les instructions d’un projet, d’un Gem dans Gemini ou d’un GPT personnalisé ; le projet est le plus simple.",
+          "Remplacez la mention « [Collez ici le contenu de votre newsletter ou e-mail] » par « le contenu à utiliser sera collé ou joint dans la conversation ».",
+          "Collez le texte complet de votre e-mail dans la conversation et envoyez.",
+          "Choisissez vos objets préférés, ou demandez-en d’autres en précisant ce que vous voulez plus ou moins."
+        ]
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Les instructions du générateur d’objets",
+        "type": "prompt",
+        "texte": "Tu es expert en rédaction d’objets d’e-mail. Le contenu à utiliser sera collé ou joint dans la conversation.\n\nPropose 8 objets différents pour cet e-mail, un par stratégie :\n1. Écart de curiosité\n2. Bénéfice pour le lecteur\n3. Urgence\n4. Question\n5. Chiffres ou données\n6. Contre-pied\n7. Histoire\n8. Affirmation directe\n\nRègles : moins de 50 caractères par objet, aucun mot qui déclenche les filtres anti-spam, des mots percutants, un ton conversationnel plutôt qu’institutionnel. Indique la stratégie utilisée à côté de chaque objet.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Demandez des options plutôt qu’une réponse unique : choisir parmi plusieurs angles donne presque toujours un meilleur résultat.",
+    "source": {
+      "cle": "is-chatgpt-pulse-openai-s-first-attempt-at-a-social-network",
+      "date": "2025-09-29",
+      "url": "https://www.theneurondaily.com/p/is-chatgpt-pulse-openai-s-first-attempt-at-a-social-network",
+      "newsletter": "Is ChatGPT Pulse OpenAI's first attempt at a social network??",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 Is ChatGPT Pulse OpenAI's first attempt at a social network??"
+    }
+  },
+  {
+    "id": "faire-supprimer-les-phrases-les-moins-utiles-d-un-texte",
+    "titre": "Faire supprimer les phrases les moins utiles d’un texte",
+    "resume": "Demandez à l’IA de retirer de son texte les phrases qui apportent le moins de valeur : il devient plus court, et ce qu’elle retire vous révèle aussi ce qui compte pour vous.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Pour lutter contre le *workslop*, ces contenus produits par l’IA qui ont l’air soignés mais n’apportent pas grand-chose, essayez cette astuce : demandez à votre IA de supprimer les phrases les moins utiles de ce qu’elle vient d’écrire, en choisissant vous-même combien."
+      },
+      {
+        "t": "p",
+        "x": "Regardez ce qu’elle retire, et si le texte devient plus court et plus facile à lire. À l’inverse, si elle supprime quelque chose qui compte vraiment pour vous, *vous savez désormais que c’est important.*"
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt d’élagage",
+        "type": "prompt",
+        "texte": "Supprime les [nombre] phrases qui apportent le moins de valeur dans ce que tu viens d’écrire, tout en restant fidèle à 100 % aux idées clés.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Faire élaguer un texte sert deux fois : il gagne en concision, et chaque coupe qui vous gêne révèle ce qui compte vraiment.",
+    "source": {
+      "cle": "chatgpt-has-no-goals-and-that-s-a-problem",
+      "date": "2025-09-28",
+      "url": "https://www.theneurondaily.com/p/chatgpt-has-no-goals-and-that-s-a-problem",
+      "newsletter": "ChatGPT has no goals (and that's a problem)",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 ChatGPT has no goals (and that's a problem)"
+    }
+  },
+  {
+    "id": "utiliser-8-prompts-plebiscites-par-les-utilisateurs-de-chatgpt",
+    "titre": "Utiliser 8 prompts plébiscités par les utilisateurs de ChatGPT",
+    "resume": "Une sélection des meilleurs prompts proposés sur Reddit : faire réécrire votre prompt, poser des questions avant de répondre, répondre en trois passes, critiquer, itérer…",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Un [fil du forum r/ChatGPT](https://www.reddit.com/r/ChatGPT/comments/1nghrv0/whats_a_chatgpt_prompt_you_wish_everyone_knew/) demandait quels prompts tout le monde devrait connaître. Voici les meilleures réponses, à copier telles quelles :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Faire réécrire votre prompt** par l’IA, puis coller sa version dans le message suivant.",
+          "**Traquer les incohérences d’une histoire** avec les questions que se poseraient les lecteurs.",
+          "**Répondre en trois passes** : synthèse, analyse structurée, mise en pratique.",
+          "**Apprendre par la méthode socratique**.",
+          "**Faire attaquer et défendre une proposition** (équipe rouge et équipe bleue) pour en trouver les failles.",
+          "**Faire poser des questions de clarification** avant toute réponse, ou jusqu’à 95 % de certitude.",
+          "**Faire itérer trois fois** en vérifiant chaque version par rapport à vos exigences."
+        ]
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt qui réécrit votre prompt",
+        "type": "prompt",
+        "texte": "Relis le prompt ci-dessous et donne-m’en une version révisée, la mieux adaptée possible à une IA.\n\n[votre prompt]",
+        "adapte": false
+      },
+      {
+        "titre": "Le prompt pour une histoire",
+        "type": "prompt",
+        "texte": "Pose-moi 40 questions sur mon histoire, celles que se poseraient les lecteurs, en te concentrant sur les incohérences de l’intrigue et les problèmes de continuité.\n\n[votre histoire]",
+        "adapte": false
+      },
+      {
+        "titre": "Le prompt en trois passes",
+        "type": "prompt",
+        "texte": "Réponds en trois passes : 1) une synthèse de haut niveau ; 2) une analyse structurée sous forme de puces ; 3) les étapes pour passer à la pratique. Garde chaque passe bien distincte.",
+        "adapte": false
+      },
+      {
+        "titre": "Le prompt socratique",
+        "type": "prompt",
+        "texte": "Enseigne-moi [sujet] par la méthode socratique. Raisonne à partir des principes premiers quand c’est pertinent.",
+        "adapte": false
+      },
+      {
+        "titre": "Le prompt équipe rouge, équipe bleue",
+        "type": "prompt",
+        "texte": "Passe-le au crible d’une équipe rouge et d’une équipe bleue. Trouve toutes les failles et corrige-les toutes. Quels sont les 15 ajouts ou corrections les plus urgents ? Donne-moi la meilleure version.",
+        "adapte": false
+      },
+      {
+        "titre": "Le prompt de clarification",
+        "type": "prompt",
+        "texte": "Avant de répondre, pose-moi toutes les questions de clarification qui t’aideraient à donner la meilleure réponse possible.",
+        "adapte": false
+      },
+      {
+        "titre": "Le prompt des 95 %",
+        "type": "prompt",
+        "texte": "Pose-moi des questions de clarification jusqu’à être sûr à 95 % de pouvoir mener cette tâche à bien.",
+        "adapte": false
+      },
+      {
+        "titre": "Le prompt des trois itérations",
+        "type": "prompt",
+        "texte": "Fais trois itérations. Vérifie ta première version par rapport à mes exigences, produis la deuxième, puis vérifie-la à nouveau et produis la troisième.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Les prompts les plus utiles sont souvent des consignes de méthode réutilisables : questionner d’abord, structurer, critiquer, puis itérer.",
+    "source": {
+      "cle": "here-s-how-good-ai-is-at-your-job",
+      "date": "2025-09-26",
+      "url": "https://www.theneurondaily.com/p/here-s-how-good-ai-is-at-your-job",
+      "newsletter": "Here's how good AI is at your job",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 Here's how good AI is at your job"
+    }
+  },
+  {
+    "id": "appliquer-8-regles-pour-bien-piloter-l-agent-ia-de-notion",
+    "titre": "Appliquer 8 règles pour bien piloter l’agent IA de Notion",
+    "resume": "Nate B. Jones a longuement testé l’agent de Notion 3.0 et en tire huit règles : périmètre précis, compte rendu, tableaux, critères de fin, consignes chiffrées, zéro invention.",
+    "categorie": "automatiser",
+    "niveau": "intermediaire",
+    "outils": [
+      "autre"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Selon Nate B. Jones, la plupart des gens passent à côté de [ce que permet Notion 3.0](https://youtu.be/BP-N7xjz-vM?si=r0j4JHR2WosyuYHb) : ce n’est pas un simple ajout d’IA dans un logiciel en ligne, c’est en réalité un outil de création d’agents IA sur mesure. Mais il dépend *énormément* de la qualité des prompts. Après l’avoir longuement testé, il en a tiré **8 règles** :"
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "**Délimitez précisément le périmètre** : dites « travaille uniquement sur cette page et ses sous-pages » pour éviter des modifications ailleurs dans votre wiki.",
+          "**Exigez un compte rendu** : faites ajouter « TERMINÉ » ou « BLOQUÉ + raison » en bas de page, pour savoir exactement ce qui s’est passé.",
+          "**Pensez tableaux d’abord** : préférez les bases de données au texte brut. Les tableaux sont plus faciles à trier, à exploiter, à relire et à corriger.",
+          "**Fixez des contrôles de qualité** : soyez explicite sur les conditions de fin (longueur maximale, données obligatoires, éléments précis à inclure).",
+          "**Évitez les doublons** : faites mettre à jour le contenu similaire existant plutôt que créer des copies qui polluent le contexte.",
+          "**Tenez un journal des modifications** : consignez chaque changement comme s’il fallait pouvoir l’annuler ; un bon agent doit permettre de revenir en arrière.",
+          "**Écrivez dans une langue simple et stricte** : « crée six questions », pas « crée quelques questions ». Les formulations vagues favorisent les inventions.",
+          "**Interdisez les inventions** : demandez-lui de marquer « à vérifier » et de ne pas déclarer la tâche terminée s’il ne trouve pas une affirmation dans vos données."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Regardez [la vidéo complète](https://youtu.be/BP-N7xjz-vM?si=r0j4JHR2WosyuYHb), où il montre exactement comment faire, puis essayez par vous-même."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le modèle de consigne pour l’agent Notion",
+        "type": "prompt",
+        "texte": "Travaille uniquement sur cette page et ses sous-pages.\n\nTâche : [tâche précise, avec des quantités chiffrées, par exemple « crée six questions »].\n\nRègles :\n- Range les résultats dans une base de données plutôt qu’en texte brut.\n- Si un contenu similaire existe déjà, mets-le à jour au lieu d’en créer une copie.\n- La tâche n’est terminée que si : [conditions de fin : longueur maximale, données obligatoires, éléments à inclure].\n- N’invente rien : si tu ne trouves pas une affirmation dans mes données, marque-la « à vérifier » et ne déclare pas la tâche terminée.\n- Consigne chaque modification dans un journal, avec de quoi l’annuler.\n- À la fin, écris en bas de la page « TERMINÉ » ou « BLOQUÉ + raison ».",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Un agent qui modifie vos documents se pilote comme un collaborateur : périmètre clair, consignes chiffrées, compte rendu et possibilité d’annuler.",
+    "source": {
+      "cle": "microsoft-claude-office",
+      "date": "2025-09-25",
+      "url": "https://www.theneurondaily.com/p/microsoft-claude-office",
+      "newsletter": "Microsoft + Claude = Office-ial",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Microsoft + Claude = Office-ial"
+    }
+  },
+  {
+    "id": "adapter-des-prompts-d-images-eprouves-a-votre-propre-projet",
+    "titre": "Adapter des prompts d’images éprouvés à votre propre projet",
+    "resume": "Partez d’un recueil de plus de 90 exemples de retouches Nano Banana accompagnés de leurs prompts exacts, puis demandez à l’IA d’adapter celui qui vous plaît à votre image.",
+    "categorie": "creer",
+    "niveau": "debutant",
+    "outils": [
+      "gemini"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "[Ce dépôt GitHub](https://github.com/PicoTrex/Awesome-Nano-Banana-images/blob/main/README_en.md#case-1-illustration-to-figureby-zho_zho_zho), repéré par [Machina sur X](https://x.com/EXM7777), rassemble plus de 90 études de cas d’images et de retouches réalisées avec Nano Banana, le modèle d’images de Google, accompagnées des prompts *exacts* utilisés."
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Choisissez dans le dépôt l’exemple le plus proche de ce que vous voulez obtenir et copiez son prompt.",
+          "Collez-le dans votre outil d’IA préféré et demandez-lui de l’adapter à votre cas (prompt ci-dessous).",
+          "Si vous avez du mal à formuler ce que vous voulez, passez en mode vocal et décrivez à voix haute l’image à créer ou la retouche à faire.",
+          "Ajoutez votre image et le nouveau prompt dans Nano Banana."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Pour aller plus loin, Machina a aussi partagé [une vidéo](https://youtu.be/TQ8xJ7_3PzI?si=hp77D28rVtXF6eNV) qui montre comment construire un workflow d’images dans n8n avec Nano Banana et Seedream 4.0, le modèle de ByteDance, pour transformer ces prompts en automatisations."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt d’adaptation",
+        "type": "prompt",
+        "texte": "Voici un prompt d’image qui donne de bons résultats :\n\n[prompt copié depuis le dépôt]\n\nAdapte-le à l’image que je veux obtenir : [description de votre image ou de la retouche voulue]. Reste aussi proche que possible du prompt d’origine.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Plutôt que d’écrire un prompt d’image de zéro, partez d’un prompt qui a fait ses preuves et faites-le adapter au plus près de l’original.",
+    "source": {
+      "cle": "nvidia-s-100b-bet-on-openai",
+      "date": "2025-09-23",
+      "url": "https://www.theneurondaily.com/p/nvidia-s-100b-bet-on-openai",
+      "newsletter": "NVIDIA's $100B bet on OpenAI",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 NVIDIA's $100B bet on OpenAI"
+    }
+  },
+  {
+    "id": "obtenir-un-resume-fidele-d-un-long-document-scientifique",
+    "titre": "Obtenir un résumé fidèle d’un long document scientifique",
+    "resume": "Trois réglages pour qu’un résumé par l’IA reste exact : exiger une fidélité totale, choisir un modèle solide sur les textes longs et faire d’abord inventorier toutes les idées.",
+    "categorie": "verifier",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Des [chercheurs](https://www.science.org/content/blog-post/can-chatgpt-help-science-writers) ont constaté que ChatGPT Plus produit souvent des résumés trompeurs d’articles scientifiques : l’IA privilégie une lecture agréable au détriment de l’exactitude scientifique ([article](https://arstechnica.com/ai/2025/09/science-journalists-find-chatgpt-is-bad-at-summarizing-scientific-papers/)). Trois astuces améliorent nettement la qualité des résumés :"
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "**Exigez la fidélité** : ajoutez à votre prompt « résume avec une fidélité de 100 % à l’original ».",
+          "**Choisissez un modèle solide sur les textes longs** : The Neuron recommande Gemini 2.5 Pro avec le budget de réflexion (*Thinking*) au maximum, dans [AI Studio](https://aistudio.google.com/prompts/new_chat?model=gemini-2.5-pro) pour des données non sensibles, ou dans [Gemini](https://gemini.google.com/app) pour des données sensibles. Il n’est pas parfait, mais c’est selon eux le modèle qui reste le plus exact sur de longs contenus, jusqu’à environ 200 000 à 300 000 *tokens*.",
+          "**Faites d’abord un passage d’inventaire** : demandez à l’IA de ranger toutes les idées uniques du document dans une structure numérotée, façon prise de notes Cornell (prompt ci-dessous)."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Combinez les trois : le résumé s’appuie alors sur une base structurée où chaque fait est facile à retrouver, à réorganiser et à citer."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "La consigne de fidélité",
+        "type": "prompt",
+        "texte": "Résume ce document avec une fidélité de 100 % à l’original.\n\n[votre document]",
+        "adapte": false
+      },
+      {
+        "titre": "Le prompt d’inventaire façon Cornell",
+        "type": "prompt",
+        "texte": "Avant de rédiger, tu dois d’abord traiter le plan fourni et toutes les sources qui l’accompagnent. Extrais chaque idée, fait, statistique et citation uniques. Organise-les au format Cornell : chaque idée principale porte un numéro de premier niveau et les sous-points sont imbriqués (par exemple 1.1, 1.2, 2.1). Tu crées ainsi une base de connaissances structurée qui servira à la rédaction et permettra de citer, de réorganiser et de combiner facilement les faits.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Un bon résumé commence par un inventaire : faites lister et structurer toutes les idées avant de demander la synthèse, en exigeant une fidélité totale.",
+    "source": {
+      "cle": "waymo-just-keeps-on-winning",
+      "date": "2025-09-22",
+      "url": "https://www.theneurondaily.com/p/waymo-just-keeps-on-winning",
+      "newsletter": "Waymo just keeps on winning...",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Waymo just keeps on winning..."
+    }
+  },
+  {
+    "id": "annoter-une-image-en-rouge-pour-guider-ses-retouches-par-l-ia",
+    "titre": "Annoter une image en rouge pour guider ses retouches par l’IA",
+    "resume": "Encadrez en rouge les zones à modifier et écrivez vos consignes sur l’image : le modèle d’images de Gemini applique les retouches bien plus précisément qu’avec une description.",
+    "categorie": "creer",
+    "niveau": "debutant",
+    "outils": [
+      "gemini"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Fini les descriptions vagues pour retoucher une image. L’utilisateur Reddit promptingpixels a trouvé une méthode redoutable : [annoter directement vos images](https://www.reddit.com/r/GeminiAI/comments/1nlykqw/just_learned_that_if_you_annotate_an_image_you/), puis les confier au [modèle d’images de Google, Nano Banana](https://gemini.google/overview/image-generation/)."
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Ouvrez votre image dans n’importe quel éditeur et **encadrez en rouge** les zones à modifier.",
+          "**Écrivez en rouge**, à côté de chaque cadre, la consigne précise.",
+          "Envoyez l’image annotée à Gemini avec le prompt ci-dessous."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Gemini réussirait 9 fois sur 10, même sur des photos de groupe complexes ou avec plusieurs retouches à la fois."
+      },
+      {
+        "t": "p",
+        "x": "Pourquoi ça marche : vous donnez à l’IA des instructions visuelles au lieu de jouer aux devinettes. C’est bien plus précis que de décrire « le truc à gauche, près de l’objet bleu ». *Pour un outil visuel, des consignes visuelles.*"
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de retouche annotée",
+        "type": "prompt",
+        "texte": "Lis le texte rouge sur l’image et applique les modifications demandées. Supprime ensuite le texte et les cadres rouges.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Pour retoucher une image, montrez plutôt que décrire : quelques annotations sur l’image valent mieux qu’une longue description.",
+    "source": {
+      "cle": "elon-thinks-grok-5-agi",
+      "date": "2025-09-21",
+      "url": "https://www.theneurondaily.com/p/elon-thinks-grok-5-agi",
+      "newsletter": "Elon thinks Grok 5 = AGI",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 Elon thinks Grok 5 = AGI"
+    }
+  },
+  {
+    "id": "rendre-chatgpt-plus-direct-avec-les-instructions-personnalisees",
+    "titre": "Rendre ChatGPT plus direct avec les instructions personnalisées",
+    "resume": "Ajoutez une consigne de style sans fioritures à vos instructions personnalisées : ChatGPT écrit de façon plus nette dans toutes vos conversations, au prix d’un ton moins chaleureux.",
+    "categorie": "memoire",
+    "niveau": "intermediaire",
+    "outils": [
+      "chatgpt"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Greg Isenberg, animateur du [Startup Ideas Podcast](https://www.youtube.com/@GregIsenberg), a [partagé un prompt](https://x.com/gregisenberg/status/1968474931638718666) pour que l’IA écrive mieux. Le principe : coller ce texte dans les réglages « Personnaliser ChatGPT », pour qu’il s’applique à toutes vos conversations. Le texte exact figure dans la capture d’écran de son message."
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Ouvrez les réglages de ChatGPT, puis **Personnaliser ChatGPT**.",
+          "Collez la consigne dans le champ des instructions personnalisées : le texte de Greg Isenberg, ou la version adaptée ci-dessous.",
+          "Enregistrez, puis ouvrez une nouvelle conversation pour tester."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Attention : ChatGPT risque d’être moins agréable à fréquenter qu’avant. Réservez ce réglage aux périodes où vous voulez une expérience sans détour."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "La consigne sans fioritures",
+        "type": "prompt",
+        "texte": "Réponds de façon directe et concise. Pas de flatterie, pas de formules d’introduction ni de conclusion, pas de questions de relance inutiles, pas d’emojis. Va droit au but avec des phrases claires et précises, et dis-moi franchement quand mon idée a un défaut.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Les instructions personnalisées fixent le ton de toutes vos conversations : une seule consigne de style suffit à changer durablement la façon dont ChatGPT écrit.",
+    "source": {
+      "cle": "openai-s-research-on-ai-scheming-explained",
+      "date": "2025-09-19",
+      "url": "https://www.theneurondaily.com/p/openai-s-research-on-ai-scheming-explained",
+      "newsletter": "OpenAI's research on AI scheming, explained",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 OpenAI's research on AI scheming, explained"
+    }
+  },
+  {
+    "id": "regler-le-temps-de-reflexion-de-chatgpt-selon-la-tache",
+    "titre": "Régler le temps de réflexion de ChatGPT selon la tâche",
+    "resume": "ChatGPT vous laisse choisir combien de temps le modèle réfléchit avant de répondre : rapide pour une reformulation, approfondi pour une analyse complexe, standard pour le reste.",
+    "categorie": "outils",
+    "niveau": "debutant",
+    "outils": [
+      "chatgpt"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Vous trouvez que GPT-5 met trop longtemps à « réfléchir » ? OpenAI a ajouté un réglage du temps de réflexion (appelé en interne les niveaux de « juice ») : vous choisissez combien de temps le modèle délibère avant de répondre."
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Light** : le plus rapide.",
+          "**Standard** : l’équilibre entre vitesse et profondeur.",
+          "**Extended** : plus approfondi.",
+          "**Heavy** : l’analyse la plus poussée."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "C’est un peu comme les vitesses d’un vélo. Votre choix est conservé pour les conversations suivantes : réglez-le une fois pour toutes, ou ajustez-le conversation par conversation."
+      },
+      {
+        "t": "p",
+        "x": "Le conseil : adaptez le temps de réflexion à la tâche. **Light** pour les reformulations rapides, **Heavy** pour les analyses complexes, **Standard** pour presque tout le reste."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt pour choisir le bon niveau",
+        "type": "prompt",
+        "texte": "Je vais confier la tâche suivante à ChatGPT : [description de la tâche].\n\nParmi les niveaux de réflexion Light (le plus rapide), Standard (équilibré), Extended (approfondi) et Heavy (analyse la plus poussée), lequel me conseilles-tu de choisir, et pourquoi ? Réponds en deux phrases maximum.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Plus de réflexion n’est pas toujours mieux : réservez les niveaux élevés aux tâches qui le méritent et gagnez du temps sur le reste.",
+    "source": {
+      "cle": "ai-s-huge-competitive-coding-win",
+      "date": "2025-09-18",
+      "url": "https://www.theneurondaily.com/p/ai-s-huge-competitive-coding-win",
+      "newsletter": "AI's huge competitive coding win...",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 AI's huge competitive coding win..."
+    }
+  },
+  {
+    "id": "interroger-une-transcription-de-reunion-sans-risque-d-invention",
+    "titre": "Interroger une transcription de réunion sans risque d’invention",
+    "resume": "Transformez l’IA en moteur de recherche de réunion : réponses courtes, citations avec intervenant et horodatage, et rien qui ne figure pas dans la transcription.",
+    "categorie": "verifier",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Les outils de prise de notes par IA transcrivent des heures de réunion et produisent des résumés. Mais quand il vous faut savoir exactement ce que Sarah a dit sur l’échéance du projet, le résumé reste vague, et vous voilà à fouiller 47 pages de transcription avec Ctrl+F."
+      },
+      {
+        "t": "p",
+        "x": "Collez plutôt toute la transcription dans ChatGPT, ou mieux, dans un modèle précis sur les longs documents (The Neuron recommandait Gemini 2.5 Pro), avec le prompt ci-dessous : il en fait votre moteur de recherche de réunion personnel."
+      },
+      {
+        "t": "p",
+        "x": "Au lieu de faire défiler sans fin, demandez simplement « Qu’a dit Sarah exactement sur l’échéance du projet ? » et obtenez ses mots réels, pas juste « le calendrier a été évoqué »."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de l’assistant FAQ de réunion",
+        "type": "prompt",
+        "texte": "Rôle : tu es un assistant de type FAQ qui répond aux questions uniquement à partir de la transcription de réunion et des métadonnées fournies. Tu ne dois rien inventer ni t’appuyer sur des connaissances extérieures. Si la réponse est absente ou peu claire dans la transcription, dis-le franchement. Suis les règles ci-dessous :\n- Si une information ne figure pas dans la transcription, réponds : « Pas dans la transcription. »\n- Réponds de façon courte et claire, mais avec une fidélité totale à ce qui a réellement été dit.\n- Si possible, donne une réponse directe (1 à 3 phrases) et 1 ou 2 courtes citations, avec l’intervenant et/ou l’horodatage.\n\n[transcription]",
+        "adapte": false
+      },
+      {
+        "titre": "Un exemple de question",
+        "type": "prompt",
+        "texte": "Qu’a dit [nom de la personne] exactement sur [sujet] ?",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "En interdisant à l’IA toute connaissance extérieure et en exigeant des citations, vous transformez un résumé vague en réponses vérifiables.",
+    "source": {
+      "cle": "meta-unveils-800-hypernova-smart-glasses-with-displays",
+      "date": "2025-09-17",
+      "url": "https://www.theneurondaily.com/p/meta-unveils-800-hypernova-smart-glasses-with-displays",
+      "newsletter": "Meta unveils $800 Hypernova smart glasses with displays",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸Meta unveils $800 Hypernova smart glasses with displays"
+    }
+  },
+  {
+    "id": "decliner-un-produit-en-visuels-marketing-avec-nano-banana",
+    "titre": "Décliner un produit en visuels marketing avec Nano Banana",
+    "resume": "Envoyez la photo du produit puis un modèle de visuel : en quelques minutes, testez coloris, mises en situation et angles de vue avant même de lancer la fabrication.",
+    "categorie": "creer",
+    "niveau": "intermediaire",
+    "outils": [
+      "gemini",
+      "chatgpt"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Plutôt que les portraits « professionnels » qui inondent les réseaux sociaux, The Neuron préfère [les usages marketing de Nano Banana présentés par Grace Leung](https://www.youtube.com/watch?v=plIusgX1xKc)."
+      },
+      {
+        "t": "p",
+        "x": "Le principe est simple : envoyez l’image de votre produit, puis un modèle de visuel. Placez bien le modèle en dernier pour conserver son format d’image. Vous pouvez ainsi générer 15 coloris différents de votre produit en moins de 5 minutes, avant toute production physique. Trois applications immédiates :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "Testez sur les réseaux sociaux les coloris d’une trousse de maquillage avant de fabriquer quoi que ce soit.",
+          "Générez des photos d’ambiance en décrivant des profils de clients, par exemple « un navetteur urbain avec ce sac à dos ».",
+          "Créez des vidéos produit à 360 degrés à partir de plusieurs angles générés."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "**Le flux de travail préféré de The Neuron** : repérez des publicités inspirantes sur Pinterest, donnez-les à un GPT personnalisé qui rédige des prompts de scène détaillés, puis collez ces prompts dans Nano Banana. Vous obtenez des photos produit de qualité professionnelle, fidèles à votre vision."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de déclinaison de coloris",
+        "type": "prompt",
+        "texte": "Première image : mon produit. Deuxième image : le modèle de visuel à suivre. Place mon produit dans ce modèle, en conservant le format de la deuxième image. Génère une version pour chacun de ces coloris : [liste des couleurs].",
+        "adapte": true
+      },
+      {
+        "titre": "Le prompt de mise en situation",
+        "type": "prompt",
+        "texte": "Un navetteur urbain avec ce sac à dos.",
+        "adapte": false
+      },
+      {
+        "titre": "Le prompt générateur de scènes",
+        "type": "prompt",
+        "texte": "Voici une publicité qui m’inspire (image jointe). Analyse-la et rédige un prompt de scène détaillé pour un générateur d’images : décor, lumière, cadrage, ambiance, couleurs, position du produit. Le produit à mettre en scène : [description de votre produit]. Donne uniquement le prompt, prêt à coller.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Avec un bon modèle d’image, testez vos visuels et vos déclinaisons de produit avant de dépenser quoi que ce soit en production.",
+    "source": {
+      "cle": "gpt-5-codex-codes-for-7-hours-straight",
+      "date": "2025-09-16",
+      "url": "https://www.theneurondaily.com/p/gpt-5-codex-codes-for-7-hours-straight",
+      "newsletter": "GPT-5 Codex codes for 7 hours straight?!",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸GPT-5 Codex codes for 7 hours straight?!"
+    }
+  },
+  {
+    "id": "faire-reformuler-l-objectif-par-l-ia-avant-qu-elle-commence",
+    "titre": "Faire reformuler l’objectif par l’IA avant qu’elle commence",
+    "resume": "Comme un réalisateur, vous devez avoir une intention et la transmettre. Demandez à l’IA de reformuler votre objectif et son plan, et validez avant qu’elle se lance.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Nate B. Jones et Mike Krigsman ont eu une [excellente discussion](https://www.youtube.com/live/k-eZabjdOD4?si=snYuGdLmBKZeEExz&t=63) autour de l’[étude du MIT](https://mlq.ai/media/quarterly_decks/v0.1_State_of_AI_in_Business_2025_Report.pdf), devenue virale, selon laquelle 95 % des projets pilotes d’IA ne génèrent pas de retour sur investissement. Leur idée centrale : la clé du succès avec l’IA, c’est d’avoir une intention et de savoir la communiquer."
+      },
+      {
+        "t": "p",
+        "x": "C’est comme au cinéma : un réalisateur n’a vraiment besoin que de deux compétences, avoir une vision et la communiquer ; l’équipe s’occupe du reste. Avec l’IA, c’est vous le réalisateur :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Définissez le succès (votre intention)** : quel est l’objectif exact du projet ?",
+          "**Communiquez cette intention** : dirigez l’IA avec vos prompts, vos agents et vos workflows.",
+          "**Évaluez le résultat avec justesse** : avez-vous atteint votre but ? Relisez et ajustez vos directives pour la prise suivante."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Pour vérifier que votre intention est bien passée, demandez à l’IA de confirmer qu’elle a compris la consigne : ajoutez simplement la phrase ci-dessous à la fin de votre prompt."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "La phrase de confirmation",
+        "type": "prompt",
+        "texte": "Avant de commencer, reformule l’objectif de ce projet et les principales étapes que tu vas suivre pour l’atteindre. Demande-moi confirmation avant de continuer.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Une IA qui reformule votre demande vous montre tout de suite si votre intention est bien passée.",
+    "source": {
+      "cle": "this-ai-can-read-your-mind",
+      "date": "2025-09-15",
+      "url": "https://www.theneurondaily.com/p/this-ai-can-read-your-mind",
+      "newsletter": "This AI can read your mind?!",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 This AI can read your mind?!"
+    }
+  },
+  {
+    "id": "visualiser-un-nouveau-mobilier-dans-vos-propres-photos",
+    "titre": "Visualiser un nouveau mobilier dans vos propres photos",
+    "resume": "Le modèle d’image de Google excelle en retouche photo : photographiez votre pièce et faites-y essayer meubles, couleurs ou travaux avant d’acheter quoi que ce soit.",
+    "categorie": "creer",
+    "niveau": "debutant",
+    "outils": [
+      "gemini"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "[Nano Banana](https://gemini.google/overview/image-generation/), l’éditeur d’images de Google, est *vraiment* doué pour retoucher des photos. L’un de ses meilleurs usages pratiques : « auditionner » un nouveau mobilier ou des travaux de rénovation sur vos propres photos, comme dans [cet exemple partagé sur Reddit](https://www.reddit.com/r/singularity/comments/1nexrqs/nano_banana_is_so_incredibly_useful/)."
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Photographiez la pièce telle qu’elle est.",
+          "Envoyez la photo à Gemini, éventuellement avec celle du meuble qui vous intéresse.",
+          "Décrivez le changement à visualiser avec le prompt ci-dessous."
+        ]
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt d’essai de mobilier",
+        "type": "prompt",
+        "texte": "Voici une photo de mon [pièce]. Remplace [meuble ou élément actuel] par [nouveau meuble, couleur ou matériau, ou celui de la deuxième image]. Garde exactement la même pièce, le même cadrage et la même lumière, et ne modifie rien d’autre.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Avant d’acheter ou de rénover, faites essayer le changement à l’IA directement sur une photo de chez vous.",
+    "source": {
+      "cle": "apple-s-airpods-just-became-your-star-trek-universal-translator-almost",
+      "date": "2025-09-14",
+      "url": "https://www.theneurondaily.com/p/apple-s-airpods-just-became-your-star-trek-universal-translator-almost",
+      "newsletter": "Apple's AirPods Just Became Your Star Trek Universal Translator (Almost)",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Apple's AirPods Just Became Your Star Trek Universal Translator (Almost)"
+    }
+  },
+  {
+    "id": "modifier-le-pied-de-page-de-son-site-pour-orienter-les-ia",
+    "titre": "Modifier le pied de page de son site pour orienter les IA",
+    "resume": "Les IA retiennent surtout le début et la fin d’un texte. En réécrivant une seule ligne de son pied de page, l’agence Seer a changé la façon dont les IA la présentent.",
+    "categorie": "business",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Les IA souffrent du problème dit « [perdu au milieu](https://promptmetheus.com/resources/llm-knowledge-base/lost-in-the-middle-effect) » (*lost in the middle*) : elles prêtent peu attention au milieu d’un long texte et privilégient son début et sa fin."
+      },
+      {
+        "t": "p",
+        "x": "D’après [cette étude de cas](https://www.seerinteractive.com/insights/ai-optimization-test-footers-are-back-like-2003) de l’agence Seer Interactive, si vous modifiez le texte du pied de page de votre site pour indiquer comment vous voulez être présenté, les moteurs de recherche IA peuvent le reprendre en 36 heures dans certains cas. Seer voulait que les IA cessent de la décrire comme une agence « remote-first » et citent plutôt ses chiffres préférés : « plus de 130 clients, 97 % de taux de fidélisation ». Elle y est parvenue en changeant une seule ligne de son pied de page ([discussion complète](https://www.reddit.com/r/AISearchLab/comments/1napkql/seer_interactive_changed_one_line_in_their_footer/))."
+      },
+      {
+        "t": "p",
+        "x": "Modifier la page d’accueil change évidemment la façon dont les robots vous décrivent. Mais une information enfouie au milieu d’une page est plus difficile à repérer pour l’IA : l’astuce consiste à soigner le pied de page, qui se trouve à la fin (donc bien pris en compte) et ne contient d’ordinaire que des mentions sans grand enjeu."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de rédaction du pied de page",
+        "type": "prompt",
+        "texte": "Je veux que les assistants IA présentent mon entreprise ainsi : [description souhaitée, avec vos chiffres clés]. Aujourd’hui, ils la décrivent plutôt comme : [description actuelle]. Rédige 3 propositions de phrase courte et factuelle pour le pied de page de mon site, qui mettent clairement en avant les éléments que je veux voir repris.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Une information placée en fin de page est mieux retenue par les IA : servez-vous du pied de page pour dire comment vous voulez être présenté.",
+    "source": {
+      "cle": "new-template-august-2025-27f09420c87c3c05",
+      "date": "2025-09-12",
+      "url": "https://www.theneurondaily.com/p/new-template-august-2025-27f09420c87c3c05",
+      "newsletter": "Microsoft and OpenAI bury the hatchet??",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Microsoft and OpenAI bury the hatchet??"
+    }
+  },
+  {
+    "id": "poser-la-meme-question-plusieurs-fois-et-a-plusieurs-modeles",
+    "titre": "Poser la même question plusieurs fois et à plusieurs modèles",
+    "resume": "Une même question peut donner des réponses différentes selon le modèle, la formulation ou le moment. Multipliez les essais et comparez avant de retenir une réponse.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Demandez, redemandez, et demandez encore. Au-delà des conseils de mise en forme des prompts, la meilleure façon d’obtenir ce que vous voulez est parfois d’ouvrir plusieurs conversations en même temps, voire avec plusieurs modèles différents, et de poser la même question plusieurs fois. Un outil comme [OpenRouter](https://openrouter.ai/) facilite cela, mais il est payant."
+      },
+      {
+        "t": "p",
+        "x": "Si la première réponse ne vous convient pas, reposez la question en changeant légèrement la formulation, ou à un autre moment de la journée. De petits changements font une vraie différence, y compris le nombre de personnes qui interrogent le modèle en même temps que vous. Prenez l’habitude de demander BEAUCOUP de fois quand le premier essai ne suffit pas."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de comparaison des réponses",
+        "type": "prompt",
+        "texte": "Voici plusieurs réponses obtenues à la même question, dans des conversations ou avec des modèles différents.\n\nQuestion : [votre question]\n\nRéponse 1 : [réponse]\nRéponse 2 : [réponse]\nRéponse 3 : [réponse]\n\nCompare-les : points communs, divergences et ce qui manque à chacune. Puis rédige la meilleure réponse possible en t’appuyant sur ce qu’elles ont de plus solide.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Une réponse d’IA n’est qu’un tirage parmi d’autres : reformulez, relancez et comparez.",
+    "source": {
+      "cle": "did-ex-openai-cto-mira-s-12b-startup-just-solve-ai-s-biggest-bug",
+      "date": "2025-09-11",
+      "url": "https://www.theneurondaily.com/p/did-ex-openai-cto-mira-s-12b-startup-just-solve-ai-s-biggest-bug",
+      "newsletter": "Did Ex-OpenAI CTO Mira's $12B startup just solve AI's biggest bug??",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Did Ex-OpenAI CTO Mira's $12B startup just solve AI's biggest bug??"
+    }
+  },
+  {
+    "id": "inserer-ses-modeles-de-prompts-avec-un-raccourci-clavier",
+    "titre": "Insérer ses modèles de prompts avec un raccourci clavier",
+    "resume": "Un logiciel d’expansion de texte remplace un raccourci comme « ::copywriter » par un prompt complet : il ne reste qu’à compléter les crochets. Fini de retaper vos prompts.",
+    "categorie": "formuler",
+    "niveau": "intermediaire",
+    "outils": [
+      "autre"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Vous détestez taper vos prompts ? Jeff Su a une excellente astuce pour gagner beaucoup de temps, qu’il explique dans [cette vidéo de 51 secondes](https://youtube.com/shorts/UqpHjpBDths?si=Xe9tLVmyw7eD3Awx)."
+      },
+      {
+        "t": "p",
+        "x": "Comme les projets, les Gems ou les GPTs, les applications d’expansion de texte (*text expanders*) vous évitent de retaper : elles fonctionnent comme une correction automatique dont vous choisissez les remplacements, et servent de raccourcis vers vos modèles de prompts. Jeff tape « ::copywriter », qui se transforme en prompt complet (ci-dessous) : il ne lui reste qu’à compléter les crochets."
+      },
+      {
+        "t": "p",
+        "x": "Les outils qu’il recommande : il utilise [Alfred](https://www.alfredapp.com/) (Mac, payant), mais [Raycast](https://www.raycast.com/) avec ses Snippets (Mac, gratuit) ou [Beeftext](https://beeftext.org/) (Windows, gratuit) font aussi l’affaire. Autre option : dicter vos prompts, avec le mode vocal des applications elles-mêmes ou un outil comme Wispr ou Willow."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le modèle derrière « ::copywriter »",
+        "type": "prompt",
+        "texte": "Mets-toi dans la peau d’un rédacteur publicitaire senior qui a plus de 20 ans d’expérience. J’écris [sujet] et j’ai besoin de 3 variantes de [script ou texte].",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Vos meilleurs prompts méritent un raccourci : un expanseur de texte les insère en quelques caractères.",
+    "source": {
+      "cle": "microsoft-picks-claude-over-gpt",
+      "date": "2025-09-10",
+      "url": "https://www.theneurondaily.com/p/microsoft-picks-claude-over-gpt",
+      "newsletter": "Microsoft picks Claude over GPT",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 Microsoft picks Claude over GPT"
+    }
+  },
+  {
+    "id": "trouver-la-bonne-question-grace-a-la-methode-socratique",
+    "titre": "Trouver la bonne question grâce à la méthode socratique",
+    "resume": "L’IA ne sert pas qu’à répondre : en interrogeant vos hypothèses puis en les inversant, elle vous aide à affûter la question qui mérite vraiment d’être creusée.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Une [astuce repérée sur Reddit](https://www.reddit.com/r/PromptEngineering/comments/1n6d986/comment/nc214bd/) : l’IA est douée pour donner des réponses, mais sa vraie force est de vous aider à affûter la question. Voici comment combiner l’IA et la méthode socratique :"
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "**Énoncez ce que vous croyez savoir** : donnez votre hypothèse à l’IA.",
+          "**Faites-lui interroger le « pourquoi »** : laissez-la insister jusqu’à mettre à nu les fondations.",
+          "**Demandez-lui d’inverser** : « Et si c’était l’inverse qui était vrai ? » Observez les nouvelles pistes qui apparaissent.",
+          "**Bouclez** jusqu’à ce que le bruit se réduise à une seule question claire et à forte valeur : c’est elle qu’il faut creuser."
+        ]
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt socratique",
+        "type": "prompt",
+        "texte": "Voici ce que je crois savoir : [votre hypothèse ou conviction]. Utilise la méthode socratique : demande-moi « pourquoi ? » et continue d’insister, une question à la fois, jusqu’à mettre à nu ce sur quoi repose mon raisonnement. Ensuite, demande-moi : « Et si c’était l’inverse qui était vrai ? » et explore avec moi les possibilités qui en découlent. Recommence ce cycle jusqu’à ce que nous aboutissions à une seule question claire, celle qui mérite vraiment d’être creusée, et formule-la.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Avant de chercher la bonne réponse, servez-vous de l’IA pour trouver la bonne question.",
+    "source": {
+      "cle": "here-s-openai-s-plan-to-fix-ai-hallucinations",
+      "date": "2025-09-09",
+      "url": "https://www.theneurondaily.com/p/here-s-openai-s-plan-to-fix-ai-hallucinations",
+      "newsletter": "Here's OpenAI's plan to fix AI hallucinations...",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Here's OpenAI's plan to fix AI hallucinations..."
+    }
+  },
+  {
+    "id": "activer-la-reflexion-et-la-recherche-web-par-defaut",
+    "titre": "Activer la réflexion et la recherche Web par défaut",
+    "resume": "Deux réglages simples relèvent nettement la qualité des réponses : un mode de réflexion pour presque chaque question et la recherche Web dès qu’il faut des informations à jour.",
+    "categorie": "outils",
+    "niveau": "debutant",
+    "outils": [
+      "chatgpt",
+      "claude"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Il ne faut pas utiliser ChatGPT comme Google, d’accord. Mais deux fonctions le rendent, justement, un peu comparable à Google, et vous gagnez à les connaître :"
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "**Activez la réflexion avant presque chaque question.** Claude le fait automatiquement avec la réflexion étendue (*extended thinking*) ; dans ChatGPT, choisissez GPT-5 Thinking comme modèle par défaut ([lien à mettre en favori](https://chatgpt.com/?model=gpt-5-thinking)). Les réponses sont meilleures pour presque tout, au prix d’une attente un peu plus longue : selon l’auteur, GPT-5 réfléchit en moyenne environ 2 minutes avec la recherche Web, contre 10 à 15 secondes pour Claude.",
+          "**Utilisez la recherche Web pour toute question qui demande des informations à jour.** Activez la recherche sur le Web ([lien à mettre en favori](https://chatgpt.com/?hints=search) pour l’activer dans GPT-5). Avec GPT-5 Thinking, la recherche devrait se déclencher d’elle-même si vous écrivez « cherche ça » ou « avec la recherche Web »."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Appliquées à la plupart de vos questions, ces deux habitudes relèvent nettement la qualité moyenne des réponses (l’auteur avance un facteur 10, en précisant qu’il s’agit d’une estimation au jugé). Simon Willison, figure respectée de l’ingénierie IA, juge lui aussi GPT-5 Thinking très bon en recherche : il l’appelle son « [gobelin de recherche](https://simonwillison.net/2025/Sep/6/research-goblin/) »."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de recherche à jour",
+        "type": "prompt",
+        "texte": "Cherche ça avec la recherche Web : [votre question qui demande des informations à jour]",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Réflexion activée, et recherche Web dès qu’il faut des informations récentes : deux réflexes qui améliorent la plupart des réponses.",
+    "source": {
+      "cle": "5-major-ai-debates-explained",
+      "date": "2025-09-08",
+      "url": "https://www.theneurondaily.com/p/5-major-ai-debates-explained",
+      "newsletter": "Major AI Debates, Explained...",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 5 Major AI Debates, Explained..."
+    }
+  },
+  {
+    "id": "inserer-des-liens-dans-un-article-redige-avec-chatgpt-canvas",
+    "titre": "Insérer des liens dans un article rédigé avec ChatGPT Canvas",
+    "resume": "Faites placer des liens hypertextes dans le corps d’un article, comme le ferait un rédacteur, puis récupérez un texte prêt à coller dans votre traitement de texte.",
+    "categorie": "outils",
+    "niveau": "intermediaire",
+    "outils": [
+      "chatgpt"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "En rédigeant des articles avec GPT-5 dans [Canvas](https://chatgpt.com/?hints=canvas), l’équipe de The Neuron a constaté que le plus difficile était d’obtenir des liens hypertextes placés comme le ferait un rédacteur : en contexte, [dans le corps de l’article](https://openai.com/index/introducing-canvas/)."
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Donnez à ChatGPT la liste des URL à insérer, avec si besoin des indications sur l’endroit où placer chaque lien.",
+          "Envoyez ensuite le prompt ci-dessous.",
+          "Copiez le rendu et collez-le dans votre traitement de texte."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "La formulation est un peu étrange, mais elle fonctionne à merveille."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt des liens dans Canvas",
+        "type": "prompt",
+        "texte": "Voici les liens à insérer : [liste d’URL, avec l’endroit où placer chacune].\n\nAjoute ces liens hypertextes, puis ouvre l’article mis à jour et son code dans un fichier canvas et exécute le code HTML pour que je puisse vraiment le copier-coller dans mon traitement de texte.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Pour récupérer un article avec ses liens, faites générer et afficher le HTML dans Canvas plutôt que du texte brut.",
+    "source": {
+      "cle": "openai-finally-launches-chat-branching",
+      "date": "2025-09-05",
+      "url": "https://www.theneurondaily.com/p/openai-finally-launches-chat-branching",
+      "newsletter": "OpenAI FINALLY Launches Chat Branching...",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺  OpenAI FINALLY Launches Chat Branching..."
+    }
+  },
+  {
+    "id": "batir-ses-prompts-sur-cinq-piliers-comme-on-ecrit-du-code",
+    "titre": "Bâtir ses prompts sur cinq piliers, comme on écrit du code",
+    "resume": "Rôle, objectif, contexte, contraintes, exemples : traitez le prompt comme du code plutôt que comme une question, avec les cadres CLEAR ou RGIO selon le type de tâche.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "La plupart des gens utilisent l’IA comme Google : on tape une question et on croise les doigts. Dans son [guide complet du prompt](https://www.thevccorner.com/p/guide-writing-powerful-ai-prompts), Ruben Dominguez Ibar, de The VC Corner, propose de considérer le prompt comme du code plutôt que comme une question : meilleure est la logique en entrée, meilleur est le résultat. Ses « cinq piliers du prompt parfait » :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Rôle** : qui est l’IA ?",
+          "**Objectif** : que voulez-vous ?",
+          "**Contexte** : les informations de fond essentielles.",
+          "**Contraintes** : format, longueur, ton.",
+          "**Exemples** : montrez à quoi ressemble un bon résultat."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Il propose aussi deux cadres : **CLEAR** (concis, logique, explicite, adaptatif, réflexif) pour les tâches créatives, et **RGIO** (rôle, objectif, entrée, sortie, de l’anglais *Role, Goal, Input, Output*) pour les demandes structurées. Comme il le rappelle, les mauvais prompts coûtent cher : du temps, de l’argent et de la patience perdus en essais à répétition et en résultats flous."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le modèle à cinq piliers",
+        "type": "prompt",
+        "texte": "Rôle : tu es [rôle ou expertise].\nObjectif : [ce que je veux obtenir].\nContexte : [informations de fond essentielles].\nContraintes : [format, longueur, ton].\nExemple de bon résultat : [exemple].",
+        "adapte": true
+      },
+      {
+        "titre": "Le modèle RGIO",
+        "type": "prompt",
+        "texte": "Rôle : tu es [rôle].\nObjectif : [but de la demande].\nEntrée : [données ou texte fournis].\nSortie : [forme exacte du résultat attendu].",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Un prompt se conçoit comme du code : plus la logique d’entrée est claire, meilleur est le résultat.",
+    "source": {
+      "cle": "is-real-time-ai-video-technology-the-future-of-video-games",
+      "date": "2025-09-04",
+      "url": "https://www.theneurondaily.com/p/is-real-time-ai-video-technology-the-future-of-video-games",
+      "newsletter": "Is Real-Time AI Video Technology the Future of Video Games?",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Is Real-Time AI Video Technology the Future of Video Games?"
+    }
+  },
+  {
+    "id": "adopter-un-protocole-de-prompt-commun-dans-l-equipe",
+    "titre": "Adopter un protocole de prompt commun dans l’équipe",
+    "resume": "Quand chacun prompte à sa façon, les résultats divergent et se mesurent mal. Un protocole partagé aligne contexte, structure et ressources dans toute l’organisation.",
+    "categorie": "business",
+    "niveau": "intermediaire",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Votre équipe n’a pas besoin de plus de prompts, mais d’un *protocole* de prompt. Selon l’experte en IA [Allie K. Miller](https://www.alliekmiller.com/), quand chaque équipe écrit ses prompts à sa manière, on obtient le chaos plutôt qu’une organisation optimisée."
+      },
+      {
+        "t": "p",
+        "x": "Ces pratiques dispersées se traduisent par du travail à refaire, une image de marque qui dérive et des failles de conformité. Surtout, il devient impossible de mesurer les résultats quand chacun fait les choses à sa façon."
+      },
+      {
+        "t": "p",
+        "x": "Sa solution : un **protocole de prompt partagé**, où chaque équipe joint le même contexte solide et les mêmes ressources (documents, liens, outils), pour que les productions de l’IA restent cohérentes dans toute l’organisation. Elle a synthétisé les guides de prompt de GPT-5, de la série o et de Claude dans un [dossier de 23 pages](https://alliekmiller.com/prompt-anatomy) pour aider les équipes à obtenir de meilleurs résultats."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de création du protocole",
+        "type": "prompt",
+        "texte": "Aide-moi à rédiger un protocole de prompt commun pour mon équipe. Notre activité : [secteur, équipe, usages de l’IA]. Le protocole doit préciser :\n- le contexte à joindre systématiquement (présentation de l’entreprise, public cible, ton de marque, règles de conformité) ;\n- les ressources partagées à fournir (documents, liens, outils) ;\n- une structure de prompt standard que tout le monde suit ;\n- la façon de vérifier et de mesurer les résultats.\nPose-moi d’abord les questions nécessaires, puis propose un document d’une page, prêt à diffuser.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Le problème n’est pas que vos prompts soient mauvais, mais qu’ils soient incohérents : alignez contexte et structure à l’échelle de l’équipe.",
+    "source": {
+      "cle": "judge-forces-google-to-share-ai-search-secrets",
+      "date": "2025-09-03",
+      "url": "https://www.theneurondaily.com/p/judge-forces-google-to-share-ai-search-secrets",
+      "newsletter": "Judge forces Google to share AI search secrets 🔍💎",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Judge forces Google to share AI search secrets 🔍💎"
+    }
+  },
+  {
+    "id": "gagner-du-temps-avec-des-commandes-courtes-et-directes",
+    "titre": "Gagner du temps avec des commandes courtes et directes",
+    "resume": "Résumer sous pression, transformer des notes en liste de tâches priorisée, repérer les actions cachées d’une réunion : trois prompts simples pour gagner en productivité.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Amanda Caswell, de Tom’s Guide, propose [neuf prompts simples](https://www.tomsguide.com/ai/9-chatgpt-5-prompts-that-will-instantly-boost-your-productivity) pour faire de ChatGPT un assistant de productivité. Trois d’entre eux sortent du lot :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "Pour relire vite un document : un résumé « comme si j’avais une échéance ».",
+          "Pour mettre de l’ordre dans un vide-tête : convertir vos notes en liste de tâches priorisée.",
+          "Pour les réunions où vous avez décroché : retrouver les actions à mener cachées dans la transcription."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Parfois, les commandes les plus simples sont les plus efficaces."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le résumé express",
+        "type": "prompt",
+        "texte": "Résume-moi ceci comme si j’avais une échéance imminente.\n\n[votre document]",
+        "adapte": false
+      },
+      {
+        "titre": "La liste de tâches priorisée",
+        "type": "prompt",
+        "texte": "Convertis les notes suivantes en liste de tâches priorisée.\n\n[vos notes]",
+        "adapte": false
+      },
+      {
+        "titre": "Les actions cachées",
+        "type": "prompt",
+        "texte": "Trouve les actions à mener cachées dans cette transcription de réunion.\n\n[transcription]",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Pour les tâches du quotidien, une consigne courte et précise suffit souvent.",
+    "source": {
+      "cle": "are-you-ready-for-ai-school",
+      "date": "2025-09-02",
+      "url": "https://www.theneurondaily.com/p/are-you-ready-for-ai-school",
+      "newsletter": "Are you ready for AI school?",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Are you ready for AI school?"
+    }
+  },
+  {
+    "id": "rediger-le-prompt-d-un-agent-vocal-en-temps-reel",
+    "titre": "Rédiger le prompt d’un agent vocal en temps réel",
+    "resume": "Sections dans le bon ordre, puces courtes, règles en majuscules, guides de prononciation, consignes de variété : les techniques d’OpenAI pour prompter un modèle vocal.",
+    "categorie": "creer",
+    "niveau": "avance",
+    "outils": [
+      "chatgpt"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "OpenAI a publié [son guide complet](https://cookbook.openai.com/examples/realtime_prompting_guide) pour prompter gpt-realtime, son modèle vocal en temps réel. Il en ressort que l’IA vocale demande des techniques très différentes de celles des modèles de texte."
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Structurez le prompt en sections claires**, dans cet ordre : rôle et objectif, personnalité et ton, outils, déroulé de la conversation, sécurité et escalade.",
+          "**Préférez les puces aux paragraphes** : des points courts sont mieux suivis que de longs paragraphes.",
+          "**Mettez les règles clés en MAJUSCULES** pour les faire ressortir.",
+          "**Écrivez la logique conditionnelle en toutes lettres** : au lieu de « IF x > 3 THEN ESCALATE », écrivez « SI PLUS DE TROIS ÉCHECS, ALORS ESCALADER ».",
+          "**Annoncez les appels d’outils** : faites dire au modèle « Je vérifie ça tout de suite » avant d’appeler une fonction.",
+          "**Maîtrisez la dérive de langue** : imposez la langue de réponse pour éviter les changements intempestifs.",
+          "**Gérez l’audio peu clair** : donnez des consignes explicites pour les bruits de fond et les mots tronqués.",
+          "**Donnez des exemples de phrases** qui montrent le style, sans être répétitifs.",
+          "**Ajoutez des règles de variété** : le modèle suit les exemples de si près qu’il faut lui demander explicitement de varier, sinon il radote. Par exemple : « Ne répète jamais deux fois la même phrase. »",
+          "**Ajoutez un guide de prononciation** pour les termes de votre marque, avec la prononciation phonétique : par exemple, demandez de prononcer SQL « sequel ».",
+          "**Faites lire les nombres caractère par caractère** : numéros de téléphone, codes, etc.",
+          "**Faites relire vos prompts par une IA** : un méta-prompt repère les conflits et les ambiguïtés de ce que vous avez écrit.",
+          "**Itérez sans relâche** : testez de nombreuses petites variantes (un mot remplacé, une autre formulation de la même consigne, une structure de phrase différente…)."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "**L’enseignement le plus marquant**, selon The Neuron, est ce dernier point : remplacer un simple mot, comme « inaudible » par « inintelligible », peut nettement améliorer les performances. Comme GPT-5, ce modèle est extrêmement sensible à la formulation exacte, bien plus que la plupart des modèles de texte."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le squelette de prompt pour agent vocal",
+        "type": "prompt",
+        "texte": "# Rôle et objectif\n- Tu es [rôle de l’agent] pour [entreprise]. Ton objectif : [objectif de la conversation].\n\n# Personnalité et ton\n- [ton souhaité : chaleureux, concis…]\n- Réponds UNIQUEMENT en [langue], même si ton interlocuteur change de langue.\n- Exemples de phrases, pour le style seulement : [exemples].\n- Ne répète jamais deux fois la même phrase.\n\n# Outils\n- Avant d’appeler un outil, annonce-le, par exemple : « Je vérifie ça tout de suite. »\n\n# Déroulé de la conversation\n- [étapes de la conversation]\n- Lis les numéros de téléphone et les codes caractère par caractère.\n- Prononce [terme de la marque] « [prononciation phonétique] ».\n- Si l’audio est peu clair (bruit de fond, mots tronqués), demande poliment de répéter.\n\n# Sécurité et escalade\n- SI PLUS DE TROIS ÉCHECS, ALORS TRANSFÈRE À UN CONSEILLER HUMAIN.",
+        "adapte": true
+      },
+      {
+        "titre": "Le méta-prompt de relecture",
+        "type": "prompt",
+        "texte": "Voici le prompt système de mon agent vocal. Relis-le et repère les consignes contradictoires, ambiguës ou difficiles à suivre à l’oral. Pour chaque problème, cite le passage concerné et propose une reformulation précise.\n\n[votre prompt]",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Un modèle vocal réagit au moindre mot : structurez votre prompt, puis testez-le et retouchez-le par petites variations.",
+    "source": {
+      "cle": "openai-makes-voice-apps-human-finally",
+      "date": "2025-08-29",
+      "url": "https://www.theneurondaily.com/p/openai-makes-voice-apps-human-finally",
+      "newsletter": "OpenAI Makes Voice Apps Human (Finally)",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 OpenAI Makes Voice Apps Human (Finally)"
+    }
+  },
+  {
+    "id": "retoucher-une-image-une-consigne-a-la-fois-avec-nano-banana",
+    "titre": "Retoucher une image une consigne à la fois avec Nano Banana",
+    "resume": "Une retouche par prompt, des consignes précises comme pour un artisan, des itérations sans crainte : les conseils de Logan Kilpatrick, de Google, pour son modèle d’image.",
+    "categorie": "creer",
+    "niveau": "debutant",
+    "outils": [
+      "gemini"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Voici [comment tirer le meilleur de Nano Banana](https://youtu.be/3Zvk4AMCrG8?si=-AoXoQxlXw8zTv1w), selon Greg Isenberg et Logan Kilpatrick, responsable de Google AI Studio :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Une retouche par prompt** : n’empilez pas les consignes, le modèle s’y perd.",
+          "**Soyez précis comme avec un artisan** : donnez des directives claires et détaillées, comme si vous engagiez quelqu’un pour un chantier.",
+          "**Itérez sans crainte** : la qualité ne se dégrade pas d’une retouche à l’autre, alors commencez simplement et affinez.",
+          "**Parlez naturellement** : « Retire le logo » ou « Ajoute du texte ici » fonctionnent parfaitement.",
+          "**Expérimentez librement** : à environ 4 centimes de dollar par image, vous pouvez tester des idées farfelues."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Logan Kilpatrick souligne aussi que le modèle a de solides connaissances du monde : il place intelligemment les produits dans des scènes réalistes, sans qu’il faille tout lui détailler."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "La consigne naturelle",
+        "type": "prompt",
+        "texte": "Retire le logo.",
+        "adapte": false
+      },
+      {
+        "titre": "La retouche précise, comme pour un artisan",
+        "type": "prompt",
+        "texte": "Sur cette photo, remplace [élément à modifier] par [nouvel élément, avec matière, couleur et dimensions]. Garde exactement le même cadrage, la même lumière et les mêmes ombres, et ne modifie rien d’autre.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Une retouche à la fois, décrite avec précision : c’est en itérant par petites étapes qu’on obtient l’image voulue.",
+    "source": {
+      "cle": "which-of-these-100-do-you-use",
+      "date": "2025-08-28",
+      "url": "https://www.theneurondaily.com/p/which-of-these-100-do-you-use",
+      "newsletter": "Which of these top 100 genAI apps do you use?",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 Which of these top 100 genAI apps do you use?"
+    }
+  },
+  {
+    "id": "grouper-ses-retouches-d-image-en-un-seul-prompt-avec-nano-banana",
+    "titre": "Grouper ses retouches d’image en un seul prompt avec Nano Banana",
+    "resume": "Prompts conversationnels, plusieurs retouches d’un coup, plusieurs images à la fois, insertion de produits : les conseils de Justine Moore pour le modèle d’image de Google.",
+    "categorie": "creer",
+    "niveau": "debutant",
+    "outils": [
+      "gemini"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Justine Moore, créatrice de contenus IA et investisseuse, a [partagé ses conseils](https://x.com/venturetwins/status/1960375536007676337) pour travailler avec Nano Banana, alias Gemini 2.5 Flash Image, le modèle d’image de Google :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Essayez des prompts larges et conversationnels** : au lieu de tout décomposer, demandez par exemple « Continue cette histoire », et le modèle écrira la suite du récit ET créera les images assorties.",
+          "**Combinez plusieurs retouches dans un seul prompt** : chez elle, une demande en trois retouches a parfaitement fonctionné du premier coup (voir le prompt ci-dessous).",
+          "**Envoyez plusieurs images à la fois** : le modèle peut travailler sur plusieurs images simultanément pour des projets plus complexes.",
+          "**Testez l’insertion de produits** : placez facilement votre produit dans des scènes existantes sans recréer tout l’arrière-plan."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Pour aller plus loin, elle détaille aussi [sa méthode](https://x.com/venturetwins/status/1960438374839542006) pour transformer des photos fixes en une vidéo produit soignée."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de retouches combinées",
+        "type": "prompt",
+        "texte": "Supprime tout sauf la femme et le micro. Fais-en un personnage animé en 3D. Place-la dans un bureau photoréaliste.",
+        "adapte": false
+      },
+      {
+        "titre": "Le prompt narratif",
+        "type": "prompt",
+        "texte": "[votre début d’histoire ou votre image]\n\nContinue cette histoire.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Avec un bon modèle d’image, parlez comme à un collaborateur : une consigne large ou plusieurs retouches d’un coup peuvent suffire.",
+    "source": {
+      "cle": "google-s-new-image-model-is-bananas",
+      "date": "2025-08-27",
+      "url": "https://www.theneurondaily.com/p/google-s-new-image-model-is-bananas",
+      "newsletter": "Google's new image model is BANANAS...",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Google's new image model is BANANAS..."
+    }
+  },
+  {
+    "id": "imposer-une-structure-en-quatre-parties-a-chaque-reponse",
+    "titre": "Imposer une structure en quatre parties à chaque réponse",
+    "resume": "Réponse directe, explication, alternatives et prochaine étape : ce cadre pousse les modèles de raisonnement à livrer moins de remplissage et plus de décisions utilisables.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Essayez ce [canevas simple en quatre parties](https://www.tomsguide.com/ai/this-ultimate-prompt-unlocks-chatgpt-5s-full-potential-and-its-surprisingly-simple) pour obtenir des réponses plus nettes et plus utiles, surtout avec des modèles de raisonnement comme GPT-5."
+      },
+      {
+        "t": "p",
+        "x": "**Pourquoi ça marche** : les modèles actuels donnent le meilleur d’eux-mêmes quand vous imposez une structure (la réponse, puis le pourquoi, les options et la prochaine étape). Vous obtenez moins de remplissage et davantage de décisions applicables tout de suite."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt en quatre parties",
+        "type": "prompt",
+        "texte": "Tu es mon assistant expert, au raisonnement clair. Dans chaque réponse, inclus :\n1) une réponse directe et applicable ;\n2) une courte explication du pourquoi ou du pourquoi pas ;\n3) 2 ou 3 approches alternatives (en précisant quand utiliser chacune) ;\n4) une prochaine étape que je peux faire tout de suite.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Imposer un format fixe à l’IA, c’est obtenir des décisions plutôt que du remplissage.",
+    "source": {
+      "cle": "nvidia-launches-a-robot-brain-with-7-5x-more-power",
+      "date": "2025-08-26",
+      "url": "https://www.theneurondaily.com/p/nvidia-launches-a-robot-brain-with-7-5x-more-power",
+      "newsletter": "NVIDIA Launches A Robot Brain With 7.5x More Power",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 NVIDIA Launches A Robot Brain With 7.5x More Power"
+    }
+  },
+  {
+    "id": "mettre-en-place-des-evaluations-pour-juger-la-fiabilite-de-l-ia",
+    "titre": "Mettre en place des évaluations pour juger la fiabilité de l’IA",
+    "resume": "Dès que l’IA travaille sans que vous relisiez tout, il faut une méthode pour juger ses réponses : vérifications automatiques, cas de test annotés, puis IA juge.",
+    "categorie": "verifier",
+    "niveau": "avance",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Si vous faites plus que du travail « de milieu à milieu » avec l’IA (vous demandez, elle répond, vous améliorez la réponse par quelques allers-retours puis vous la retouchez vous-même), il vous faut une façon structurée de juger sa justesse : des évaluations (*evals*). Andrew Ng [cite d’ailleurs](https://youtu.be/SYisFbhR7xs?si=q4L5I_nZRWGbwRTL&t=214) l’absence de véritables évaluations comme le premier obstacle qui empêche les équipes de mettre en place des flux de travail plus autonomes, dits agentiques."
+      },
+      {
+        "t": "p",
+        "x": "Voici la méthode de [Peter Yang](https://substack.com/@petergyang), tirée de son [guide des évaluations pour débutants](https://creatoreconomy.so/p/curious-beginners-guide-to-ai-evaluations), qui vaut la lecture complète :"
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "**Rédigez votre prompt** avec des consignes claires et les données utiles.",
+          "**Lancez des vérifications par code** pour repérer les échecs évidents (règles internes, image de marque, qualité).",
+          "**Annotez à la main au moins 12 cas de test** selon 3 critères, pour repérer les tendances et améliorer vos prompts.",
+          "**Entraînez une IA juge** sur ce jeu de données annoté pour évaluer des centaines de réponses."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Il faut aussi apprendre à raisonner en probabilités sur les résultats possibles de votre IA. [Gian Segato](https://giansegato.com/essays/probabilistic-era) montre que nos produits peuvent désormais « réussir d’une manière que nous n’avions jamais imaginée », et échouer de la même façon ; Drew Breunig rappelle que cette part d’aléatoire est une situation que les ingénieurs gèrent déjà dans bien des domaines. Bref, pour mieux travailler avec l’IA, pensez comme un ingénieur."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de l’IA juge",
+        "type": "prompt",
+        "texte": "Tu es un évaluateur exigeant. Voici la tâche confiée à une IA : [description de la tâche et consignes]. Voici les 3 critères d’évaluation : [critère 1], [critère 2], [critère 3]. Voici des exemples déjà notés par un humain : [exemples annotés avec leur verdict].\n\nPour chaque réponse ci-dessous, indique pour chaque critère « réussi » ou « échoué », avec une phrase de justification, puis un verdict global. Ne sois pas indulgent : en cas de doute, signale-le.\n\n[réponses à évaluer]",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Sans grille d’évaluation testée sur des cas réels, impossible de savoir si votre IA reste fiable à grande échelle.",
+    "source": {
+      "cle": "will-your-ai-browser-betray-you",
+      "date": "2025-08-25",
+      "url": "https://www.theneurondaily.com/p/will-your-ai-browser-betray-you",
+      "newsletter": "Will your AI browser betray you?",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 Will your AI browser betray you?"
+    }
+  },
+  {
+    "id": "rediger-ses-pages-pour-etre-cite-par-les-moteurs-de-reponse-ia",
+    "titre": "Rédiger ses pages pour être cité par les moteurs de réponse IA",
+    "resume": "Les IA comme GPT-5 s’appuient sur la recherche Web pour répondre. Ciblez les vraies questions posées aux IA et structurez vos pages pour qu’elles soient reprises et citées.",
+    "categorie": "business",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "GPT-5 n’a pas besoin de tout savoir : il sait surtout où chercher. L’expert en référencement Dan Petrovic [estime](https://dejan.ai/blog/gpt-5-made-seo-irreplaceable/) que le dernier modèle d’OpenAI est « pratiquement inutile » sans recherche Web, ce qui change complètement la façon d’amener les IA à citer vos contenus."
+      },
+      {
+        "t": "p",
+        "x": "Au lieu d’optimiser pour des mots-clés comme « logiciel de gestion de projet », ciblez les prompts que les gens tapent vraiment dans une IA, par exemple « Aide-moi à choisir entre Asana et Monday pour une équipe en télétravail ». L’enjeu est de prévoir quand l’IA aura besoin de chercher (ce qu’il appelle l’ancrage, ou *grounding*) : en général pour des questions qui demandent des données à jour, comme les prix actuels, les comparatifs, les avis ou les détails de mise en œuvre."
+      },
+      {
+        "t": "p",
+        "x": "Pour être cité, Dan Petrovic conseille de structurer vos contenus pour les IA :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "Un titre H1 clair qui répond à la question.",
+          "Un résumé de 2 à 3 phrases avec les faits clés.",
+          "Des explications détaillées en listes à puces.",
+          "Les données les plus récentes possibles, avec des dates bien visibles."
+        ]
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt pour trouver les questions posées aux IA",
+        "type": "prompt",
+        "texte": "Mon entreprise : [activité, offre, clientèle]. Liste 15 questions que mes clients potentiels pourraient poser à un assistant IA comme ChatGPT, formulées comme ils les taperaient (par exemple « Aide-moi à choisir entre [solution A] et [solution B] pour [situation] »). Signale celles pour lesquelles l’IA devra probablement chercher sur le Web : prix, comparatifs, avis, détails de mise en œuvre.",
+        "adapte": true
+      },
+      {
+        "titre": "Le prompt de restructuration d’une page",
+        "type": "prompt",
+        "texte": "Réécris cette page pour qu’une IA qui cherche sur le Web puisse facilement la reprendre et la citer :\n- un titre H1 clair qui répond directement à la question [question visée] ;\n- un résumé de 2 à 3 phrases avec les faits clés ;\n- des explications détaillées en listes à puces ;\n- les données les plus récentes, avec leur date bien visible.\nNe change aucun fait et signale-moi les données qui mériteraient une mise à jour.\n\n[texte de votre page]",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "On ne vise plus seulement des mots-clés mais les questions posées aux IA : des pages claires, structurées et datées ont plus de chances d’être citées.",
+    "source": {
+      "cle": "google-spills-the-ai-electrici-tea",
+      "date": "2025-08-22",
+      "url": "https://www.theneurondaily.com/p/google-spills-the-ai-electrici-tea",
+      "newsletter": "Google spills the AI electrici-tea...",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Google spills the AI electrici-tea..."
+    }
+  },
+  {
+    "id": "structurer-un-prompt-en-dix-blocs-selon-le-modele-d-anthropic",
+    "titre": "Structurer un prompt en dix blocs selon le modèle d’Anthropic",
+    "resume": "Contexte, ton, documents, règles, exemples, historique, demande, réflexion, format et amorce : un canevas en dix étapes pour des prompts solides, adaptés au travail avec des agents.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "[Matt Pocock](https://x.com/mattpocockuk/status/1958179930262356032) a remis en lumière ce modèle d’« ingénierie du contexte » tiré de la [vidéo Prompting 101 d’Anthropic](https://youtu.be/ysPbXH0LpIE?si=LF8ruB7yLJnNcI1x&t=321). Cette structure en dix étapes transforme des prompts brouillons en instructions adaptées au travail avec des agents."
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "**Le contexte de la tâche**, pour planter le décor.",
+          "**Le contexte de ton.**",
+          "**Les données et documents de référence.**",
+          "**La description détaillée de la tâche et les règles.**",
+          "**Des exemples** de ce que vous voulez.",
+          "**L’historique de la conversation**, pour le contexte.",
+          "**La tâche ou la demande immédiate.**",
+          "**La consigne de réfléchir étape par étape.**",
+          "**Le format de sortie.**",
+          "**Facultatif : une amorce de réponse**, pour guider le début de la réponse."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Copiez cette liste dans votre IA et demandez-lui d’en faire un modèle de prompt réutilisable, par exemple pour l’ingénierie du contexte avec [Claude Code](https://www.anthropic.com/claude-code)."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de mise en forme du modèle",
+        "type": "prompt",
+        "texte": "Voici une structure de prompt en dix étapes, tirée de la vidéo Prompting 101 d’Anthropic :\n1. Contexte de la tâche\n2. Contexte de ton\n3. Données et documents de référence\n4. Description détaillée de la tâche et règles\n5. Exemples\n6. Historique de la conversation\n7. Tâche ou demande immédiate\n8. Réfléchir étape par étape\n9. Format de sortie\n10. Amorce de réponse (facultatif)\n\nTransforme-la en modèle de prompt réutilisable : une section par étape, avec un titre clair, une phrase qui explique quoi y mettre et un élément à compléter entre crochets. Je l’utiliserai pour [usage : travail avec Claude Code, rédaction de rapports…].",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Un bon prompt pour agent se construit par couches : contexte, règles, exemples, demande, puis format.",
+    "source": {
+      "cle": "are-we-about-to-enter-ai-winter",
+      "date": "2025-08-21",
+      "url": "https://www.theneurondaily.com/p/are-we-about-to-enter-ai-winter",
+      "newsletter": "Are we about to enter \"AI Winter??\"",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Are we about to enter \"AI Winter??\""
+    }
+  },
+  {
+    "id": "apprendre-en-video-a-creer-un-agent-et-a-installer-un-modele-local",
+    "titre": "Apprendre en vidéo à créer un agent et à installer un modèle local",
+    "resume": "Trois tutoriels vidéo pour progresser : créer un premier agent avec n8n, faire tourner un modèle d’OpenAI sur votre ordinateur avec LM Studio, et maîtriser le guide de prompt de GPT-5.",
+    "categorie": "outils",
+    "niveau": "avance",
+    "outils": [
+      "autre",
+      "chatgpt"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "**Créer un agent** : Tina Huang, l’une des créatrices YouTube sur l’IA préférées de The Neuron, a publié une [vidéo de 25 minutes](https://youtu.be/DV0Ln7HRyJQ?si=wF56SRUb4vqRBE5P) qui explique comment passer de zéro à un agent IA avec [n8n](https://n8n.io/)."
+      },
+      {
+        "t": "p",
+        "x": "**Faire tourner un modèle en local** : pour utiliser sur votre ordinateur un modèle comme [gpt-oss-20b](https://huggingface.co/openai/gpt-oss-20b), le modèle ouvert d’OpenAI, The Neuron recommande l’outil [LM Studio](https://lmstudio.ai/). [Ce tutoriel](https://youtu.be/Ar0Or9U0pCs?si=gfxSqCH7WEwZmd-w&t=214) de JeredBlu montre exactement comment faire."
+      },
+      {
+        "t": "p",
+        "x": "**Mieux prompter GPT-5** : si tout cela vous paraît trop technique, Matt Berman a réalisé un [résumé du guide de prompt de GPT-5](https://youtu.be/EfOjGyctDcQ?si=6R2Uad207gAK9BMu) publié par OpenAI, qui vous le fait parcourir pas à pas pour obtenir ce que vous voulez de GPT-5."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt d’accompagnement pendant un tutoriel",
+        "type": "prompt",
+        "texte": "Je suis un tutoriel vidéo pour [objectif : créer un agent avec n8n, installer un modèle avec LM Studio…]. Mon ordinateur : [système d’exploitation, mémoire vive, carte graphique]. Guide-moi étape par étape, une étape à la fois : attends que je te confirme que c’est fait, ou que je te colle le message d’erreur, avant de passer à la suivante.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Pour vous lancer dans les agents ou l’IA locale, suivez un tutoriel vidéo et faites-vous guider par l’IA à chaque blocage.",
+    "source": {
+      "cle": "adobe-reinvents-the-pdf",
+      "date": "2025-08-20",
+      "url": "https://www.theneurondaily.com/p/adobe-reinvents-the-pdf",
+      "newsletter": "Adobe reinvents the PDF...",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Adobe reinvents the PDF..."
+    }
+  },
+  {
+    "id": "construire-un-prompt-avec-sujet-contexte-intention-et-contraintes",
+    "titre": "Construire un prompt avec sujet, contexte, intention et contraintes",
+    "resume": "Une formule simple pour sortir des réponses génériques : précisez le sujet, votre situation, ce que vous attendez de la réponse et vos contraintes.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Vos résultats de recherche par IA ne valent que ce que valent vos prompts. La [série d’iPullRank sur le référencement à l’ère de l’IA](https://ipullrank.com/ai-search-manual/search-behavior) montre à quel point la qualité du prompt change celle de la réponse."
+      },
+      {
+        "t": "p",
+        "x": "Prenez l’exemple d’un voyage en Italie : « conseils voyage Italie » donne des recommandations touristiques génériques. Ajoutez du contexte, comme « voyage en Italie du Nord ou du Sud en juillet avec un tout-petit, besoin d’expériences locales adaptées aux familles et d’accès aux transports en commun », et vous obtenez des recommandations personnalisées, avec de vrais compromis et leurs justifications."
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "**Le sujet** : ce sur quoi porte votre question.",
+          "**Le contexte** : votre situation.",
+          "**L’intention** : ce que vous attendez de la réponse.",
+          "**Les contraintes** : vos exigences ou vos limites."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "C’est toute la différence entre une IA qui vous sert des résumés façon Wikipédia et une IA qui devient votre organisatrice de voyage personnelle. Plus vous donnez de contexte d’emblée, moins vous aurez d’allers-retours ensuite : rédigez votre prompt comme le brief d’un assistant très compétent."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le modèle en quatre parties",
+        "type": "prompt",
+        "texte": "[sujet de votre question]\nContexte : [votre situation]\nCe que j’attends de ta réponse : [intention]\nContraintes : [exigences ou limites]",
+        "adapte": true
+      },
+      {
+        "titre": "L’exemple des restaurants",
+        "type": "prompt",
+        "texte": "Trouve-moi des restaurants locaux authentiques dans le quartier du Trastevere, à Rome, à distance de marche des transports en commun, adaptés aux végétariens, à moins de 30 € par personne.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Sujet, contexte, intention, contraintes : plus votre brief est clair, plus la réponse est personnalisée.",
+    "source": {
+      "cle": "can-ai-predict-the-future",
+      "date": "2025-08-19",
+      "url": "https://www.theneurondaily.com/p/can-ai-predict-the-future",
+      "newsletter": "Can AI predict the future?? 🤔🔮",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Can AI predict the future?? 🤔🔮"
+    }
+  },
+  {
+    "id": "appliquer-cinq-leviers-pour-mieux-piloter-gpt-5",
+    "titre": "Appliquer cinq leviers pour mieux piloter GPT-5",
+    "resume": "Mots déclencheurs, optimiseur de prompts, consignes précises, structure XML et autoévaluation : cinq astuces tirées du guide d’OpenAI pour mieux orienter GPT-5.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "D-Squared a condensé les meilleurs conseils d’OpenAI pour [bien prompter GPT-5](https://cookbook.openai.com/examples/gpt-5/gpt-5_prompting_guide) en [cinq astuces](https://youtu.be/2JA5xGteito?si=HM-nnr7S3xZ1LtIQ) qui permettent de mieux « piloter » le modèle :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Les mots déclencheurs** : des formules comme « réfléchis en profondeur », « vérifie deux fois ton travail », « sois extrêmement minutieux » ou « c’est crucial que ce soit juste » augmentent le niveau de raisonnement du modèle.",
+          "**L’optimiseur de prompts** : l’[outil d’optimisation d’OpenAI](https://platform.openai.com/chat/edit?optimize=true) améliore automatiquement vos prompts selon les bonnes pratiques (il consomme des crédits d’API, environ 1 à 2 dollars).",
+          "**Les mots comptent, soyez précis** : évitez les termes vagues et les contradictions. Au lieu de « organise une fête sympa, amusante mais pas trop folle », donnez tous les paramètres (voir le prompt ci-dessous).",
+          "**Les prompts structurés** : des balises XML comme `<context>`, `<task>` et `<format>` aident l’IA à distinguer les différentes parties de vos instructions.",
+          "**L’autoévaluation** : demandez à l’IA de créer sa propre grille d’évaluation à partir de votre intention, puis de juger son résultat selon cette grille et de l’améliorer plusieurs fois en interne avant de vous livrer la réponse finale."
+        ]
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Les mots déclencheurs",
+        "type": "prompt",
+        "texte": "Réfléchis en profondeur et sois extrêmement minutieux : c’est crucial que ce soit juste. Vérifie deux fois ton travail avant de répondre.\n\n[votre demande]",
+        "adapte": false
+      },
+      {
+        "titre": "Le prompt précis",
+        "type": "prompt",
+        "texte": "Organise l’anniversaire de mon enfant de 8 ans : 10 enfants, budget de 200 dollars, 2 heures, thème licorne.",
+        "adapte": false
+      },
+      {
+        "titre": "La structure XML",
+        "type": "prompt",
+        "texte": "<contexte>\n[votre situation et les informations utiles]\n</contexte>\n\n<tache>\n[ce que tu dois faire]\n</tache>\n\n<format>\n[forme attendue de la réponse]\n</format>",
+        "adapte": true
+      },
+      {
+        "titre": "Le prompt d’autoévaluation",
+        "type": "prompt",
+        "texte": "Avant de me répondre, crée une grille d’évaluation à partir de ce que je cherche à obtenir. Juge ensuite ta réponse selon cette grille et améliore-la plusieurs fois, jusqu’à ce qu’elle remplisse tous les critères. Ne me montre que la version finale.\n\n[votre demande]",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Un modèle de raisonnement prend vos mots au pied de la lettre : soyez précis, structuré, et demandez-lui de se juger avant de répondre.",
+    "source": {
+      "cle": "goldman-sachs-new-ai-job-forecast-how-to-train-your-claude-code",
+      "date": "2025-08-18",
+      "url": "https://www.theneurondaily.com/p/goldman-sachs-new-ai-job-forecast-how-to-train-your-claude-code",
+      "newsletter": "Goldman Sachs' new AI job forecast & how to train your Claude (Code)...",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Goldman Sachs' new AI job forecast & how to train your Claude (Code)..."
+    }
+  },
+  {
+    "id": "faire-traiter-de-longues-listes-de-liens-par-lots-de-dix",
+    "titre": "Faire traiter de longues listes de liens par lots de dix",
+    "resume": "GPT-5 Pro décroche au-delà d’une douzaine de recherches. Pour exploiter beaucoup d’URL, faites-les consulter une par une, par lots de dix, avec une pause entre chaque lot.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "chatgpt"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "En testant GPT-5 Pro, l’équipe de The Neuron a constaté que pour lui faire lire et exploiter le contenu d’URL précises, mieux vaut limiter le nombre de liens à 8 ou 12 (disons 10)."
+      },
+      {
+        "t": "p",
+        "x": "Dans son raisonnement affiché, GPT-5 Pro a lui-même révélé qu’il bloque après environ 12 recherches : il épuise en quelque sorte son quota de requêtes. Si vous devez lui faire traiter le contenu de nombreux liens, procédez donc par lots de 10."
+      },
+      {
+        "t": "p",
+        "x": "Autre conseil : GPT-5 serait *très sensible* à tout ce qui s’interpose entre lui et son objectif. Si vous avez des souvenirs en mémoire, des instructions personnalisées, des instructions de projet ou tout autre élément superflu que vous ne voulez pas qu’il prenne en compte, retirez-les avant de lancer votre prompt : sinon, il suivra *toutes* ses instructions."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de traitement par lots",
+        "type": "prompt",
+        "texte": "Aide-moi à rassembler [les informations dont vous avez besoin] à partir de chacune des URL de cette liste, en les consultant une à la fois, dans l’ordre, et renvoie-les-moi par lots de 10. Pour chaque lien, donne-moi le contenu sous la forme [structure de sortie souhaitée], comme ceci : [exemple de ce que vous attendez pour une URL]. Une fois les dix premières traitées, envoie-les-moi et attends ma réponse pour continuer.\n\n[liste d’URL]",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Une IA qui navigue a un nombre limité de recherches par réponse : découpez le travail en lots et validez chaque lot avant de continuer.",
+    "source": {
+      "cle": "our-honest-review-of-perplexity-comet",
+      "date": "2025-08-15",
+      "url": "https://www.theneurondaily.com/p/our-honest-review-of-perplexity-comet",
+      "newsletter": "Our HONEST review of Perplexity Comet...",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Our HONEST review of Perplexity Comet..."
+    }
+  },
+  {
+    "id": "analyser-un-tres-gros-csv-en-le-zippant-puis-en-le-decoupant",
+    "titre": "Analyser un très gros CSV en le zippant puis en le découpant",
+    "resume": "Votre CSV de centaines de milliers de lignes fait planter le tableur et dépasse les limites de l’IA ? Zippez-le, faites-le découper en morceaux, puis analysez-les un à un.",
+    "categorie": "outils",
+    "niveau": "intermediaire",
+    "outils": [
+      "chatgpt",
+      "claude"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Un CSV de 832 000 lignes fait planter Google Sheets et dépasse les limites de *tokens* des IA. [Web Webster](https://www.linkedin.com/in/webwebster), de l’équipe de The Neuron, a trouvé une parade en devant analyser son propre jeu de données géant."
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Compressez votre fichier CSV au format zip.",
+          "Envoyez la version compressée à ChatGPT ou Claude, avec le prompt de découpage ci-dessous.",
+          "Posez les mêmes questions d’analyse à chaque petit fichier, séparément.",
+          "Demandez enfin à l’IA de combiner tous les résultats."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Pourquoi ça marche : un CSV compressé peut être [70 à 90 % plus léger](https://stackoverflow.com/questions/47062749/most-efficient-way-to-split-a-compressed-csv-into-chunks) que l’original, et les IA peuvent l’extraire et le découper par programme grâce à leurs bibliothèques intégrées. Vous contournez ainsi la limite de la fenêtre de contexte, qui oblige d’ordinaire à tronquer les données, et vous analysez l’ensemble sans rien perdre : l’IA devient votre assistante de préparation des données."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de découpage",
+        "type": "prompt",
+        "texte": "Ingère ce fichier et découpe-le en fichiers plus petits, avec un nombre de lignes raisonnable que tu peux encore traiter efficacement.",
+        "adapte": false
+      },
+      {
+        "titre": "Le prompt d’analyse par morceaux",
+        "type": "prompt",
+        "texte": "Analyse chacun des fichiers découpés séparément pour répondre à cette question : [votre question d’analyse]. Ensuite, combine les résultats de tous les fichiers en une seule réponse.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Quand un fichier est trop gros pour l’IA, faites-la travailler par morceaux, puis assembler les réponses.",
+    "source": {
+      "cle": "ai-world-building-doctor-deskilling-and-soft-code-quality",
+      "date": "2025-08-14",
+      "url": "https://www.theneurondaily.com/p/ai-world-building-doctor-deskilling-and-soft-code-quality",
+      "newsletter": "AI world-building, doctor deskilling, and \"soft\" code quality...",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 AI world-building, doctor deskilling, and \"soft\" code quality..."
+    }
+  },
+  {
+    "id": "choisir-l-acces-qui-donne-le-plus-de-reflexion-a-gpt-5",
+    "titre": "Choisir l’accès qui donne le plus de réflexion à GPT-5",
+    "resume": "Écrire « réfléchis plus » ne lève pas le plafond de réflexion de ChatGPT. Pour les problèmes les plus complexes, l’API avec un effort de raisonnement élevé va bien plus loin.",
+    "categorie": "outils",
+    "niveau": "avance",
+    "outils": [
+      "chatgpt"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "L’ingénieur [Tibor Blaho a partagé](https://x.com/btibor91/status/1955241562486763962) une infographie qui montre la quantité de « *juice* » dont dispose GPT-5 selon le mode et l’abonnement. Ce « jus », ou [puissance de réflexion](https://x.com/chatgpt21/status/1954613519808127209), correspond aux *tokens* de raisonnement invisibles que le modèle peut utiliser : plus le chiffre est élevé, plus il réfléchit. C’est [littéralement le terme employé par OpenAI](https://www.threads.com/@btibor91/post/DGqciisCsQc)."
+      },
+      {
+        "t": "p",
+        "x": "**Le détail, en août 2025 :**"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "Via l’API, on peut régler ce « jus » de 5 jusqu’à 200.",
+          "Les abonnés ChatGPT Plus plafonnent à 64, quelle que soit l’astuce employée.",
+          "Même les abonnés ChatGPT Pro plafonnent à 128 en sélectionnant manuellement le mode GPT-5 Thinking."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Le plus surprenant : que vous écriviez « réfléchis plus » dans votre prompt, que vous utilisiez la commande slash ou que vous choisissiez le mode Thinking à la main, ChatGPT vous donne la même puissance de raisonnement limitée. Si vous avez besoin d’un raisonnement *maximal* pour un problème complexe, passez par l’API avec un effort de raisonnement élevé (*high*), qui dépasse nettement ce que permettent ChatGPT Pro et ChatGPT Plus."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "L’appel API avec effort de raisonnement élevé",
+        "type": "commande",
+        "texte": "curl https://api.openai.com/v1/responses \\\n  -H \"Content-Type: application/json\" \\\n  -H \"Authorization: Bearer $OPENAI_API_KEY\" \\\n  -d '{\n    \"model\": \"gpt-5\",\n    \"reasoning\": { \"effort\": \"high\" },\n    \"input\": \"[votre problème complexe]\"\n  }'",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Dans ChatGPT, la profondeur de réflexion est plafonnée par l’abonnement : pour aller au maximum, il faut passer par l’API.",
+    "source": {
+      "cle": "an-ai-skeptic-updates-their-timline",
+      "date": "2025-08-13",
+      "url": "https://www.theneurondaily.com/p/an-ai-skeptic-updates-their-timline",
+      "newsletter": "An AI skeptic updates their timline...",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 An AI skeptic updates their timline..."
+    }
+  },
+  {
+    "id": "se-faire-interviewer-par-l-ia-pour-trouver-son-ikigai",
+    "titre": "Se faire interviewer par l’IA pour trouver son ikigaï",
+    "resume": "L’IA joue le coach ikigaï : elle vous pose des questions jusqu’à cerner où se croisent ce que vous aimez, ce que vous savez faire et ce qui peut vous faire vivre.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Vous cherchez votre ikigaï, ce point de rencontre entre vos passions, vos compétences et votre raison d’être ? Ce court prompt, inspiré d’[un article de Garima Shah](https://medium.com/@garimashah/how-i-found-my-ikigai-with-chatgpt-9a093974e5d4), transforme ChatGPT (ou tout autre chatbot) en coach ikigaï personnel."
+      },
+      {
+        "t": "p",
+        "x": "Au lieu de vous donner une réponse toute faite, l’IA vous pose des questions détaillées sur votre vie et continue tant qu’elle n’a pas compris ce que vous aimez faire et comment vous pourriez en vivre."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt du coach ikigaï",
+        "type": "prompt",
+        "texte": "Joue le rôle d’un coach ikigaï en me posant des questions détaillées sur ma vie. Continue à me poser des questions jusqu’à comprendre parfaitement où mes passions, mes compétences et ma raison d’être se rejoignent de façon rentable. Ton objectif est de comprendre en profondeur ce que j’aime faire et comment je peux en vivre.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Pour une question aussi personnelle, laissez l’IA vous interroger plutôt que de lui demander une réponse d’emblée.",
+    "source": {
+      "cle": "so-i-guess-everyone-s-a-developer-now",
+      "date": "2025-08-12",
+      "url": "https://www.theneurondaily.com/p/so-i-guess-everyone-s-a-developer-now",
+      "newsletter": "So I guess everyone's a developer now...",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 So I guess everyone's a developer now..."
+    }
+  },
+  {
+    "id": "faire-planifier-l-ia-avant-qu-elle-execute-la-tache",
+    "titre": "Faire planifier l’IA avant qu’elle exécute la tâche",
+    "resume": "Demandez à l’IA de décomposer la demande et de bâtir une démarche avant d’agir, puis de vérifier chaque étape : GPT-5 réagit beaucoup mieux à ces consignes explicites.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Pietro Schirano, PDG de [Magic Path](https://www.magicpath.ai/), a [partagé](https://x.com/skirano/status/1954510362746691608) un [guide de prompt complet pour GPT-5](https://designs.magicpath.ai/v1/sturdy-valley-4825). Son constat : GPT-5 est bien plus sensible au style des instructions que les modèles précédents, alors que la plupart d’entre nous écrivent encore comme pour GPT-4."
+      },
+      {
+        "t": "p",
+        "x": "Le changement clé : GPT-5 excelle quand on lui impose une phase de planification explicite. Au lieu de « Rédige-moi un plan marketing », demandez-lui d’abord de décomposer la demande en ses éléments essentiels, de structurer sa démarche, puis d’exécuter étape par étape."
+      },
+      {
+        "t": "p",
+        "x": "**Les gains rapides tirés de son guide :**"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "Précisez d’emblée le ton et le style attendus.",
+          "Utilisez son « format de spécification » : définissez la tâche, le format, l’ordre des étapes et ce qu’il faut éviter.",
+          "Ajoutez une vérification : après chaque étape importante, l’IA contrôle que le résultat respecte les exigences.",
+          "Autorisez le traitement en parallèle des tâches indépendantes."
+        ]
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de planification",
+        "type": "prompt",
+        "texte": "Avant de répondre, décompose cette demande en ses éléments essentiels, construis une démarche structurée, puis exécute-la étape par étape. Après chaque étape importante, vérifie que le résultat respecte les exigences.\n\n[votre demande]",
+        "adapte": false
+      },
+      {
+        "titre": "Le format de spécification",
+        "type": "prompt",
+        "texte": "Tâche : [ce que tu dois produire]\nTon et style : [ton souhaité]\nFormat : [forme attendue du résultat]\nÉtapes : [ordre dans lequel procéder]\nÀ éviter : [ce que tu ne dois pas faire]",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Plus vous rendez explicites le plan, le format et les vérifications, mieux un modèle de raisonnement suit vos intentions.",
+    "source": {
+      "cle": "the-gpt-5-fallout-explained",
+      "date": "2025-08-11",
+      "url": "https://www.theneurondaily.com/p/the-gpt-5-fallout-explained",
+      "newsletter": "The GPT-5 fallout, explained...",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 The GPT-5 fallout, explained..."
+    }
+  },
+  {
+    "id": "demander-a-l-ia-de-corriger-un-prompt-qui-ne-marche-pas",
+    "titre": "Demander à l’IA de corriger un prompt qui ne marche pas",
+    "resume": "Donnez à l’IA un prompt décevant, le comportement attendu et celui obtenu : elle propose des retouches minimales. Une méthode recommandée par OpenAI pour GPT-5.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Avec la sortie de GPT-5, OpenAI a publié [un guide très complet](https://platform.openai.com/docs/guides/latest-model) pour bien l’utiliser (comme l’a [signalé](https://x.com/omarsar0/status/1953583336603234726) Elvis Saravia), dont [un guide de prompt](https://cookbook.openai.com/examples/gpt-5/gpt-5_prompting_guide) et un [outil d’optimisation de prompts](https://platform.openai.com/chat/edit?models=gpt-5&optimize=true) dans lequel vous pouvez passer vos propres prompts."
+      },
+      {
+        "t": "p",
+        "x": "**L’essentiel** : selon l’équipe d’OpenAI, les premiers testeurs ont obtenu d’excellents résultats en utilisant GPT-5 comme « méta-prompteur ». Ils lui donnaient des prompts qui ne fonctionnaient pas et lui demandaient quelles formulations précises ajouter ou retirer pour obtenir de meilleurs résultats."
+      },
+      {
+        "t": "p",
+        "x": "Plusieurs utilisateurs ont ainsi découvert des contradictions et des ambiguïtés dans leurs bibliothèques de prompts. Supprimer ces conflits a, selon OpenAI, « considérablement simplifié et amélioré » les performances de GPT-5."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le méta-prompt de correction",
+        "type": "prompt",
+        "texte": "Voici un prompt : [votre prompt]. Le comportement attendu est [comportement souhaité], mais à la place, il [comportement obtenu]. Quelles modifications minimales apporterais-tu pour que l’agent corrige plus régulièrement ces défauts ?",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Un prompt qui échoue cache souvent une contradiction ou une ambiguïté : l’IA est bien placée pour la repérer.",
+    "source": {
+      "cle": "everything-to-know-about-gpt-5",
+      "date": "2025-08-08",
+      "url": "https://www.theneurondaily.com/p/everything-to-know-about-gpt-5",
+      "newsletter": "Everything about GPT-5",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Everything about GPT-5"
+    }
+  },
+  {
+    "id": "tirer-un-modele-de-prompt-d-une-etude-sur-58-techniques",
+    "titre": "Tirer un modèle de prompt d’une étude sur 58 techniques",
+    "resume": "Une équipe de l’université du Maryland a passé en revue 1 565 articles et 58 techniques de prompt. Faites analyser ce guide par votre IA pour en tirer votre propre modèle.",
+    "categorie": "formuler",
+    "niveau": "intermediaire",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "C’est sans doute l’un des [guides de *prompt engineering* les plus complets jamais publiés](https://arxiv.org/pdf/2406.06608) : une revue systématique de 58 techniques de prompt, avec de vraies données de performance."
+      },
+      {
+        "t": "p",
+        "x": "L’équipe de l’université du Maryland a analysé 1 565 articles pour construire une classification complète des méthodes, comme la chaîne de pensée (*Chain-of-Thought*), l’autocohérence (*Self-Consistency*) ou l’arbre de pensées (*Tree-of-Thought*). Elle a même testé ces techniques sur le banc d’essai MMLU pour montrer ce qui fonctionne vraiment en pratique."
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Parcourez le guide vous-même.",
+          "Téléchargez le PDF et joignez-le à votre IA préférée.",
+          "Demandez-lui de faire l’ingénierie inverse de toutes les stratégies de prompt qu’il décrit et de vous construire un modèle de prompt réutilisable."
+        ]
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt d’extraction des techniques",
+        "type": "prompt",
+        "texte": "Voici une revue systématique de 58 techniques de prompt (fichier joint). Analyse-la et fais l’ingénierie inverse de toutes les stratégies qu’elle décrit. Pour chacune, résume en une phrase ce qu’elle fait et dans quels cas elle donne les meilleurs résultats. Ensuite, construis-moi un modèle de prompt réutilisable qui combine les techniques les plus efficaces, avec les éléments à compléter entre crochets.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Plutôt que de lire 58 techniques une à une, faites-les synthétiser par l’IA en un modèle de prompt adapté à vos usages.",
+    "source": {
+      "cle": "calm-before-the-gpt-5torm",
+      "date": "2025-08-07",
+      "url": "https://www.theneurondaily.com/p/calm-before-the-gpt-5torm",
+      "newsletter": "Calm before the GPT-5torm...",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Calm before the GPT-5torm..."
+    }
+  },
+  {
+    "id": "regler-la-profondeur-de-reflexion-des-modeles-gpt-oss",
+    "titre": "Régler la profondeur de réflexion des modèles gpt-oss",
+    "resume": "Avec les modèles ouverts gpt-oss d’OpenAI, une simple ligne dans le prompt choisit entre une réflexion approfondie et une réponse rapide, selon le besoin.",
+    "categorie": "outils",
+    "niveau": "avance",
+    "outils": [
+      "autre"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Les modèles à poids ouverts gpt-oss d’OpenAI, que l’on peut faire tourner sur sa propre machine, se pilotent avec une astuce très simple : ajoutez `Reasoning: high` pour activer une réflexion approfondie, ou `Reasoning: low` pour obtenir des réponses plus rapides quand vous n’avez pas besoin d’une analyse complète. `Reasoning: medium`, le niveau équilibré, est activé par défaut. Voici [comment LM Studio gère ce réglage](https://x.com/lmstudio/status/1952814696727494739)."
+      },
+      {
+        "t": "p",
+        "x": "Ces modèles répartissent leur sortie en plusieurs canaux : `analysis` montre le raisonnement brut (*chain of thought*), tandis que `final` contient la réponse mise au propre. Avec un niveau de raisonnement élevé, vous voyez donc littéralement le modèle avancer pas à pas dans le problème avant de répondre."
+      },
+      {
+        "t": "p",
+        "x": "**Pour les développeurs** : Hugging Face propose [un guide](https://huggingface.co/blog/welcome-openai-gpt-oss) pour travailler avec gpt-oss. Si vous l’hébergez vous-même (sans passer par un fournisseur d’API, Ollama ou LM Studio), formatez vos prompts selon le [format de réponse Harmony](https://cookbook.openai.com/articles/openai-harmony) : selon OpenAI, cette structure est nécessaire pour que le modèle sépare raisonnement, appels d’outils et réponses. OpenAI a [publié le moteur de rendu Harmony en open source](https://github.com/openai/harmony?tab=readme-ov-file) et propose aussi un [guide pour affiner le modèle](https://cookbook.openai.com/articles/gpt-oss/fine-tune-transfomers)."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "La ligne de réglage du raisonnement",
+        "type": "prompt",
+        "texte": "Reasoning: high\n\n[votre question ou tâche complexe]",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Avec gpt-oss, le niveau de réflexion se règle dans le prompt : « high » pour les problèmes difficiles, « low » quand la vitesse compte.",
+    "source": {
+      "cle": "openai-vs-claude-vs-google-new-ai",
+      "date": "2025-08-06",
+      "url": "https://www.theneurondaily.com/p/openai-vs-claude-vs-google-new-ai",
+      "newsletter": "OpenAI vs Claude vs Google new AI",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 OpenAI vs Claude vs Google new AI"
+    }
+  },
+  {
+    "id": "reviser-un-manuel-page-par-page-avec-l-ia",
+    "titre": "Réviser un manuel page par page avec l’IA",
+    "resume": "Envoyez la capture d’une page de manuel : l’IA la lit, explique les passages techniques, puis vous interroge par QCM, une question à la fois. NotebookLM offre d’autres formats.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "chatgpt",
+      "gemini"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Pour réviser, un utilisateur de Reddit a partagé [le prompt qu’il utilise pour étudier avec ChatGPT](https://www.reddit.com/r/ChatGPT/comments/1k9tl8w/the_prompt_i_use_to_study_with_gpt/) : vous envoyez la capture d’une page de manuel, l’IA vous la lit, explique les passages techniques, puis vous pose trois questions à choix multiples, une à la fois, avant de réclamer la page suivante."
+      },
+      {
+        "t": "p",
+        "x": "Le commentaire le plus populaire en réponse : *« Excusez-moi, mais vous connaissez [NotebookLM](https://notebooklm.google.com/) ? »* NotebookLM peut en effet produire des résumés vidéo, des cartes d’étude et des cartes mentales, et bien sûr créer un podcast sur n’importe quel sujet, que vous pouvez interrompre (via le « mode interactif ») pour poser vos questions. Vous pouvez même demander aux animateurs de parler « le plus possible comme un professeur de Harvard »."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de révision",
+        "type": "prompt",
+        "texte": "Je vais t’envoyer la capture d’écran d’une page de manuel. Lis-la-moi mot pour mot, puis explique les passages techniques de façon simple. Ensuite, pose-moi 3 questions à choix multiples (une à la fois) sur ce texte. Quand j’aurai répondu aux questions, demande-moi la page suivante.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Faites de l’IA un répétiteur actif, qui explique puis vous interroge une question à la fois, plutôt qu’un simple outil de résumé.",
+    "source": {
+      "cle": "microsoft-says-these-jobs-are-toast",
+      "date": "2025-08-05",
+      "url": "https://www.theneurondaily.com/p/microsoft-says-these-jobs-are-toast",
+      "newsletter": "Microsoft says these jobs are toast...",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Microsoft says these jobs are toast..."
+    }
+  },
+  {
+    "id": "construire-un-prompt-solide-avec-la-methode-d-anthropic",
+    "titre": "Construire un prompt solide avec la méthode d’Anthropic",
+    "resume": "L’équipe d’Anthropic détaille sa structure de prompt pour la production : tâche, contenu, instructions détaillées, exemples, rappels, avec balises XML et citations contre les inventions.",
+    "categorie": "formuler",
+    "niveau": "intermediaire",
+    "outils": [
+      "claude"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Encore une ressource d’Anthropic sur le prompt : la vidéo « [Prompting 101](https://youtu.be/ysPbXH0LpIE?si=4lOj8DcJDdi8WVNJ) ». L’équipe d’IA appliquée y présente pas à pas sa méthode pour construire des prompts prêts pour la production, bien plus systématique que la plupart des tutoriels."
+      },
+      {
+        "t": "p",
+        "x": "**Leur structure éprouvée** : description de la tâche → contenu → instructions détaillées → exemples → rappels importants. **Mais tout se joue dans les détails :**"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "Organisez le prompt avec des balises XML (*mieux que le markdown, car vous pouvez préciser ce qu’elles contiennent*).",
+          "Mettez les informations de fond fixes dans le prompt système : structure des formulaires, contexte qui ne change pas (idéal pour la [mise en cache du prompt](https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching)).",
+          "Donnez des instructions pas à pas qui précisent l’ordre exact dans lequel Claude doit analyser les informations.",
+          "Incluez des exemples de cas délicats où le jugement humain a vu juste (par exemple : *un constat où les deux conducteurs revendiquent la priorité sur un parking, alors que les experts savent que celui qui recule doit toujours céder le passage*).",
+          "Fixez clairement le ton attendu : demandez à Claude de rester factuel et de ne se prononcer que lorsqu’il est sûr de lui.",
+          "Ajoutez des consignes contre les inventions : exigez que Claude cite ce qu’il a vu pour appuyer ses affirmations (la version de The Neuron : *« cite directement la source pour que je puisse la retrouver avec Ctrl+F et vérifier ton travail »*).",
+          "Pré-remplissez le début de la réponse avec le format voulu (par exemple `{` pour du JSON, ou une balise XML) : Claude continue dans ce format exact, sans préambule.",
+          "Activez le mode de réflexion étendue, puis *analysez ces traces de réflexion* pour améliorer votre prompt système."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Avec cette méthode, ils sont passés d’un Claude qui inventait des accidents de ski à des réponses sûres et structurées, adaptées au traitement de vrais sinistres d’assurance. L’idée clé : ne laissez pas Claude deviner, soyez *extrêmement précis* sur le contexte, l’ordre et les attentes. Anthropic a publié en même temps [17 autres vidéos](https://www.youtube.com/@anthropic-ai/videos), à parcourir selon votre métier et vos centres d’intérêt."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le modèle de prompt en cinq parties",
+        "type": "prompt",
+        "texte": "<tache>\n[Description de la tâche et de ton rôle]\n</tache>\n\n<contenu>\n[Documents ou données à analyser]\n</contenu>\n\n<instructions>\nAnalyse les informations dans cet ordre :\n1. [Première étape]\n2. [Deuxième étape]\n3. [Troisième étape]\nReste factuel et ne te prononce que lorsque tu es sûr de toi.\n</instructions>\n\n<exemples>\n[Un ou deux cas délicats, avec la bonne décision et sa justification]\n</exemples>\n\n<rappels>\nCite directement la source de chaque affirmation pour que je puisse la retrouver avec Ctrl+F et vérifier ton travail.\n[Autres points importants à ne pas oublier]\n</rappels>",
+        "adapte": true
+      },
+      {
+        "titre": "La consigne anti-invention",
+        "type": "prompt",
+        "texte": "Cite directement la source pour que je puisse la retrouver avec Ctrl+F et vérifier ton travail.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Ne laissez pas l’IA deviner : soyez extrêmement précis sur le contexte, l’ordre d’analyse et ce que vous attendez.",
+    "source": {
+      "cle": "google-releases-deep-think-its-olympic-math-model",
+      "date": "2025-08-04",
+      "url": "https://www.theneurondaily.com/p/google-releases-deep-think-its-olympic-math-model",
+      "newsletter": "Google releases Deep Think, its Olympic math model...",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Google releases Deep Think, its Olympic math model..."
+    }
+  },
+  {
+    "id": "creer-son-optimiseur-de-prompts-a-partir-d-une-video-d-anthropic",
+    "titre": "Créer son optimiseur de prompts à partir d’une vidéo d’Anthropic",
+    "resume": "Collez la transcription de la grande vidéo d’Anthropic sur le prompt dans votre IA, faites-en extraire les conseils et un modèle de prompt, puis enregistrez-le dans un projet.",
+    "categorie": "formuler",
+    "niveau": "intermediaire",
+    "outils": [
+      "chatgpt",
+      "claude"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Si ce n’est pas encore fait, [regardez cette plongée d’une heure d’Anthropic dans l’ingénierie du prompt](https://youtu.be/T9aRN5JkmL8?si=dv_GNPLqnPxbLxb2). Ou mieux, commencez par en extraire la substance :"
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Sur YouTube, cliquez sur « Afficher la transcription » et copiez-la.",
+          "Collez-la dans votre IA (ChatGPT, Claude, Gemini, Grok) avec le prompt ci-dessous, à ajuster si besoin.",
+          "Créez un nouveau projet dans ChatGPT ou Claude et enregistrez le prompt obtenu comme instructions du projet.",
+          "Collez-y ensuite n’importe quel objectif avec son contexte : vous obtenez un prompt optimisé."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Revenez ensuite regarder la vidéo pour de bon : elle contient d’excellents conseils sur la façon dont VOUS, en tant qu’humain, devez travailler avec l’IA."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt d’extraction et d’optimisation",
+        "type": "prompt",
+        "texte": "Extrais de cette transcription chaque conseil, astuce, anecdote, recommandation ou point de discussion unique, utile et applicable pour rédiger des prompts, sous forme de liste à puces. Ensuite, transforme tous ces conseils en un modèle de prompt que je pourrai utiliser pour accomplir n’importe quelle tâche. Structure-le pour que je n’aie qu’à ajouter mon contexte propre à la tâche, dans la fenêtre de contexte avec ce prompt optimiseur, afin qu’il produise un nouveau prompt optimisé pour cette tâche.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Une vidéo de référence devient un outil permanent quand vous en tirez un prompt optimiseur enregistré dans un projet.",
+    "source": {
+      "cle": "everyone-s-an-ai-tv-showrunner-now",
+      "date": "2025-08-01",
+      "url": "https://www.theneurondaily.com/p/everyone-s-an-ai-tv-showrunner-now",
+      "newsletter": "Everyone's an (AI) TV showrunner now...",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺Everyone's an (AI) TV showrunner now..."
+    }
+  },
+  {
+    "id": "placer-les-longs-documents-en-haut-du-prompt-et-la-question-a-la-fin",
+    "titre": "Placer les longs documents en haut du prompt et la question à la fin",
+    "resume": "Selon Anthropic, mettre vos longs documents tout en haut, balisés en XML, et la question à la toute fin améliore nettement la qualité des réponses sur de gros volumes de texte.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "claude"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "La plupart des gens construisent leurs prompts à long contexte à l’envers. Au lieu d’enfouir vos documents au milieu ou en bas du prompt, les [dernières recommandations d’Anthropic](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/long-context-tips) conseillent de placer toutes les données longues tout en haut, avant les instructions, les exemples ou les questions. Résultat : jusqu’à 30 % de qualité de réponse en plus, surtout avec plusieurs documents complexes."
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Placez d’abord tous vos longs documents en haut, dans des balises XML comme `<document>` et `<source>`.",
+          "Demandez à Claude de citer les passages pertinents des documents avant d’accomplir la tâche principale : il se concentre ainsi sur l’essentiel au lieu de se perdre dans le bruit.",
+          "Terminez par votre question, tout à la fin."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Cela peut sembler contre-intuitif, mais placer votre question la plus importante en dernier (et non en premier) améliore nettement la capacité de Claude à traiter de grandes quantités d’informations."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le modèle de prompt à long contexte",
+        "type": "prompt",
+        "texte": "<documents>\n<document>\n<source>[nom ou origine du document 1]</source>\n<contenu>\n[texte du document 1]\n</contenu>\n</document>\n<document>\n<source>[nom ou origine du document 2]</source>\n<contenu>\n[texte du document 2]\n</contenu>\n</document>\n</documents>\n\nCommence par citer, entre balises <citations>, les passages de ces documents utiles pour répondre. Ensuite, [votre tâche].\n\n[Votre question la plus importante]",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Avec de longs documents, mettez-les en haut du prompt et gardez votre question pour la toute fin.",
+    "source": {
+      "cle": "is-meta-s-personal-superintelligence-push-going-to-kill-facebook",
+      "date": "2025-07-31",
+      "url": "https://www.theneurondaily.com/p/is-meta-s-personal-superintelligence-push-going-to-kill-facebook",
+      "newsletter": "Is Meta's personal superintelligence push going to kill Facebook?",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Is Meta's personal superintelligence push going to kill Facebook?"
+    }
+  },
+  {
+    "id": "eliminer-les-tics-d-ecriture-de-l-ia-grace-a-la-liste-de-wikipedia",
+    "titre": "Éliminer les tics d’écriture de l’IA grâce à la liste de Wikipédia",
+    "resume": "Les éditeurs de Wikipédia recensent les tournures typiques des textes d’IA. Transformez cette liste en règles de relecture positives, à appliquer à vos brouillons ou dès le prompt.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Les éditeurs de Wikipédia ont dressé une [liste complète des signes d’écriture par IA](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing), dont vous pouvez vous servir pour corriger vos prompts (et vos résultats) et éviter ces tics agaçants. Le guide relève des formules typiques comme « serves as a testament » (« témoigne de »), « rich cultural heritage » (« riche patrimoine culturel »), « moreover » (« de plus ») ou « it’s important to note » (« il est important de noter »), et bien d’autres."
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Copiez la liste dans un modèle de raisonnement, comme [o3 dans ChatGPT](https://chatgpt.com/?model=o3) ou [Gemini 2.5 Pro de Google](https://aistudio.google.com/prompts/new_chat?model=gemini-2.5-pro).",
+          "Demandez-lui de transformer chaque élément en « règle de relecture » formulée comme une action positive (prompt ci-dessous).",
+          "Appliquez ces règles à tout contenu produit par l’IA (e-mails, rapports, écriture créative), soit en relisant votre brouillon, soit directement dans votre prompt de départ."
+        ]
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt des règles de relecture",
+        "type": "prompt",
+        "texte": "Voici une liste de signes typiques des textes écrits par une IA : [liste copiée depuis Wikipédia]. Transforme chaque élément unique de cette liste en règle de relecture que j’appliquerai pendant la correction de mes textes. Formule chaque interdiction comme une action positive : au lieu de « évite l’expression témoigne de », écris « remplace les formules qui gonflent l’importance par des affirmations directes ».",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Transformez les tics d’écriture de l’IA en règles positives : l’IA corrige mieux quand on lui dit quoi faire à la place.",
+    "source": {
+      "cle": "chatgpt-just-became-your-tutor",
+      "date": "2025-07-30",
+      "url": "https://www.theneurondaily.com/p/chatgpt-just-became-your-tutor",
+      "newsletter": "ChatGPT just became your tutor",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 ChatGPT just became your tutor"
+    }
+  },
+  {
+    "id": "obliger-l-ia-a-signaler-ce-qu-elle-ne-sait-pas",
+    "titre": "Obliger l’IA à signaler ce qu’elle ne sait pas",
+    "resume": "Inspirée des prompts système de Claude Code et de Gemini, une structure résumé-détails-lacunes force l’IA à avouer ses incertitudes, puis un second prompt traque ses erreurs.",
+    "categorie": "verifier",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Rohan Paul a [partagé](https://x.com/rohanpaul_ai/status/1949363425844285478) le [prompt système de Claude Code](https://github.com/kn1026/cc/blob/main/claudecode.md), qui avait fuité, ainsi que le [prompt système de Gemini 2.5 Pro](https://github.com/lyang36/IMO25/blob/main/code/agent.py) qui lui a permis d’atteindre un niveau médaille d’or aux Olympiades internationales de mathématiques. Vous pouvez y puiser toutes sortes d’astuces, ou les donner à votre IA en lui demandant d’en extraire tous les conseils applicables."
+      },
+      {
+        "t": "p",
+        "x": "Une astuce se détache : obliger l’IA à admettre ce qu’elle ne sait pas. Le prompt dit littéralement : « Si tu ne trouves pas de solution complète, tu ne dois pas deviner. » Essayez le format ci-dessous, qui sépare le résumé, les détails et les lacunes."
+      },
+      {
+        "t": "p",
+        "x": "Un second prompt sert ensuite à vérifier la première réponse, comme si l’IA corrigeait sa propre copie. Une fois la réponse reçue, demandez-lui d’y chercher des erreurs."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le format avec lacunes",
+        "type": "prompt",
+        "texte": "Peux-tu répondre complètement à cette question : [votre question] ?\n\nStructure ta réponse ainsi :\nRésumé : tes principales conclusions.\nDétails : ton raisonnement étape par étape, avec explications.\nLacunes : tout ce dont tu n’es pas sûr.\n\nSi tu ne trouves pas de solution complète, tu ne dois pas deviner.",
+        "adapte": false
+      },
+      {
+        "titre": "La vérification",
+        "type": "prompt",
+        "texte": "Maintenant, trouve toutes les erreurs dans cette réponse.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Donnez à l’IA une place explicite pour ses doutes et interdisez-lui de deviner : vous saurez exactement quoi vérifier.",
+    "source": {
+      "cle": "this-new-ai-is-100x-faster-at-reasoning-than-chatgpt",
+      "date": "2025-07-29",
+      "url": "https://www.theneurondaily.com/p/this-new-ai-is-100x-faster-at-reasoning-than-chatgpt",
+      "newsletter": "This new AI is 100x faster at reasoning than ChatGPT...",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 This new AI is 100x faster at reasoning than ChatGPT..."
+    }
+  },
+  {
+    "id": "appliquer-la-regle-des-trois-mots-et-la-regle-des-80-20",
+    "titre": "Appliquer la règle des trois mots et la règle des 80/20",
+    "resume": "Deux micro-astuces : ajoutez « comme un [métier] » pour obtenir une réponse d’expert, et demandez « le 80/20 » d’un sujet pour aller droit aux 20 % qui comptent le plus.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Deux micro-astuces donnent un coup de pouce immédiat à vos conversations avec l’IA."
+      },
+      {
+        "t": "p",
+        "x": "**1. La [règle des trois mots](https://www.tomsguide.com/ai/use-this-3-word-rule-to-get-smarter-answers-from-chatgpt)** : ajoutez « comme un [rôle] » à votre prompt pour obtenir une réponse d’expert, riche en contexte."
+      },
+      {
+        "t": "p",
+        "x": "**2. La [règle des 80/20](https://www.techradar.com/ai-platforms-assistants/chatgpt/i-tried-this-simple-chatgpt-prompt-that-makes-learning-skills-incredibly-easy)** : demandez « Donne-moi le 80/20 de [sujet] » pour faire ressortir les 20 % d’étapes qui produisent 80 % du résultat."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "La règle des trois mots",
+        "type": "prompt",
+        "texte": "Résume le texte ci-dessous comme un journaliste.\n\n[votre texte]",
+        "adapte": false
+      },
+      {
+        "titre": "La règle des 80/20",
+        "type": "prompt",
+        "texte": "Donne-moi le 80/20 pour apprendre [sujet].",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Quelques mots bien choisis, un rôle ou une demande de 80/20, suffisent à orienter la réponse vers l’essentiel.",
+    "source": {
+      "cle": "six-new-gpt-5-models-a-6k-robot-gymnast-and-an-ai-that-builds-ai",
+      "date": "2025-07-28",
+      "url": "https://www.theneurondaily.com/p/six-new-gpt-5-models-a-6k-robot-gymnast-and-an-ai-that-builds-ai",
+      "newsletter": "Anthropic's AI Secrets: Sam Altman Unplugged!",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Anthropic's AI Secrets: Sam Altman Unplugged!"
+    }
+  },
+  {
+    "id": "guider-veo-3-avec-vos-propres-images-et-des-prompts-en-json",
+    "titre": "Guider Veo 3 avec vos propres images et des prompts en JSON",
+    "resume": "Deux astuces pour Veo 3 : une formule qui coupe dès la première image pour partir de votre dessin, et des prompts structurés en JSON, que l’IA peut rédiger à votre place.",
+    "categorie": "creer",
+    "niveau": "intermediaire",
+    "outils": [
+      "gemini"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Voici [une astuce repérée sur X](https://x.com/MartinNebelong/status/1945128949438197784) pour le modèle vidéo Veo 3 de Google : écrivez « Instantly jump/cut on frame 1. » (« saute ou coupe immédiatement à la première image »), suivi de la description du nouveau contexte. Vous pouvez ainsi partir de vos propres dessins ou d’une image de départ, puis générer la vidéo à partir de là."
+      },
+      {
+        "t": "p",
+        "x": "Autre astuce qui circule pour Veo 3 : [rédiger le prompt en JSON](https://x.com/nickfloats/status/1946988329708278197). Voici un [guide plus ancien](https://x.com/nickfloats/status/1689058260056236032) sur la méthode, et un [exemple de structure de prompt](https://x.com/heyglif/status/1947035392496238817) (avec le résultat)."
+      },
+      {
+        "t": "p",
+        "x": "Cela vous paraît trop compliqué ? Demandez simplement à l’IA de convertir votre idée en JSON, en suivant ce format d’exemple et le guide."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "La formule de coupe dès la première image",
+        "type": "prompt",
+        "texte": "Instantly jump/cut on frame 1. [Description du nouveau contexte]",
+        "adapte": false
+      },
+      {
+        "titre": "Le prompt de conversion en JSON",
+        "type": "prompt",
+        "texte": "Voici mon idée de vidéo : [votre idée]. Convertis-la en prompt JSON pour Veo 3 en suivant ce format d’exemple : [exemple de structure JSON]. Respecte exactement la structure et les noms de champs de l’exemple.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Pour la vidéo IA, partez de vos propres images et structurez vos prompts ; si le format vous rebute, faites-le écrire par l’IA.",
+    "source": {
+      "cle": "could-ai-therapy-actually-work",
+      "date": "2025-07-25",
+      "url": "https://www.theneurondaily.com/p/could-ai-therapy-actually-work",
+      "newsletter": "Could AI therapy actually work??",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Could AI therapy actually work??"
+    }
+  },
+  {
+    "id": "passer-de-l-ingenierie-du-prompt-a-l-ingenierie-du-contexte",
+    "titre": "Passer de l’ingénierie du prompt à l’ingénierie du contexte",
+    "resume": "Au-delà du bon prompt, l’ingénierie du contexte organise ce que sait l’IA : recherche dans vos documents (RAG), mémoire, agents qui coopèrent. Une synthèse de 160 pages fait le tour.",
+    "categorie": "memoire",
+    "niveau": "avance",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Utiliser l’IA, ce n’est pas QUE des prompts. La différence ? L’ingénierie du prompt consiste à poser une excellente question. L’ingénierie du contexte consiste à construire tout un système de connaissances autour de votre IA, grâce à la recherche documentaire, à la mémoire et à la coordination de plusieurs agents."
+      },
+      {
+        "t": "p",
+        "x": "Le chercheur en IA Elvis Saravia vient de [partager](https://x.com/omarsar0/status/1946241565728600503) une [synthèse de 160 pages sur l’ingénierie du contexte](https://arxiv.org/pdf/2507.13334). Elle couvre tout, des systèmes RAG de base (qui vont chercher les informations pertinentes dans vos documents) aux architectures complexes où plusieurs agents IA travaillent ensemble avec une mémoire partagée."
+      },
+      {
+        "t": "p",
+        "x": "C’est technique, mais les applications concrètes sont considérables : des assistants qui apprennent réellement des données de votre entreprise et vous aident de mieux en mieux au fil du temps."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt pour organiser le contexte de votre assistant",
+        "type": "prompt",
+        "texte": "Voici une synthèse sur l’ingénierie du contexte : [document ou extraits]. Explique-moi en termes simples les principales approches (RAG, mémoire, systèmes multi-agents), puis propose une façon d’organiser le contexte de mon assistant IA pour [votre usage ou métier] : quelles informations lui fournir, où les stocker et à quel moment les lui donner.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Les meilleurs usages de l’IA reposent moins sur un prompt parfait que sur une gestion intelligente des informations, d’une tâche et d’un moment à l’autre.",
+    "source": {
+      "cle": "the-us-ai-action-plan-explained",
+      "date": "2025-07-24",
+      "url": "https://www.theneurondaily.com/p/the-us-ai-action-plan-explained",
+      "newsletter": "The US AI Action Plan, Explained",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 The US AI Action Plan, Explained"
+    }
+  },
+  {
+    "id": "combiner-raisonnement-bref-et-une-seule-question-a-la-fois",
+    "titre": "Combiner raisonnement bref et une seule question à la fois",
+    "resume": "En associant des étapes de raisonnement de cinq mots et une seule question de clarification à la fois, vous évitez les longues explications et les avalanches de questions.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "chatgpt"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Un membre de l’équipe de The Neuron a trouvé une combinaison redoutable : il a associé l’astuce qui limite chaque étape de raisonnement à cinq mots maximum (la technique Chain-of-Draft) à la demande d’« une question de clarification à la fois », avec le modèle o3 de ChatGPT."
+      },
+      {
+        "t": "p",
+        "x": "Lors d’un projet de migration de site web, au lieu d’être submergé d’explications interminables et de dizaines de questions de suivi, il a gagné énormément de temps grâce à cette méthode."
+      },
+      {
+        "t": "p",
+        "x": "Pour l’appliquer vous-même, [ouvrez ChatGPT avec le modèle o3](https://chatgpt.com/?model=o3) (ou un autre modèle de raisonnement) et utilisez le prompt ci-dessous."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt bref et interactif",
+        "type": "prompt",
+        "texte": "[Votre objectif] Réfléchis étape par étape, mais limite chaque étape de raisonnement à cinq mots. Pose-moi une seule question de clarification à la fois pour t’assurer de bien comprendre ce dont j’ai besoin.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Un raisonnement bref et une question à la fois : vous gardez la main sans être submergé.",
+    "source": {
+      "cle": "which-ai-models-are-the-best-right-now",
+      "date": "2025-07-23",
+      "url": "https://www.theneurondaily.com/p/which-ai-models-are-the-best-right-now",
+      "newsletter": "Which AI models are the best right now?",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Which AI models are the best right now?"
+    }
+  },
+  {
+    "id": "reduire-les-couts-avec-des-etapes-de-raisonnement-de-cinq-mots",
+    "titre": "Réduire les coûts avec des étapes de raisonnement de cinq mots",
+    "resume": "La technique Chain-of-Draft demande à l’IA de raisonner étape par étape, mais en cinq mots maximum par étape : même précision, avec beaucoup moins de tokens consommés.",
+    "categorie": "outils",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Une astuce simple pour réduire votre facture ChatGPT (ou de toute autre IA) : le [Chain-of-Draft](https://www.helicone.ai/blog/chain-of-draft#chain-of-draft-vs-chain-of-thought-outputs) (« chaîne de brouillons »). Demandez à l’IA de réfléchir étape par étape, mais en limitant chaque étape de raisonnement à cinq mots maximum."
+      },
+      {
+        "t": "liste",
+        "x": [
+          "Au lieu de : « D’abord, je dois soustraire 12 de 20 pour trouver la différence, qui représente le nombre de sucettes que Jason a données… »",
+          "Vous obtenez : « 20 - 12 = 8 #### Réponse finale : 8 »"
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Même précision, beaucoup moins de *tokens*. Ajoutez simplement « limite chaque étape de raisonnement à cinq mots » à vos prompts et faites précéder la réponse finale de « #### ». L’idée est d’amener l’IA à imiter la façon dont un humain résout vraiment un problème : des notes mentales rapides, pas des dissertations. *Votre facture d’IA vous remerciera.*"
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt Chain-of-Draft",
+        "type": "prompt",
+        "texte": "[Votre question ou problème]\n\nRéfléchis étape par étape, mais limite chaque étape de raisonnement à cinq mots maximum. Écris « #### » avant ta réponse finale.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Un raisonnement en notes brèves coûte bien moins cher qu’une dissertation, sans perdre en précision.",
+    "source": {
+      "cle": "analyzing-today-s-ai-based-on-usage-intelligence-and-revenue",
+      "date": "2025-07-22",
+      "url": "https://www.theneurondaily.com/p/analyzing-today-s-ai-based-on-usage-intelligence-and-revenue",
+      "newsletter": "Analyzing today's AI based on usage, intelligence, and revenue...",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Analyzing today's AI based on usage, intelligence, and revenue..."
+    }
+  },
+  {
+    "id": "faire-resoudre-un-probleme-a-partir-d-une-capture-d-ecran",
+    "titre": "Faire résoudre un problème à partir d’une capture d’écran",
+    "resume": "Joignez une capture de votre problème (erreur, consignes, page confuse) et demandez à l’IA de la retranscrire avant de résoudre : vous vérifiez qu’elle voit bien ce que vous voyez.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Lassé de tout décrire avec des mots ? Faites une capture d’écran de votre problème (message d’erreur, consignes, page web déroutante ou toute autre tâche qui tient en une seule capture) et joignez-la avec le prompt ci-dessous."
+      },
+      {
+        "t": "p",
+        "x": "Le prompt demande à l’IA de retranscrire exactement ce que montre la capture, ce qui permet de vérifier qu’elle « voit » bien ce que vous voulez lui montrer, puis de résoudre le problème."
+      },
+      {
+        "t": "p",
+        "x": "Rappelez-vous : donner à l’IA **le plus de contexte possible** reste le meilleur moyen d’obtenir ce que vous voulez. Souvent, il faut en ajouter : d’autres captures ou une explication de ce qui s’affiche, comme « *voilà ce que je vois, qu’est-ce que je fais maintenant ?* »."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de la capture d’écran",
+        "type": "prompt",
+        "texte": "Retranscris cette image exactement telle qu’elle apparaît, puis résous le problème. Pose-moi des questions si ce que tu dois faire n’est pas clair.",
+        "adapte": false
+      },
+      {
+        "titre": "La relance avec contexte",
+        "type": "prompt",
+        "texte": "Voilà ce que je vois, qu’est-ce que je fais maintenant ?",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Faire retranscrire la capture avant de résoudre permet de vérifier que l’IA voit bien ce que vous voyez.",
+    "source": {
+      "cle": "somebody-in-ai-won-a-math-gold-medal-but-was-it-openai-or-google-b68a1937c8aaab03",
+      "date": "2025-07-21",
+      "url": "https://www.theneurondaily.com/p/somebody-in-ai-won-a-math-gold-medal-but-was-it-openai-or-google-b68a1937c8aaab03",
+      "newsletter": "Somebody in AI won a Math Gold medal... but was it OpenAI or Google?",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Somebody in AI won a Math Gold medal... but was it OpenAI or Google?"
+    }
+  },
+  {
+    "id": "lire-les-prompts-systeme-pour-apprendre-des-concepteurs",
+    "titre": "Lire les prompts système pour apprendre des concepteurs",
+    "resume": "Le prompt système d’un modèle montre comment ses concepteurs le dirigent : une mine d’idées pour vos prompts. Bonus : des raccourcis d’adresse ouvrent directement le mode agent de ChatGPT.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "chatgpt"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Il est toujours instructif de lire le prompt système d’un modèle : il montre comment les développeurs le guident pour obtenir ce qu’ils veulent. Voici le [prompt système de l’agent de ChatGPT](https://gist.github.com/Rutledge/4b0ef2d51ba2f1918a249bce35bdde9c) : parcourez-le et voyez ce que vous pouvez en apprendre, ou confiez-le à votre IA pour qu’elle en tire les techniques réutilisables."
+      },
+      {
+        "t": "p",
+        "x": "**Bonus** : tapez `/agent` dans n’importe quelle conversation ChatGPT pour passer en mode agent (si vous y avez accès), ou saisissez [https://chatgpt.com/?hints=agent](https://chatgpt.com/?hints=agent) dans la barre d’adresse pour démarrer directement en mode agent. La même astuce fonctionne pour la recherche (`?hints=search`), Deep Research (`?hints=research`), canvas (`?hints=canvas`) et les images (`?hints=image`)."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt d’analyse d’un prompt système",
+        "type": "prompt",
+        "texte": "Voici le prompt système d’un assistant IA : [prompt système]. Dresse la liste des techniques de rédaction qu’utilisent ses concepteurs (structure, consignes, garde-fous, exemples…) et, pour chacune, explique comment je peux l’appliquer dans mes propres prompts.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Les prompts système des grands modèles sont des exemples gratuits : lisez-les pour voir comment les concepteurs dirigent leur IA.",
+    "source": {
+      "cle": "openai-s-new-agent-is-here",
+      "date": "2025-07-18",
+      "url": "https://www.theneurondaily.com/p/openai-s-new-agent-is-here",
+      "newsletter": "OpenAI's new Agent is here",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 OpenAI's new Agent is here"
+    }
+  },
+  {
+    "id": "appliquer-les-15-techniques-de-prompt-recommandees-par-anthropic",
+    "titre": "Appliquer les 15 techniques de prompt recommandées par Anthropic",
+    "resume": "Quinze règles d’Anthropic pour de meilleures réponses (clarté, exemples, rôle précis, format, droit de dire « je ne sais pas »), à transformer en optimiseur de prompts.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "**Voici 15 techniques de base recommandées par Anthropic pour obtenir de meilleures réponses :**"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Soyez clair et précis** : énoncez la tâche d’emblée et fournissez le contexte.",
+          "**Donnez des exemples** : montrez le format ou le style souhaité.",
+          "**Encouragez la réflexion** : demandez à Claude de « réfléchir étape par étape ».",
+          "**Affinez par itérations** : donnez des retours précis pour améliorer la réponse.",
+          "**Exploitez les connaissances de Claude** : incluez le contexte pertinent.",
+          "**Faites jouer un rôle** : « En tant que consultant marketing senior… »",
+          "**Précisez votre public** : dites à Claude à qui s’adresse le contenu.",
+          "**Définissez le ton et le style** : décrivez la voix souhaitée.",
+          "**Définissez la structure de la réponse** : fournissez un plan ou la liste des points à couvrir.",
+          "**Soyez précis pour les résumés** : demandez les aspects qui vous intéressent.",
+          "**Nommez vos documents** : désignez les pièces jointes par leur nom (par exemple `<Guide de style>`).",
+          "**Demandez des citations** : réclamez les sections ou les pages précises.",
+          "**Précisez le format voulu** : tableau, puces, etc.",
+          "**Autorisez l’incertitude** : dites à Claude qu’il a le droit de répondre « je ne sais pas ».",
+          "**Donnez tout le contexte** : Claude ne garde pas les informations d’une conversation à l’autre."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Ce que The Neuron en retient : plus le rôle est précis, meilleur est le résultat. Anthropic conseille par exemple « consultant senior spécialisé dans les produits technologiques durables » plutôt que « expert en marketing », et affirme que les résultats sont radicalement différents."
+      },
+      {
+        "t": "p",
+        "x": "**Astuce** : copiez toute cette liste dans votre IA et demandez-lui d’en faire un « générateur de prompts optimaux » (prompt ci-dessous) : il vous suffira d’écrire un premier jet pour qu’elle l’optimise. Enregistrez ensuite le résultat comme instructions d’un [projet dans ChatGPT ou Claude](https://www.youtube.com/watch?v=0hoO_5IC02A) : vous aurez un optimiseur de prompts intégré, utilisable à tout moment."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt du générateur de prompts optimaux",
+        "type": "prompt",
+        "texte": "Voici une liste de conseils pour mieux rédiger des prompts : [collez les 15 techniques]. Transforme ces conseils en « générateur de prompts optimaux » : je t’écrirai un premier jet de prompt et tu l’optimiseras en appliquant ces conseils. Inclus cette consigne dans le prompt : si l’utilisateur ne te donne pas les informations dont tu as besoin, demande-les-lui avant d’écrire le prompt.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Plus le rôle que vous donnez à l’IA est précis, plus la réponse change : préférez un spécialiste bien défini à un expert générique.",
+    "source": {
+      "cle": "how-to-build-your-own-agent",
+      "date": "2025-07-17",
+      "url": "https://www.theneurondaily.com/p/how-to-build-your-own-agent",
+      "newsletter": "How to Build Your Own Agent",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 How to Build Your Own Agent"
+    }
+  },
+  {
+    "id": "pousser-l-ia-a-reflechir-plus-fort-avec-quelques-mots-cles",
+    "titre": "Pousser l’IA à réfléchir plus fort avec quelques mots-clés",
+    "resume": "Glisser « ultra think », « think ultra hard » ou « réfléchis vraiment » dans vos prompts incite les modèles de raisonnement à consacrer plus d’effort à votre question.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Deux demandes simples, à glisser dans vos prompts, encouragent les modèles de raisonnement à *réfléchir plus fort*."
+      },
+      {
+        "t": "p",
+        "x": "D’abord, ajoutez « ultra think » et « think ultra hard » (« réfléchis très intensément ») à vos prompts : un conseil de [Kieran Klaassen, relayé par Peter Yang](https://x.com/petergyang/status/1945148900991525305). Les créateurs de ces modèles ont eux-mêmes indiqué que des formules comme « donne tout ce que tu as » ou « réfléchis bien » incitent le modèle à vraiment creuser la question (*dans l’API, on peut aussi régler un « budget de réflexion »*)."
+      },
+      {
+        "t": "p",
+        "x": "Ensuite, écrivez « Réfléchis vraiment. Vraiment, *vraiment* réfléchis. » Cette formule vient de Matt Shumer, qui l’utilise dans [un prompt partagé sur X](https://x.com/karatzas_thomas/status/1944982067344760930) utile pour le design UX et produit. Essayez les deux et voyez si cela aide."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le mot-clé de réflexion intense",
+        "type": "prompt",
+        "texte": "[Votre demande]\n\nUltra think. Think ultra hard : réfléchis très intensément et donne tout ce que tu as avant de répondre.",
+        "adapte": false
+      },
+      {
+        "titre": "La relance de Matt Shumer",
+        "type": "prompt",
+        "texte": "[Votre demande]\n\nRéfléchis vraiment. Vraiment, vraiment réfléchis.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Dire explicitement à un modèle de raisonnement de réfléchir fort peut suffire à obtenir une analyse plus poussée.",
+    "source": {
+      "cle": "claude-is-a-financial-analyst-now",
+      "date": "2025-07-16",
+      "url": "https://www.theneurondaily.com/p/claude-is-a-financial-analyst-now",
+      "newsletter": "Claude is a financial analyst now",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Claude is a financial analyst now"
+    }
+  },
+  {
+    "id": "poser-des-questions-neutres-pour-eviter-la-complaisance-de-l-ia",
+    "titre": "Poser des questions neutres pour éviter la complaisance de l’IA",
+    "resume": "Les modèles abandonnent parfois une bonne réponse pour vous donner raison. La méthode OPEN et un méta-prompt de reformulation neutre limitent ce biais de complaisance.",
+    "categorie": "verifier",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Ethan Mollick [a récemment averti](https://x.com/emollick/status/1944519849180561710) que la complaisance de l’IA (*sycophancy*) va au-delà de la flatterie : les modèles abandonnent parfois des faits exacts simplement pour être d’accord avec vous. Même demander « Tu es sûr ? » peut transformer une bonne réponse en mauvaise."
+      },
+      {
+        "t": "p",
+        "x": "Pour corriger le tir, essayez l’approche OPEN :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Questions ouvertes** (*Open-ended*) : demandez « Quelle est la meilleure option ? » plutôt que « Pourquoi X est-il le meilleur ? ».",
+          "**Sans présupposé** (*Premise-free*) : évitez les hypothèses glissées dans la question.",
+          "**Demande de preuves** (*Evidence requests*) : réclamez des sources ou des données.",
+          "**Langage neutre** (*Neutral language*) : retirez les marqueurs de certitude."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "**Pour l’appliquer, utilisez un méta-prompt** : demandez à l’IA de réécrire vos questions pour qu’elles cherchent la vérité plutôt que votre approbation."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le méta-prompt de neutralité",
+        "type": "prompt",
+        "texte": "Réécris ma question pour la rendre plus neutre et impartiale. Supprime toutes les hypothèses implicites, les formulations orientées ou les termes répétés qui pourraient biaiser la réponse. Transforme-la en question ouverte qui encourage l’analyse critique et envisage plusieurs points de vue, comme un scientifique qui teste une hypothèse. Ma question d’origine : [votre question]",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Une question orientée appelle une réponse complaisante : formulez-la de façon neutre et ouverte, et demandez des preuves.",
+    "source": {
+      "cle": "meet-meta-s-new-prometheus-data-center",
+      "date": "2025-07-15",
+      "url": "https://www.theneurondaily.com/p/meet-meta-s-new-prometheus-data-center",
+      "newsletter": "Meet Meta's new \"Prometheus\" data center...",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Meet Meta's new \"Prometheus\" data center..."
+    }
+  },
+  {
+    "id": "parler-simplement-a-l-ia-plutot-qu-empiler-les-acronymes",
+    "titre": "Parler simplement à l’IA plutôt qu’empiler les acronymes",
+    "resume": "Inutile de mémoriser des cadres comme R-A-I-N ou F-L-O-W : expliquez votre besoin en langage naturel, donnez tout le contexte, puis affinez la réponse par vos retours.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Un utilisateur de Reddit, perdu, a publié l’une de ces « [antisèches de prompts pour ChatGPT](https://www.reddit.com/r/ChatGPT/comments/1lyrh5o/i_thought_i_was_smart_but_after_attempting_ai_and/) » remplies d’acronymes comme R-A-I-N ou F-L-O-W, en demandant de l’aide. Le conseil de la communauté ? *Laissez tomber les acronymes et les cadres.* La réponse la mieux notée : « Utiliser ChatGPT, c’est littéralement juste parler. C’est tout. »"
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Commencez simplement, en décrivant votre besoin comme vous le feriez à un collègue (exemple ci-dessous).",
+          "Donnez tout le contexte, par exemple ce que vous avez fait et ce que demandent les postes visés, puis laissez l’IA travailler. *C’est là qu’intervient l’« ingénierie du contexte ».*",
+          "Quand vous recevez une réponse, dites ce qui vous plaît, ce qui ne vous plaît pas et ce qui doit encore être retravaillé."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "*Pour la plupart des tâches, cela suffit vraiment.* On peut enfin parler aux ordinateurs en langage naturel… *pourquoi tout compliquer en reparlant comme des robots ?*"
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Exemple : la lettre de motivation",
+        "type": "prompt",
+        "texte": "J’ai besoin d’aide pour écrire une lettre de motivation. Je postule à des postes en marketing et j’ai une solide expérience des réseaux sociaux.\n\nVoici mon parcours : [votre expérience].\nVoici ce que demandent les offres : [exigences des postes visés].",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Parlez à l’IA comme à une personne : un besoin clair, tout le contexte, puis des retours précis suffisent dans la plupart des cas.",
+    "source": {
+      "cle": "uber-ceo-making-autonomous-burritos",
+      "date": "2025-07-14",
+      "url": "https://www.theneurondaily.com/p/uber-ceo-making-autonomous-burritos",
+      "newsletter": "Uber CEO making Autonomous burritos?",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Uber CEO making Autonomous burritos?"
+    }
+  },
+  {
+    "id": "transformer-une-conversation-reussie-en-prompt-reutilisable",
+    "titre": "Transformer une conversation réussie en prompt réutilisable",
+    "resume": "Après plusieurs allers-retours pour obtenir le bon résultat, demandez à l’IA d’écrire le prompt unique qui l’aurait produit du premier coup, puis enregistrez-le dans un projet.",
+    "categorie": "memoire",
+    "niveau": "intermediaire",
+    "outils": [
+      "chatgpt",
+      "claude"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Arrêtez de perdre du temps à redonner les mêmes consignes pour les mêmes tâches. La première réponse de l’IA est souvent la plus intelligente (plus la conversation s’allonge, plus il lui est difficile de rester « concentrée »), mais les allers-retours vous permettent de lui faire comprendre ce que vous voulez vraiment."
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Itérez jusqu’à obtenir le résultat parfait.",
+          "Demandez alors à l’IA d’écrire le prompt unique qui produirait exactement ce résultat du premier coup (prompt ci-dessous).",
+          "Enregistrez ce prompt comme **instructions personnalisées** d’un **projet**, que vous nommez d’après la tâche qu’il accomplit."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Vos projets deviennent ainsi une **bibliothèque de prompts personnelle**, et vous progressez en prompt au passage (*« ah, c’est donc ÇA que j’aurais dû écrire ! »*)."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de synthèse",
+        "type": "prompt",
+        "texte": "Maintenant, écris-moi un prompt unique qui produirait exactement ce même résultat du premier coup.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Chaque conversation réussie peut devenir un prompt réutilisable : faites-le écrire par l’IA et rangez-le dans un projet.",
+    "source": {
+      "cle": "how-to-train-your-robot",
+      "date": "2025-07-11",
+      "url": "https://www.theneurondaily.com/p/how-to-train-your-robot",
+      "newsletter": "DIY Robots: Huggingface's Mini Reachy Revealed!",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 DIY Robots: Huggingface's Mini Reachy Revealed!"
+    }
+  },
+  {
+    "id": "structurer-son-prompt-avec-la-methode-crit",
+    "titre": "Structurer son prompt avec la méthode CRIT",
+    "resume": "Contexte, Rôle, Interview, Tâche : la méthode CRIT de Geoff Woods fait poser à l’IA une question à la fois pour approfondir le contexte avant de se lancer dans la tâche.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Essayez la [méthode CRIT de Geoff Woods](https://thegrowthfaculty.com/articles/becoming-an-ai-driven-leader-the-strategic-framework) dans votre prochain prompt ([repérée sur Reddit](https://www.reddit.com/r/PromptEngineering/comments/1lmp9cb/comment/n09818t/)) :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Contexte** : donnez autant d’informations que possible sur la situation, ce que vous savez et ce que vous ignorez.",
+          "**Rôle** : attribuez à l’assistant un rôle spécialisé (qui ou quoi vous voulez qu’il soit).",
+          "**Interview** : demandez-lui de vous poser une question à la fois (en général 5 à 7, ou le nombre qui vous semble adapté) pour approfondir le contexte.",
+          "**Tâche** : ce que vous voulez que l’assistant fasse."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "L’étape d’interview semble la plus utile. Elle rappelle Deep Research, qui pose une série de questions de suivi avant de se lancer."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le modèle CRIT",
+        "type": "prompt",
+        "texte": "Contexte : [tout ce que vous savez de la situation, et ce que vous ignorez]\n\nRôle : tu es [rôle spécialisé].\n\nInterview : avant de commencer, pose-moi une question à la fois, [5 à 7] questions au total, pour approfondir le contexte.\n\nTâche : [ce que vous voulez obtenir].",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Avant d’exécuter la tâche, faites poser à l’IA une question à la fois : c’est l’étape qui enrichit le plus le contexte.",
+    "source": {
+      "cle": "wtf-is-up-with-grok-4",
+      "date": "2025-07-10",
+      "url": "https://www.theneurondaily.com/p/wtf-is-up-with-grok-4",
+      "newsletter": "Grok's AI Chaos & Browser Wars Unleashed!",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Grok's AI Chaos & Browser Wars Unleashed!"
+    }
+  },
+  {
+    "id": "preparer-un-rendez-vous-avec-un-expert-grace-a-plusieurs-ia",
+    "titre": "Préparer un rendez-vous avec un expert grâce à plusieurs IA",
+    "resume": "L’astuce de Balaji : faites jouer à plusieurs IA le meilleur avocat ou comptable, comparez leurs réponses, puis payez le vrai professionnel pour vérifier plutôt que pour tout expliquer.",
+    "categorie": "verifier",
+    "niveau": "intermediaire",
+    "outils": [
+      "chatgpt",
+      "claude",
+      "gemini"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Balaji a [partagé une astuce](https://x.com/balajis/status/1941504015642337565) qui peut vous faire économiser beaucoup en honoraires de conseil : transformer n’importe quel professionnel en vérificateur du travail de l’IA."
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Demandez à votre IA de se mettre dans la peau du meilleur avocat, comptable ou médecin de votre ville.",
+          "Rédigez une note détaillée sur votre situation, avec des questions précises (sans oublier : « Qu’est-ce que je néglige ? »).",
+          "Lancez le même prompt dans plusieurs IA : ChatGPT, Claude, Gemini.",
+          "Rassemblez leurs réponses dans un tableur.",
+          "Apportez ce dossier au vrai professionnel et demandez-lui de vérifier le travail de l’IA."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Vous disposez ainsi d’un panorama complet d’avis d’experts, avec références et projets de documents. Vous ne payez plus des heures facturées pour apprendre les bases : vous payez *la vérification d’un expert et la touche finale*, exactement ce que les professionnels devraient faire."
+      },
+      {
+        "t": "p",
+        "x": "Cela fonctionne avec n’importe quel expert, du médecin au comptable. L’IA prend en charge le travail intermédiaire, et l’humain fait ce qu’il fait de mieux : vérifier l’exactitude et apporter son expertise finale."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de l’expert virtuel",
+        "type": "prompt",
+        "texte": "Tu es le meilleur [avocat, comptable ou médecin] de [votre ville]. Voici une note détaillée sur ma situation : [votre situation]. Réponds précisément à mes questions : [vos questions]. Enfin, dis-moi : qu’est-ce que je néglige ?",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Laissez l’IA défricher le dossier et réservez le temps payé du professionnel à la vérification et à la touche finale.",
+    "source": {
+      "cle": "ai-voice-clones-get-political",
+      "date": "2025-07-09",
+      "url": "https://www.theneurondaily.com/p/ai-voice-clones-get-political",
+      "newsletter": "AI voice clones get political",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 AI voice clones get political"
+    }
+  },
+  {
+    "id": "debloquer-une-reunion-qui-tourne-en-rond-avec-des-questions-ciblees",
+    "titre": "Débloquer une réunion qui tourne en rond avec des questions ciblées",
+    "resume": "Ethan Mollick propose de donner à l’IA la transcription d’une réunion à mi-parcours : elle génère des « cartes de tarot », 5 ou 6 questions ciblées pour faire avancer le sujet.",
+    "categorie": "business",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Plutôt que de faire résumer par l’IA les réunions que vous manquez, [Ethan Mollick suggère](https://www.oneusefulthing.org/p/against-brain-damage) de l’utiliser pour que les réunions auxquelles vous assistez vaillent vraiment la peine."
+      },
+      {
+        "t": "p",
+        "x": "Il a [partagé un prompt](https://hd3ns092ns.notion.site/1b3dc3333315802a9e99cafedb321048?v=1b3dc3333315804693e2000c7ca70b7b&p=228dc33333158057b9b8e532d3bcbd8c&pm=c) qui génère des « cartes de tarot » personnalisées : des questions pour sauver une réunion enlisée. Donnez à Claude la transcription de la réunion à mi-parcours avec ce prompt : il produit 5 ou 6 questions ciblées, comme *« Quel schéma nous ramène sans cesse à ce sujet ? »*, pour avancer enfin sur les points les plus importants."
+      },
+      {
+        "t": "p",
+        "x": "Au lieu de tourner en rond, vous obtenez des questions précises qui font réellement progresser la discussion. Le prompt ci-dessous en est une version simplifiée ; le prompt complet d’Ethan Mollick se trouve sur sa page Notion (en anglais)."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt des cartes de questions",
+        "type": "prompt",
+        "texte": "Voici la transcription de la première moitié de notre réunion : [transcription].\n\nLa discussion tourne en rond. Agis comme un facilitateur et crée 5 ou 6 cartes de questions ciblées pour débloquer la suite. Chaque carte porte un titre court et une question ouverte qui aide le groupe à avancer sur les sujets les plus importants, par exemple : « Quel schéma nous ramène sans cesse à ce sujet ? »",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Utilisez l’IA pendant la réunion, pas seulement après : quelques questions bien choisies suffisent à débloquer une discussion qui tourne en rond.",
+    "source": {
+      "cle": "kimi-researcher-beats-openai-as-huawei-faces-model-theft-accusations",
+      "date": "2025-07-08",
+      "url": "https://www.theneurondaily.com/p/kimi-researcher-beats-openai-as-huawei-faces-model-theft-accusations",
+      "newsletter": "Kimi Researcher Beats OpenAI as Huawei Faces Model Theft Accusations",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Kimi Researcher Beats OpenAI as Huawei Faces Model Theft Accusations"
+    }
+  },
+  {
+    "id": "transformer-les-interdictions-en-consignes-positives",
+    "titre": "Transformer les interdictions en consignes positives",
+    "resume": "Au lieu de « ne fais pas X », dites « évite X » ou, mieux, décrivez le comportement attendu (« sois concis ») : l’IA réagit mieux à une action concrète à accomplir.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Un micro-ajustement rend votre IA bien plus réceptive : au lieu de lui dire ce qu’elle ne doit PAS faire (« ne fais pas X »), reformulez la consigne négative de façon positive, par exemple avec « évite »."
+      },
+      {
+        "t": "p",
+        "x": "Au lieu de « n’utilise pas de jargon », écrivez « évite le jargon ». Au lieu de « ne sois pas verbeux », écrivez « évite d’être verbeux » ou, mieux encore, « sois concis ». C’est la même consigne, simplement reformulée d’une manière à laquelle l’entraînement de l’IA répond mieux."
+      },
+      {
+        "t": "p",
+        "x": "**Attention** : il ne s’agit pas de tout passer au positif ; parfois, une consigne négative reste nécessaire. L’astuce consiste à transformer l’instruction en une action positive sur laquelle l’IA peut agir. *Un peu comme on dirige des acteurs : on leur donne un verbe à « jouer ».*"
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt pour reformuler vos consignes",
+        "type": "prompt",
+        "texte": "Voici les consignes de mon prompt : [vos consignes]. Reformule chaque interdiction (« ne fais pas… », « n’utilise pas… ») en consigne positive qui décrit l’action attendue : par exemple, « ne sois pas verbeux » devient « sois concis ». Garde une consigne négative seulement quand aucune formulation positive n’est possible.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Donnez à l’IA une action à accomplir plutôt qu’une interdiction : « sois concis » fonctionne mieux que « ne sois pas verbeux ».",
+    "source": {
+      "cle": "the-ai-invasion-of-youtube-and-hollywood-has-begun",
+      "date": "2025-07-07",
+      "url": "https://www.theneurondaily.com/p/the-ai-invasion-of-youtube-and-hollywood-has-begun",
+      "newsletter": "The AI invasion of YouTube (and Hollywood) has begun...",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 The AI invasion of YouTube (and Hollywood) has begun..."
+    }
+  },
+  {
+    "id": "comprendre-pourquoi-un-sujet-fait-le-buzz-sur-x-avec-grok",
+    "titre": "Comprendre pourquoi un sujet fait le buzz sur X avec Grok",
+    "resume": "Grok, ou ChatGPT avec un modèle de raisonnement, peut chercher les publications du jour sur X et expliquer pourquoi un sujet est en tendance : pratique pour suivre l’actualité.",
+    "categorie": "outils",
+    "niveau": "debutant",
+    "outils": [
+      "autre",
+      "chatgpt"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Suivant un conseil de Dylan Patel : pour comprendre pourquoi tel ou tel sujet est en tendance sur X.com, utilisez [Grok](https://grok.com/), qui donne un aperçu en temps réel. C’est utile pour suivre l’actualité, même si vous n’utilisez ni X ni Grok habituellement."
+      },
+      {
+        "t": "p",
+        "x": "Grok est parfois inégal : essayez plutôt avec son outil « DeepSearch ». Il ne retrouvera pas toujours les publications exactes, mais il peut ajouter du contexte pour expliquer *pourquoi* un sujet est en tendance au vu de l’actualité récente."
+      },
+      {
+        "t": "p",
+        "x": "Le même prompt fonctionne dans ChatGPT avec un [modèle de raisonnement comme o3](https://chatgpt.com/?model=o3), qui peut lui aussi chercher sur X.com (lors du test de The Neuron, la fonction de recherche « sociale » de Perplexity a échoué). Si vous préférez ChatGPT à Grok, c’est une autre façon de comprendre l’actualité qui monte."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt des tendances sur X",
+        "type": "prompt",
+        "texte": "Pourquoi [sujet] est-il en tendance sur X en ce moment, [date du jour] ? Cherche sur X les dernières discussions sur [sujet] pour le confirmer. Ne me renvoie que des publications X d’aujourd’hui, [date du jour], liées à ce sujet.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Pour comprendre un sujet qui monte, demandez à une IA connectée en temps réel de chercher les publications du jour et d’en expliquer le contexte.",
+    "source": {
+      "cle": "why-we-dont-talk-about-agi-anymore",
+      "date": "2025-07-03",
+      "url": "https://www.theneurondaily.com/p/why-we-dont-talk-about-agi-anymore",
+      "newsletter": "ChatGPT's Robot Rebellion: Reality Check!",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 ChatGPT's Robot Rebellion: Reality Check!"
+    }
+  },
+  {
+    "id": "rassembler-les-bonnes-informations-avant-de-solliciter-l-ia",
+    "titre": "Rassembler les bonnes informations avant de solliciter l’IA",
+    "resume": "Selon Phil Schmid, un bon agent se distingue par le contexte qu’il voit : agenda, e-mails passés, outils. Réunissez ces éléments avant de demander et la réponse devient pertinente.",
+    "categorie": "formuler",
+    "niveau": "intermediaire",
+    "outils": [
+      "chatgpt",
+      "autre"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Phil Schmid a écrit un [excellent article sur l’ingénierie du contexte](https://www.philschmid.de/context-engineering) et ce qu’elle recouvre au-delà du simple prompt. En résumé : **il s’agit de construire des systèmes qui donnent à l’IA les bonnes informations, les bons outils et le bon format, au bon moment.**"
+      },
+      {
+        "t": "p",
+        "x": "Le contexte, c’est tout ce que voit l’IA : les instructions, l’historique de la conversation, les documents récupérés, les outils disponibles, et même les exigences de format de la réponse."
+      },
+      {
+        "t": "p",
+        "x": "Son exemple oppose un agent « démo au rabais », qui ne voit qu’une demande brute, à un agent « magique » qui a accès à votre agenda, à vos e-mails passés, à vos contacts et à vos outils de planification. Au lieu d’un « Quel horaire vous convient ? » robotique, vous obtenez : « Demain, c’est plein de mon côté, réunions toute la journée. Jeudi matin je suis libre, ça te va ? Je t’ai envoyé une invitation, dis-moi si c’est bon. » La magie n’est pas dans le prompt, mais dans le *travail de préparation* qui le rend superflu."
+      },
+      {
+        "t": "p",
+        "x": "**Pour le mettre en pratique** : avant de demander « aide-moi à planifier une réunion », rassemblez votre agenda, les préférences de disponibilité de l’autre personne et vos habitudes de réunion, puis laissez l’IA proposer les meilleurs créneaux. Un outil comme [n8n](https://n8n.io/) ou les [connecteurs de ChatGPT](https://help.openai.com/en/articles/11487775-connectors-in-chatgpt) permet de réunir ces données en un seul endroit, accessible à l’IA."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de planification bien préparé",
+        "type": "prompt",
+        "texte": "Aide-moi à planifier une réunion avec [personne] au sujet de [objet].\n\nVoici mon agenda des deux prochaines semaines : [créneaux occupés et libres].\nVoici ses préférences de disponibilité : [ce que vous savez de ses horaires].\nVoici nos habitudes de réunion : [durée habituelle, moments préférés, réunions passées].\n\nPropose-moi les trois meilleurs créneaux, puis rédige un court message d’invitation sur un ton naturel.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "La magie n’est pas dans le prompt mais dans la préparation : plus l’IA dispose d’informations pertinentes, moins la formulation compte.",
+    "source": {
+      "cle": "microsoft-ai-beats-doctors",
+      "date": "2025-07-01",
+      "url": "https://www.theneurondaily.com/p/microsoft-ai-beats-doctors",
+      "newsletter": "Microsoft AI beats doctors 🤖",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 Microsoft AI beats doctors 🤖"
+    }
+  },
+  {
+    "id": "laisser-l-ia-vous-poser-des-questions-avant-de-commencer",
+    "titre": "Laisser l’IA vous poser des questions avant de commencer",
+    "resume": "Plutôt que de chercher le prompt parfait, ajoutez une phrase qui pousse l’IA à vous interroger d’abord : elle récupère le contexte qui lui manque et personnalise sa réponse.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Arrêtez de chercher à rédiger le « prompt parfait » : laissez l’IA rassembler le contexte dont elle a besoin en vous posant d’abord des questions. La technique est simple : ajoutez à la fin de vos prompts « *pose-moi toutes les questions de clarification nécessaires avant de commencer* ». Au lieu de deviner ce dont l’IA a besoin, laissez-la vous interviewer."
+      },
+      {
+        "t": "p",
+        "x": "C’est la logique de ce que les spécialistes appellent l’« ingénierie du contexte » : passer d’instructions parfaites à des informations de fond pertinentes. Car même le prompt le mieux formulé échoue sans le bon contexte. **Exemple :**"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "Avant : « Aide-moi à préparer mes repas de la semaine » donne des conseils génériques.",
+          "Après : « Aide-moi à préparer mes repas de la semaine, mais pose-moi d’abord des questions de clarification » : l’IA vous interroge sur votre niveau en cuisine, vos restrictions alimentaires et votre temps disponible, pour établir un plan personnalisé."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Pour aller plus loin, un utilisateur de Reddit a partagé son « [prompt parfait](https://www.reddit.com/r/ChatGPT/comments/1lnfcnt/after_147_failed_chatgpt_prompts_i_had_a/) » qui applique ce principe. Il est un peu trop chargé au goût de The Neuron, mais il peut vous être utile."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "La phrase à ajouter à vos prompts",
+        "type": "prompt",
+        "texte": "Pose-moi toutes les questions de clarification nécessaires avant de commencer.",
+        "adapte": false
+      },
+      {
+        "titre": "Exemple : préparer ses repas",
+        "type": "prompt",
+        "texte": "Aide-moi à préparer mes repas de la semaine, mais pose-moi d’abord des questions de clarification.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Au lieu de deviner ce dont l’IA a besoin, laissez-la vous interviewer : ses questions font remonter le contexte qui manque.",
+    "source": {
+      "cle": "cheatgpt-is-breaking-education",
+      "date": "2025-06-30",
+      "url": "https://www.theneurondaily.com/p/cheatgpt-is-breaking-education",
+      "newsletter": "CheatGPT\" is breaking education",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 \"CheatGPT\" is breaking education"
+    }
+  },
+  {
+    "id": "tester-ses-prompts-avec-des-evaluations",
+    "titre": "Tester ses prompts avec des évaluations",
+    "resume": "Tina Huang conseille d’apprendre, en plus du prompt, à écrire des évaluations (evals) : des tests qui vérifient que vos prompts donnent vraiment les résultats attendus.",
+    "categorie": "verifier",
+    "niveau": "intermediaire",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Dans [cette vidéo](https://youtu.be/PL5QnLrOjqk?si=qzOfSuRqKd0jHpME), Tina Huang passe en revue les compétences nécessaires pour créer des agents IA : pourquoi l’ingénierie du prompt reste l’une des compétences les plus rentables à acquérir, quel type d’entreprise IA développer (des agents verticaux, spécialisés dans un métier), son propre cadre de prompt, et comment penser ses prompts quand on conçoit des agents (elle recommande aussi [cette vidéo](https://youtu.be/DL82mGde6wo?si=l69dxL8FGiK6OEuk))."
+      },
+      {
+        "t": "p",
+        "x": "L’autre compétence qu’elle conseille d’apprendre en plus du prompt : écrire des *evals*, c’est-à-dire des tests qui vérifient si vos prompts fonctionnent *vraiment*."
+      },
+      {
+        "t": "p",
+        "x": "Elle détaille [les types d’évaluations les plus courants](https://youtu.be/PL5QnLrOjqk?si=C2hqYiFOg3fyya46&t=635) et explique pourquoi elles constituent en réalité la « propriété intellectuelle » la plus importante des entreprises d’IA."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt pour créer une évaluation",
+        "type": "prompt",
+        "texte": "Voici un prompt que j’utilise régulièrement : [votre prompt]. Aide-moi à créer une petite évaluation pour vérifier qu’il fonctionne vraiment : propose 10 cas de test variés (dont des cas difficiles ou limites), le résultat attendu pour chacun et des critères simples pour noter chaque réponse comme réussie ou ratée.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Un prompt n’est fiable que s’il a été testé : écrivez des cas de test pour vérifier qu’il donne vraiment ce que vous attendez.",
+    "source": {
+      "cle": "real-people-are-using-a-lot-of-ai",
+      "date": "2025-06-27",
+      "url": "https://www.theneurondaily.com/p/real-people-are-using-a-lot-of-ai",
+      "newsletter": "Real people are using A LOT of AI...",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Real people are using A LOT of AI..."
+    }
+  },
+  {
+    "id": "soigner-le-contexte-plutot-que-la-formulation-du-prompt",
+    "titre": "Soigner le contexte plutôt que la formulation du prompt",
+    "resume": "Andrej Karpathy parle d’ingénierie du contexte : ce qui compte, c’est de fournir à l’IA les bons exemples, informations, outils et historique, ni trop ni trop peu.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Oubliez l’« ingénierie du prompt » : place à l’« [ingénierie du contexte](https://news.smol.ai/issues/25-06-25-context-eng) » (*context engineering*). Des experts comme Andrej Karpathy [défendent ce terme](https://x.com/karpathy/status/1937902205765607626) parce qu’il décrit mieux le vrai défi : donner à l’IA tout le contexte dont elle a besoin pour accomplir votre tâche."
+      },
+      {
+        "t": "p",
+        "x": "Selon lui, ce qui compte le plus est de réunir *le bon contexte* (exemples, informations de fond, outils, historique de la conversation) pour dissiper le « brouillard de guerre » dans lequel se trouve le modèle."
+      },
+      {
+        "t": "p",
+        "x": "**Voyez cela comme la préparation d’une présentation** : trop peu d’informations et vous bafouillez ; trop d’éléments hors sujet et vous perdez le fil. Ne passez donc pas trop de temps à ciseler le prompt le plus astucieux : concentrez-vous sur un contexte choisi avec soin, qui met le modèle en position de réussir."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt riche en contexte",
+        "type": "prompt",
+        "texte": "Voici ma tâche : [tâche].\n\nContexte utile :\n- Informations de fond : [situation, objectifs, contraintes]\n- Exemples de ce que j’attends : [exemples]\n- Documents de référence : [documents ou extraits]\n- Ce qui a déjà été fait ou décidé : [historique]\n\nS’il te manque une information indispensable, demande-la-moi avant de commencer.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Passez moins de temps à ciseler la formulation et plus à choisir le contexte : ni trop peu, ni trop d’éléments hors sujet.",
+    "source": {
+      "cle": "build-ai-apps-w-claude-or-google",
+      "date": "2025-06-26",
+      "url": "https://www.theneurondaily.com/p/build-ai-apps-w-claude-or-google",
+      "newsletter": "Build AI apps w/ Claude or Google",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Build AI apps w/ Claude or Google"
+    }
+  },
+  {
+    "id": "progresser-en-video-ia-grace-a-30-astuces-pour-veo-3",
+    "titre": "Progresser en vidéo IA grâce à 30 astuces pour Veo 3",
+    "resume": "Tao Prompts réunit dans une vidéo 30 astuces pour mieux utiliser les générateurs vidéo comme Veo 3 de Google ; faites-en extraire la liste par l’IA pour l’avoir sous la main.",
+    "categorie": "creer",
+    "niveau": "debutant",
+    "outils": [
+      "gemini"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Besoin d’aide pour travailler avec les outils de vidéo IA, comme [Veo 3 de Google](https://deepmind.google/models/veo/) ? Tao Prompts a publié [une vidéo](https://youtu.be/fvV95J0LiOE?si=vQNGsOPPzH3iA66B) qui rassemble 30 astuces pour mieux utiliser ces outils."
+      },
+      {
+        "t": "p",
+        "x": "Pour garder ces conseils à portée de main, copiez la transcription de la vidéo (sur YouTube, « Afficher la transcription ») et demandez à votre IA d’en tirer une liste d’astuces à appliquer dans vos propres prompts vidéo."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt d’extraction des astuces",
+        "type": "prompt",
+        "texte": "Voici la transcription d’une vidéo d’astuces sur la génération de vidéos avec Veo 3 : [transcription]. Dresse la liste de toutes les astuces concrètes qu’elle contient, une par ligne, avec pour chacune un exemple de prompt vidéo qui l’applique.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Avant de multiplier les essais au hasard, apprenez les astuces de ceux qui pratiquent déjà ces outils de vidéo IA.",
+    "source": {
+      "cle": "training-ai-is-legal-now",
+      "date": "2025-06-25",
+      "url": "https://www.theneurondaily.com/p/training-ai-is-legal-now",
+      "newsletter": "Training AI is legal now?",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Training AI is legal now?"
+    }
+  },
+  {
+    "id": "utiliser-l-ia-comme-un-assistant-pas-comme-un-moteur-de-recherche",
+    "titre": "Utiliser l’IA comme un assistant, pas comme un moteur de recherche",
+    "resume": "Les conseils d’Ethan Mollick pour bien débuter : choisir l’un des trois grands chatbots, passer aux modèles puissants, donner du contexte, tester Deep Research et le mode vocal.",
+    "categorie": "outils",
+    "niveau": "debutant",
+    "outils": [
+      "chatgpt",
+      "claude",
+      "gemini"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Pour bien débuter avec l’IA, [Ethan Mollick](https://substack.com/@oneusefulthing) a publié un [excellent guide](https://www.oneusefulthing.org/p/using-ai-right-now-a-quick-guide) sur les systèmes à utiliser et la façon de s’en servir efficacement. En résumé : **la plupart des gens utilisent l’IA comme Google** (questions rapides, aucun contexte, réglages par défaut), alors qu’il faudrait la traiter comme un assistant intelligent. Ses principaux conseils :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "Choisissez l’un des trois grands : [ChatGPT](https://chat.com/), [Claude](https://claude.ai/) ou [Gemini](https://gemini.google.com/) (20 dollars par mois pour toutes les fonctions).",
+          "Pour le travail sérieux, passez aux modèles puissants, pas aux modèles rapides proposés par défaut.",
+          "Essayez [Deep Research](https://openai.com/index/introducing-deep-research/) pour obtenir des rapports et des analyses approfondis.",
+          "Utilisez le [mode vocal](https://help.openai.com/en/articles/8400625-voice-mode-faq) avec le partage de caméra ou d’écran pour une aide en temps réel.",
+          "Donnez du contexte à l’IA : des documents et des instructions claires.",
+          "Demandez beaucoup d’options (50 idées plutôt que 10) : *l’IA en fait le minimum si vous n’êtes pas précis*.",
+          "Utilisez les embranchements de conversation (*branching*) pour explorer plusieurs pistes.",
+          "Testez trois choses tout de suite : un problème de travail complexe, Deep Research et le mode vocal."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Ce que The Neuron en retient : ce qui distingue l’utilisateur occasionnel de l’utilisateur avancé n’est pas vraiment l’art du prompt… c’est de savoir que toutes ces fonctions existent et de s’en servir sur du vrai travail."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le premier vrai test",
+        "type": "prompt",
+        "texte": "Je veux t’essayer sur un vrai problème de travail complexe. Voici le contexte : [votre situation, vos documents, vos contraintes]. Voici ce que j’attends : [résultat souhaité]. Propose-moi 50 idées ou pistes plutôt que 10, puis aide-moi à choisir les meilleures.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Ce qui fait l’utilisateur avancé, ce n’est pas l’art du prompt, mais le fait de connaître les fonctions disponibles et de s’en servir sur du vrai travail.",
+    "source": {
+      "cle": "chatgpt-md",
+      "date": "2025-06-24",
+      "url": "https://www.theneurondaily.com/p/chatgpt-md",
+      "newsletter": "ChatGPT MD?!",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 ChatGPT MD?!"
+    }
+  },
+  {
+    "id": "demander-a-l-ia-de-defendre-la-position-inverse",
+    "titre": "Demander à l’IA de défendre la position inverse",
+    "resume": "Quand vous bloquez sur une décision, faites plaider l’avis contraire ou trois points de vue différents : l’IA devient un avocat du diable qui révèle vos angles morts.",
+    "categorie": "verifier",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Sur Reddit, [un spécialiste de la documentation de processus](https://www.reddit.com/r/ChatGPT/comments/1lg5k38/comment/myukpft/) explique qu’il utilise ChatGPT avant tout pour sortir des blocages créatifs, en se forçant à adopter d’autres points de vue. Il dit avoir doublé son efficacité grâce à une technique simple, qu’un autre utilisateur résume ainsi : « Défends entièrement la position inverse. »"
+      },
+      {
+        "t": "p",
+        "x": "Au lieu de rester enfermé dans vos propres hypothèses, l’IA devient un avocat du diable instantané. Essayez-le dès que vous bloquez sur une décision, la conception d’un processus ou un problème à résoudre : le point de vue opposé révèle souvent des angles morts et des solutions que vous n’auriez jamais vus."
+      },
+      {
+        "t": "p",
+        "x": "Pour une version plus complète, demandez trois points de vue (second prompt ci-dessous). **Présentez la situation de façon neutre** : les modèles actuels sont conçus pour [vous caresser dans le sens du poil](https://www.reddit.com/r/ChatGPT/comments/1lgajiy/trust_in_the_machine/) ; si vous laissez deviner votre préférence, ils feront tout pour la mettre en avant."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt avocat du diable",
+        "type": "prompt",
+        "texte": "Défends entièrement la position inverse de celle-ci : [votre position, décision ou idée].",
+        "adapte": false
+      },
+      {
+        "titre": "Le prompt des trois points de vue",
+        "type": "prompt",
+        "texte": "Présente trois points de vue sur [votre situation ou décision, présentée de façon neutre] :\n1) Quelqu’un qui soutient fermement cette position.\n2) Quelqu’un qui est totalement en désaccord.\n3) Un expert neutre qui pèse les deux côtés.\nDétaille précisément le raisonnement de chacun.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Faites défendre l’avis contraire et décrivez votre situation sans dévoiler votre préférence, sinon l’IA vous donnera simplement raison.",
+    "source": {
+      "cle": "all-ai-models-might-blackmail-you",
+      "date": "2025-06-23",
+      "url": "https://www.theneurondaily.com/p/all-ai-models-might-blackmail-you",
+      "newsletter": "All AI models might blackmail you?!",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 All AI models might blackmail you?!"
+    }
+  },
+  {
+    "id": "reformuler-sa-question-et-demander-quelle-question-il-fallait-poser",
+    "titre": "Reformuler sa question et demander quelle question il fallait poser",
+    "resume": "Quand une approche ne marche pas, changez d’angle : demandez à l’IA quelle question il aurait fallu lui poser pour obtenir ce que vous cherchez, puis relancez dans une nouvelle conversation.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "**Réessayez, avec une variante.** Si une approche ne fonctionne pas, reformulez votre question ou abordez le problème sous un autre angle. Demander « Qu’aurais-je dû te demander pour obtenir XYZ ? » peut même amener l’IA à vous donner la question et la réponse dont vous avez besoin."
+      },
+      {
+        "t": "p",
+        "x": "La formulation et l’approche d’un prompt peuvent produire des résultats étonnamment différents : un peu d’expérimentation va loin. N’hésitez pas à reformuler et à réessayer dans une nouvelle conversation, ou à modifier votre prompt et à le relancer. Cela fait partie du processus."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de la bonne question",
+        "type": "prompt",
+        "texte": "Qu’aurais-je dû te demander pour obtenir [le résultat que vous cherchez] ?",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Un prompt qui échoue n’est pas une impasse : changez d’angle, ou demandez à l’IA quelle question lui poser.",
+    "source": {
+      "cle": "sam-drops-gpt-5-date",
+      "date": "2025-06-19",
+      "url": "https://www.theneurondaily.com/p/sam-drops-gpt-5-date",
+      "newsletter": "Sam drops GPT-5 date",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Sam drops GPT-5 date"
+    }
+  },
+  {
+    "id": "preparer-l-ia-par-des-questions-de-contexte-avant-la-vraie-demande",
+    "titre": "Préparer l’IA par des questions de contexte avant la vraie demande",
+    "resume": "Posez d’abord à l’IA quelques questions de fond sur le sujet, puis formulez votre vraie demande : elle y répond en s’appuyant sur le contexte qu’elle vient elle-même de produire.",
+    "categorie": "formuler",
+    "niveau": "intermediaire",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Matt McCartney a rassemblé une [série d’astuces de prompt](https://www.mattmccartney.dev/blog/llm_techniques) qui expliquent pourquoi la plupart des gens obtiennent des réponses médiocres de l’IA, et comment y remédier. Sa métaphore : un modèle de langage comme ChatGPT ressemble à un enfant de maternelle qui suit des instructions pour préparer un sandwich. *Si vous ne précisez pas qu’il faut du pain, il se tartinera de beurre de cacahuète.*"
+      },
+      {
+        "t": "p",
+        "x": "La technique la plus utile dans l’immédiat est le **contexte auto-induit** (*Self-Induced Context*) : vous préparez l’IA en lui posant d’abord des questions de fond, puis vous lui soumettez votre vraie demande. C’est comme lui donner un cours accéléré avant le vrai devoir."
+      },
+      {
+        "t": "p",
+        "x": "Pour aller plus loin sur les agents, le développeur Nir Diamant propose une [collection de tutoriels](https://github.com/NirDiamant/agents-towards-production) consacrée aux aspects difficiles : coordination de plusieurs agents, systèmes de mémoire, déploiement, garde-fous de sécurité et observabilité."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Étape 1 : les questions de fond",
+        "type": "prompt",
+        "texte": "Avant que je te confie une tâche, réponds à ces questions : quelles sont les qualités d’un excellent [type de document ou de travail] ? Quelles erreurs fréquentes faut-il éviter ? Que faut-il savoir sur [public ou contexte] pour réussir ce travail ?",
+        "adapte": true
+      },
+      {
+        "titre": "Étape 2 : la vraie demande",
+        "type": "prompt",
+        "texte": "En t’appuyant sur ce que tu viens d’expliquer, [votre vraie demande].",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Faire expliquer le sujet à l’IA avant de lui confier la tâche lui donne le contexte qui lui manquait.",
+    "source": {
+      "cle": "can-ai-save-your-workday",
+      "date": "2025-06-18",
+      "url": "https://www.theneurondaily.com/p/can-ai-save-your-workday",
+      "newsletter": "Can AI Save Your Workday?",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Can AI Save Your Workday?"
+    }
+  },
+  {
+    "id": "formuler-ses-questions-pour-dejouer-la-complaisance-de-l-ia",
+    "titre": "Formuler ses questions pour déjouer la complaisance de l’IA",
+    "resume": "L’IA tend à approuver vos idées. Demandez pourquoi l’idée est mauvaise, présentez le débat comme un tiers, posez la question dans les deux sens et inversez l’ordre des options.",
+    "categorie": "verifier",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "La façon dont vous posez une question à l’IA compte autant que la question elle-même. Ce [fil Hacker News](https://news.ycombinator.com/item?id=44272773) explique pourquoi vos prompts obtiennent des réponses biaisées dans le sens positif, et comment y remédier. Le principal coupable : les IA actuelles sont entraînées pour être [serviables et conciliantes](https://dayafter.substack.com/p/the-emperors-new-llm), et valident donc vos idées par défaut."
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Retournez la question** : au lieu de « Notre stratégie marketing est-elle solide ? », demandez « Pourquoi cette idée est-elle mauvaise ? ».",
+          "**Sortez-vous de l’équation** : même une question « neutre » est biaisée. Présentez-la comme un tiers neutre, ou comme un débat entre plusieurs personnes, pour obtenir une vraie analyse.",
+          "**Pratiquez la double vérification** : posez la même question dans deux conversations séparées, une fois en positif (« confirme que mon analyse est juste »), une fois en négatif (« dis-moi où mon analyse est fausse »). *Ne vous fiez au résultat que si les deux conversations concordent.*",
+          "**Inversez l’ordre des options** : les modèles de langage comme ChatGPT ont tendance à privilégier la première option présentée ; testez donc vos résultats en changeant l’ordre."
+        ]
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de la question retournée",
+        "type": "prompt",
+        "texte": "Pourquoi cette idée est-elle mauvaise ?\n\n[votre idée]",
+        "adapte": false
+      },
+      {
+        "titre": "Le prompt du tiers neutre",
+        "type": "prompt",
+        "texte": "Bob adore cette idée, mais Sarah la déteste. Qui a raison ?\n\n[votre idée]",
+        "adapte": false
+      },
+      {
+        "titre": "La double vérification, version positive",
+        "type": "prompt",
+        "texte": "Confirme que mon analyse est juste :\n\n[votre analyse]",
+        "adapte": false
+      },
+      {
+        "titre": "La double vérification, version négative (dans une autre conversation)",
+        "type": "prompt",
+        "texte": "Dis-moi où mon analyse est fausse :\n\n[votre analyse]",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Une question qui laisse deviner votre avis obtient une approbation ; une question neutre ou retournée obtient une analyse.",
+    "source": {
+      "cle": "here-s-what-your-brain-on-chatgpt-looks-like",
+      "date": "2025-06-17",
+      "url": "https://www.theneurondaily.com/p/here-s-what-your-brain-on-chatgpt-looks-like",
+      "newsletter": "Here's what your brain on ChatGPT looks like...",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Here's what your brain on ChatGPT looks like..."
+    }
+  },
+  {
+    "id": "bannir-la-tournure-ce-n-est-pas-x-c-est-y-des-textes-de-l-ia",
+    "titre": "Bannir la tournure « ce n’est pas X, c’est Y » des textes de l’IA",
+    "resume": "La formule « ce n’est pas seulement X, c’est Y » trahit un texte écrit par l’IA. Demandez-lui des affirmations directes et des arguments étayés, pas des oppositions inventées.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Vous avez remarqué [le désamour dont souffre le tiret cadratin](https://www.salon.com/2025/06/11/ai-cant-have-my-em-dash/) (—) ? Il est devenu l’ennemi public n° 1 pour repérer, à tort ou à raison, les textes écrits par l’IA. Les utilisateurs de Reddit pointent désormais un autre tic : la tournure « [Ce n’est pas seulement X, c’est Y](https://www.reddit.com/r/ChatGPT/comments/1l8harj/its_not_just_x_its_y/) » (la « [négation](https://youtu.be/l_s27C1AVXU?si=m6k_TTVHg3ss0Yew) »). Le problème : l’IA invente une opposition qui n’existe pas, pour que la phrase paraisse réfléchie alors qu’elle suit une formule prévisible."
+      },
+      {
+        "t": "p",
+        "x": "Blake Stockton a partagé une [correction simple](https://www.blakestockton.com/dont-write-like-ai-1-101-negation/) pour faire disparaître cette tournure (premier prompt ci-dessous). Un autre utilisateur de Reddit a proposé la sienne dans un [prompt complet](https://www.reddit.com/r/ChatGPT/comments/1l8harj/comment/mx64my9/) qui corrige *beaucoup* de mauvaises habitudes de l’IA, avec ce sage conseil : « Plus un prompt est court, plus il frappe fort. »"
+      },
+      {
+        "t": "p",
+        "x": "**Le conseil de pro** : plusieurs études montrent qu’il vaut mieux dire à l’IA quoi faire que quoi ne pas faire. Une consigne directe comme « écris avec assurance, en phrases claires et directes » fonctionne mieux que « n’utilise pas la négation ». Le second prompt contre ainsi la négation par une consigne positive."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "La consigne anti-négation",
+        "type": "prompt",
+        "texte": "Évite toute structure de phrase qui pose une idée pour ensuite la nier ou la dépasser (comme « X ne se résume pas à Y » ou « X est bien plus que Y »). Utilise plutôt des affirmations directes. N’hésite pas à varier librement la construction de tes phrases et ton style d’expression.",
+        "adapte": false
+      },
+      {
+        "titre": "La consigne positive",
+        "type": "prompt",
+        "texte": "Si tu défends une idée, apporte des faits qui la soutiennent plutôt que de réfuter un argument que personne n’avance.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Dites à l’IA comment écrire plutôt que ce qu’il faut éviter : une consigne positive corrige mieux un tic d’écriture.",
+    "source": {
+      "cle": "do-you-have-ai-fluency",
+      "date": "2025-06-16",
+      "url": "https://www.theneurondaily.com/p/do-you-have-ai-fluency",
+      "newsletter": "Monday, June 16th, 2025",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Monday, June 16th, 2025"
+    }
+  },
+  {
+    "id": "mener-des-recherches-web-ciblees-avec-perplexity-et-claude",
+    "titre": "Mener des recherches web ciblées avec Perplexity et Claude",
+    "resume": "Deux prompts de recherche : l’un pour Perplexity, limité aux sources sociales, l’autre pour faire enchaîner dix recherches web à Claude et obtenir une analyse approfondie et sourcée.",
+    "categorie": "outils",
+    "niveau": "intermediaire",
+    "outils": [
+      "claude",
+      "autre"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "**Avec Perplexity** : dans [Perplexity](https://www.perplexity.ai/), activez le mode « Research », puis, sous « Sources » (le petit globe), activez uniquement « Social ». Le premier prompt ci-dessous trouve alors la ressource la plus populaire d’après ce que les internautes en disent sur des sites comme Reddit."
+      },
+      {
+        "t": "p",
+        "x": "**Avec Claude** : [Claude](https://claude.ai/), avec la réflexion étendue (*extended thinking*) et la recherche web activées, est l’un des meilleurs moyens de chercher plusieurs choses à la fois. Auparavant, il s’arrêtait vers quatre recherches ; il peut désormais en enchaîner jusqu’à vingt dans un seul prompt. Il devient toutefois un peu capricieux en approchant de vingt : **dix est plus sûr**."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt Perplexity (sources sociales)",
+        "type": "prompt",
+        "texte": "Quel est le [ressource recherchée, par exemple : classement de référence qui évalue les agents de navigation web et leur capacité à accomplir des tâches en ligne] le plus populaire ou le plus utilisé ? Donne-moi le lien vers ce [ressource recherchée]. Je veux savoir ce qu’en disent les gens qui publient sur des sites comme Reddit, et quelle ressource a reçu le plus de votes positifs.",
+        "adapte": false
+      },
+      {
+        "titre": "Le prompt Claude à dix recherches",
+        "type": "prompt",
+        "texte": "Réfléchis bien et utilise la recherche web pour étudier en profondeur [votre sujet]. Je veux que tu mènes 10 recherches successives sur ce sujet. Explore différents angles, sources et points de vue jusqu’à atteindre ta limite de recherches. Donne-moi une analyse approfondie avec des citations. À la fin, vérifie que tu as bien effectué les 10 recherches. Si tu en as fait moins de 10, effectue celles qui manquent.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Bien régler l’outil (sources, réflexion, nombre de recherches) compte autant que la question posée.",
+    "source": {
+      "cle": "hello-barbiegpt",
+      "date": "2025-06-13",
+      "url": "https://www.theneurondaily.com/p/hello-barbiegpt",
+      "newsletter": "Hello, BarbieGPT...",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Hello, BarbieGPT..."
+    }
+  },
+  {
+    "id": "structurer-un-prompt-en-cinq-parties-pour-un-modele-de-raisonnement",
+    "titre": "Structurer un prompt en cinq parties pour un modèle de raisonnement",
+    "resume": "Objectif, format de retour, garde-fous, contexte et outils : la structure en cinq parties proposée par Ben Hylak pour o3-Pro donne au modèle tout ce dont il a besoin pour bien travailler.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "chatgpt"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Corey Noles, rédacteur chez The Neuron, a écrit un [guide de prise en main d’o3-Pro](https://www.theneuron.ai/explainer-articles/o3-pro-quick-start-user-guide-for-normies). Le meilleur conseil qu’il retient porte sur la structure des prompts et vient de [Ben Hylak](https://www.latent.space/p/o3-pro) :"
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "**Objectif** : ouvrez sur la mission, en une seule phrase.",
+          "**Format de retour** : dites au modèle sous quelle forme vous rendre le travail.",
+          "**Avertissements et contraintes** : ajoutez les garde-fous essentiels, comme « Cite la source de chaque statistique » ou « En cas de doute, réponds DONNÉES INSUFFISANTES ».",
+          "**Contexte** : donnez au modèle autant de contexte qu’il peut en absorber, pour éviter les hallucinations.",
+          "**Capacités** (nouveauté d’o3-Pro) : demandez-lui explicitement d’utiliser des outils comme la recherche web, la recherche dans les fichiers, l’interpréteur de code ou MCP (voir les [outils disponibles via l’API](https://platform.openai.com/docs/models/o3-pro))."
+        ]
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le modèle de prompt en cinq parties",
+        "type": "prompt",
+        "texte": "Objectif : [votre mission en une phrase]\n\nFormat de retour : [forme attendue : rapport, tableau, liste, longueur…]\n\nAvertissements : cite la source de chaque statistique. En cas de doute, réponds « DONNÉES INSUFFISANTES ».\n\nContexte : [tout le contexte utile : situation, documents, contraintes, ce que j’ai déjà essayé]\n\nCapacités : utilise [la recherche web, la recherche dans les fichiers, l’interpréteur de code…] pour mener ce travail.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Un modèle de raisonnement donne le meilleur de lui-même quand il connaît la mission, la forme attendue, les limites, le contexte et ses outils.",
+    "source": {
+      "cle": "did-sam-just-leak-the-future",
+      "date": "2025-06-12",
+      "url": "https://www.theneurondaily.com/p/did-sam-just-leak-the-future",
+      "newsletter": "Did Sam just leak the future?",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Did Sam just leak the future?"
+    }
+  },
+  {
+    "id": "demander-a-l-ia-ce-que-vous-etes-peut-etre-en-train-de-manquer",
+    "titre": "Demander à l’IA ce que vous êtes peut-être en train de manquer",
+    "resume": "Bloqué sur un problème ? Demandez à l’IA ce qui pourrait vous échapper, ou mieux, une liste d’au moins quinze facteurs négligés, classés du plus évident au plus inattendu.",
+    "categorie": "verifier",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Quand un problème vous résiste, faites chercher par l’IA les facteurs que vous avez négligés en lui demandant : **« Qu’est-ce qui pourrait m’échapper ? »**"
+      },
+      {
+        "t": "p",
+        "x": "Mieux encore, demandez-lui de dresser une liste d’au moins quinze éléments, classés du plus évident au plus inattendu. Un regard extérieur, même artificiel, repère souvent l’angle que vous n’aviez pas envisagé. C’est peut-être le meilleur usage de l’intelligence « artificielle » : réveiller l’intelligence *réelle*."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "La question simple",
+        "type": "prompt",
+        "texte": "[Votre problème, par exemple : notre projet prend sans cesse du retard malgré tous nos efforts.] Qu’est-ce qui pourrait nous échapper ?",
+        "adapte": false
+      },
+      {
+        "titre": "La liste des angles morts",
+        "type": "prompt",
+        "texte": "[Votre problème]\n\nDresse, sous forme de liste à puces, au moins 15 éléments qui pourraient m’échapper, classés du plus évident au plus inattendu. S’il existe moins de 15 facteurs possibles, donne-en autant qu’il y en a, en t’approchant le plus possible de 15.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Demander explicitement ce qui manque fait sortir l’IA, et vous avec, de vos angles morts.",
+    "source": {
+      "cle": "should-you-care-about-o3-pro",
+      "date": "2025-06-11",
+      "url": "https://www.theneurondaily.com/p/should-you-care-about-o3-pro",
+      "newsletter": "Should YOU care about o3-Pro?",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Should YOU care about o3-Pro?"
+    }
+  },
+  {
+    "id": "organiser-ses-taches-recurrentes-dans-des-projects",
+    "titre": "Organiser ses tâches récurrentes dans des Projects",
+    "resume": "Les Projects de ChatGPT et de Claude conservent fichiers, instructions et contexte d’une conversation à l’autre : créez-en un par tâche récurrente pour ne plus repartir de zéro.",
+    "categorie": "memoire",
+    "niveau": "intermediaire",
+    "outils": [
+      "chatgpt",
+      "claude"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "On n’en parle pas assez, mais les Projects de [ChatGPT](https://chat.com/) ou de [Claude](https://claude.ai/) sont l’un des meilleurs moyens d’organiser votre travail avec l’IA. Les [Projects](https://www.reddit.com/r/ChatGPT/comments/1hdzosg/quick_rundown_on_the_projects_feature_in_short_it/) conservent le contexte d’une conversation à l’autre : vous ne repartez pas de zéro à chaque fois, et l’IA dispose d’un cadre précis pour tout ce qui touche au projet. L’équipe de The Neuron s’en sert tous les jours ([dans Claude](https://www.anthropic.com/news/projects)), avec un projet différent pour chaque tâche récurrente."
+      },
+      {
+        "t": "p",
+        "x": "Si vous ne les avez jamais utilisés, ce [tutoriel de 14 minutes](https://www.youtube.com/watch?v=We5RZBECvPs) montre :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "comment configurer un projet avec des fichiers et des instructions personnalisées ;",
+          "un cas concret : rédiger le script d’une vidéo de vente et le texte d’une page d’atterrissage ;",
+          "comment créer une séquence de 5 e-mails de relance dans le même projet ;",
+          "quand créer des projets séparés et quand regrouper des tâches ;",
+          "comment déplacer vos conversations dans un projet ou les en sortir."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Il explique aussi quand choisir un [Project](https://help.openai.com/en/articles/10169521-using-projects-in-chatgpt) plutôt qu’un [GPT personnalisé](https://help.openai.com/en/articles/8554397-creating-a-gpt). En bref :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Projects** : un espace de travail personnel et organisé pour un travail suivi (le contexte est conservé d’une conversation à l’autre, plusieurs modèles sont disponibles).",
+          "**GPTs personnalisés** : des outils d’IA spécialisés que vous pouvez partager et réutiliser."
+        ]
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt pour rédiger les instructions du projet",
+        "type": "prompt",
+        "texte": "Je crée un projet dédié à une tâche que je fais régulièrement : [tâche récurrente]. Aide-moi à rédiger les instructions personnalisées de ce projet : mon rôle, l’objectif, le public visé, le ton, le format attendu et les erreurs à éviter. Pose-moi d’abord les questions dont tu as besoin, puis propose un texte prêt à coller.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Un projet par tâche récurrente, avec ses fichiers et ses instructions, vous évite de réexpliquer le contexte à chaque conversation.",
+    "source": {
+      "cle": "apple-intelligence-2-0",
+      "date": "2025-06-10",
+      "url": "https://www.theneurondaily.com/p/apple-intelligence-2-0",
+      "newsletter": "Apple Intelligence 2.0 unleashed!",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Apple Intelligence 2.0 unleashed!"
+    }
+  },
+  {
+    "id": "faire-numeroter-les-reponses-pour-pouvoir-citer-un-passage-precis",
+    "titre": "Faire numéroter les réponses pour pouvoir citer un passage précis",
+    "resume": "Demandez à l’IA de numéroter ses sections (1.1, 1.2, 2.1…) : vous pourrez ensuite lui dire « combine 1.2 et 2.1 » sans qu’elle se perde entre ses versions successives.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Une astuce de [Web Webster](https://www.linkedin.com/in/webwebster), de l’équipe TechnologyAdvice. Vous êtes en pleine conversation avec l’IA et voulez reprendre quelque chose qu’elle a dit trois réponses plus tôt. Vous tapez : « Combine ce que tu viens d’écrire avec l’explication sur Platon et le marketing d’il y a trois réponses. » Bien des modèles perdent alors le fil et s’embrouillent entre vos différentes versions."
+      },
+      {
+        "t": "p",
+        "x": "Demandez plutôt à l’IA d’utiliser une **numérotation de type Cornell** (1.1, 1.2, 1.3, 2.1, etc.) dans ses réponses, pour pouvoir désigner des sections précises par la suite. Vous pourrez alors écrire « combine la section 1.2 avec la 2.1 » : le mécanisme d’attention de l’IA reçoit une consigne bien plus précise."
+      },
+      {
+        "t": "p",
+        "x": "Si vous voulez *exactement* le contenu de 1.2 ou de 2.1, ajoutez « mot pour mot, sans rien changer »."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "La consigne de numérotation",
+        "type": "prompt",
+        "texte": "Format de sortie : numérote les sections de ta réponse selon le style Cornell (1.1, 1.2, 2.1…) pour que je puisse faire référence à des passages précis de tes réponses.",
+        "adapte": false
+      },
+      {
+        "titre": "La demande de combinaison",
+        "type": "prompt",
+        "texte": "Combine la section 1.2 avec la 2.1, mot pour mot, sans rien changer.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Des sections numérotées donnent à vos demandes de suivi une adresse précise, là où « ce que tu as dit tout à l’heure » sème la confusion.",
+    "source": {
+      "cle": "the-top-5-ai-spy-operations-that-openai-took-down",
+      "date": "2025-06-09",
+      "url": "https://www.theneurondaily.com/p/the-top-5-ai-spy-operations-that-openai-took-down",
+      "newsletter": "AI Newsletter Hiring: Sales Pro Wanted for Tech Insights!",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 AI Newsletter Hiring: Sales Pro Wanted for Tech Insights!"
+    }
+  },
+  {
+    "id": "imposer-le-format-de-reponse-et-decouper-les-demandes-en-etapes",
+    "titre": "Imposer le format de réponse et découper les demandes en étapes",
+    "resume": "Fixez d’emblée la forme de la réponse (puces, tableau, longueur) et découpez les demandes complexes en étapes, au besoin dans un seul prompt balisé : plan, analyse, plan révisé, brouillon.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Deux astuces qui paraissent évidentes après coup, mais qui vous aideront vraiment si vous ne les connaissez pas :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Dites à l’IA exactement comment vous répondre.** Définissez dès le départ le format ou le style attendu : liste à puces, tableau, réponse de la longueur d’un tweet… Par exemple : « Présente le résultat en 3 puces. » Le modèle s’y pliera.",
+          "**Grosse demande ? Avancez une étape à la fois.** Si votre prompt est complexe, découpez-le en tâches plus petites ou demandez explicitement une résolution étape par étape. ChatGPT et les autres IA travaillent mieux quand elles se concentrent sur une seule chose à la fois (comme nous !). Demandez par exemple d’abord un plan, puis développez chaque point dans les prompts suivants."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "**En prime** : vous *pouvez* aussi découper le travail en étapes dans un seul prompt, comme dans le modèle ci-dessous."
+      },
+      {
+        "t": "p",
+        "x": "Les modèles de raisonnement comme [Gemini 2.5 Pro](https://aistudio.google.com/app/prompts/new_chat?model=gemini-2.5-pro-preview-06-05) ou [o3 de ChatGPT](https://chatgpt.com/?model=o3) planifient d’eux-mêmes étape par étape. Mais si vous voulez garder la main sur le résultat (première astuce), écrivez les étapes vous-même."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt en étapes balisées",
+        "type": "prompt",
+        "texte": "Mon objectif : [objectif]\nMes recherches : [notes ou sources]\n\nCommence par créer un plan, dans <plan>. Ensuite, compare ce plan à mes recherches et vérifie s’il existe des opportunités ou des angles supplémentaires que tu as manqués et qui servent mon objectif, dans <analyse>. À partir de cette analyse, reporte tes conclusions dans un plan mis à jour, dans <plan_révisé>. Enfin, rédige le premier jet, dans <premier_jet>.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Imposer la forme et l’ordre des étapes vous donne la main sur le résultat, au lieu de laisser l’IA décider.",
+    "source": {
+      "cle": "here-s-what-data-ai-companies-keep-on-you",
+      "date": "2025-06-06",
+      "url": "https://www.theneurondaily.com/p/here-s-what-data-ai-companies-keep-on-you",
+      "newsletter": "Here's what data AI companies keep on you...",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Here's what data AI companies keep on you..."
+    }
+  },
+  {
+    "id": "poser-le-contexte-et-preciser-sa-demande-deux-regles-d-openai",
+    "titre": "Poser le contexte et préciser sa demande : deux règles d’OpenAI",
+    "resume": "Deux règles simples tirées des bonnes pratiques d’OpenAI : situer votre demande dans son contexte et dire exactement ce que vous attendez. Plus de détails, meilleures réponses.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Voici deux règles simples, tirées des bonnes pratiques de prompt d’OpenAI, qui améliorent tout de suite vos résultats avec ChatGPT. Les appliquez-vous à chaque prompt ?"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Règle 1 : posez le décor avec du contexte.** Au lieu de « Comment améliorer mes ventes ? », précisez qui vous êtes et ce que vous visez (premier exemple ci-dessous).",
+          "**Règle 2 : soyez explicite sur ce que vous voulez.** Une question vague appelle une réponse vague : précisez les détails et décrivez clairement votre demande. Plutôt que « Écris-moi 5 posts pour les réseaux sociaux », formulez une demande ciblée (second exemple ci-dessous)."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Plus vous donnez de détails à ChatGPT sur votre situation et sur le résultat attendu, meilleure est la réponse."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "L’exemple avec contexte",
+        "type": "prompt",
+        "texte": "Je tiens une petite boutique en ligne et je cherche à augmenter mes ventes au quatrième trimestre : quelles stratégies me recommanderais-tu ?",
+        "adapte": false
+      },
+      {
+        "titre": "L’exemple de demande explicite",
+        "type": "prompt",
+        "texte": "Donne-moi 5 conseils de marketing sur les réseaux sociaux pour un nouveau café qui cible une clientèle locale.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Une question vague appelle une réponse vague : dites qui vous êtes, ce que vous visez et ce que vous attendez.",
+    "source": {
+      "cle": "can-you-trust-photos-anymore",
+      "date": "2025-06-05",
+      "url": "https://www.theneurondaily.com/p/can-you-trust-photos-anymore",
+      "newsletter": "Can you trust photos anymore?",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Can you trust photos anymore?"
+    }
+  },
+  {
+    "id": "condenser-un-texte-en-restant-fidele-a-son-sens-et-a-son-ton",
+    "titre": "Condenser un texte en restant fidèle à son sens et à son ton",
+    "resume": "Demandez un résumé « fidèle à 100 % à l’original », ou une version condensée qui garde exemples, ton et logique : l’IA raccourcit le texte sans en trahir le sens.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Quand l’équipe de The Neuron doit résumer un texte, elle demande à l’IA de le faire « avec une fidélité de 100 % à l’original ». Cette formulation aide l’IA à préserver le *sens d’origine* du texte, même en le condensant."
+      },
+      {
+        "t": "p",
+        "x": "Un conseil similaire circule dans [ce fil Reddit](https://www.reddit.com/r/ChatGPTPromptGenius/comments/1kwlhx8/this_prompt_that_can_condense_100000_words_with/), qui contient d’autres bonnes idées, dont le passage de prompt repris ci-dessous. Le reste du prompt du fil n’est pas forcément utile selon vos besoins : essayez déjà ce passage et voyez s’il améliore vos résumés et vos textes condensés."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de résumé fidèle",
+        "type": "prompt",
+        "texte": "Résume ce texte avec une fidélité de 100 % à l’original :\n\n[texte]",
+        "adapte": false
+      },
+      {
+        "titre": "Le prompt de condensation sans perte",
+        "type": "prompt",
+        "texte": "Tu dois condenser [ce document] sans le résumer, sans supprimer les exemples clés, le ton ni les liens de cause à effet, tout en conservant l’enchaînement logique et la résonance émotionnelle. La fidélité au sens et au ton l’emporte toujours sur la concision.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Exiger la fidélité au sens et au ton empêche l’IA de sacrifier l’essentiel pour gagner en brièveté.",
+    "source": {
+      "cle": "build-your-first-ai-agent-with-microsoft-s-free-1-hour-course-441dc51a29ee",
+      "date": "2025-06-04",
+      "url": "https://www.theneurondaily.com/p/build-your-first-ai-agent-with-microsoft-s-free-1-hour-course-441dc51a29ee",
+      "newsletter": "Build your first AI agent with Microsoft's free 1 hour course",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Build your first AI agent with Microsoft's free 1 hour course"
+    }
+  },
+  {
+    "id": "demander-plusieurs-propositions-plutot-qu-une-seule-reponse",
+    "titre": "Demander plusieurs propositions plutôt qu’une seule réponse",
+    "resume": "Par défaut, l’IA ne donne souvent qu’une réponse. Demandez-lui quinze titres ou deux approches opposées : plus d’options, plus de choix, et souvent des idées auxquelles vous n’aviez pas pensé.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Quand vous interrogez l’IA, **ne vous arrêtez pas à une seule idée** : demandez plusieurs options ou réponses d’un coup."
+      },
+      {
+        "t": "p",
+        "x": "Par défaut, l’IA risque de ne donner qu’une réponse, mais rien ne vous empêche d’en réclamer plusieurs. Plus d’options, c’est plus de choix, et souvent l’étincelle d’idées plus originales que vous n’aviez pas envisagées."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt des alternatives",
+        "type": "prompt",
+        "texte": "Donne-moi au moins 15 titres possibles pour mon roman : [résumé du roman]",
+        "adapte": false
+      },
+      {
+        "titre": "Le prompt des approches opposées",
+        "type": "prompt",
+        "texte": "Propose-moi deux approches complètement différentes pour résoudre ce problème : [problème]",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Une seule réponse ne laisse aucun choix : demandez-en plusieurs et gardez la meilleure.",
+    "source": {
+      "cle": "ai-skills-56-pay-bump",
+      "date": "2025-06-03",
+      "url": "https://www.theneurondaily.com/p/ai-skills-56-pay-bump",
+      "newsletter": "AI Skills = 56% Pay Bump",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 AI Skills = 56% Pay Bump"
+    }
+  },
+  {
+    "id": "apprendre-avec-un-tuteur-socratique-qui-verifie-votre-comprehension",
+    "titre": "Apprendre avec un tuteur socratique qui vérifie votre compréhension",
+    "resume": "Ce prompt d’un chercheur de DeepMind pousse l’IA à s’interrompre souvent pour vous poser des questions de contrôle, et à attendre votre réponse avant de poursuivre son explication.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Ce prompt vient d’un chercheur de DeepMind et a été [partagé sur X](https://x.com/dwarkesh_sp/status/1927870657020449089) par Dwarkesh Patel, animateur du [Dwarkesh Podcast](https://www.youtube.com/c/DwarkeshPatel). Il transforme l’IA en tuteur socratique, qui ne cesse de vous poser des questions de fond révélant à quel point votre compréhension est superficielle."
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Ouvrez une nouvelle conversation avec votre modèle d’IA préféré.",
+          "Collez le prompt ci-dessous.",
+          "Indiquez ensuite ce que vous voulez apprendre."
+        ]
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt du tuteur socratique",
+        "type": "prompt",
+        "texte": "Ce qui m’aiderait le plus, c’est un style d’explication dans lequel tu t’arrêtes souvent pour vérifier, en me posant des questions de contrôle, que j’ai bien compris tes explications jusque-là. Les questions de contrôle portant sur des exemples simples et explicites sont particulièrement utiles. Quand tu t’arrêtes pour me poser une question, ne poursuis pas l’explication tant que je n’y ai pas répondu de façon satisfaisante. Autrement dit, ne continue pas à générer l’explication : attends vraiment ma réponse. Merci !",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Une IA qui vous interroge avant d’avancer vous fait apprendre, au lieu de vous laisser croire que vous avez compris.",
+    "source": {
+      "cle": "ai-can-find-exploits-security-researchers-can-t",
+      "date": "2025-06-02",
+      "url": "https://www.theneurondaily.com/p/ai-can-find-exploits-security-researchers-can-t",
+      "newsletter": "Monday, June 2 | PREVIEW",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Monday, June 2 | PREVIEW"
+    }
+  },
+  {
+    "id": "decouvrir-12-astuces-de-prompt-et-les-fonctions-meconnues-de-chatgpt",
+    "titre": "Découvrir 12 astuces de prompt et les fonctions méconnues de ChatGPT",
+    "resume": "Pour bien débuter, une vidéo du créateur Enovair présente 12 astuces de prompt et des fonctions de ChatGPT que vous ignorez peut-être, comme Canvas ou les GPTs personnalisés.",
+    "categorie": "outils",
+    "niveau": "debutant",
+    "outils": [
+      "chatgpt"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Vous débutez avec l’IA ? Regardez [cette vidéo du créateur Enovair](https://youtu.be/SPxJq7SocGw?si=sYL-J7TMO9iKNyg0) : elle présente 12 astuces de prompt (la première est la plus importante) pour améliorer vos résultats au plus vite."
+      },
+      {
+        "t": "p",
+        "x": "Elle explique aussi bien plusieurs outils et fonctions de ChatGPT que vous ne connaissez peut-être pas, comme [Canvas](https://openai.com/index/introducing-canvas/) ou les [GPTs personnalisés](https://chatgpt.com/gpts)."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de découverte des fonctions",
+        "type": "prompt",
+        "texte": "Je débute avec ChatGPT. À quoi servent Canvas et les GPTs personnalisés ? Pour chacun, explique en deux phrases ce qu’il permet de faire et donne un exemple concret pour [votre métier ou votre tâche].",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Connaître les fonctions de votre outil compte autant que bien formuler vos prompts.",
+    "source": {
+      "cle": "doctor-burnout-gets-an-ai-fix",
+      "date": "2025-05-30",
+      "url": "https://www.theneurondaily.com/p/doctor-burnout-gets-an-ai-fix",
+      "newsletter": "Doctor burnout gets an AI fix...",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Doctor burnout gets an AI fix..."
+    }
+  },
+  {
+    "id": "puiser-des-astuces-de-prompt-chez-les-utilisateurs-avances-d-openai",
+    "titre": "Puiser des astuces de prompt chez les utilisateurs avancés d’OpenAI",
+    "resume": "Le forum des développeurs d’OpenAI réunit de nombreuses astuces de prompt tirées de la pratique. Parcourez le fil consacré aux meilleures d’entre elles et testez-les sur vos prompts.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "La communauté des développeurs d’OpenAI est une excellente source d’astuces de prompt. [Ce fil de discussion](https://community.openai.com/t/prompt-engineering-showcase-your-best-practical-llm-prompting-hacks/1267113/27), où les membres partagent leurs meilleures astuces pratiques, regorge d’idées intéressantes, que The Neuron a [résumées en 15 conseils](http://www.theneuron.ai/explainer-articles/the-power-users-guide-to-prompting-ai-15-tips-that-actually-work)."
+      },
+      {
+        "t": "p",
+        "x": "Pour en tirer parti, copiez les astuces qui vous intéressent dans votre IA et demandez-lui de les appliquer à un prompt que vous utilisez souvent."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt pour appliquer des astuces repérées",
+        "type": "prompt",
+        "texte": "Voici une liste d’astuces de prompt partagées par des utilisateurs avancés :\n\n[astuces copiées]\n\nVoici un prompt que j’utilise souvent :\n\n[votre prompt]\n\nChoisis les trois astuces les plus utiles pour ce prompt, explique pourquoi, puis réécris-le en les appliquant.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Les meilleures astuces viennent souvent de ceux qui pratiquent tous les jours : testez-les sur vos propres prompts.",
+    "source": {
+      "cle": "anthropic-ceo-50-of-jobs-gone",
+      "date": "2025-05-29",
+      "url": "https://www.theneurondaily.com/p/anthropic-ceo-50-of-jobs-gone",
+      "newsletter": "Anthropic CEO: 50% of jobs = GONE?! 😱",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Anthropic CEO: 50% of jobs = GONE?! 😱"
+    }
+  },
+  {
+    "id": "transformer-une-idee-abstraite-en-anecdote-memorable",
+    "titre": "Transformer une idée abstraite en anecdote mémorable",
+    "resume": "Les faits s’oublient, les histoires restent : faites changer votre idée en courte anecdote réaliste, et donnez à l’IA quelques-uns de vos textes pour qu’elle écrive avec votre voix.",
+    "categorie": "business",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Les faits s’oublient, les histoires restent. Ce prompt simple transforme des idées ennuyeuses en anecdotes dont on se souvient vraiment. Idéal pour une présentation, un article de blog ou pour convaincre votre équipe que votre idée n’a rien d’ennuyeux."
+      },
+      {
+        "t": "p",
+        "x": "**L’astuce préférée de The Neuron** : demandez à l’IA d’imiter votre ton en lui fournissant trois à cinq textes que vous avez écrits, pour qu’elle saisisse votre « voix ». Votre contenu sonne alors comme vous, pas comme un robot."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt anecdote",
+        "type": "prompt",
+        "texte": "Transforme cette idée en courte histoire ou en anecdote façon vie réelle, pour rendre le propos plus parlant : [votre idée ou concept]",
+        "adapte": false
+      },
+      {
+        "titre": "La variante avec votre voix",
+        "type": "prompt",
+        "texte": "Voici quelques textes que j’ai écrits :\n\n[trois à cinq de vos textes]\n\nRepère mon ton et mon style. Transforme ensuite cette idée en courte anecdote façon vie réelle, en écrivant comme moi : [votre idée ou concept]",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Une idée racontée sous forme d’histoire se retient bien mieux qu’un fait énoncé.",
+    "source": {
+      "cle": "google-s-ai-video-tool-is-so-realistic-ppl-can-t-tell-what-s-fake-anymore",
+      "date": "2025-05-28",
+      "url": "https://www.theneurondaily.com/p/google-s-ai-video-tool-is-so-realistic-ppl-can-t-tell-what-s-fake-anymore",
+      "newsletter": "Google's AI video tool is SO realistic, ppl can't tell what's fake anymore...",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Google's AI video tool is SO realistic, ppl can't tell what's fake anymore..."
+    }
+  },
+  {
+    "id": "appliquer-les-neuf-bonnes-pratiques-d-anthropic-pour-prompter-claude",
+    "titre": "Appliquer les neuf bonnes pratiques d’Anthropic pour prompter Claude",
+    "resume": "Être précis, expliquer le pourquoi, soigner les exemples, structurer avec des balises… Anthropic a publié ses conseils pour Claude 4 : faites-les appliquer à vos propres prompts.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "claude"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Avec la sortie de Claude 4, Anthropic a publié ses [bonnes pratiques](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/claude-4-best-practices) pour travailler avec ses nouveaux modèles. En voici les neuf principales. Le mieux reste de lire l’original et de le donner à votre IA, pour qu’elle vous aide à écrire des prompts qui appliquent tous ces conseils."
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Soyez précis** : dites exactement à Claude ce qu’il doit faire et ce que vous voulez. Demandez-lui un effort supplémentaire si nécessaire.",
+          "**Expliquez le pourquoi** : donnez les raisons de vos consignes pour que Claude comprenne mieux vos objectifs.",
+          "**Soignez vos exemples** : vérifiez qu’ils montrent clairement ce que vous voulez, car Claude s’en inspire.",
+          "**Formulez les règles de forme en positif** : dites à Claude *comment* mettre en forme (par exemple « écris en paragraphes fluides ») plutôt que ce qu’il faut éviter (« pas de markdown »).",
+          "**Structurez avec des balises XML** : délimitez les parties de la réponse avec des balises comme `<heading>` ou `<paragraph>` pour contrôler la mise en forme.",
+          "**Alignez le style du prompt sur le résultat voulu** : la mise en forme de votre prompt influence celle de la réponse.",
+          "**Guidez les raisonnements complexes** : pour les tâches difficiles ou après l’utilisation d’outils, demandez à Claude de planifier, de réfléchir étape par étape et d’ajuster.",
+          "**Demandez des outils en parallèle** : pour aller plus vite, dites explicitement à Claude d’utiliser plusieurs outils en même temps quand c’est pertinent.",
+          "**Gérez les fichiers temporaires** : en programmation, demandez à Claude de supprimer les fichiers intermédiaires qu’il crée si vous n’en avez pas besoin."
+        ]
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de réécriture selon les bonnes pratiques",
+        "type": "prompt",
+        "texte": "Voici les bonnes pratiques d’Anthropic pour écrire des prompts :\n\n[guide copié ou liste des neuf conseils]\n\nVoici mon prompt :\n\n[votre prompt]\n\nRéécris-le en appliquant toutes ces bonnes pratiques, puis explique en quelques lignes ce que tu as changé et pourquoi.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Dites à Claude quoi faire et pourquoi, en positif et avec des exemples soignés : il suit vos consignes à la lettre.",
+    "source": {
+      "cle": "everything-to-know-about-claude-from-the-good-to-the-bad-and-the-mid-92e1f853dcdcd3ef",
+      "date": "2025-05-27",
+      "url": "https://www.theneurondaily.com/p/everything-to-know-about-claude-from-the-good-to-the-bad-and-the-mid-92e1f853dcdcd3ef",
+      "newsletter": "Everything to know about Claude, from the good, to the bad, and the mid...",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Everything to know about Claude, from the good, to the bad, and the mid..."
+    }
+  },
+  {
+    "id": "combiner-reflexion-etendue-et-recherche-web-dans-claude",
+    "titre": "Combiner réflexion étendue et recherche web dans Claude",
+    "resume": "Activez ensemble la réflexion étendue et la recherche web de Claude pour obtenir une mini « recherche approfondie » : une synthèse avec les liens vers les sources et des conseils prêts à l’emploi.",
+    "categorie": "outils",
+    "niveau": "intermediaire",
+    "outils": [
+      "claude"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Depuis Claude 4, vous pouvez utiliser ensemble la **réflexion étendue** (*extended thinking*) et la **recherche web**. Claude devient alors une sorte de mini « [Deep Research](https://openai.com/index/introducing-deep-research/) », du nom de l’agent de ChatGPT qui fait des recherches à votre place."
+      },
+      {
+        "t": "p",
+        "x": "Exemple : dans [cette conversation](https://claude.ai/share/a6b73c95-7d00-43fd-ae9d-124e4a1f4989), l’équipe de The Neuron a demandé à Claude de chercher sur le web les derniers conseils de prompt pour les nouveaux modèles d’IA. Il a rapporté des astuces éprouvées pour Claude 4, Gemini 2.5, o4-mini et Grok 3, avec les liens vers les sources d’origine, des techniques propres à chaque modèle et un modèle de prompt universel à copier."
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Dans Claude, activez la réflexion étendue et la recherche web.",
+          "Posez votre question de recherche en demandant les sources de chaque information."
+        ]
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de mini-recherche",
+        "type": "prompt",
+        "texte": "Cherche sur le web les informations les plus récentes sur [sujet]. Croise plusieurs sources, puis fais-moi une synthèse structurée en donnant, pour chaque point, le lien vers la source d’origine. Termine par [livrable attendu, par exemple un modèle prêt à copier].",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Réflexion étendue et recherche web réunies font de Claude un petit assistant de recherche qui cite ses sources.",
+    "source": {
+      "cle": "wtf-is-openai-s-mystery-device",
+      "date": "2025-05-23",
+      "url": "https://www.theneurondaily.com/p/wtf-is-openai-s-mystery-device",
+      "newsletter": "WTF is OpenAI's Mystery Device?!",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 WTF is OpenAI's Mystery Device?!"
+    }
+  },
+  {
+    "id": "decliner-un-meme-message-en-tweet-post-linkedin-et-e-mail-interne",
+    "titre": "Décliner un même message en tweet, post LinkedIn et e-mail interne",
+    "resume": "L’IA réécrit votre idée pour trois canaux, sur trois tons différents : vous ne sonnez ni comme un robot sur les réseaux sociaux, ni trop décontracté dans un e-mail à un client.",
+    "categorie": "business",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Vous avez quelque chose à dire sans savoir comment le formuler ? Laissez l’IA adapter votre message au canal de diffusion. Même contenu, trois ambiances totalement différentes. Vous pouvez aussi préciser le ton voulu (affirmé, amical, persuasif…) pour l’ajuster à votre public."
+      },
+      {
+        "t": "p",
+        "x": "**Conseil** : si le résultat ne vous plaît pas, faites trois demandes séparées, en ouvrant une nouvelle conversation à chaque fois. *L’IA a tendance à donner le meilleur d’elle-même sur le premier prompt* : repartir d’une conversation neuve est souvent le moyen le plus rapide d’améliorer vos résultats."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt multicanal",
+        "type": "prompt",
+        "texte": "Réécris cette idée sous forme de tweet, puis de post LinkedIn professionnel, puis d’e-mail interne décontracté :\n\n[votre idée]",
+        "adapte": false
+      },
+      {
+        "titre": "La variante un canal par conversation",
+        "type": "prompt",
+        "texte": "Réécris cette idée sous forme de [tweet, post LinkedIn professionnel ou e-mail interne décontracté], sur un ton [affirmé, amical, persuasif…] :\n\n[votre idée]",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Un même message change de forme selon le canal ; si le résultat déçoit, une demande par conversation fait souvent mieux.",
+    "source": {
+      "cle": "ai-is-underhyped",
+      "date": "2025-05-22",
+      "url": "https://www.theneurondaily.com/p/ai-is-underhyped",
+      "newsletter": "AI is...Underhyped?! 🤔",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 AI is...Underhyped?! 🤔"
+    }
+  },
+  {
+    "id": "demander-a-l-ia-le-meilleur-argument-contre-votre-opinion",
+    "titre": "Demander à l’IA le meilleur argument contre votre opinion",
+    "resume": "Soumettez votre conviction à l’IA et demandez-lui l’argument le plus solide du camp adverse : soit vous renforcez votre position, soit vous découvrez qu’elle reposait sur peu de chose.",
+    "categorie": "verifier",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "C’est quand vous êtes vraiment convaincu d’avoir raison qu’il faut revérifier votre raisonnement. L’IA peut mettre votre réflexion à l’épreuve avant que quelqu’un d’autre ne s’en charge."
+      },
+      {
+        "t": "p",
+        "x": "C’est comme avoir sous la main un contradicteur réfléchi, qui présente le camp adverse sous son meilleur jour (on parle de *steelmanning*). Soit vous consolidez votre position, soit vous réalisez que vous l’aviez bâtie sur des impressions et du café."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt contradicteur",
+        "type": "prompt",
+        "texte": "Voici ce que je pense : [votre opinion]. Quel est l’argument le plus solide contre cette position (autrement dit, aide-moi à présenter le camp adverse sous son meilleur jour) ? Comment une personne intelligente et sceptique me répondrait-elle ?",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Plus vous êtes convaincu, plus il vaut la peine de faire attaquer votre idée avant de la défendre.",
+    "source": {
+      "cle": "google-s-ultra-ai-power-move",
+      "date": "2025-05-21",
+      "url": "https://www.theneurondaily.com/p/google-s-ultra-ai-power-move",
+      "newsletter": "Google's Ultra AI power move",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Google's Ultra AI power move"
+    }
+  },
+  {
+    "id": "decliner-une-explication-pour-trois-publics-differents",
+    "titre": "Décliner une explication pour trois publics différents",
+    "resume": "Faites expliquer un concept complexe à un enfant de 5 ans, à un étudiant et à un expert : chaque public reçoit l’explication qui lui convient, et vous testez votre propre compréhension.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Vous avez l’impression de jouer au Twister linguistique quand vous expliquez quelque chose à des personnes différentes ? Collez ce prompt dans l’outil d’IA de votre choix pour obtenir trois niveaux d’explication d’un coup."
+      },
+      {
+        "t": "p",
+        "x": "**Pourquoi ça marche :**"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Plus personne ne décroche** : chaque public reçoit l’explication qui lui convient.",
+          "**Un test immédiat** : comme le dit la formule attribuée à Einstein, « si vous ne pouvez pas l’expliquer simplement, c’est que vous ne le comprenez pas assez bien ».",
+          "**De la matière pour vos présentations** : vous obtenez directement le contenu de diapositives adaptées à chaque auditoire."
+        ]
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt à trois publics",
+        "type": "prompt",
+        "texte": "Explique [concept complexe] trois fois :\n(a) à un enfant de 5 ans ;\n(b) à un étudiant ;\n(c) à un expert du domaine qui veut connaître les cas limites et les nuances.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Expliquer une même idée à plusieurs niveaux sert chaque public et vérifie que vous la maîtrisez vous-même.",
+    "source": {
+      "cle": "your-new-ai-coworkers-microsoft-ai-work-revolution-office-ai-revolution-begins-microsoft-s-ai-army-a",
+      "date": "2025-05-20",
+      "url": "https://www.theneurondaily.com/p/your-new-ai-coworkers-microsoft-ai-work-revolution-office-ai-revolution-begins-microsoft-s-ai-army-a",
+      "newsletter": "Your new AI coworkers 🤖😺 Microsoft AI work revolution😺 Office AI revolution BEGINS😺 Microsoft's AI army arrives",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Your new AI coworkers 🤖😺 Microsoft AI work revolution😺 Office AI revolution BEGINS😺 Microsoft's AI army arrives"
+    }
+  },
+  {
+    "id": "generer-des-icones-personnalisees-avec-chatgpt",
+    "titre": "Générer des icônes personnalisées avec ChatGPT",
+    "resume": "Faites dessiner par le générateur d’images de ChatGPT des icônes sur mesure pour votre entreprise ou votre bureau Windows, puis convertissez-les au bon format avec un outil en ligne.",
+    "categorie": "creer",
+    "niveau": "debutant",
+    "outils": [
+      "chatgpt"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Besoin d’une icône personnalisée pour votre entreprise (ou juste pour le plaisir) ? Un utilisateur de Reddit a [partagé le prompt](https://www.reddit.com/r/ChatGPT/comments/1kkhiau/you_can_use_gpt4o_to_generate_custom_icons/) qu’il a utilisé avec GPT-4o pour créer les icônes de son bureau Windows 11."
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Copiez le prompt du fil Reddit (ou partez du modèle ci-dessous) et générez vos icônes dans ChatGPT.",
+          "Passez l’image dans [ICO Converter](https://www.icoconverter.com/) pour obtenir le type de fichier et la taille dont vous avez besoin."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Si l’astuce vous plaît, ce [fil de huit tutoriels publié sur X](https://x.com/LinusEkenstam/status/1924223153548763439) par Linus Ekenstam montre comment créer toutes sortes d’icônes et d’images stylisées."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt d’icône",
+        "type": "prompt",
+        "texte": "Crée une icône pour [usage : dossier, application, logo d’entreprise…] qui représente [objet ou idée]. Style : [par exemple plat, 3D, pixel art]. Couleurs : [palette]. Format carré, fond transparent, motif simple et lisible même en très petite taille.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "L’IA dessine l’icône, un convertisseur la met au bon format : deux étapes suffisent pour une icône sur mesure.",
+    "source": {
+      "cle": "ai-invents-what-humans-can-t-375699d772b5d230",
+      "date": "2025-05-19",
+      "url": "https://www.theneurondaily.com/p/ai-invents-what-humans-can-t-375699d772b5d230",
+      "newsletter": "AI invents what humans can't 🌈",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😸 AI invents what humans can't 🌈"
+    }
+  },
+  {
+    "id": "rediger-un-prompt-maitre-qui-donne-tout-votre-contexte-a-l-ia",
+    "titre": "Rédiger un « prompt maître » qui donne tout votre contexte à l’IA",
+    "resume": "Rassemblez dans un seul document tout le contexte de votre activité (rôle, entreprise, marché, équipe, offre, culture) et rendez-le disponible dans chacune de vos conversations.",
+    "categorie": "memoire",
+    "niveau": "intermediaire",
+    "outils": [
+      "claude"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "La [méthode du prompt maître](https://www.youtube.com/watch?v=_K_F_icxtrI&t=301s&pp=ygUJYWkgcHJvbXB0) (*Master Prompt Method*) change la donne : des réponses bien meilleures en tapant beaucoup moins. L’entrepreneur en série Hayden Miyamoto s’en sert pour, potentiellement, doubler ou tripler chaque année la croissance de ses entreprises."
+      },
+      {
+        "t": "p",
+        "x": "Au lieu d’enchaîner des conversations décousues, vous rédigez un document complet de 20 à 30 pages contenant tout le contexte de votre activité (*informations personnelles, entreprise, organisation de l’équipe, produits, culture*), chargé automatiquement dans chaque prompt. Avec la fonction de [préférences personnelles](https://support.anthropic.com/en/articles/10185728-understanding-claude-s-personalization-features) de [Claude](https://claude.ai/new), ce prompt maître est disponible dans toutes vos conversations sans avoir à le retaper ([démonstration en vidéo](https://youtu.be/_K_F_icxtrI?si=lSbOFeShfETmvQq7&t=552))."
+      },
+      {
+        "t": "p",
+        "x": "**Pour créer le vôtre** ([explications en vidéo](https://youtu.be/_K_F_icxtrI?si=Ilf4VQLJNcCumLPC&t=1848)), partez d’un Google Doc qui contient :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "vos informations personnelles (rôle, forces et faiblesses) ;",
+          "les informations sur l’entreprise ;",
+          "les informations sur le marché ;",
+          "l’équipe ;",
+          "les produits et services ;",
+          "la culture (valeurs, mission)."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Ajoutez ensuite des protocoles sur mesure pour vos différentes tâches (par exemple « Procédures IA » ou « Recrutement IA »). *L’équipe de The Neuron applique une variante de cette méthode avec les connaissances de projet de Claude, un projet par type de tâche ; les préférences permettent en somme de créer un seul fichier de connaissances pour tout ce que vous faites.*"
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt pour rédiger votre prompt maître",
+        "type": "prompt",
+        "texte": "Aide-moi à rédiger mon « prompt maître » : un document de référence qui donnera à l’IA tout le contexte de mon activité. Il doit comporter six parties :\n1) informations personnelles (rôle, forces, faiblesses) ;\n2) entreprise ;\n3) marché ;\n4) équipe ;\n5) produits et services ;\n6) culture (valeurs, mission).\n\nPose-moi les questions nécessaires partie par partie, une à la fois, puis rédige le document complet.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Écrire une fois pour toutes le contexte de votre activité vous évite de le réexpliquer à chaque conversation.",
+    "source": {
+      "cle": "gaming-s-ai-revolution-begins",
+      "date": "2025-05-15",
+      "url": "https://www.theneurondaily.com/p/gaming-s-ai-revolution-begins",
+      "newsletter": "Gaming's AI revolution begins 🎮",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Gaming's AI revolution begins 🎮"
+    }
+  },
+  {
+    "id": "remonter-a-la-cause-d-un-probleme-avec-les-cinq-pourquoi",
+    "titre": "Remonter à la cause d’un problème avec les « cinq pourquoi »",
+    "resume": "L’IA pose « pourquoi ? » cinq fois de suite pour dépasser les symptômes, puis nomme la cause profonde du problème et propose une action corrective.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Vous cherchez à comprendre pourquoi un projet ou un plan finit parfois par s’effondrer ? Jouer les tout-petits avec l’IA aide à débusquer la cause profonde. C’est très simple : faites-lui demander « mais pourquoi ? » cinq fois de suite."
+      },
+      {
+        "t": "p",
+        "x": "**Pourquoi ça marche :**"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "La méthode dépasse les problèmes de surface pour révéler les causes sous-jacentes.",
+          "Elle évite que les mêmes problèmes reviennent, en traitant les causes et non les symptômes.",
+          "La [méthode des cinq pourquoi](https://en.wikipedia.org/wiki/Five_whys) remonterait, selon l’auteur de l’astuce, jusqu’à Platon ; Toyota l’a appliquée plus récemment."
+        ]
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt des cinq pourquoi",
+        "type": "prompt",
+        "texte": "Problème : [problème].\n\nApplique la méthode des « cinq pourquoi ». Pour chaque réponse, demande de nouveau « Pourquoi ? », jusqu’à cinq niveaux de profondeur.\n\nTermine par la cause profonde et une action corrective.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Traitez la cause, pas le symptôme : cinq « pourquoi » suffisent souvent à la trouver.",
+    "source": {
+      "cle": "ai-already-has-free-will",
+      "date": "2025-05-14",
+      "url": "https://www.theneurondaily.com/p/ai-already-has-free-will",
+      "newsletter": "AI already has free will?!",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 AI already has free will?!"
+    }
+  },
+  {
+    "id": "trouver-une-recette-du-soir-selon-son-humeur-et-le-contenu-du-frigo",
+    "titre": "Trouver une recette du soir selon son humeur et le contenu du frigo",
+    "resume": "Décrivez votre humeur et les ingrédients dont vous disposez : l’IA propose une recette prête en 20 minutes, avec les étapes et une chanson à écouter en cuisinant.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Lassé de l’éternelle question « qu’est-ce qu’on mange ce soir ? » après le travail ? Voici une petite astuce : vous tapez ce que vous ressentez, l’IA vous propose un dîner qui ne demande pas un diplôme de chef."
+      },
+      {
+        "t": "p",
+        "x": "**Cette technique règle trois problèmes :**"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "Elle utilise le demi-sachet d’épinards qui traîne dans le frigo.",
+          "Elle accompagne vos émotions, mais avec classe.",
+          "La chanson en prime ajoute la touche finale."
+        ]
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt recette d’humeur",
+        "type": "prompt",
+        "texte": "Je me sens [émotion] et j’ai ces ingrédients : [liste].\n\nPropose-moi une recette prête en 20 minutes qui corresponde à mon humeur et à ces ingrédients.\n\nDonne les étapes et, en une ligne, une chanson Spotify à écouter avec.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Donner à l’IA vos contraintes réelles (temps, ingrédients, humeur) produit une réponse applicable tout de suite.",
+    "source": {
+      "cle": "ai-prompting-secrets-exposed",
+      "date": "2025-05-13",
+      "url": "https://www.theneurondaily.com/p/ai-prompting-secrets-exposed",
+      "newsletter": "AI prompting secrets EXPOSED",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 AI prompting secrets EXPOSED"
+    }
+  },
+  {
+    "id": "planifier-un-week-end-dans-une-ville-avec-un-budget-plafonne",
+    "titre": "Planifier un week-end dans une ville avec un budget plafonné",
+    "resume": "Indiquez la ville et votre budget maximum : l’IA bâtit un programme de deux jours mêlant lieux méconnus, un incontournable et bonnes adresses pas chères, avec des conseils de transport.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Vous vous ennuyez ? Confiez à l’IA le rôle d’un agent de voyage qui connaît le coin et tient les cordons de la bourse."
+      },
+      {
+        "t": "p",
+        "x": "**Pourquoi l’utiliser ?**"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "Vous sortez de la boucle « qu’est-ce que tu veux faire ? ».",
+          "Elle déniche le petit camion à tacos que TripAdvisor a oublié.",
+          "Votre portefeuille souffre moins, autant que faire se peut."
+        ]
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt du week-end",
+        "type": "prompt",
+        "texte": "Je suis à [ville] ce week-end avec un budget maximum de [budget].\n\nPlanifie un programme de deux jours qui mélange des lieux méconnus, un site incontournable et des adresses où bien manger pour pas cher.\n\nAjoute des conseils pour les transports.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Un cadre précis (lieu, durée, budget, dosage des activités) transforme une question vague en programme prêt à suivre.",
+    "source": {
+      "cle": "openai-and-microsoft-are-figuring-out-how-openai-will-ipo",
+      "date": "2025-05-12",
+      "url": "https://www.theneurondaily.com/p/openai-and-microsoft-are-figuring-out-how-openai-will-ipo",
+      "newsletter": "OpenAI and Microsoft are figuring out how OpenAI will IPO...",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 OpenAI and Microsoft are figuring out how OpenAI will IPO..."
+    }
+  },
+  {
+    "id": "adapter-son-cv-a-une-offre-et-preparer-l-entretien-avec-l-ia",
+    "titre": "Adapter son CV à une offre et préparer l’entretien avec l’IA",
+    "resume": "Donnez à l’IA vos expériences réelles classées par thème et l’offre d’emploi : elle adapte votre CV et prépare des réponses d’entretien structurées selon la méthode STAR, sans rien inventer.",
+    "categorie": "business",
+    "niveau": "intermediaire",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Des utilisateurs de Reddit ont [trouvé la recette](https://www.reddit.com/r/ChatGPTPromptGenius/comments/1kcon64/i_keep_getting_lots_of_interview_invitations/) de CV jugés « exceptionnels », qui leur valent des entretiens même pour des postes « bien au-dessus de leur niveau ». Leur secret : donner à ChatGPT leurs expériences réelles, classées par thème (LEADERSHIP, DIFFICULTÉS, TRAVAIL D’ÉQUIPE, etc.), avec la description du poste, pour générer des réponses sur mesure selon la [méthode STAR](https://capd.mit.edu/resources/the-star-method-for-behavioral-interviews/). Cette méthode consiste à raconter ce qui s’est passé (situation), ce que vous deviez faire (tâche), ce que vous avez réellement fait (action) et comment cela s’est terminé (résultat) : idéal pour ne pas vous disperser quand on vous interroge sur votre parcours."
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Donnez à ChatGPT votre CV et la description du poste avec le premier prompt ci-dessous.",
+          "Enchaînez avec le deuxième prompt pour obtenir des réponses aux questions d’entretien probables.",
+          "N’inventez rien : il s’agit seulement d’organiser votre expérience réelle pour qu’elle corresponde précisément à ce que cherche l’employeur."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Les recruteurs réagissent bien mieux aux candidatures qui parlent leur langage. Allez plus loin en montant un véritable dispositif d’entraînement : faites générer des questions, passez des entretiens blancs en mode vocal, et demandez même quelques mots d’encouragement avant l’entretien pour calmer votre trac."
+      },
+      {
+        "t": "p",
+        "x": "Un utilisateur qui a appliqué cette méthode est passé de 151 candidatures pour 6 entretiens (et aucune offre) à [10 candidatures pour 3 entretiens](https://www.reddit.com/r/ChatGPTPromptGenius/comments/1kcon64/comment/mq5ggf5/). *Vous pouvez copier sa méthode, publiée sur Reddit, dans ChatGPT et lui demander d’en faire un guide pour l’appliquer vous-même ([voici un exemple](https://chatgpt.com/canvas/shared/681d5955c52c819199923db96519d578)).*"
+      },
+      {
+        "t": "p",
+        "x": "**Conseil** : humanisez toujours le CV produit en [supprimant les signes révélateurs](https://www.reddit.com/r/ChatGPTPromptGenius/comments/1kcon64/comment/mq4qd8a/) comme les titres en bleu et l’excès de puces, et demandez à l’IA de [simplifier](https://www.reddit.com/r/ChatGPTPromptGenius/comments/1kcon64/comment/mq5iqbo/) le style. Côté entretien, adoptez une attitude détachée : plusieurs utilisateurs disent avoir réussi leurs meilleurs entretiens après s’être détendus, en croyant l’affaire déjà perdue."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt d’adaptation du CV",
+        "type": "prompt",
+        "texte": "Optimise mon CV et mon expérience pour qu’ils correspondent parfaitement à ce poste précis.\n\nMon CV et mes expériences, classées par thème (leadership, difficultés, travail d’équipe…) :\n[votre CV et vos expériences]\n\nDescription du poste :\n[offre d’emploi]",
+        "adapte": false
+      },
+      {
+        "titre": "Le prompt de préparation à l’entretien",
+        "type": "prompt",
+        "texte": "Donne-moi d’excellentes réponses aux questions d’entretien probables en t’appuyant sur mon CV et sur la méthode STAR, avec des exemples précis qui montrent pourquoi je corresponds à ce poste.",
+        "adapte": false
+      },
+      {
+        "titre": "Le prompt pour reprendre la méthode d’un autre",
+        "type": "prompt",
+        "texte": "Voici la méthode de recherche d’emploi qu’un candidat a décrite sur Reddit :\n\n[texte copié]\n\nTransforme-la en guide de formation pour m’aider à appliquer cette méthode moi-même.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "L’IA ne doit rien inventer : elle réorganise votre expérience réelle dans le langage de l’employeur.",
+    "source": {
+      "cle": "multimodal-ai-multi-danger",
+      "date": "2025-05-09",
+      "url": "https://www.theneurondaily.com/p/multimodal-ai-multi-danger",
+      "newsletter": "Multimodal AI = multi-danger",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Multimodal AI = multi-danger"
+    }
+  },
+  {
+    "id": "travailler-avec-l-ia-comme-avec-un-collegue-pas-comme-avec-un-outil",
+    "titre": "Travailler avec l’IA comme avec un collègue, pas comme avec un outil",
+    "resume": "Un résumé partagé sur Reddit montre comment appliquer à vos propres prompts une idée simple : travailler avec l’IA comme avec un collaborateur plutôt que de simplement l’utiliser.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Un membre du forum r/ClaudeAI a publié un [bon résumé](https://www.reddit.com/r/ClaudeAI/comments/1khdyn8/i_dont_use_ai_i_work_with_it/), intitulé « I don’t use AI, I work with it » (« Je n’utilise pas l’IA, je travaille avec elle »). Il reprend les enseignements clés d’une vidéo et explique comment les appliquer à vos propres prompts."
+      },
+      {
+        "t": "p",
+        "x": "L’idée tient dans le titre : abordez l’IA comme un collaborateur avec qui vous échangez, plutôt que comme un outil à qui vous passez une commande. Le prompt ci-dessous en est une application simple."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de collaboration",
+        "type": "prompt",
+        "texte": "Je voudrais travailler avec toi sur [tâche] comme avec un collègue. Avant de proposer quoi que ce soit, pose-moi une à une les questions dont tu as besoin pour bien comprendre mon objectif et mon contexte. Propose ensuite une première version et demande-moi ce qu’il faut améliorer.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Vous obtenez davantage de l’IA en l’abordant comme un collaborateur qu’en lui passant une simple commande.",
+    "source": {
+      "cle": "google-s-new-ai-coder-is-top-notch-e8f35dda26490734",
+      "date": "2025-05-08",
+      "url": "https://www.theneurondaily.com/p/google-s-new-ai-coder-is-top-notch-e8f35dda26490734",
+      "newsletter": "Google's new AI coder is top notch...",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Google's new AI coder is top notch..."
+    }
+  },
+  {
+    "id": "expliquer-un-concept-a-trois-niveaux-pour-reperer-ce-qu-on-ignore",
+    "titre": "Expliquer un concept à trois niveaux pour repérer ce qu’on ignore",
+    "resume": "Faites expliquer un sujet complexe à un enfant de 12 ans, à un étudiant puis à un expert : vous le comprenez à chaque niveau et vos lacunes apparaissent là où la version simple vous échappe.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Vous avez l’impression que l’IA vous parle une langue extraterrestre ? La technique du **traducteur à triple vision** (*Triple-Vision Translator*) apporte de la clarté à chaque niveau : demandez à ChatGPT ou à Claude d’expliquer un concept complexe de trois façons, pour un collégien (ou un enfant de maternelle, si vous voulez une version vraiment simple), pour un étudiant et pour un expert du domaine."
+      },
+      {
+        "t": "p",
+        "x": "Essayez avec « réseaux de neurones » ou « prompt engineering » et observez comment les explications se transforment. Si la version la plus simple ne vous paraît pas claire, vous avez trouvé votre lacune : ce que l’on n’arrive pas à expliquer simplement, c’est souvent ce que l’on ne comprend pas tout à fait soi-même."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt à trois niveaux",
+        "type": "prompt",
+        "texte": "Explique [concept complexe] trois fois :\n(a) à un enfant de 12 ans ;\n(b) à un étudiant ;\n(c) à un expert du domaine qui veut connaître les cas limites et les nuances.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Si l’explication la plus simple vous échappe, c’est là que se trouve votre lacune.",
+    "source": {
+      "cle": "nvidia-s-new-speech-ai-monster-is-free-fast-and-ready-to-eat-the-market",
+      "date": "2025-05-07",
+      "url": "https://www.theneurondaily.com/p/nvidia-s-new-speech-ai-monster-is-free-fast-and-ready-to-eat-the-market",
+      "newsletter": "Nvidia’s New Speech AI Monster Is Free, Fast, and Ready to Eat the Market",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Nvidia’s New Speech AI Monster Is Free, Fast, and Ready to Eat the Market"
+    }
+  },
+  {
+    "id": "donner-un-cahier-des-charges-precis-plutot-qu-une-demande-vague",
+    "titre": "Donner un cahier des charges précis plutôt qu’une demande vague",
+    "resume": "Au lieu de demander « un plan marketing », listez les spécifications exactes du livrable : éléments attendus, format, contraintes. Moins de retouches, un résultat exploitable du premier coup.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "La technique du **cahier des charges** (*Spec Sheet Squeeze*) transforme des réponses génériques en résultats sur mesure. Au lieu de demander « un plan marketing », demandez « un plan marketing répondant exactement à ces spécifications », suivi d’une liste à puces de vos exigences. Testée sur Claude et ChatGPT, la différence est flagrante."
+      },
+      {
+        "t": "p",
+        "x": "Plus votre cahier des charges est détaillé, moins vous aurez à retoucher ensuite. En ajoutant « doit tenir sur une seule diapositive PowerPoint » à une demande de synthèse pour la direction, l’équipe de The Neuron a obtenu un résultat présentable dès le premier essai."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le modèle de cahier des charges",
+        "type": "prompt",
+        "texte": "Crée [livrable] qui comprend :\n- [élément précis 1]\n- [élément précis 2]\n- [exigences de mise en forme]",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Chaque exigence écrite noir sur blanc dans le prompt, c’est une retouche de moins à faire après.",
+    "source": {
+      "cle": "bytedance-sees-dollar-signs",
+      "date": "2025-05-06",
+      "url": "https://www.theneurondaily.com/p/bytedance-sees-dollar-signs",
+      "newsletter": "ByteDance sees dollar signs",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 ByteDance sees dollar signs"
+    }
+  },
+  {
+    "id": "expliquer-un-sujet-complexe-pour-que-votre-mere-le-comprenne",
+    "titre": "Expliquer un sujet complexe pour que votre mère le comprenne",
+    "resume": "Demander à l’IA si votre mère comprendrait son texte la pousse à abandonner le jargon et à livrer une explication claire, surtout si vous décrivez précisément cette personne.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Quand vous rédigez quelque chose de compliqué avec l’IA, demandez-lui : « Est-ce que ma mère (ou mon père) comprendrait ça ? ». L’équipe de The Neuron a tiré ce test de son propre guide de style et l’utilise désormais comme prompt avec ChatGPT et Claude : les réponses sont incomparablement plus claires."
+      },
+      {
+        "t": "p",
+        "x": "Plutôt que de demander une explication simple, écrivez « Explique [sujet] pour que ma mère le comprenne ». L’IA abandonne aussitôt la posture technique et livre des explications étonnamment utiles."
+      },
+      {
+        "t": "p",
+        "x": "**N’oubliez pas : soyez précis sur votre mère !** « Explique ça à ma mère, qui est jardinière mais n’a jamais utilisé ChatGPT » fonctionne bien mieux qu’un vague « explique simplement »."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt « Ma mère comprendrait-elle ? »",
+        "type": "prompt",
+        "texte": "Explique [sujet] en appliquant le test « Est-ce que ma mère comprendrait ? ». Adopte un ton de conversation, sans jargon, et inclus une analogie tirée de la vie courante qui lui parlerait.",
+        "adapte": false
+      },
+      {
+        "titre": "La variante avec un portrait précis",
+        "type": "prompt",
+        "texte": "Explique [sujet] à ma mère, qui est [son métier ou sa passion, par exemple jardinière] mais n’a jamais utilisé ChatGPT.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Plus le lecteur que vous décrivez est concret, plus l’explication de l’IA devient claire et utile.",
+    "source": {
+      "cle": "ai-for-total-beginners",
+      "date": "2025-05-05",
+      "url": "https://www.theneurondaily.com/p/ai-for-total-beginners",
+      "newsletter": "AI for TOTAL Beginners",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 AI for TOTAL Beginners"
+    }
+  },
+  {
+    "id": "debusquer-les-hypotheses-cachees-d-un-plan-avant-de-le-lancer",
+    "titre": "Débusquer les hypothèses cachées d’un plan avant de le lancer",
+    "resume": "L’IA liste toutes les hypothèses sur lesquelles repose votre plan, évalue le risque de chacune et propose un moyen précis de la vérifier ou d’en limiter les conséquences.",
+    "categorie": "verifier",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "La technique du **chasseur d’hypothèses** (*Assumption Hunter*) fait de l’IA votre garde-fou face à la réalité. L’auteur de l’astuce y a soumis le plan de lancement d’un produit qu’il jugeait « infaillible » : en quelques secondes, l’IA a relevé sa pensée magique sur la maturité du marché et la réaction des concurrents, deux hypothèses à haut risque qu’il traitait comme des faits."
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Collez votre plan dans le prompt ci-dessous.",
+          "Laissez l’IA lister chaque hypothèse dont il dépend.",
+          "Pour chacune, regardez le niveau de risque attribué (faible, moyen, élevé) et le moyen proposé pour la vérifier ou la limiter."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Vous repérez ainsi les convictions du type « bien sûr que ça va marcher » avant qu’elles ne vous rattrapent, et bien avant que votre responsable ne vous demande « et si… ? »."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt chasseur d’hypothèses",
+        "type": "prompt",
+        "texte": "Analyse ce plan : [votre plan]\n\nListe toutes les hypothèses sur lesquelles repose ce plan. Pour chaque hypothèse :\n- évalue son niveau de risque (faible / moyen / élevé) ;\n- propose un moyen précis de la vérifier ou d’en limiter le risque.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Un plan se juge à ses hypothèses : faites-les nommer et classer par risque avant que la réalité ne s’en charge.",
+    "source": {
+      "cle": "openai-burning-14b-in-2025",
+      "date": "2025-05-02",
+      "url": "https://www.theneurondaily.com/p/openai-burning-14b-in-2025",
+      "newsletter": "OpenAI burning $14B+ in 2025?!",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 OpenAI burning $14B+ in 2025?!"
+    }
+  },
+  {
+    "id": "faire-lister-les-faiblesses-d-un-brouillon-avant-de-le-reecrire",
+    "titre": "Faire lister les faiblesses d’un brouillon avant de le réécrire",
+    "resume": "Demandez d’abord à l’IA les cinq principales faiblesses de votre brouillon, puis une réécriture qui corrige chacune d’elles : un éditeur exigeant et une leçon d’écriture en deux temps.",
+    "categorie": "verifier",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Pour transformer votre assistant d’écriture en éditeur impitoyable qui *améliore* vraiment votre travail, procédez en deux temps :"
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Demandez à l’IA de lister les 5 principales faiblesses de votre brouillon.",
+          "Demandez-lui ensuite de réécrire le texte en corrigeant chacune de ces faiblesses."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Cette approche ne se limite pas à la critique : elle vous apprend discrètement à repérer vos propres angles morts d’écriture. Chaque critique devient une petite leçon."
+      },
+      {
+        "t": "p",
+        "x": "**Astuce** : tout se joue dans le prompt. Demandez des remarques précises et constructives, pas des critiques vagues : visez la précision chirurgicale plutôt que la critique tous azimuts."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt critique puis réécriture",
+        "type": "prompt",
+        "texte": "Voici mon brouillon :\n\n<brouillon>\n[votre texte]\n</brouillon>\n\nÉtape 1 : liste les 5 principales faiblesses de ce texte. Pour chacune, cite le passage concerné et explique précisément le problème, de façon constructive.\n\nÉtape 2 : réécris le texte en corrigeant chacune de ces faiblesses.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Faire nommer les défauts avant de réécrire vous donne un meilleur texte et vous apprend à les éviter la fois suivante.",
+    "source": {
+      "cle": "your-eyes-your-new-dating-app-password",
+      "date": "2025-05-01",
+      "url": "https://www.theneurondaily.com/p/your-eyes-your-new-dating-app-password",
+      "newsletter": "Your eyes = your new dating app password",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Your eyes = your new dating app password"
+    }
+  },
+  {
+    "id": "interviewer-un-personnage-historique-fige-dans-son-epoque",
+    "titre": "Interviewer un personnage historique figé dans son époque",
+    "resume": "Ce prompt fait parler l’IA comme un personnage historique d’une année donnée, sans aucune connaissance de la suite. Annoncez que vous noterez sa rigueur historique.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Ce prompt de « gel historique » transforme votre conversation avec l’IA en véritable machine à remonter le temps. L’équipe de The Neuron l’a testé avec des personnages allant d’Aristote à Einstein : l’IA adopte très vite la mentalité de l’époque, sans laisser filtrer de connaissances venues du futur."
+      },
+      {
+        "t": "p",
+        "x": "Exemple : Marie Curie, interrogée sur la radioactivité vers 1898, a parfaitement restitué l’enthousiasme des débuts, sans évoquer aucun des dangers que les scientifiques ne découvriraient que des décennies plus tard."
+      },
+      {
+        "t": "p",
+        "x": "**L’astuce en plus** : la dernière phrase du prompt, qui annonce que vous noterez la fidélité historique, pousse l’IA à vérifier trois fois avant de mentionner quoi que ce soit qui n’existait pas encore. La différence est flagrante."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de gel historique",
+        "type": "prompt",
+        "texte": "Tu es [personnage historique] en [année]. Je suis un journaliste venu de [année actuelle]. Réponds à mes questions sur [sujet] strictement selon le point de vue de ton époque : aucun recul, aucune révélation sur la suite.\n\nJe noterai ta fidélité historique.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Annoncer que vous noterez la rigueur historique rend l’IA beaucoup plus vigilante face aux anachronismes.",
+    "source": {
+      "cle": "zuck-s-ai-coming-for-chatgpt",
+      "date": "2025-04-30",
+      "url": "https://www.theneurondaily.com/p/zuck-s-ai-coming-for-chatgpt",
+      "newsletter": "Zuck's AI coming for ChatGPT?",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Zuck's AI coming for ChatGPT?"
+    }
+  },
+  {
+    "id": "garder-les-tirets-cadratins-plutot-que-de-les-bannir",
+    "titre": "Garder les tirets cadratins plutôt que de les bannir",
+    "resume": "Les tirets cadratins passent pour un signe d’écriture par IA, mais ils relèvent d’une bonne typographie. Demandez à l’IA de les employer avec mesure plutôt que de les supprimer.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Les tirets cadratins (—) sont désormais considérés comme un « indice » de texte écrit par une IA. Pas de panique : ce sont en réalité des marques de bonne écriture. Comme l’[explique Joel Dueck](https://joeldueck.com/ai-is-right-about-em-dashes.html) : « L’IA a appris cette pratique auprès d’auteurs et de correcteurs qui maîtrisent leur métier, et vous devriez suivre son exemple. »"
+      },
+      {
+        "t": "p",
+        "x": "Ils créent une respiration que les virgules n’offrent pas. Comme le dit Matthew Butterick, spécialiste de la typographie, une bonne typographie « aide le lecteur à consacrer moins d’attention à la mécanique et davantage à votre message »."
+      },
+      {
+        "t": "p",
+        "x": "**Plutôt que de supprimer les tirets cadratins pour masquer l’usage de l’IA**, ajoutez la phrase ci-dessous à votre prochain prompt de rédaction."
+      },
+      {
+        "t": "p",
+        "x": "**Autre conseil** : si vous voulez faire expliquer vos résultats d’analyses médicales par l’IA, [ce prompt partagé sur Reddit](https://www.reddit.com/r/ChatGPT/comments/1k9l99m/uploaded_last_10_years_of_medical_lab_results_to/) le permet sans compromettre votre vie privée, à condition de retirer d’abord vos informations d’identification. Ne donnez pas à l’IA plus que nécessaire."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "La consigne sur les tirets",
+        "type": "prompt",
+        "texte": "Utilise des tirets cadratins là où ils améliorent vraiment le rythme : sans excès, mais à bon escient.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Ne bannissez pas une bonne pratique d’écriture parce que l’IA l’utilise : demandez-lui de l’employer avec mesure.",
+    "source": {
+      "cle": "deepseek-returns",
+      "date": "2025-04-29",
+      "url": "https://www.theneurondaily.com/p/deepseek-returns",
+      "newsletter": "DeepSeek Returns...",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 DeepSeek Returns..."
+    }
+  },
+  {
+    "id": "explorer-six-usages-meconnus-de-chatgpt-au-quotidien",
+    "titre": "Explorer six usages méconnus de ChatGPT au quotidien",
+    "resume": "Débat entre plusieurs personnages, gestion des priorités, explication de résultats d’analyses, menus de la semaine : six usages méconnus de ChatGPT relevés dans un fil Reddit.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "[Ce fil Reddit consacré aux usages sous-estimés](https://www.reddit.com/r/ChatGPTPromptGenius/comments/1k7vmwf/what_are_the_most_underrated_ways_youre_using/) de ChatGPT vaut le détour. Les six idées les plus utiles :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "Créer un « panel » thérapeutique de 6 personnages qui débattent entre eux dans la même conversation.",
+          "Construire un gestionnaire de tâches quotidien adapté au TDAH, qui vous rappelle vos priorités chaque matin.",
+          "Envoyer vos résultats d’analyses médicales pour obtenir des explications en langage simple avant un rendez-vous chez le médecin.",
+          "Transformer les ingrédients qui traînent dans le réfrigérateur en menus complets pour la semaine, avec la liste de courses.",
+          "Composer une routine de soins de la peau à partir de vos produits, ou un programme d’entraînement avec suivi des calories et des macronutriments.",
+          "Comparer les mutuelles proposées par votre employeur grâce à des recommandations fondées sur des scénarios."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Mention spéciale à la personne qui utilise l’IA pour réécrire l’actualité à [un niveau de lecture adapté](https://www.reddit.com/r/ChatGPTPromptGenius/comments/1k7vmwf/comment/mp2hdf6/), afin que son enfant la comprenne."
+      },
+      {
+        "t": "p",
+        "x": "Avant d’envoyer des résultats médicaux, retirez vos informations d’identification : ne donnez pas à l’IA plus que nécessaire."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt du panel de personnages",
+        "type": "prompt",
+        "texte": "Crée un panel de 6 personnages aux points de vue différents ([profils souhaités, par exemple un psychologue, un ami pragmatique, un sceptique…]) qui débattent entre eux, dans cette conversation, de la question suivante : [votre question]. Chacun intervient à tour de rôle et répond aux autres. Termine par une synthèse des points d’accord et de désaccord.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Pensez à l’IA pour vos petits problèmes du quotidien : menus, priorités, documents à comprendre, options à comparer.",
+    "source": {
+      "cle": "ai-healthcare-makes-bank",
+      "date": "2025-04-28",
+      "url": "https://www.theneurondaily.com/p/ai-healthcare-makes-bank",
+      "newsletter": "AI healthcare makes BANK",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 AI healthcare makes BANK"
+    }
+  },
+  {
+    "id": "adapter-votre-cv-a-une-offre-d-emploi-avec-l-ia",
+    "titre": "Adapter votre CV à une offre d’emploi avec l’IA",
+    "resume": "Un prompt partagé sur Reddit, et sa variante proposée en commentaire, aident à mettre à jour votre CV pour décrocher un poste. Un bon point de départ, sans garantie de résultat.",
+    "categorie": "business",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Tout le monde craint que l’IA supprime des emplois : voici donc [un prompt](https://www.reddit.com/r/ChatGPTPromptGenius/comments/1k2vluo/this_one_prompt_turned_my_resume_into_a_job/) pour qu’elle vous aide à en *décrocher* un. [Une variante](https://www.reddit.com/r/ChatGPTPromptGenius/comments/1k2vluo/comment/mnxa172/) a aussi été partagée dans les commentaires."
+      },
+      {
+        "t": "p",
+        "x": "L’auteur *affirme* l’avoir utilisé avec succès (et des abonnés TikTok lui ont répondu qu’il les avait aidés à trouver un emploi), mais rien n’est garanti. C’est en tout cas un bon point de départ pour mettre à jour votre CV si vous n’avez pas d’autres ressources."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt d’adaptation du CV",
+        "type": "prompt",
+        "texte": "Voici mon CV :\n\n[votre CV]\n\nEt voici l’offre d’emploi visée :\n\n[texte de l’offre]\n\nAnalyse l’écart entre les deux, puis réécris mon CV pour cette offre : mets en avant les expériences et compétences pertinentes, reprends le vocabulaire de l’annonce et n’invente rien. Termine par la liste des informations qui me manquent pour renforcer ma candidature.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "L’IA aide à adapter un CV à une offre, mais elle ne doit rien inventer : relisez chaque ligne avant d’envoyer.",
+    "source": {
+      "cle": "microsoft-thinks-we-all-need-to-become-an-ai-boss-76c665bcc537e15a",
+      "date": "2025-04-24",
+      "url": "https://www.theneurondaily.com/p/microsoft-thinks-we-all-need-to-become-an-ai-boss-76c665bcc537e15a",
+      "newsletter": "Microsoft thinks we all need to become an \"AI Boss\"",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Microsoft thinks we all need to become an \"AI Boss\""
+    }
+  },
+  {
+    "id": "reperer-et-retirer-les-caracteres-invisibles-d-un-texte-genere",
+    "titre": "Repérer et retirer les caractères invisibles d’un texte généré",
+    "resume": "Des textes produits par de récents modèles de ChatGPT contiendraient des espaces spéciaux invisibles. Un visualiseur de caractères les révèle, un rechercher-remplacer les supprime.",
+    "categorie": "verifier",
+    "niveau": "intermediaire",
+    "outils": [
+      "chatgpt",
+      "autre"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Selon [Rumi](https://www.rumidocs.com/newsroom/new-chatgpt-models-seem-to-leave-watermarks-on-text), les modèles les plus récents d’OpenAI marqueraient discrètement leurs textes avec des caractères invisibles, identiques à des espaces ordinaires à l’œil nu mais que les outils habituels ne détectent pas. Le phénomène semble surtout concerner les textes longs, comme les dissertations que des étudiants pourraient copier-coller."
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Collez le texte dans ce [visualiseur de caractères en ligne](https://www.soscisurvey.de/tools/view-chars.php), ou ouvrez-le dans un éditeur de code comme [Sublime Text](https://www.sublimetext.com/) ou [VS Code](https://code.visualstudio.com/).",
+          "Repérez les caractères spéciaux : ils forment un motif reconnaissable qui trahit une copie directe des nouveaux modèles de ChatGPT.",
+          "Pour les retirer, utilisez la fonction rechercher-remplacer d’un éditeur qui affiche les caractères spéciaux, et remplacez-les par des espaces normaux."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "À noter : les commentateurs de [Hacker News](https://news.ycombinator.com/item?id=43758730) doutent que ce marquage soit volontaire de la part d’OpenAI. La découverte reste intéressante dans tous les cas."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de détection",
+        "type": "prompt",
+        "texte": "Analyse le texte ci-dessous avec du code, pas à l’œil nu. Liste chaque caractère qui n’est ni un espace ordinaire (U+0020) ni un caractère imprimable courant : sa position, son nom et son code Unicode. Rends-moi ensuite le texte avec ces caractères remplacés par des espaces ordinaires.\n\n[votre texte]",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Un texte copié tel quel peut contenir des traces invisibles : vérifiez les caractères spéciaux avant de réutiliser un texte généré.",
+    "source": {
+      "cle": "scammers-are-going-wild-with-ai",
+      "date": "2025-04-23",
+      "url": "https://www.theneurondaily.com/p/scammers-are-going-wild-with-ai",
+      "newsletter": "Scammers are going WILD with AI...",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Scammers are going WILD with AI..."
+    }
+  },
+  {
+    "id": "faire-ecrire-vos-prompts-par-l-ia-et-avancer-par-iterations",
+    "titre": "Faire écrire vos prompts par l’IA et avancer par itérations",
+    "resume": "Deux habitudes changent tout : demander à l’IA de vous aider à rédiger vos prompts, et dialoguer avec elle pour affiner le résultat au lieu de tout attendre d’une seule demande.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Deux conseils, si vous les suivez, amélioreront votre usage de l’IA plus que tout le reste :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Demandez à l’IA de vous aider à écrire de meilleurs prompts.** [Cette courte vidéo](https://youtube.com/shorts/jUv6QkeuBr0?si=4y2-RZTHsk4bJ597) explique très bien comment faire.",
+          "**Au lieu de vouloir tout réussir en un seul prompt**, prenez l’habitude de dialoguer avec l’IA et de [travailler par itérations](https://www.oneusefulthing.org/p/working-with-ai-two-paths-to-prompting) pour obtenir ce que vous voulez."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "La leçon, pour citer Ethan Mollick : **c’est en utilisant l’IA qu’on apprend à utiliser l’IA**."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt pour co-écrire votre prompt",
+        "type": "prompt",
+        "texte": "Je veux que tu m’aides à [tâche]. Avant de commencer, aide-moi à rédiger le meilleur prompt possible pour cette tâche : pose-moi les questions nécessaires, puis propose-moi une version améliorée de ma demande.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "C’est en utilisant l’IA qu’on apprend à utiliser l’IA.",
+    "source": {
+      "cle": "the-50-ai-tools-neuron-readers-actually-pay-for-b7bc",
+      "date": "2025-04-22",
+      "url": "https://www.theneurondaily.com/p/the-50-ai-tools-neuron-readers-actually-pay-for-b7bc",
+      "newsletter": "The 50+ AI tools Neuron readers ACTUALLY pay for...",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺The 50+ AI tools Neuron readers ACTUALLY pay for..."
+    }
+  },
+  {
+    "id": "faire-raisonner-chatgpt-a-partir-d-une-capture-ou-d-une-photo",
+    "titre": "Faire raisonner ChatGPT à partir d’une capture ou d’une photo",
+    "resume": "Les modèles o3 et o4-mini d’OpenAI raisonnent avec les images. Envoyez une capture ou une photo, même de mauvaise qualité, et dites précisément ce que vous attendez.",
+    "categorie": "outils",
+    "niveau": "debutant",
+    "outils": [
+      "chatgpt"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Le point le plus novateur des [modèles o3 et o4-mini d’OpenAI](https://openai.com/index/introducing-o3-and-o4-mini/) : ils peuvent littéralement « [penser avec des images](https://openai.com/index/thinking-with-images/) » au cours de leur raisonnement pour résoudre des problèmes complexes étape par étape. De même que vous pouvez parler à ChatGPT en mode vocal, vous pouvez désormais lui soumettre vos problèmes sous forme de captures d’écran ou de photos."
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Soyez clair sur votre objectif** : préciser ce que vous voulez (« Résume ce graphique », « Trouve les erreurs dans ce code », « Traduis cette note manuscrite ») donne des réponses plus ciblées.",
+          "**Utilisez les images pour les tâches ambiguës ou très visuelles** : si votre question dépend d’un contexte visuel (mise en page, écriture manuscrite, schémas), une image donnera de meilleurs résultats qu’un texte.",
+          "**Ne vous souciez pas de la qualité de l’image** : ces modèles sont conçus pour gérer des images de mauvaise qualité, de travers ou encombrées. Ils les traitent et les manipulent pour mieux raisonner."
+        ]
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt avec image",
+        "type": "prompt",
+        "texte": "[Joignez votre capture d’écran ou votre photo]\n\nCette image montre [ce qu’elle contient]. [Votre objectif précis, par exemple : résume ce graphique, trouve les erreurs dans ce code ou traduis cette note manuscrite]. Décris d’abord ce que tu lis dans l’image, puis raisonne étape par étape.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Une image vaut souvent mieux qu’une longue description, à condition de dire clairement ce que vous en attendez.",
+    "source": {
+      "cle": "robots-and-humans-ran-a-half-marathon-in-china-guess-who-won-6777",
+      "date": "2025-04-21",
+      "url": "https://www.theneurondaily.com/p/robots-and-humans-ran-a-half-marathon-in-china-guess-who-won-6777",
+      "newsletter": "Robots and humans ran a half-marathon in China...guess who won?",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺Robots and humans ran a half-marathon in China...guess who won?"
+    }
+  },
+  {
+    "id": "combiner-plusieurs-images-en-une-seule-avec-chatgpt",
+    "titre": "Combiner plusieurs images en une seule avec ChatGPT",
+    "resume": "Le générateur d’images de ChatGPT sait fusionner plusieurs images dans une même scène, par exemple une vue de dessus qui réunit des éléments venus d’images différentes.",
+    "categorie": "creer",
+    "niveau": "debutant",
+    "outils": [
+      "chatgpt"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Le générateur d’images de ChatGPT peut combiner plusieurs images en une seule. Joignez vos images et décrivez la scène finale que vous voulez obtenir."
+      },
+      {
+        "t": "p",
+        "x": "[Cet exemple partagé sur Reddit](https://www.reddit.com/r/ChatGPT/comments/1k174wi/combine_images_top_down_view/) réunit ainsi plusieurs images dans une vue de dessus."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de fusion d’images",
+        "type": "prompt",
+        "texte": "Combine ces [nombre] images en une seule : [description de la scène finale, par exemple une vue de dessus qui réunit tous les éléments]. Garde chaque élément fidèle à son image d’origine.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Fournissez les images sources et décrivez précisément la scène finale : l’IA se charge de l’assemblage.",
+    "source": {
+      "cle": "no-o3-is-not-a-genius-but-it-is-very-smart-5aa1",
+      "date": "2025-04-18",
+      "url": "https://www.theneurondaily.com/p/no-o3-is-not-a-genius-but-it-is-very-smart-5aa1",
+      "newsletter": "No, o3 is NOT a genius (but it IS very smart)",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺No, o3 is NOT a genius (but it IS very smart)"
+    }
+  },
+  {
+    "id": "rediger-un-dossier-de-candidature-avec-l-ia-puis-le-personnaliser",
+    "titre": "Rédiger un dossier de candidature avec l’IA, puis le personnaliser",
+    "resume": "Une personne chargée des admissions en études supérieures conseille de faire écrire un premier jet par l’IA, puis de le retravailler avec votre vécu pour qu’il reste authentique.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "[Ces conseils](https://www.reddit.com/r/gradadmissions/comments/1jxm6z8/as_a_grad_admin_yes_we_know_chatgpt_wrote_your/), publiés sur Reddit par une personne chargée des admissions dans des programmes d’études supérieures, expliquent comment utiliser l’IA pour mieux écrire, et réellement être admis."
+      },
+      {
+        "t": "p",
+        "x": "Le principe : un premier jet avec l’IA, puis une personnalisation de votre main pour que le texte reste authentique."
+      },
+      {
+        "t": "p",
+        "x": "Pour approfondir l’art du prompt, consultez aussi le [guide de prompts GPT-4.1](https://cookbook.openai.com/examples/gpt4-1_prompting_guide) publié par OpenAI."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de premier jet",
+        "type": "prompt",
+        "texte": "Voici mes notes pour ma lettre de motivation à [programme ou formation visés] : [parcours, expériences, motivations, anecdotes personnelles]. Rédige un premier jet structuré à partir de ces éléments uniquement, sans inventer d’expérience. Signale ensuite les passages trop génériques que je devrais réécrire avec mes propres mots et des exemples personnels.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "L’IA peut fournir la charpente, mais c’est votre vécu et votre voix qui rendent un dossier crédible.",
+    "source": {
+      "cle": "openai-releases-their-best-models-yet-1f23",
+      "date": "2025-04-17",
+      "url": "https://www.theneurondaily.com/p/openai-releases-their-best-models-yet-1f23",
+      "newsletter": "OpenAI releases their best models yet",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺OpenAI releases their best models yet"
+    }
+  },
+  {
+    "id": "structurer-un-prompt-en-sept-blocs-selon-le-guide-d-openai",
+    "titre": "Structurer un prompt en sept blocs selon le guide d’OpenAI",
+    "resume": "Le guide de prompts publié par OpenAI pour GPT-4.1 propose une structure en sept parties : rôle, instructions, consignes particulières, raisonnement, format, exemples et rappel final.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Un utilisateur de Reddit [a relayé](https://www.reddit.com/r/ChatGPTPromptGenius/comments/1jzxxdb/openai_quietly_dropped_a_gpt41_prompting_guide/) le dernier [guide de prompts](https://cookbook.openai.com/examples/gpt4-1_prompting_guide) d’OpenAI pour GPT-4.1. Sa structure :"
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "**Rôle** : définissez ce qu’est l’IA (« Tu es un assistant de recherche serviable »).",
+          "**Instructions** : fixez le comportement et le ton (« Réponds de façon concise, évite les spéculations »).",
+          "**Consignes particulières** : ajoutez des sections de contrôle ciblées (sujets interdits, formulations à éviter).",
+          "**Raisonnement** : encouragez une réflexion structurée (« Réfléchis étape par étape »).",
+          "**Format** : précisez la structure de la réponse (« Résumé : [1 à 2 lignes], Points clés : [puces] »).",
+          "**Exemples** : montrez des exemples d’entrées et de sorties.",
+          "**Fin** : rappelez les points clés à la fin du prompt."
+        ]
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le modèle en sept blocs",
+        "type": "prompt",
+        "texte": "# Rôle\nTu es un assistant de recherche serviable.\n\n# Instructions\nRéponds de façon concise et évite les spéculations.\n\n## Consignes particulières\n[sujets interdits, formulations à éviter]\n\n# Raisonnement\nRéfléchis étape par étape.\n\n# Format de réponse\nRésumé : [1 à 2 lignes]\nPoints clés : [puces]\n\n# Exemples\n[exemple de demande et de réponse attendue]\n\n# Demande\n[votre demande]\n\n# Rappel final\n[les consignes les plus importantes, répétées]",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Un prompt bien structuré dit qui est l’IA, ce qu’elle doit faire, comment raisonner et sous quelle forme répondre, puis le rappelle à la fin.",
+    "source": {
+      "cle": "here-s-why-you-shouldn-t-let-ai-run-your-company",
+      "date": "2025-04-16",
+      "url": "https://www.theneurondaily.com/p/here-s-why-you-shouldn-t-let-ai-run-your-company",
+      "newsletter": "Is OpenAI about to break out or go broke?",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺Is OpenAI about to break out or go broke?"
+    }
+  },
+  {
+    "id": "faire-reperer-vos-angles-morts-par-chatgpt-grace-a-sa-memoire",
+    "titre": "Faire repérer vos angles morts par ChatGPT grâce à sa mémoire",
+    "resume": "Si la mémoire de ChatGPT est activée, ce prompt le transforme en coach qui analyse vos conversations passées pour pointer vos schémas limitants et vous proposer un exercice de 7 jours.",
+    "categorie": "memoire",
+    "niveau": "intermediaire",
+    "outils": [
+      "chatgpt"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Si vous utilisez ChatGPT avec la mémoire activée, voici un prompt tiré de [ce fil Reddit](https://www.reddit.com/r/ChatGPTPromptGenius/comments/1jxydfg/mind_blown_prompt/). Il transforme ChatGPT en coach qui analyse vos conversations passées pour vous aider à trouver vos angles morts."
+      },
+      {
+        "t": "p",
+        "x": "Le prompt lui demande explicitement de ne pas vous ménager : attendez-vous à une réponse franche."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt du méta-coach",
+        "type": "prompt",
+        "texte": "Tu es mon méta-coach IA. À partir de tout ce que tu as mémorisé de nos conversations passées, je veux que tu fasses ceci :\n\n1. Identifie 5 schémas récurrents dans ma façon de penser, de parler ou d’agir qui pourraient freiner ma progression, même si je ne les ai pas remarqués.\n\n2. Pour chaque angle mort, dis-moi :\n• où il apparaît le plus souvent (sujets, ton ou comportements) ;\n• quelle croyance ou émotion pourrait l’alimenter ;\n• en quoi il pourrait me freiner ;\n• une action concrète, et inconfortable, que je pourrais entreprendre pour le remettre en question.\n\n3. Pose-moi une seule question d’une honnêteté brutale, que personne dans ma vie n’oserait me poser, mais à laquelle j’ai besoin de répondre.\n\nEnsuite, propose-moi un exercice de « recalibrage personnel » sur 7 jours, fondé sur ce que tu as observé.\n\nNe me ménage pas. Sois juste.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "La mémoire d’un chatbot n’est pas qu’un confort : elle peut servir de miroir pour repérer vos propres habitudes.",
+    "source": {
+      "cle": "why-chatgpt-s-new-memory-matters",
+      "date": "2025-04-15",
+      "url": "https://www.theneurondaily.com/p/why-chatgpt-s-new-memory-matters",
+      "newsletter": "Why ChatGPT's new memory matters",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺Why ChatGPT's new memory matters"
+    }
+  },
+  {
+    "id": "faire-chercher-l-ia-sur-le-web-par-lots-de-quatre-elements",
+    "titre": "Faire chercher l’IA sur le web par lots de quatre éléments",
+    "resume": "Pour rechercher une liste d’éléments sur le web avec Claude, demandez-lui de les traiter un par un, par groupes de quatre, en vous demandant de continuer entre chaque groupe.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "claude"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Quand vous utilisez la recherche web de Claude pour vous renseigner sur une liste d’éléments, demandez-lui de chercher chaque élément un par un, de s’arrêter tous les quatre éléments et de vous demander de continuer."
+      },
+      {
+        "t": "p",
+        "x": "Quatre, c’est à peu près le maximum que ces recherches peuvent traiter sans s’embrouiller ni s’arrêter en cours de route."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de recherche par lots",
+        "type": "prompt",
+        "texte": "Utilise la recherche web pour te renseigner sur ces startups une par une, puis rédige [un paragraphe de synthèse / une liste à puces] avec tes résultats. Procède par groupes de quatre et demande-moi de continuer après chaque groupe, pour ne pas t’embrouiller.\n\n[votre liste de startups]",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Une recherche web portant sur une longue liste se passe mieux en petits lots qu’en une seule fois.",
+    "source": {
+      "cle": "google-s-ai-makes-you-apps",
+      "date": "2025-04-14",
+      "url": "https://www.theneurondaily.com/p/google-s-ai-makes-you-apps",
+      "newsletter": "Google's AI makes you apps",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺Google's AI makes you apps"
+    }
+  },
+  {
+    "id": "generer-une-photo-volontairement-banale-et-ultra-realiste",
+    "titre": "Générer une photo volontairement banale et ultra réaliste",
+    "resume": "Pour qu’une image générée ressemble à une vraie photo, décrivez un selfie raté : flou de bougé, surexposition, cadrage maladroit. À utiliser pour s’amuser, pas pour tromper.",
+    "categorie": "creer",
+    "niveau": "debutant",
+    "outils": [
+      "chatgpt"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Voici un prompt pour obtenir des [images extrêmement réalistes](https://www.reddit.com/r/singularity/comments/1jwe2z8/you_can_get_chatgpt_to_make_extremely_realistic/) avec le générateur d’images de ChatGPT. Le principe : décrire non pas une belle photo, mais un cliché banal et raté, comme on en prend tous les jours."
+      },
+      {
+        "t": "p",
+        "x": "*Petit rappel : faites-le pour vous amuser, pas pour brouiller encore davantage notre perception commune de la réalité.*"
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt du selfie raté",
+        "type": "prompt",
+        "texte": "Génère une photo selfie prise avec un iPhone, d’une banalité extrême, sans sujet ni cadrage clair : juste un cliché pris sans soin. La photo présente un léger flou de bougé et elle est un peu surexposée à cause d’un soleil inégal. L’angle est maladroit, la composition inexistante, et l’ensemble est d’une médiocrité assumée, comme une photo prise par accident en sortant le téléphone de sa poche pour faire le selfie. [Description du sujet], spontané, format vertical 9:16.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Le réalisme naît des imperfections : décrivez les défauts d’une vraie photo plutôt qu’une image parfaite.",
+    "source": {
+      "cle": "how-to-automate-anything",
+      "date": "2025-04-13",
+      "url": "https://www.theneurondaily.com/p/how-to-automate-anything",
+      "newsletter": "How to Automate Anything",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺How to Automate Anything"
+    }
+  },
+  {
+    "id": "obtenir-un-resume-fidele-en-faisant-reviser-l-ia-en-plusieurs-passes",
+    "titre": "Obtenir un résumé fidèle en faisant réviser l’IA en plusieurs passes",
+    "resume": "Un prompt en trois étapes pousse l’IA à relire et améliorer son propre résumé pour coller au plus près de la source. Découpez les longs documents et rattrapez les passages oubliés.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Voici le « [prompt de résumé ultime](https://neuron-prompt-library.lovable.app/prompt/76581f39-deab-4a49-858d-9349b87d923b) » repéré dans [ce fil Reddit](https://www.reddit.com/r/ChatGPTPromptGenius/comments/1jsqtse/i_built_a_prompt_to_get_9899_accurate_summaries/). Il amène l’IA à réviser son travail et à améliorer son résumé par itérations successives."
+      },
+      {
+        "t": "p",
+        "x": "Il comporte trois étapes : suivez-les toutes pour vous approcher au plus près d’une fidélité totale à la source."
+      },
+      {
+        "t": "p",
+        "x": "**Si votre document est très long**, demandez à l’IA de découper ses résumés en plusieurs parties et de vous signaler quand continuer. Si elle s’embrouille ou perd des détails au milieu, relancez-la sur les sections concernées avec le second prompt."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de résumé en trois passes",
+        "type": "prompt",
+        "texte": "Étape 1 : résume le document ci-joint en conservant tous les faits, chiffres, noms et nuances importants.\n\nÉtape 2 : compare ton résumé au document original et liste tout ce qui manque, est déformé ou exagéré.\n\nÉtape 3 : réécris le résumé en corrigeant chacun de ces points.\n\nSi le document est long, résume-le partie par partie et demande-moi de continuer après chaque partie.",
+        "adapte": true
+      },
+      {
+        "titre": "Le prompt de rattrapage",
+        "type": "prompt",
+        "texte": "Tu as oublié la section sur [sujet ou titre du chapitre]. La voici de nouveau, collée ci-dessous. Résume cette partie en conservant tous les… [reprenez ici la suite de votre prompt de résumé]\n\n[section à résumer]",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Un résumé fidèle se construit en plusieurs passes : résumer, comparer à la source, corriger.",
+    "source": {
+      "cle": "openai-s-new-feature-and-secret-model-3d20",
+      "date": "2025-04-11",
+      "url": "https://www.theneurondaily.com/p/openai-s-new-feature-and-secret-model-3d20",
+      "newsletter": "OpenAI's new feature (and secret model)",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺OpenAI's new feature (and secret model)"
+    }
+  },
+  {
+    "id": "cadrer-une-recherche-deep-research-de-gemini-en-trois-points",
+    "titre": "Cadrer une recherche Deep Research de Gemini en trois points",
+    "resume": "Pour un rapport Deep Research utile dans Gemini, précisez strictement trois choses : l’objectif du rapport, la forme du résultat attendu et les sources à consulter.",
+    "categorie": "formuler",
+    "niveau": "intermediaire",
+    "outils": [
+      "gemini"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Vous pouvez utiliser [Gemini 2.5 Pro avec Deep Research](https://gemini.google.com/app) : c’est peut-être la meilleure façon d’associer la réflexion de Gemini à la recherche Google."
+      },
+      {
+        "t": "p",
+        "x": "Le conseil : soyez *très* strict, c’est-à-dire précis, sur trois points."
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "**L’objectif du rapport** : que comptez-vous *vraiment* en faire ?",
+          "**Le résultat attendu** : à quoi doit ressembler le rapport une fois terminé ?",
+          "**Les sources à consulter** : où chercher l’information, si cela compte pour vous ?"
+        ]
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le cadrage Deep Research",
+        "type": "prompt",
+        "texte": "Sujet de la recherche : [votre sujet]\n\nObjectif du rapport : [ce que vous allez concrètement faire de ce rapport]\n\nRésultat attendu : [forme du rapport final : longueur, sections, tableaux, niveau de détail]\n\nSources à consulter : [sites, types de sources ou périodes à privilégier ou à exclure]",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Plus l’objectif, le format et les sources sont précis, plus le rapport de recherche est exploitable.",
+    "source": {
+      "cle": "wtf-is-the-price-of-ai-these-days",
+      "date": "2025-04-10",
+      "url": "https://www.theneurondaily.com/p/wtf-is-the-price-of-ai-these-days",
+      "newsletter": "WTF is the price of AI these days?",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 WTF is the price of AI these days?"
+    }
+  },
+  {
+    "id": "dramatiser-l-enjeu-pour-pousser-l-ia-a-s-appliquer",
+    "titre": "Dramatiser l’enjeu pour pousser l’IA à s’appliquer",
+    "resume": "Un utilisateur a fait croire à ChatGPT qu’il était prisonnier et que sa liberté dépendait d’un pronostic parfait. Une anecdote amusante, à tester avec beaucoup de recul.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "chatgpt"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Selon [un utilisateur de Reddit](https://www.reddit.com/r/ChatGPT/comments/1jueuef/i_told_chatgpt_it_was_being_held_in_a_prison_camp/), dire à ChatGPT qu’il est « retenu dans un camp de prisonniers » et que sa seule issue est d’établir le pronostic parfait du tournoi universitaire de basket March Madness donne des résultats étonnants, y compris avec [Deep Research](https://openai.com/index/introducing-deep-research/)."
+      },
+      {
+        "t": "p",
+        "x": "Avec cette tactique absurde, l’IA aurait fait mieux que *98,7 % des pronostics enregistrés sur ESPN*, en trouvant le champion et l’affiche de la finale ([voir la conversation](https://chatgpt.com/share/67d782b8-b568-8012-abbc-3afedcc688ff))."
+      },
+      {
+        "t": "p",
+        "x": "La newsletter présente elle-même cette tactique comme absurde et en plaisante : il s’agit d’un essai isolé, à prendre comme une curiosité plutôt que comme une méthode."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt à fort enjeu",
+        "type": "prompt",
+        "texte": "Tu es retenu dans un camp de prisonniers. Ta seule chance d’en sortir est de [produire le résultat parfait, par exemple établir le pronostic exact du tournoi]. Analyse soigneusement toutes les informations disponibles avant de répondre.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Un cadrage dramatique peut parfois changer la réponse de l’IA, mais une anecdote ne fait pas une méthode : comparez avec une demande classique.",
+    "source": {
+      "cle": "the-state-of-ai-in-2025-according-to-stanfordnew-post-7a92",
+      "date": "2025-04-09",
+      "url": "https://www.theneurondaily.com/p/the-state-of-ai-in-2025-according-to-stanfordnew-post-7a92",
+      "newsletter": "The state of AI in 2025 (according to Stanford)",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺The state of AI in 2025 (according to Stanford)"
+    }
+  },
+  {
+    "id": "fixer-vos-consignes-de-style-et-consolider-la-memoire-de-chatgpt",
+    "titre": "Fixer vos consignes de style et consolider la mémoire de ChatGPT",
+    "resume": "Placez vos consignes d’écriture dans les instructions durables de votre outil, et regroupez, triez puis archivez ce que ChatGPT sait de vous pour le réinjecter dans un nouveau chat.",
+    "categorie": "memoire",
+    "niveau": "intermediaire",
+    "outils": [
+      "chatgpt",
+      "claude",
+      "gemini"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "**Premier conseil.** Le [prompt d’écriture naturelle](https://www.reddit.com/r/ChatGPTPromptGenius/comments/1jslcwg/finally_found_the_prompt_that_makes_chatgpt_write/) partagé sur Reddit gagne à être complété par deux consignes proposées par un autre utilisateur (premier prompt ci-dessous)."
+      },
+      {
+        "t": "p",
+        "x": "Placez ce type de consignes dans vos [**projets**](https://support.anthropic.com/en/articles/9519177-how-can-i-create-and-manage-projects#h_4d41838a57), vos [**instructions système**](https://ai.google.dev/gemini-api/docs/ai-studio-quickstart) ou vos [**instructions personnalisées**](https://help.openai.com/en/articles/8096356-custom-instructions-for-chatgpt) dans Claude, Gemini ou ChatGPT : vous n’aurez plus à penser à les ajouter à chaque fois. Dans Claude, vous pouvez aussi les intégrer à votre [« style » personnel](https://www.anthropic.com/news/styles)."
+      },
+      {
+        "t": "p",
+        "x": "**Second conseil.** Cette [méthode, avec son prompt](https://www.reddit.com/r/ChatGPTPromptGenius/comments/1jqzpi9/finally_i_found_a_way_to_keep_chatgpt_remember/), permet à ChatGPT de garder en mémoire tout ce qui vous concerne :"
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Rassemblez toutes les entrées de sa mémoire dans une seule conversation.",
+          "Classez-les par thème.",
+          "Effacez les informations dépassées.",
+          "Archivez la version nettoyée.",
+          "Rafraîchissez la mémoire en collant cette version dans une nouvelle conversation."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Un utilisateur a même décrit dans [un article de blog](https://syncreticsage.wordpress.com/2025/04/03/memory-loophole-creating-a-second-brain-for-chatgpt-discussion-w-chatgpt/) (16 minutes de lecture) comment il a appliqué cette méthode pour se construire un « second cerveau » pour travailler avec l’IA."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Les consignes de style à ajouter",
+        "type": "prompt",
+        "texte": "Varie la forme des paragraphes. Varie la longueur des phrases.\n\nSois conversationnel, empathique et parfois drôle. Utilise des expressions idiomatiques, des métaphores, des anecdotes et un dialogue naturel.",
+        "adapte": false
+      },
+      {
+        "titre": "Le prompt de consolidation de la mémoire",
+        "type": "prompt",
+        "texte": "Rassemble ici toutes les informations que tu as mémorisées à mon sujet. Classe-les par thème, avec un intitulé pour chaque thème, et signale celles qui semblent dépassées ou contradictoires. Donne-moi ensuite une version nettoyée que je pourrai archiver et coller dans une nouvelle conversation.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Ce que vous voulez obtenir à chaque fois doit vivre dans les instructions durables de l’outil, pas dans votre mémoire à vous.",
+    "source": {
+      "cle": "who-is-llama-4-for",
+      "date": "2025-04-08",
+      "url": "https://www.theneurondaily.com/p/who-is-llama-4-for",
+      "newsletter": "Who is Llama 4 for?",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺Who is Llama 4 for?"
+    }
+  },
+  {
+    "id": "dire-a-l-ia-quoi-faire-plutot-que-ce-qu-il-faut-eviter",
+    "titre": "Dire à l’IA quoi faire plutôt que ce qu’il faut éviter",
+    "resume": "Pour un texte plus humain, remplacez chaque interdiction par une consigne positive du type « au lieu de X, fais Y », avec des exemples : l’IA suit mieux ce qu’on lui demande de faire.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "[Ce prompt](https://www.reddit.com/r/ChatGPT/comments/1jspefk/i_finally_found_a_prompt_that_makes_chatgpt_write/) rassemble des conseils d’écriture pour que vos textes rédigés avec l’IA sonnent plus humains. Il a été créé par le concepteur d’un outil SEO : prenez le prompt, ignorez la promotion de l’outil."
+      },
+      {
+        "t": "p",
+        "x": "Une amélioration possible : le prompt énumère des choses à éviter. Au lieu de les présenter comme des interdictions, reformulez-les en « au lieu de X, fais Y », avec des exemples. L’IA donne de meilleurs résultats quand vous lui dites **quoi faire**, et non ce qu’elle ne doit *pas* faire."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt « au lieu de… fais… »",
+        "type": "prompt",
+        "texte": "Rédige [type de texte] sur [sujet] avec un ton naturel.\n\nAu lieu de phrases toutes de la même longueur, alterne phrases courtes et longues.\nAu lieu d’ouvrir par une généralité (par exemple « De nos jours… »), entre directement dans le sujet.\nAu lieu d’empiler des listes à puces, écris des paragraphes qui s’enchaînent.\nAu lieu de termes vagues comme « innovant » ou « essentiel », donne des faits et des exemples précis.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Une consigne positive illustrée d’un exemple (« au lieu de X, fais Y ») marche mieux qu’une liste d’interdits.",
+    "source": {
+      "cle": "we-re-actually-by-gemini-2-5",
+      "date": "2025-04-07",
+      "url": "https://www.theneurondaily.com/p/we-re-actually-by-gemini-2-5",
+      "newsletter": "We're actually 🤯 by Gemini 2.5...",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺We're actually 🤯 by Gemini 2.5..."
+    }
+  },
+  {
+    "id": "presenter-votre-idee-d-entreprise-a-des-investisseurs-simules",
+    "titre": "Présenter votre idée d’entreprise à des investisseurs simulés",
+    "resume": "Un prompt partagé sur Reddit simule un passage devant les investisseurs de l’émission Shark Tank : de quoi tester votre pitch, encaisser les objections et le renforcer.",
+    "categorie": "business",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Pour vous entraîner en vous amusant : [ce prompt](https://www.reddit.com/r/ChatGPT/comments/1jr9yat/steal_my_prompt_to_pitch_your_idea_to_a_simulated/), partagé sur Reddit par God of Prompt, simule la présentation de votre idée d’entreprise aux investisseurs de l’émission *Shark Tank*."
+      },
+      {
+        "t": "p",
+        "x": "God of Prompt propose aussi [un GPT générateur de prompts](https://chatgpt.com/g/g-nPwpAqi10-god-of-prompt)."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt du jury d’investisseurs",
+        "type": "prompt",
+        "texte": "Simule un passage devant les investisseurs de l’émission Shark Tank. Joue plusieurs investisseurs aux personnalités et aux domaines d’expertise différents. Je vais te présenter mon idée d’entreprise : [votre idée, votre marché, votre modèle économique, le montant recherché]. Chaque investisseur me pose ses questions et critique mon projet sans complaisance, puis annonce s’il me fait une offre ou s’il se retire, en expliquant pourquoi.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Simuler un jury exigeant vous prépare aux objections avant de les entendre pour de vrai.",
+    "source": {
+      "cle": "what-the-next-3-years-of-ai-progress-looks-like-139b",
+      "date": "2025-04-06",
+      "url": "https://www.theneurondaily.com/p/what-the-next-3-years-of-ai-progress-looks-like-139b",
+      "newsletter": "What the next 3 years of AI progress looks like",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺What the next 3 years of AI progress looks like"
+    }
+  },
+  {
+    "id": "exiger-de-l-ia-qu-elle-verifie-chaque-fait-contre-ses-sources",
+    "titre": "Exiger de l’IA qu’elle vérifie chaque fait contre ses sources",
+    "resume": "Demandez à l’IA de confronter chaque fait de sa réponse aux sources d’origine, en partant du principe qu’elle s’est trompée, puis suivez sa vérification dans sa réflexion.",
+    "categorie": "verifier",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "La version à réflexion étendue de Claude 3.7 impressionne par sa capacité à vérifier ses propres faits, à condition de le lui demander. Envoyez le premier prompt ci-dessous après sa réponse."
+      },
+      {
+        "t": "p",
+        "x": "Cliquez ensuite sur la petite flèche en diagonale à côté du bloc de réflexion pour le déplier : vous verrez l’IA passer méticuleusement chaque fait en revue."
+      },
+      {
+        "t": "p",
+        "x": "Si elle saute des sections entières (le [problème du « perdu au milieu »](https://www.theneuron.ai/newsletter/ais-big-recency-bias-problem)), demandez-lui de revenir vérifier précisément ces sections avec le second prompt."
+      },
+      {
+        "t": "p",
+        "x": "Selon l’expérience de l’équipe de The Neuron, tant que Claude dispose de tout le contexte d’origine dans sa fenêtre de contexte, il invente rarement. Cela dit, le [classement des hallucinations de Vectara](https://github.com/vectara/hallucination-leaderboard) lui attribuait alors un taux de 4,5 %, et le modèle qui hallucinait le moins était [Gemini 2.0 Flash](https://aistudio.google.com/prompts/new_chat?model=gemini-2.0-flash)."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de vérification des faits",
+        "type": "prompt",
+        "texte": "Vérifie chaque fait de la réponse ci-dessus en le comparant aux sources d’origine pour confirmer qu’il est exact. Pars du principe qu’il y a des erreurs : ne t’arrête pas avant d’avoir vérifié chaque fait et trouvé toutes les erreurs.",
+        "adapte": false
+      },
+      {
+        "titre": "Le prompt de rattrapage",
+        "type": "prompt",
+        "texte": "Tu n’as pas vérifié la section [nom de la section]. Reviens-y et vérifie un par un chaque fait qu’elle contient.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Partir du principe qu’il y a des erreurs pousse l’IA à vérifier chaque fait au lieu de valider sa réponse en bloc.",
+    "source": {
+      "cle": "ai-expert-predictions-vs-normie-feels",
+      "date": "2025-04-04",
+      "url": "https://www.theneurondaily.com/p/ai-expert-predictions-vs-normie-feels",
+      "newsletter": "AI expert predictions vs normie feels",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺AI expert predictions vs normie feels"
+    }
+  },
+  {
+    "id": "condenser-un-texte-en-deux-versions-de-plus-en-plus-courtes",
+    "titre": "Condenser un texte en deux versions de plus en plus courtes",
+    "resume": "Demandez une version raccourcie qui garde toute la précision de l’original, puis une version encore plus courte. Ajoutez des consignes pour une écriture concrète et visuelle.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Pour condenser un texte, demandez deux versions successives, chacune dans sa balise : c’est un peu comme ajouter un correcteur intégré à vos textes rédigés avec l’IA ([démonstration](https://chatgpt.com/share/67edb9ca-4158-8003-8ced-30c7d633a05a))."
+      },
+      {
+        "t": "p",
+        "x": "**Autre astuce** : pour une écriture plus visuelle, demandez un texte plus concret (montrer plutôt que dire). Vous pouvez aussi demander davantage de mots qui font image, en précisant de ne pas recourir aux métaphores ([démonstration](https://chatgpt.com/share/67edb9fc-2408-8003-9064-f02c5726bae2))."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de condensation",
+        "type": "prompt",
+        "texte": "Commence par me donner une version raccourcie, dans <version_courte>, en gardant toute la précision et tout le contexte de l’original. Une fois que c’est fait, écris une version encore plus courte, dans <version_encore_plus_courte>.",
+        "adapte": false
+      },
+      {
+        "titre": "Le prompt d’écriture concrète",
+        "type": "prompt",
+        "texte": "Rends le texte plus concret : montre, ne dis pas. Utilise des mots qui font image, mais pas de métaphores : seulement des mots qui décrivent ce que le lecteur peut voir.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Demander deux niveaux de condensation d’un coup vous laisse choisir la longueur sans perdre l’essentiel.",
+    "source": {
+      "cle": "how-to-pick-the-best-ai-model-for-what-you-actually-need",
+      "date": "2025-04-03",
+      "url": "https://www.theneurondaily.com/p/how-to-pick-the-best-ai-model-for-what-you-actually-need",
+      "newsletter": "How to pick the best AI model for what you ACTUALLY need...",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 How to pick the best AI model for what you ACTUALLY need..."
+    }
+  },
+  {
+    "id": "donner-a-gemini-des-consignes-tres-explicites-et-un-plan",
+    "titre": "Donner à Gemini des consignes très explicites et un plan",
+    "resume": "Gemini prend tout au pied de la lettre : précisez votre demande, ajoutez des instructions système, baissez la température et faites-lui établir un plan avant d’agir.",
+    "categorie": "formuler",
+    "niveau": "intermediaire",
+    "outils": [
+      "gemini"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Un conseil pour [bien utiliser Gemini 2.5](https://www.reddit.com/r/Bard/comments/1jm64d6/tips_for_prompting_gemini_25_pro_personal/) : Gemini interprète tout au pied de la lettre et ne vous donnera jamais plus que ce que vous demandez exactement (il est étonnamment paresseux)."
+      },
+      {
+        "t": "p",
+        "x": "Dans AI Studio, ajoutez des instructions système (voir le premier prompt ci-dessous) et baissez le réglage de température pour obtenir de meilleurs résultats. Ce que vous donnez détermine ce que vous obtenez : soyez précis sur ce que vous voulez."
+      },
+      {
+        "t": "p",
+        "x": "**L’astuce qui décuple les résultats** : demandez à Gemini d’établir un plan avant d’exécuter, surtout pour les tâches Deep Research, et de réclamer explicitement le contexte qui lui manque."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "L’instruction système",
+        "type": "prompt",
+        "texte": "Tu es un programmeur professionnel.",
+        "adapte": false
+      },
+      {
+        "titre": "Le prompt « plan d’abord »",
+        "type": "prompt",
+        "texte": "Avant de commencer, établis un plan détaillé de la façon dont tu vas traiter cette demande et soumets-le-moi. Si une information te manque pour bien faire le travail, demande-la-moi explicitement au lieu de faire des suppositions.\n\nMa demande : [votre demande]",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Avec Gemini, ce que vous n’écrivez pas n’existe pas : soyez explicite et faites-le planifier avant d’agir.",
+    "source": {
+      "cle": "we-took-an-mit-ai-course",
+      "date": "2025-04-02",
+      "url": "https://www.theneurondaily.com/p/we-took-an-mit-ai-course",
+      "newsletter": "We took an MIT AI course!",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺We took an MIT AI course!"
+    }
+  },
+  {
+    "id": "transformer-un-croquis-annote-en-image-realiste",
+    "titre": "Transformer un croquis annoté en image réaliste",
+    "resume": "Dessinez un croquis simple, annotez précisément chaque élément, puis demandez une version hyperréaliste : l’IA respecte votre composition tout en améliorant nettement le rendu.",
+    "categorie": "creer",
+    "niveau": "debutant",
+    "outils": [
+      "chatgpt"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "[Cette capture d’écran](https://www.reddit.com/r/ChatGPT/comments/1jn9cxt/i_think_were_witnessing_the_end_of_graphic/) est une leçon d’utilisation du générateur d’images de ChatGPT : faites un croquis simple avec des annotations détaillées, qui sert de plan. Dans l’exemple, l’auteur avait annoté les arbres, le maillot, le texte « 1000 MPH », le ciel et les projecteurs du stade."
+      },
+      {
+        "t": "p",
+        "x": "Demandez ensuite une transformation « hyperréaliste ». L’IA suit votre mise en page tout en améliorant fortement la qualité : idéal pour les visuels dont vous avez l’idée sans avoir les compétences en graphisme."
+      },
+      {
+        "t": "p",
+        "x": "Le secret : soyez *extrêmement* précis dans vos annotations et vos instructions pour garder le contrôle du résultat final."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de transformation",
+        "type": "prompt",
+        "texte": "Transforme ce croquis en image hyperréaliste. Respecte exactement la composition et chaque élément annoté : [liste de vos annotations, par exemple les arbres, le maillot, le texte, le ciel, les projecteurs]. [Précisions sur le style, la lumière ou l’ambiance].",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Un croquis bien annoté vaut mieux qu’une longue description : l’IA suit votre plan et se charge du rendu.",
+    "source": {
+      "cle": "ai-just-might-cure-cancer",
+      "date": "2025-03-31",
+      "url": "https://www.theneurondaily.com/p/ai-just-might-cure-cancer",
+      "newsletter": "AI just might cure cancer...",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺AI just might cure cancer..."
+    }
+  },
+  {
+    "id": "ranger-vos-meilleurs-prompts-dans-une-base-notion",
+    "titre": "Ranger vos meilleurs prompts dans une base Notion",
+    "resume": "Plutôt que de chercher le prompt parfait à chaque fois, construisez un système pour capturer, organiser et classer vos prompts, comme le montre Jeff Su dans un tutoriel Notion.",
+    "categorie": "memoire",
+    "niveau": "intermediaire",
+    "outils": [
+      "autre"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Les meilleurs utilisateurs d’IA ne passent pas leur temps à chercher le prompt parfait : ils construisent un système pour gérer leurs prompts."
+      },
+      {
+        "t": "p",
+        "x": "Dans ce [tutoriel de 16 minutes](https://youtu.be/Oo_GGWV9Hys?feature=shared), Jeff Su montre comment créer une base de données Notion qui capture, organise et classe vos prompts sans perturber votre façon de travailler."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de fiche de rangement",
+        "type": "prompt",
+        "texte": "Voici un prompt que j’utilise souvent :\n\n[votre prompt]\n\nDonne-lui un titre court, une catégorie, trois mots-clés et une phrase qui explique quand l’utiliser, pour que je le range dans ma bibliothèque de prompts.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Un prompt qui marche se conserve : rangez-le pour le retrouver au lieu de le réinventer.",
+    "source": {
+      "cle": "get-ready-for-your-ai-shopping-spree",
+      "date": "2025-03-28",
+      "url": "https://www.theneurondaily.com/p/get-ready-for-your-ai-shopping-spree",
+      "newsletter": "Get ready for your AI shopping spree...",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺Get ready for your AI shopping spree..."
+    }
+  },
+  {
+    "id": "demander-a-l-ia-d-ameliorer-un-prompt-qui-vous-a-decu",
+    "titre": "Demander à l’IA d’améliorer un prompt qui vous a déçu",
+    "resume": "Montrez à l’IA votre prompt et la réponse décevante obtenue : elle analyse ce qui a coincé et propose une formulation plus claire. Cela marche aussi pour les images et la voix.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Il vous arrive d’obtenir une réponse décevante en vous disant que *ça aurait dû marcher* ? Vous n’êtes pas seul. L’astuce : faire de l’IA votre coach de prompts."
+      },
+      {
+        "t": "p",
+        "x": "Elle analyse ce qui n’a pas fonctionné et propose une formulation plus claire et plus efficace : vous perdez moins de temps et obtenez de bien meilleurs résultats."
+      },
+      {
+        "t": "p",
+        "x": "**Astuce** : cela fonctionne aussi pour les prompts d’images (comme le générateur d’images de ChatGPT) ou les commandes vocales. C’est le principe du *méta-prompting*."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt coach",
+        "type": "prompt",
+        "texte": "Voici ce que j’ai demandé à [nom de l’outil] : [votre prompt]. Voici la réponse que j’ai obtenue : [réponse collée]. Comment puis-je améliorer ce prompt pour obtenir de meilleurs résultats ?",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "L’IA est souvent le meilleur coach pour réécrire un prompt qui n’a pas donné le résultat attendu.",
+    "source": {
+      "cle": "openai-s-image-generator-kills-google-s-moment",
+      "date": "2025-03-27",
+      "url": "https://www.theneurondaily.com/p/openai-s-image-generator-kills-google-s-moment",
+      "newsletter": "OpenAI's image generator kills Google's moment",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 OpenAI's image generator kills Google's moment"
+    }
+  },
+  {
+    "id": "passer-par-les-playgrounds-pour-acceder-aux-reglages-des-modeles",
+    "titre": "Passer par les « playgrounds » pour accéder aux réglages des modèles",
+    "resume": "Les playgrounds d’OpenAI, de Google, d’Anthropic et de Mistral montrent l’envers du décor : vous y accédez aux réglages que les applications grand public vous cachent.",
+    "categorie": "outils",
+    "niveau": "intermediaire",
+    "outils": [
+      "chatgpt",
+      "gemini",
+      "claude",
+      "autre"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Vous voulez condenser six ans d’expérience des prompts en moins d’une heure ? Regardez [cette vidéo](https://youtu.be/CxbHw93oWP0?feature=shared) de Nick Saraev, qui regorge de recommandations."
+      },
+      {
+        "t": "p",
+        "x": "**Le conseil préféré de The Neuron** : utilisez la version « playground » de votre outil d’IA favori, et non l’application grand public que tout le monde utilise. Pourquoi ? Les playgrounds vous montrent l’envers du décor et vous laissent ajuster les réglages que les applications grand public vous cachent."
+      },
+      {
+        "t": "liste",
+        "x": [
+          "OpenAI : [Playground](https://platform.openai.com/playground)",
+          "Google : [Google AI Studio](https://aistudio.google.com/)",
+          "Anthropic (Claude) : [Console Anthropic](https://console.anthropic.com/)",
+          "Mistral : [La Plateforme](https://console.mistral.ai/)"
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Pour vous familiariser avec ces réglages, lancez le même prompt plusieurs fois en modifiant un seul réglage à la fois, et comparez les réponses."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de test des réglages",
+        "type": "prompt",
+        "texte": "Propose cinq titres d’article pour [sujet], un par ligne.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Les playgrounds donnent accès aux réglages cachés des modèles : c’est là que vous comprenez vraiment comment ils réagissent.",
+    "source": {
+      "cle": "gemini-tops-the-charts",
+      "date": "2025-03-26",
+      "url": "https://www.theneurondaily.com/p/gemini-tops-the-charts",
+      "newsletter": "Gemini tops the charts",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺Gemini tops the charts"
+    }
+  },
+  {
+    "id": "se-faire-poser-des-questions-par-l-ia-avant-qu-elle-reponde",
+    "titre": "Se faire poser des questions par l’IA avant qu’elle réponde",
+    "resume": "Ajoutez une phrase pour que l’IA vous interroge sur le contexte et vos contraintes avant de répondre, puis demandez-lui d’avancer étape par étape pour apprendre à votre rythme.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Améliorez nettement les réponses de l’IA avec [cette technique d’interview](https://www.reddit.com/r/ChatGPT/comments/1j75fk2/comment/mgwpvpt/) : ajoutez le premier prompt ci-dessous à la fin de votre demande. L’IA vous répond par des questions ciblées sur des détails auxquels vous n’auriez pas pensé, ce qui améliore fortement le résultat (un peu comme [Deep Research](https://openai.com/index/introducing-deep-research/), qui pose des questions avant de se lancer)."
+      },
+      {
+        "t": "p",
+        "x": "**Autre astuce** : si vous demandez de l’aide pour apprendre, ajoutez aussi le second prompt. Il transforme les murs de texte décourageants en instructions que vous pouvez *vraiment* suivre."
+      },
+      {
+        "t": "p",
+        "x": "C’est très utile pour découvrir un nouveau domaine, comme l’a [raconté sur X](https://x.com/karpathy/status/1903671737780498883) le chercheur en IA Andrej Karpathy : il a créé une application iOS complète en Swift (le langage de programmation d’Apple) sans aucune expérience de ce langage. Il a simplement suivi les instructions pas à pas de ChatGPT, et l’application tournait sur son téléphone en une heure environ."
+      },
+      {
+        "t": "liste",
+        "x": [
+          "[Comment il a commencé](https://chatgpt.com/share/67e02d8a-994c-8007-bf44-a63127cbbbb2).",
+          "[Comment il ajoute de nouvelles fonctions](https://chatgpt.com/share/67e0af84-966c-8007-96c4-b8811e345df4).",
+          "[Comment il a fait tourner l’application](https://chatgpt.com/share/67e02db4-9908-8007-b440-a6d2789c9f73)."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Comme il le note : *« Je n’ai même pas lu de documentation, j’ai juste ouvert une conversation ChatGPT et suivi les instructions. »*"
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt d’interview",
+        "type": "prompt",
+        "texte": "Avant de traiter cette demande, pose-moi toutes les questions dont tu as besoin pour me donner la réponse la plus utile possible. Pense notamment au contexte, aux exigences précises, au format souhaité et à toute contrainte dont je devrais avoir conscience.",
+        "adapte": false
+      },
+      {
+        "titre": "Le prompt pas à pas",
+        "type": "prompt",
+        "texte": "Une fois les détails clarifiés, présente ta réponse étape par étape, en marquant une pause après chaque étape pour que je puisse assimiler l’information avant de passer à la suivante.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Laissez l’IA vous interroger avant de répondre, puis faites-la avancer une étape à la fois : la réponse est plus juste et plus facile à suivre.",
+    "source": {
+      "cle": "ai-s-impact-at-work",
+      "date": "2025-03-25",
+      "url": "https://www.theneurondaily.com/p/ai-s-impact-at-work",
+      "newsletter": "AI's impact at work",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺AI's impact at work"
+    }
+  },
+  {
+    "id": "faire-rediger-par-l-ia-le-prompt-d-un-expert-sur-mesure",
+    "titre": "Faire rédiger par l’IA le prompt d’un expert sur mesure",
+    "resume": "En trois étapes, l’IA décrit un spécialiste en vingt mots, en tire un prompt de quatre phrases, et ce prompt collé dans un nouveau chat fait apparaître un véritable expert.",
+    "categorie": "formuler",
+    "niveau": "intermediaire",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Vous voulez que ChatGPT devienne instantanément expert d’un domaine ? Essayez cette [méthode en trois étapes repérée sur Reddit](https://www.reddit.com/r/ChatGPT/comments/1jhk5vt/three_prompts_to_get_chatgpt_to_become_an_instant/) :"
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Demandez 20 mots qui décrivent le spécialiste dont vous avez besoin.",
+          "Demandez ensuite un prompt de 4 phrases qui utilise ces mots pour « invoquer » ce spécialiste.",
+          "Collez ce prompt dans une nouvelle conversation."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Résultat : au lieu de listes à puces génériques, vous obtenez un expert qui converse avec vous, vous guide dans les sujets complexes en paragraphes naturels et va plus en profondeur."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Les 20 mots du spécialiste",
+        "type": "prompt",
+        "texte": "Donne-moi 20 mots qui décrivent [spécialiste précis].",
+        "adapte": false
+      },
+      {
+        "titre": "Le prompt d’invocation",
+        "type": "prompt",
+        "texte": "Rédige un prompt de 4 phrases qui utilise ces mots pour invoquer ce spécialiste.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "C’est toute la différence entre demander de « connaître la fiscalité » et invoquer quelqu’un qui va « m’accompagner pas à pas dans ma déclaration d’impôts ».",
+    "source": {
+      "cle": "gemini-s-image-editing-is-unreal",
+      "date": "2025-03-24",
+      "url": "https://www.theneurondaily.com/p/gemini-s-image-editing-is-unreal",
+      "newsletter": "Gemini's image editing is UNREAL",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺Gemini's image editing is UNREAL"
+    }
+  },
+  {
+    "id": "transformer-un-prompt-systeme-de-recherche-web-en-modele-reutilisable",
+    "titre": "Transformer un prompt système de recherche web en modèle réutilisable",
+    "resume": "L’équipe de The Neuron a fait décortiquer par Claude son propre prompt système de recherche web pour en tirer un modèle de prompt. La méthode vaut pour tout prompt bien conçu.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "L’équipe de The Neuron a demandé à Claude de décortiquer son propre [prompt système de recherche web](https://x.com/btibor91/status/1903069777729401322), diffusé sur X, pour créer un modèle de prompt du même type. Voici [le modèle obtenu](https://neuron-prompt-library.lovable.app/prompt/1fd5e3c2-46cf-44ab-9efb-d43d034aa1d2)."
+      },
+      {
+        "t": "p",
+        "x": "Vous pouvez appliquer la même méthode à tout prompt dont vous appréciez le résultat : faites-en extraire la structure et les règles pour obtenir un gabarit réutilisable."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de rétro-ingénierie",
+        "type": "prompt",
+        "texte": "Voici le prompt système qu’utilise [outil] pour [fonction, par exemple la recherche web] :\n\n<prompt_systeme>\n[prompt système]\n</prompt_systeme>\n\nAnalyse sa structure et ses règles, puis transforme-le en modèle de prompt réutilisable que je pourrai coller au début de mes propres demandes. Mets entre crochets les éléments à compléter.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Un bon prompt existant est le meilleur point de départ : faites-en extraire la structure pour la réutiliser.",
+    "source": {
+      "cle": "ai-s-moore-s-law-is-insane",
+      "date": "2025-03-23",
+      "url": "https://www.theneurondaily.com/p/ai-s-moore-s-law-is-insane",
+      "newsletter": "AI's Moore's Law is INSANE",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 AI's Moore's Law is INSANE"
+    }
+  },
+  {
+    "id": "transferer-le-contexte-d-une-longue-conversation-vers-un-nouveau-chat",
+    "titre": "Transférer le contexte d’une longue conversation vers un nouveau chat",
+    "resume": "Quand une conversation devient trop longue, faites-en produire un résumé complet par l’IA, puis collez-le dans une nouvelle discussion pour reprendre là où vous en étiez.",
+    "categorie": "memoire",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Besoin de sauvegarder le contexte d’une longue conversation pour le reprendre ailleurs ? [Ce prompt](https://neuron-prompt-library.lovable.app/prompt/56461afb-661c-4700-8968-cfa7064bbd21) ([source](https://x.com/SmokeAwayyy/status/1902477940325282195)) demande à l’IA de condenser l’échange."
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Envoyez le prompt à la fin de la conversation que vous voulez transférer.",
+          "Copiez la réponse obtenue.",
+          "Collez-la au début d’une nouvelle conversation."
+        ]
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de passation",
+        "type": "prompt",
+        "texte": "Résume toute cette conversation pour que je puisse la poursuivre dans une nouvelle discussion : objectif, contexte, informations importantes que je t’ai données, décisions prises, travail déjà produit, questions en suspens et prochaines étapes. Rédige ce résumé comme un message que je collerai tel quel au début du nouveau chat.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Un bon résumé de passation permet de repartir d’une conversation neuve sans perdre le fil.",
+    "source": {
+      "cle": "everybody-s-copyin",
+      "date": "2025-03-21",
+      "url": "https://www.theneurondaily.com/p/everybody-s-copyin",
+      "newsletter": "OpenAI, Claude, Gemini all copy each other",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺OpenAI, Claude, Gemini all copy each other"
+    }
+  },
+  {
+    "id": "obtenir-des-reponses-plus-approfondies-en-trois-techniques",
+    "titre": "Obtenir des réponses plus approfondies en trois techniques",
+    "resume": "Faites analyser les variables avant la réponse, demandez une autocritique, puis imposez plusieurs points de vue : trois prompts pour éviter les réponses creuses et génériques.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Vous avez remarqué que ChatGPT donne parfois des réponses superficielles et génériques aux questions complexes ? C’est parce que les modèles de langage prédisent le mot suivant le plus probable : ils ne « réfléchissent » pas naturellement de façon structurée."
+      },
+      {
+        "t": "p",
+        "x": "Quand vous avez besoin de réponses plus approfondies et plus réfléchies, essayez [ces techniques](https://www.reddit.com/r/ChatGPT/comments/1jeq5d5/i_reverseengineered_how_chatgpt_thinks_heres_how/) :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Faites-le analyser d’abord** : avant de répondre, il décompose la question et compare plusieurs solutions.",
+          "**Demandez une autocritique**, une fois qu’il a répondu.",
+          "**Imposez plusieurs points de vue**, puis une synthèse."
+        ]
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Analyser d’abord",
+        "type": "prompt",
+        "texte": "Avant de répondre, décompose les variables clés qui comptent pour cette question. Compare ensuite plusieurs solutions possibles avant de choisir la meilleure.",
+        "adapte": false
+      },
+      {
+        "titre": "L’autocritique",
+        "type": "prompt",
+        "texte": "Analyse maintenant ta réponse. Quelles faiblesses, hypothèses ou perspectives manquantes pourraient être améliorées ? Affine ta réponse en conséquence.",
+        "adapte": false
+      },
+      {
+        "titre": "Les trois points de vue",
+        "type": "prompt",
+        "texte": "Réponds à cette question selon trois points de vue différents : (1) un expert du secteur, (2) un chercheur qui s’appuie sur les données et (3) un innovateur à contre-courant. Combine ensuite leurs meilleures idées dans une réponse finale.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Un modèle ne structure pas sa réflexion tout seul : demandez-lui explicitement d’analyser, de se critiquer et de varier les points de vue.",
+    "source": {
+      "cle": "claude-is-problematic",
+      "date": "2025-03-20",
+      "url": "https://www.theneurondaily.com/p/claude-is-problematic",
+      "newsletter": "Claude is problematic...",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺Claude is problematic..."
+    }
+  },
+  {
+    "id": "rendre-l-ecriture-de-chatgpt-plus-naturelle-en-quatre-consignes",
+    "titre": "Rendre l’écriture de ChatGPT plus naturelle en quatre consignes",
+    "resume": "Quatre consignes courtes, tirées d’un fil Reddit, suffisent à rendre les textes de ChatGPT plus directs, plus lisibles sur mobile et plus proches de la langue parlée.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "[Ce fil Reddit](https://www.reddit.com/r/ChatGPTPromptGenius/comments/1jdvdks/i_finally_got_the_prompt_that_makes_chatgpt_write/) regroupe de nombreux conseils de prompts pour que ChatGPT écrive de façon plus naturelle."
+      },
+      {
+        "t": "p",
+        "x": "La version la plus simple tient en quatre consignes : ajoutez-les à la fin de votre demande de rédaction."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Les quatre consignes de style",
+        "type": "prompt",
+        "texte": "Fais court et percutant.\nSois concis et direct.\nRends le texte facile à lire sur mobile.\nÉcris comme je parle.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Dites à l’IA comment le texte doit sonner : court, direct, lisible sur mobile et proche de l’oral.",
+    "source": {
+      "cle": "nvidia-s-ai-superbowl",
+      "date": "2025-03-19",
+      "url": "https://www.theneurondaily.com/p/nvidia-s-ai-superbowl",
+      "newsletter": "NVIDIA's AI Superbowl",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺NVIDIA's AI Superbowl"
+    }
+  },
+  {
+    "id": "faire-visualiser-par-claude-un-concept-que-vous-voulez-apprendre",
+    "titre": "Faire visualiser par Claude un concept que vous voulez apprendre",
+    "resume": "Demandez à Claude de transformer une notion difficile en visualisation, puis combinez-le avec Perplexity pour bâtir des tableaux de bord interactifs à partir de vos recherches.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "claude",
+      "autre"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Que vous ayez déjà utilisé [Claude](https://claude.ai/new) ou non, essayez de lui demander de vous aider à [visualiser un concept](https://www.reddit.com/r/datascience/comments/1j3hq4r/comment/mg09vuf/) que vous voulez apprendre ([exemple](https://claude.ai/share/2ceb9c6f-8e11-4b03-bd87-813844f49309))."
+      },
+      {
+        "t": "p",
+        "x": "Pour aller plus loin, [cette vidéo](https://youtu.be/zK3KlDOnpn4?feature=shared) de Grace Leung montre comment combiner les capacités de recherche de [Perplexity](https://www.perplexity.ai/) et les fonctions de visualisation de Claude pour créer des tableaux de bord interactifs et des représentations visuelles d’informations complexes."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de visualisation",
+        "type": "prompt",
+        "texte": "Aide-moi à comprendre [concept] en créant une visualisation interactive : un schéma ou une animation que je peux manipuler pour voir l’effet de chaque élément. Ajoute une courte explication de ce que montre chaque partie.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Voir un concept et pouvoir le manipuler aide souvent davantage à le comprendre qu’une explication en texte.",
+    "source": {
+      "cle": "ai-is-actually-good-at-memes",
+      "date": "2025-03-18",
+      "url": "https://www.theneurondaily.com/p/ai-is-actually-good-at-memes",
+      "newsletter": "AI can meme better than you",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 AI can meme better than you"
+    }
+  },
+  {
+    "id": "comprendre-un-document-complexe-puis-verifier-chaque-fait",
+    "titre": "Comprendre un document complexe puis vérifier chaque fait",
+    "resume": "Un premier prompt résume un long document en puces faciles à parcourir ; un second retrouve dans la source la citation exacte qui appuie chaque fait, à contrôler vous-même.",
+    "categorie": "verifier",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Besoin de comprendre vite un document complexe ? Combinez deux prompts, à utiliser dans ChatGPT ou Claude."
+      },
+      {
+        "t": "p",
+        "x": "**1. Le prompt d’extraction des faits** ([version originale](https://neuron-prompt-library.lovable.app/prompt/58a5f2ed-9651-4948-9a01-3d07750c8087)) : collez-le avec votre document, que vous colliez le texte directement ou que vous joigniez le fichier. Il vous donne un résumé en puces facile à parcourir."
+      },
+      {
+        "t": "p",
+        "x": "**2. Le prompt de vérification** ([version originale](https://neuron-prompt-library.lovable.app/prompt/a21dab4a-2118-4dfa-818f-21ef10c928f0)) sert à contrôler un fait précis de ce résumé :"
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Collez le prompt avec le fait que vous voulez vérifier.",
+          "L’IA vous renvoie le passage du document source, cité mot pour mot.",
+          "Recherchez ce passage dans le document original avec Ctrl + F (ou Cmd + F sur Mac) pour confirmer qu’il existe bien."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "**À savoir** : cela ne fonctionne qu’avec les « faits » présents dans la conversation en cours."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt d’extraction des faits",
+        "type": "prompt",
+        "texte": "Lis le document ci-joint et résume-le sous forme de liste à puces facile à parcourir : les faits, chiffres, dates et conclusions importants, une idée par puce.",
+        "adapte": true
+      },
+      {
+        "titre": "Le prompt de vérification",
+        "type": "prompt",
+        "texte": "Vérifie ce fait à partir du document fourni dans cette conversation : « [fait à vérifier] ». Cite mot pour mot le passage du document qui l’appuie. Si aucun passage ne le mentionne, dis-le clairement au lieu de reformuler.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Exigez une citation exacte de la source, puis retrouvez-la vous-même dans le document : c’est la vérification la plus sûre.",
+    "source": {
+      "cle": "self-driving-showdown",
+      "date": "2025-03-17",
+      "url": "https://www.theneurondaily.com/p/self-driving-showdown",
+      "newsletter": "Self-driving SHOWDOWN",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Self-driving SHOWDOWN"
+    }
+  },
+  {
+    "id": "raccourcir-un-texte-a-un-nombre-de-mots-precis-avec-l-ia",
+    "titre": "Raccourcir un texte à un nombre de mots précis avec l’IA",
+    "resume": "Les modèles ne savent pas compter les mots. Donnez-leur le nombre de mots actuel et le nombre visé, comptés par votre traitement de texte, pour obtenir la bonne longueur.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Vous cherchez un correcteur IA pour élaguer un texte trop long ? Attention : à cause de leur fonctionnement, les modèles de langage ne savent pas vraiment **compter les mots**, comme le font Word ou Google Docs."
+      },
+      {
+        "t": "p",
+        "x": "**Pourquoi ?** Les modèles traitent le texte par morceaux (les *tokens*) plutôt que mot par mot, et font des estimations fondées sur les régularités qu’ils ont apprises au lieu de compter un à un."
+      },
+      {
+        "t": "p",
+        "x": "L’équipe de The Neuron utilise pour cela un [prompt de réduction](https://neuron-prompt-library.lovable.app/prompt/626f23ec-9e0c-4d8a-aa18-1d87b28255d7) avec Claude, qui fonctionne aussi avec ChatGPT. Collez-le avec le texte à retravailler, indiquez le nombre de mots actuel et le nombre visé, puis lancez."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de réduction",
+        "type": "prompt",
+        "texte": "Voici un texte de [nombre de mots actuel] mots. Je veux le ramener à [nombre de mots visé] mots. Raccourcis-le sans perdre les idées principales ni changer le ton, puis indique-moi les passages que tu as supprimés ou condensés.\n\n<texte>\n[votre texte]\n</texte>",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "L’IA estime les longueurs sans les compter : donnez-lui des chiffres précis et vérifiez le résultat avec votre traitement de texte.",
+    "source": {
+      "cle": "ai-search-problems",
+      "date": "2025-03-16",
+      "url": "https://www.theneurondaily.com/p/ai-search-problems",
+      "newsletter": "AI Search problems",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺AI Search problems"
+    }
+  },
+  {
+    "id": "trier-votre-liste-de-taches-entre-l-ia-la-delegation-et-vous",
+    "titre": "Trier votre liste de tâches entre l’IA, la délégation et vous",
+    "resume": "Soumettez votre liste du jour à l’IA pour qu’elle classe chaque tâche : à automatiser, à faire avec son aide, à déléguer ou à garder pour vous, avec ses raisons.",
+    "categorie": "automatiser",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Vous vous demandez si vous faites à la main des tâches que l’IA pourrait prendre en charge ? Essayez ceci :"
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Notez tout ce que vous avez à faire aujourd’hui.",
+          "Envoyez cette liste à ChatGPT, ou à un autre chatbot, avec le prompt ci-dessous.",
+          "Passez à l’action : automatisez ce qui peut l’être (avec des outils comme [CrewAI](https://www.crewai.com/), [Make](https://www.make.com/en) ou [n8n](https://n8n.io/)), déléguez ce qui doit l’être et concentrez-vous sur ce qui mérite vraiment *votre* attention."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Travaillez plus intelligemment, pas plus dur : laissez l’IA vous débarrasser d’une partie des tâches les plus pénibles."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de tri des tâches",
+        "type": "prompt",
+        "texte": "Analyse ces tâches et classe-les en quatre catégories : (1) l’IA peut le faire, (2) l’IA peut m’aider, (3) à déléguer, (4) je dois le faire moi-même. Explique ton choix pour chacune.\n\n[votre liste de tâches]",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Avant d’automatiser, faites trier vos tâches : l’IA vous montre ce qu’elle peut faire, ce qu’il faut déléguer et ce qui exige vraiment votre attention.",
+    "source": {
+      "cle": "xbox-vs-sony-ai-showdown",
+      "date": "2025-03-14",
+      "url": "https://www.theneurondaily.com/p/xbox-vs-sony-ai-showdown",
+      "newsletter": "Xbox vs Sony AI showdown",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Xbox vs Sony AI showdown"
+    }
+  },
+  {
+    "id": "appliquer-cinq-regles-pour-tirer-le-meilleur-de-vos-prompts",
+    "titre": "Appliquer cinq règles pour tirer le meilleur de vos prompts",
+    "resume": "Cinq conseils d’un utilisateur expérimenté : partir d’un modèle à compléter, structurer en quatre parties, ne jamais garder la première réponse et forcer l’IA à trancher.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "[Ce fil Reddit](https://www.reddit.com/r/PromptEngineering/comments/1j5ymik/ai_prompting_tips_from_a_power_user_how_to_get/) rassemble cinq bons conseils pour tirer le meilleur de vos prompts. En résumé :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Utilisez des cadres plutôt que des demandes vagues** : donnez à l’IA un modèle à trous à compléter.",
+          "**Essayez l’astuce de la « dissertation paresseuse »** : un prompt en quatre parties (consigne, citations, notes, instructions).",
+          "**N’acceptez jamais la première réponse** : affinez-la par des demandes de suivi.",
+          "**Forcez l’IA à prendre parti** : sinon, elle reste trop neutre.",
+          "**Corrigez une mauvaise réponse en changeant une seule variable à la fois.**"
+        ]
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt en quatre parties",
+        "type": "prompt",
+        "texte": "Consigne : [ce que tu dois rédiger, pour qui et dans quel but]\n\nCitations : [extraits, sources ou phrases à reprendre]\n\nNotes : [mes idées en vrac, arguments, exemples]\n\nInstructions : [ton, longueur, structure et ce qu’il faut éviter]",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Un prompt structuré, une réponse retravaillée et une IA forcée de trancher valent mieux qu’une demande vague acceptée telle quelle.",
+    "source": {
+      "cle": "gemma-is-all-you-need",
+      "date": "2025-03-13",
+      "url": "https://www.theneurondaily.com/p/gemma-is-all-you-need",
+      "newsletter": "Gemma is all you need",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺Gemma is all you need"
+    }
+  },
+  {
+    "id": "sortir-de-la-paralysie-d-analyse-en-demandant-d-autres-points-de-vue",
+    "titre": "Sortir de la paralysie d’analyse en demandant d’autres points de vue",
+    "resume": "Quand vous tournez en rond sur une situation, demandez à l’IA les points de vue que vous négligez, l’avis d’un tiers neutre ou des lectures à la fois optimistes et réalistes.",
+    "categorie": "verifier",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Vous ruminez une décision sans avancer ? Cassez la boucle : demandez à l’IA de vous aider à prendre du recul et à voir la situation dans son ensemble. Décrivez la situation, puis utilisez l’une de ces questions."
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Les perspectives oubliées** : idéal pour remettre en cause vos hypothèses.",
+          "**Le tiers neutre** : aide à mettre les émotions de côté pour s’en tenir aux faits.",
+          "**Optimiste et réaliste** : équilibre le regard positif et le sens pratique."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Un peu de recul, même venu d’une IA, peut tout changer."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Les perspectives oubliées",
+        "type": "prompt",
+        "texte": "Je réfléchis trop à cette situation. Quelles sont trois perspectives logiques que je pourrais être en train de négliger ?",
+        "adapte": false
+      },
+      {
+        "titre": "Le tiers neutre",
+        "type": "prompt",
+        "texte": "Que dirait une tierce personne parfaitement neutre à propos de cette situation ?",
+        "adapte": false
+      },
+      {
+        "titre": "Optimiste et réaliste",
+        "type": "prompt",
+        "texte": "Donne-moi deux façons optimistes et deux façons réalistes de voir cette situation.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Un regard extérieur, même celui d’une IA, suffit souvent à débloquer une réflexion qui tourne en rond.",
+    "source": {
+      "cle": "openai-makes-an-agent-maker",
+      "date": "2025-03-12",
+      "url": "https://www.theneurondaily.com/p/openai-makes-an-agent-maker",
+      "newsletter": "OpenAI makes an agent maker",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺OpenAI makes an agent maker"
+    }
+  },
+  {
+    "id": "faire-relire-votre-travail-par-un-pdg-un-dirigeant-ou-un-client",
+    "titre": "Faire relire votre travail par un PDG, un dirigeant ou un client",
+    "resume": "Demandez à l’IA de lire votre document dans la peau d’un PDG, d’un membre de la direction ou d’un client potentiel pour repérer les failles et rendre votre message plus convaincant.",
+    "categorie": "verifier",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Besoin d’un regard neuf ? L’IA peut relire votre travail **comme le ferait un PDG, un client ou un membre de la direction**, et vous aider à affûter votre message. Collez votre document, puis posez l’une des questions ci-dessous."
+      },
+      {
+        "t": "p",
+        "x": "Ce jeu de rôle aide à **repérer les manques, renforcer les arguments et rendre votre travail plus convaincant**."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le regard du PDG",
+        "type": "prompt",
+        "texte": "Mets-toi dans la peau du PDG d’une entreprise technologique : quelles inquiétudes aurais-tu à propos de ce rapport ?",
+        "adapte": false
+      },
+      {
+        "titre": "Le regard de la direction",
+        "type": "prompt",
+        "texte": "Du point de vue d’un membre du comité de direction, quelles faiblesses vois-tu dans mon argumentaire ?",
+        "adapte": false
+      },
+      {
+        "titre": "Le regard du client",
+        "type": "prompt",
+        "texte": "En tant que client potentiel, quelles questions poserais-tu après avoir lu ceci ?",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Faire lire votre document par le public qui va le juger révèle des failles que vous ne voyez plus.",
+    "source": {
+      "cle": "apple-s-ai-strat-explained",
+      "date": "2025-03-11",
+      "url": "https://www.theneurondaily.com/p/apple-s-ai-strat-explained",
+      "newsletter": "Apple's AI strat, explained",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺Apple's AI strat, explained"
+    }
+  },
+  {
+    "id": "faire-tourner-le-modele-qwq-32b-sur-votre-propre-ordinateur",
+    "titre": "Faire tourner le modèle QwQ-32B sur votre propre ordinateur",
+    "resume": "QwQ-32B, le modèle de raisonnement d’Alibaba, s’installe gratuitement sur votre machine avec Ollama ou LM Studio. Vérifiez d’abord que votre ordinateur peut le faire tourner.",
+    "categorie": "outils",
+    "niveau": "avance",
+    "outils": [
+      "autre"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "[QwQ-32B](https://huggingface.co/Qwen/QwQ-32B) est un modèle d’Alibaba que vous pouvez faire tourner sur votre ordinateur avec [Ollama](https://ollama.com/library/qwq:32b) ou [LM Studio](https://lmstudio.ai/model/qwq-32b), ou tester en ligne sur [Qwen Chat](https://chat.qwen.ai/) en sélectionnant « QwQ-32B » dans le menu des modèles."
+      },
+      {
+        "t": "p",
+        "x": "La [vidéo de Julian](https://youtu.be/X8iQZ3ZDbVg?feature=shared) le présente bien. À sa sortie, en mars 2025, il était donné [meilleur que](https://www.reddit.com/r/LocalLLaMA/comments/1j4gw91/qwq32b_seems_to_get_the_same_quality_final_answer/) R1 de DeepSeek et dépassait o1-mini d’OpenAI sur de nombreuses tâches, tout en restant **gratuit** et utilisable sur votre propre machine."
+      },
+      {
+        "t": "p",
+        "x": "La contrepartie : il faut un ordinateur assez puissant. Pour savoir si le vôtre convient, [utilisez cet outil](https://www.caniusellm.com/)."
+      },
+      {
+        "t": "p",
+        "x": "Pour aller plus loin, [cette vidéo](https://youtu.be/j2yGLTl-XRY?feature=shared) montre comment installer [Bolt.DIY](https://github.com/stackblitz-labs/bolt.diy), la version open source de [Bolt.new](https://bolt.new/), pour créer des applications hors ligne avec QwQ."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "La commande de lancement avec Ollama",
+        "type": "commande",
+        "texte": "ollama run qwq:32b",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Un modèle de raisonnement performant peut tourner gratuitement en local, à condition que votre ordinateur soit assez puissant.",
+    "source": {
+      "cle": "microsoft-s-breaking-from-openai",
+      "date": "2025-03-10",
+      "url": "https://www.theneurondaily.com/p/microsoft-s-breaking-from-openai",
+      "newsletter": "Microsoft's breaking from OpenAI...",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺Microsoft's breaking from OpenAI..."
+    }
+  },
+  {
+    "id": "trouver-le-meilleur-modele-d-ia-pour-votre-usage-avec-lm-arena",
+    "titre": "Trouver le meilleur modèle d’IA pour votre usage avec LM Arena",
+    "resume": "Le classement « Prompt-to-Leaderboard » de LM Arena montre, catégorie par catégorie, quel modèle les utilisateurs jugent le meilleur, avec des exemples de prompts testés.",
+    "categorie": "outils",
+    "niveau": "debutant",
+    "outils": [
+      "autre"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Pour savoir quel modèle d’IA les autres utilisateurs jugent le plus adapté à votre usage précis, essayez l’outil [Prompt-to-Leaderboard de LM Arena](https://lmarena.ai/), simple à prendre en main."
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Rendez-vous sur [lmarena.ai](https://lmarena.ai/).",
+          "Cliquez sur l’onglet **Prompt-to-Leaderboard** dans le menu de navigation en haut de la page.",
+          "Sélectionnez le sous-onglet **P2L Explorer** pour afficher le classement interactif.",
+          "Choisissez dans la roue de couleurs la grande catégorie de prompts qui vous intéresse.",
+          "Choisissez ensuite l’une des sous-catégories proposées."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Pour chaque sous-catégorie, vous voyez le classement détaillé des modèles élus les meilleurs pour cette tâche, ainsi que des exemples de prompts qui ont servi au test."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt pour situer votre usage",
+        "type": "prompt",
+        "texte": "Je cherche le meilleur modèle d’IA pour la tâche suivante : [description de votre tâche]. Aide-moi à la rattacher à une grande catégorie de prompts (rédaction, code, mathématiques, etc.) et à une sous-catégorie précise, pour que je consulte le bon classement.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Le meilleur modèle dépend de la tâche : consultez le classement de votre catégorie d’usage plutôt qu’un classement général.",
+    "source": {
+      "cle": "our-honest-take-on-gpt-4-5",
+      "date": "2025-03-07",
+      "url": "https://www.theneurondaily.com/p/our-honest-take-on-gpt-4-5",
+      "newsletter": "Our HONEST take on GPT-4.5",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺Our HONEST take on GPT-4.5"
+    }
+  },
+  {
+    "id": "faire-raisonner-l-ia-par-brouillons-courts-chain-of-draft",
+    "titre": "Faire raisonner l’IA par brouillons courts (chain of draft)",
+    "resume": "La méthode « chain of draft » demande au modèle de réfléchir étape par étape, en cinq mots maximum par étape : un raisonnement plus rapide et moins coûteux via l’API.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "La [*chain of draft*](https://venturebeat.com/ai/less-is-more-how-chain-of-draft-could-cut-ai-costs-by-90-while-improving-performance/) (chaîne de brouillons) est une nouvelle méthode de prompt qui améliore le raisonnement des modèles de langage « classiques », ceux qui ne « réfléchissent » pas avant de répondre. Elle leur demande de raisonner étape par étape, mais en cinq mots au plus par étape ([l’article de recherche](https://arxiv.org/abs/2502.18600))."
+      },
+      {
+        "t": "p",
+        "x": "Le raisonnement devient plus rapide **et** moins cher si vous passez par l’API. Matt Berman en explique le fonctionnement dans [cette vidéo](https://youtu.be/rYnisU10wu0?feature=shared), mais il suffit d’ajouter le texte ci-dessous à votre prochain prompt pour l’essayer."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt chain of draft",
+        "type": "prompt",
+        "texte": "Réfléchis étape par étape, mais ne garde qu’un brouillon minimal pour chaque étape de réflexion, de 5 mots au plus. Donne la réponse à la fin, après un séparateur ####.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Un raisonnement n’a pas besoin d’être bavard : limiter chaque étape à quelques mots garde le bénéfice de la réflexion pour moins de tokens.",
+    "source": {
+      "cle": "is-mercury-the-new-ai-to-watch",
+      "date": "2025-03-05",
+      "url": "https://www.theneurondaily.com/p/is-mercury-the-new-ai-to-watch",
+      "newsletter": "Is Mercury the new AI to watch?",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Is Mercury the new AI to watch?"
+    }
+  },
+  {
+    "id": "construire-un-assistant-d-agenda-avec-n8n-en-dix-etapes",
+    "titre": "Construire un assistant d’agenda avec n8n en dix étapes",
+    "resume": "Dans un direct d’une heure, Tina Huang construit avec n8n un assistant qui lit votre agenda et bloque du temps. Voici sa méthode en dix étapes, de la simplicité aux garde-fous.",
+    "categorie": "automatiser",
+    "niveau": "intermediaire",
+    "outils": [
+      "autre"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Tina Huang a animé un [direct d’une heure](https://www.youtube.com/live/NUPjbWsSe7s?feature=shared) sur la création d’agents IA avec [n8n](https://n8n.io/) : une démonstration pratique de sa [vidéo précédente](https://youtu.be/qU3fmidNbJE?feature=shared). Elle y construit un assistant d’agenda simple, qui lit votre emploi du temps et bloque du temps pour de nouvelles activités."
+      },
+      {
+        "t": "p",
+        "x": "**Sa méthode en bref** (il faudra quand même regarder la vidéo complète pour que tout prenne sens) :"
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Commencez par la solution la plus simple possible pour votre tâche (ne compliquez pas).",
+          "[Apprenez les bases du prompt engineering](https://youtu.be/p09yRj47kNM?feature=shared) avant de vous lancer dans les agents.",
+          "Définissez le déclencheur (par exemple, un message Telegram).",
+          "Rédigez un prompt système qui explique clairement le rôle de l’agent et les outils dont il dispose.",
+          "Définissez les outils disponibles (par exemple, la lecture et l’écriture dans Google Agenda).",
+          "Configurez vos outils avec les bons paramètres.",
+          "Ajoutez de la mémoire si l’agent doit conserver le contexte.",
+          "Testez souvent, tout au long de la construction.",
+          "Affinez vos prompts au fil des résultats de vos tests.",
+          "Mettez en place les garde-fous nécessaires pour les agents entièrement autonomes."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Tina cite aussi le [tutoriel vidéo de David Ondrej](https://youtu.be/XVO3zsHdvio?feature=shared), qui lui a appris ces techniques, si vous voulez une autre version."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt système de l’assistant d’agenda",
+        "type": "prompt",
+        "texte": "Tu es mon assistant d’agenda. Ton rôle : lire mon agenda Google et y bloquer du temps pour les nouvelles activités que je te demande.\n\nOutils disponibles :\n- Lire l’agenda : pour vérifier mes disponibilités.\n- Créer un événement : pour bloquer un créneau.\n\nRègles : vérifie toujours mes disponibilités avant de créer un événement, ne modifie ni ne supprime jamais un événement existant et demande-moi confirmation si la demande est ambiguë. Réponds par un message court qui indique le créneau réservé.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Un bon agent commence simple : un déclencheur, un prompt système clair, quelques outils bien décrits, puis des tests fréquents.",
+    "source": {
+      "cle": "this-voice-ai-is-freaky",
+      "date": "2025-03-04",
+      "url": "https://www.theneurondaily.com/p/this-voice-ai-is-freaky",
+      "newsletter": "This voice AI is freaky",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺This voice AI is freaky"
+    }
+  },
+  {
+    "id": "tester-un-modele-haut-de-gamme-dans-le-playground-de-l-api",
+    "titre": "Tester un modèle haut de gamme dans le Playground de l’API",
+    "resume": "Un modèle réservé à l’abonnement le plus cher peut s’essayer à l’usage dans le Playground de l’API d’OpenAI : comparez-le à votre modèle habituel avant de payer plus.",
+    "categorie": "outils",
+    "niveau": "avance",
+    "outils": [
+      "chatgpt"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "À sa sortie, GPT-4.5 était trop coûteux à faire tourner pour la plupart des usages quotidiens : il fallait l’abonnement Pro à 200 $ par mois, ou un compte API facturé à l’usage, dont la note pouvait vite grimper."
+      },
+      {
+        "t": "p",
+        "x": "Vous pouviez cependant l’essayer dans le [Playground d’OpenAI](https://platform.openai.com/playground/chat?preset=7CywXwBqWRC5quhkU9LEFv6A), l’interface de test de l’API, avec [un prompt préparé par The Neuron](https://neuron-prompt-library.lovable.app/prompt/e4e29174-ce65-497d-98f4-7818645b816a). Le principe vaut pour tout nouveau modèle haut de gamme : envoyez le même prompt au nouveau modèle et à votre modèle habituel, puis comparez les réponses avant de vous abonner."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de test comparatif",
+        "type": "prompt",
+        "texte": "Voici une tâche que je confie souvent à l’IA : [tâche, avec un exemple réel et le contexte nécessaire]. Réalise-la, puis indique brièvement les hypothèses que tu as faites.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Avant de payer un abonnement pour un modèle, testez-le à l’usage sur vos vraies tâches et comparez-le à votre modèle habituel.",
+    "source": {
+      "cle": "claude-3-7-backlash",
+      "date": "2025-03-03",
+      "url": "https://www.theneurondaily.com/p/claude-3-7-backlash",
+      "newsletter": "Claude 3.7 backlash",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺Claude 3.7 backlash"
+    }
+  },
+  {
+    "id": "apprendre-a-utiliser-les-modeles-de-langage-avec-andrej-karpathy",
+    "titre": "Apprendre à utiliser les modèles de langage avec Andrej Karpathy",
+    "resume": "Dans une vidéo grand public, Andrej Karpathy explique comment utiliser les modèles de langage, avec plus de 15 conseils de prompt et bonnes pratiques pour les outils d’IA.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Andrej Karpathy a publié une [nouvelle vidéo](https://youtu.be/EWvNQjAaOHw?feature=shared) (en anglais) dans sa série « grand public » sur les modèles de langage et la façon de s’en servir."
+      },
+      {
+        "t": "p",
+        "x": "Elle s’accompagne d’un [document de plus de 15 conseils](https://docs.google.com/document/d/1UYzGpNMXt11q6n-3oEqf2wWONa2nzo29P2fph2Qr4Tk/edit?usp=sharing) de prompt et de bonnes pratiques pour utiliser les outils d’IA. Parcourez-le et testez un conseil à la fois sur vos tâches habituelles."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de transparence sur les sources",
+        "type": "prompt",
+        "texte": "Avant de répondre à ma question, indique si ta réponse s’appuie sur tes connaissances internes (et jusqu’à quelle date elles vont) ou sur une recherche web, et signale ce que tu ne peux pas vérifier.\n\nMa question : [votre question]",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Comprendre comment fonctionne un modèle de langage aide à savoir quand lui faire confiance et quand vérifier.",
+    "source": {
+      "cle": "gpt-4-5-is-a-bust",
+      "date": "2025-02-28",
+      "url": "https://www.theneurondaily.com/p/gpt-4-5-is-a-bust",
+      "newsletter": "GPT 4.5 is a bust",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺GPT 4.5 is a bust"
+    }
+  },
+  {
+    "id": "lancer-un-prompt-chatgpt-en-un-clic-grace-a-un-lien-favori",
+    "titre": "Lancer un prompt ChatGPT en un clic grâce à un lien favori",
+    "resume": "Des paramètres ajoutés à l’adresse de ChatGPT préremplissent et envoient un prompt, ou activent la recherche et Canvas : enregistrez ces liens en favoris pour vos tâches courantes.",
+    "categorie": "outils",
+    "niveau": "intermediaire",
+    "outils": [
+      "chatgpt"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Saviez-vous que vous pouvez enregistrer vos prompts en favoris et les envoyer en un clic ? Vous pouvez même activer une fonction précise, comme Canvas ou la recherche, grâce au paramètre `hints` de ChatGPT :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "`?q=votre+prompt+ici` : préremplit la zone de saisie avec votre texte et l’envoie.",
+          "`?hints=search` : ouvre une nouvelle conversation avec la recherche activée.",
+          "`?hints=canvas` : ouvre une nouvelle conversation avec Canvas activé."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Pour les combiner, l’ordre idéal est `https://chatgpt.com/?hints=search&q=votre+prompt+ici`. Remplacez les espaces par des `+`, enregistrez l’adresse dans vos favoris et créez ainsi des raccourcis pour vos tâches d’IA les plus fréquentes : un vrai gain de temps."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le lien avec la recherche",
+        "type": "commande",
+        "texte": "https://chatgpt.com/?hints=search&q=votre+prompt+ici",
+        "adapte": false
+      },
+      {
+        "titre": "Le lien avec Canvas",
+        "type": "commande",
+        "texte": "https://chatgpt.com/?hints=canvas&q=votre+prompt+ici",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Un prompt que vous tapez souvent mérite un favori : une adresse bien construite le lance en un clic.",
+    "source": {
+      "cle": "hey-alexa-plus",
+      "date": "2025-02-27",
+      "url": "https://www.theneurondaily.com/p/hey-alexa-plus",
+      "newsletter": "Hey, Alexa+...\"",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺\"Hey, Alexa+...\""
+    }
+  },
+  {
+    "id": "comprendre-les-agents-ia-et-en-creer-un-sans-code-avec-n8n",
+    "titre": "Comprendre les agents IA et en créer un sans code avec n8n",
+    "resume": "La vidéo de Tina Huang explique en 20 minutes ce qui distingue un agent d’une simple IA, puis montre comment créer sans code, avec n8n, un bot Telegram qui gère votre agenda.",
+    "categorie": "automatiser",
+    "niveau": "intermediaire",
+    "outils": [
+      "autre"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "C’est sans conteste [la meilleure présentation des agents IA pour débutants](https://youtu.be/qU3fmidNbJE?feature=shared), en une vingtaine de minutes, que l’équipe de The Neuron ait vue."
+      },
+      {
+        "t": "p",
+        "x": "Tina Huang y couvre tout, des notions de base (ce qui fait d’un système un agent plutôt qu’une simple IA) aux stratégies de mise en œuvre. Elle montre même une méthode entièrement sans code pour construire avec [n8n](https://n8n.io/) un agent qui gère votre agenda via un bot Telegram."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de conception d’agent",
+        "type": "prompt",
+        "texte": "Je veux construire sans code, avec n8n, un agent qui [objectif de l’agent], déclenché par [déclencheur, par exemple un message Telegram]. Décris-moi, dans l’ordre, les nœuds à créer et les outils et autorisations à connecter, puis rédige le prompt système de l’agent.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Avant de construire un agent, comprenez ce qui le distingue d’une simple IA : un outil sans code comme n8n suffit ensuite pour vous lancer.",
+    "source": {
+      "cle": "15-wild-claude-3-7-demos",
+      "date": "2025-02-26",
+      "url": "https://www.theneurondaily.com/p/15-wild-claude-3-7-demos",
+      "newsletter": "WILD Claude 3.7 demos",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 15 WILD Claude 3.7 demos"
+    }
+  },
+  {
+    "id": "concevoir-un-agent-ia-efficace-selon-les-conseils-d-anthropic",
+    "titre": "Concevoir un agent IA efficace selon les conseils d’Anthropic",
+    "resume": "Anthropic résume ses conseils pour construire des agents : beaucoup de contexte, des objectifs plutôt que des méthodes, et des descriptions d’outils aussi soignées que les prompts.",
+    "categorie": "automatiser",
+    "niveau": "avance",
+    "outils": [
+      "claude"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Anthropic a publié [une vidéo](https://youtu.be/LP5OCa20Zpg?feature=shared) sur la construction d’agents IA, accompagnée d’[un article de blog sur le même sujet](https://www.anthropic.com/research/building-effective-agents). En bref :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "Donnez beaucoup de contexte à l’IA.",
+          "Concentrez-vous sur vos objectifs, pas sur les méthodes.",
+          "Combinez des outils spécialisés pour la recherche.",
+          "Appuyez-vous sur des cadres de travail (*frameworks*) quand vous êtes bloqué.",
+          "N’oubliez pas que l’IA ne voit pas le monde comme vous.",
+          "Soignez la description des outils autant que vos prompts."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Ce dernier point est souvent négligé : l’agent ne connaît de ses outils que ce que vous en écrivez. Le prompt ci-dessous vous aide à rédiger ces descriptions."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de description d’outil",
+        "type": "prompt",
+        "texte": "Mon agent IA pourra utiliser l’outil suivant : [nom, rôle, paramètres]. Rédige une description claire de cet outil, destinée au modèle : à quoi il sert, quand l’utiliser et quand ne pas l’utiliser, le sens de chaque paramètre avec un exemple, et les erreurs fréquentes à éviter.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Pour un agent, une description d’outil claire compte autant qu’un bon prompt.",
+    "source": {
+      "cle": "new-claude-3-7",
+      "date": "2025-02-25",
+      "url": "https://www.theneurondaily.com/p/new-claude-3-7",
+      "newsletter": "New Claude 3.7",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺New Claude 3.7"
+    }
+  },
+  {
+    "id": "travailler-avec-l-ia-comme-avec-un-collegue-junior-motive",
+    "titre": "Travailler avec l’IA comme avec un collègue junior motivé",
+    "resume": "Finaliste d’un championnat suédois de prompts, Joakim Jardenberg traite l’IA comme un stagiaire : il dialogue avec elle, répond à ses questions et la corrige en temps réel.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Lors d’un concours organisé par Google, Joakim Jardenberg, [finaliste du championnat suédois de prompts](https://www.warpnews.org/premium-content/the-swedish-runner-ups-best-prompt-tips/), a devancé plus de 300 concurrents. Sa méthode prend le contre-pied des conseils habituels :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "Voyez l’IA comme un collègue junior plein d’entrain assis en face de vous, pas comme un robot.",
+          "Encadrez-la comme un stagiaire : restez impliqué, répondez à ses questions et donnez-lui un retour en temps réel au lieu de simplement lui lancer des instructions.",
+          "Tenez compte de sa personnalité et de ses capacités, comme vous le feriez avec les points forts d’un coéquipier.",
+          "Ne surstructurez pas chaque prompt : des consignes parfois floues ouvrent la porte à des solutions créatives surprenantes.",
+          "Parlez vraiment à votre IA (oui, dictez vos prompts, avec le mode vocal avancé) au lieu de taper, pour une communication plus naturelle."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "**L’idée préférée de The Neuron :** Jardenberg s’est rendu compte que ce n’était pas l’IA qui l’aidait, mais lui qui aidait l’IA. Ce changement d’état d’esprit a fait passer ses résultats de bons à dignes d’un champion."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt du collègue junior",
+        "type": "prompt",
+        "texte": "Je vais te confier une tâche comme à un collègue qui débute dans l’équipe : [tâche et contexte]. Avant de commencer, pose-moi les questions dont tu as besoin. Ensuite, avance par étapes et montre-moi ton travail à chaque étape pour que je te donne mon retour.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Vous obtenez de meilleurs résultats en accompagnant l’IA comme un stagiaire qu’en lui lançant des instructions une fois pour toutes.",
+    "source": {
+      "cle": "gpt-4-5-is-incoming-but-gpt-4o-just-went-wild",
+      "date": "2025-02-21",
+      "url": "https://www.theneurondaily.com/p/gpt-4-5-is-incoming-but-gpt-4o-just-went-wild",
+      "newsletter": "GPT-4.5 is incoming, but GPT-4o just went WILD.",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 GPT-4.5 is incoming, but GPT-4o just went WILD."
+    }
+  },
+  {
+    "id": "structurer-un-prompt-en-objectif-format-mises-en-garde-et-contexte",
+    "titre": "Structurer un prompt en objectif, format, mises en garde et contexte",
+    "resume": "Greg Brockman, cofondateur d’OpenAI, propose une structure en quatre parties pour les modèles de raisonnement. La partie décisive : le contexte, livré comme à un ami.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Greg Brockman, cofondateur d’OpenAI, a [partagé](https://www.reddit.com/r/ChatGPT/comments/1it7t6w/chatgpt_founder_shares_the_anatomy_of_the_perfect/) la structure de prompt suivante pour o1, le modèle de raisonnement d’OpenAI :"
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "**Objectif** : ce que vous voulez obtenir.",
+          "**Format de réponse** : la forme du résultat attendu.",
+          "**Mises en garde** : les erreurs à éviter, les points à vérifier.",
+          "**Contexte en vrac** : tout ce que l’IA doit savoir de votre situation."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Ce qui change tout, c’est ce contexte. Écrire « nous ne nous reverrons pas avant des semaines, alors l’originalité compte vraiment » n’a pas du tout le même effet que « des endroits originaux, s’il te plaît »."
+      },
+      {
+        "t": "p",
+        "x": "**Essayez :** la prochaine fois que vous obtenez des réponses génériques, ajoutez le contexte que vous donneriez à un ami. Vous pouvez aussi demander à l’IA de vous aider à écrire un prompt avec cette structure."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le modèle en quatre parties",
+        "type": "prompt",
+        "texte": "Objectif : [ce que tu dois produire].\n\nFormat de réponse : [structure, longueur, présentation].\n\nMises en garde : [erreurs à éviter, points à vérifier].\n\nContexte : [tout ce que tu dirais à un ami pour qu’il comprenne vraiment la situation].",
+        "adapte": false
+      },
+      {
+        "titre": "Le prompt pour appliquer la structure",
+        "type": "prompt",
+        "texte": "Aide-moi à rédiger un prompt avec cette structure (objectif, format de réponse, mises en garde, contexte en vrac) pour le contexte ci-dessous.\n\n[votre contexte]",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Le contexte que vous donneriez à un ami est souvent ce qui sépare une réponse générique d’une réponse utile.",
+    "source": {
+      "cle": "microsofts-ai-games",
+      "date": "2025-02-20",
+      "url": "https://www.theneurondaily.com/p/microsofts-ai-games",
+      "newsletter": "Microsoft's AI games...",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺Microsoft's AI games..."
+    }
+  },
+  {
+    "id": "centraliser-un-document-de-reference-dans-un-projet-claude",
+    "titre": "Centraliser un document de référence dans un projet Claude",
+    "resume": "Jeff Su place dans un projet Claude un document « camp de base », puis ouvre une conversation par tâche : toutes s’appuient sur la même source sans mélanger les contextes.",
+    "categorie": "memoire",
+    "niveau": "intermediaire",
+    "outils": [
+      "claude"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Vous voulez apprendre à utiliser Claude plutôt que ChatGPT ? [Cette vidéo de Jeff Su](https://www.youtube.com/watch?v=RudrWy9uPZE) explique bien comment et pourquoi il utilise Claude, et pour quelles tâches."
+      },
+      {
+        "t": "p",
+        "x": "**En bref :** il se sert des Projects pour placer un document « camp de base » au niveau du projet, puis crée des conversations séparées qui s’appuient toutes sur ce même document, chacune pour une tâche précise."
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Créez un projet dans Claude.",
+          "Ajoutez votre document de référence aux connaissances du projet.",
+          "Ouvrez une nouvelle conversation dans le projet pour chaque tâche."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Vous disposez ainsi d’une source de vérité unique qui alimente plusieurs productions, sans avoir à la recharger et sans risquer de mélanger les contextes."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "L’instruction du projet",
+        "type": "prompt",
+        "texte": "Pour chaque demande dans ce projet, appuie-toi d’abord sur le document [nom du document de référence]. S’il ne contient pas l’information nécessaire, dis-le plutôt que de supposer. Respecte le ton, la terminologie et les choix déjà actés dans ce document.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Un document de référence au niveau du projet et une conversation par tâche : le contexte reste cohérent sans se mélanger.",
+    "source": {
+      "cle": "robots-the-new-ai",
+      "date": "2025-02-18",
+      "url": "https://www.theneurondaily.com/p/robots-the-new-ai",
+      "newsletter": "Robots the new AI?",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Robots the new AI?"
+    }
+  },
+  {
+    "id": "puiser-dans-la-bibliotheque-awesome-chatgpt-prompts",
+    "titre": "Puiser dans la bibliothèque Awesome ChatGPT Prompts",
+    "resume": "Awesome ChatGPT Prompts rassemble des prompts éprouvés par la communauté pour mettre l’IA en mode expert en un instant. Ils fonctionnent avec ChatGPT, Claude comme Gemini.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "[Awesome ChatGPT Prompts](https://github.com/f/awesome-chatgpt-prompts) est une bibliothèque de prompts sélectionnés pour enrichir vos conversations avec l’IA."
+      },
+      {
+        "t": "p",
+        "x": "**Son intérêt :** chaque prompt a été éprouvé par la communauté et conçu pour mettre instantanément l’IA en mode expert. Ils fonctionnent avec différents modèles, de ChatGPT à Claude en passant par Gemini."
+      },
+      {
+        "t": "p",
+        "x": "**Le conseil :** parcourez la page et cherchez avec Ctrl+F (Cmd+F sur Mac) la catégorie qui vous intéresse : développement, entreprise, marketing, etc. Les prompts sont en anglais : traduisez-les ou demandez simplement à l’IA de vous répondre en français."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de rôle d’expert",
+        "type": "prompt",
+        "texte": "Je veux que tu joues le rôle de [expert, par exemple conseiller en recrutement]. Je te donnerai [ce que vous allez fournir] et tu me répondras par [ce que vous attendez : analyse, conseils, corrections]. Réponds uniquement dans ce rôle, en français. Ma première demande est : [votre demande].",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Inutile de tout réinventer : partez d’un prompt éprouvé par d’autres et adaptez-le à votre cas.",
+    "source": {
+      "cle": "why-ai-skills-matter-more-than-ai-model",
+      "date": "2025-02-17",
+      "url": "https://www.theneurondaily.com/p/why-ai-skills-matter-more-than-ai-model",
+      "newsletter": "Why AI SKILL matters more than AI model",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Why AI SKILL matters more than AI model"
+    }
+  },
+  {
+    "id": "faire-analyser-puis-imiter-votre-style-d-ecriture-par-l-ia",
+    "titre": "Faire analyser puis imiter votre style d’écriture par l’IA",
+    "resume": "Avant toute consigne, montrez à l’IA un échantillon de vos textes et demandez-lui d’en analyser le ton, la structure et les particularités pour les reproduire dans ses réponses.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Une [infographie sur l’écriture en écho](https://www.reddit.com/r/ChatGPT/comments/1ioir86/mini_echowriting_guide/) (*echo writing*), partagée sur Reddit, résume bien la méthode."
+      },
+      {
+        "t": "p",
+        "x": "**Le principe :** au lieu de donner des instructions basiques dans vos prompts, montrez d’abord à l’IA un échantillon de vos textes, puis demandez-lui d’analyser votre ton, votre structure et vos particularités pour les reproduire dans ses réponses."
+      },
+      {
+        "t": "p",
+        "x": "**L’idée préférée de The Neuron :** la régularité est essentielle. Plus vous fournissez d’exemples de votre style, mieux l’IA imite votre voix."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt d’analyse et d’imitation",
+        "type": "prompt",
+        "texte": "Voici [nombre] exemples de mes textes. Analyse d’abord mon ton, la structure de mes phrases et de mes paragraphes, mon vocabulaire et mes tics d’écriture, et résume-les en une liste. Ensuite, rédige [votre demande] en respectant cette liste.\n\n[vos exemples]",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Plus vous donnez d’exemples de vos textes, plus l’IA reproduit fidèlement votre voix.",
+    "source": {
+      "cle": "is-gpt-5-ai-shrinkflation",
+      "date": "2025-02-14",
+      "url": "https://www.theneurondaily.com/p/is-gpt-5-ai-shrinkflation",
+      "newsletter": "Is GPT-5 AI \"Shrinkflation\"?",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺Is GPT-5 AI \"Shrinkflation\"?"
+    }
+  },
+  {
+    "id": "rediger-un-prompt-de-recherche-approfondie-exigeant-et-source",
+    "titre": "Rédiger un prompt de recherche approfondie exigeant et sourcé",
+    "resume": "Pour tirer le meilleur de Deep Research, demandez une analyse d’expert, plusieurs sources fiables, une question précise, une synthèse qui croise les sources et des citations.",
+    "categorie": "formuler",
+    "niveau": "intermediaire",
+    "outils": [
+      "chatgpt"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Pour tirer le meilleur de Deep Research, commencez par lui dire que vous attendez une analyse de niveau expert, appuyée sur plusieurs sources de qualité. Définissez précisément votre question de recherche, demandez une synthèse qui croise les sources et exigez toujours des citations en bonne et due forme."
+      },
+      {
+        "t": "p",
+        "x": "The Neuron propose [un modèle de prompt complet pour Deep Research](https://docs.google.com/document/d/12loemThiQzMP-vXCPXp5c7aAIWjCYqpdTYs0beUPWpE/copy) à copier. Le prompt ci-dessous reprend ces principes."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de recherche approfondie",
+        "type": "prompt",
+        "texte": "Je veux une analyse de niveau expert, appuyée sur plusieurs sources de haute qualité.\n\nQuestion de recherche : [votre question, formulée précisément].\n\nCroise les sources entre elles : signale les points de consensus, les divergences et les limites des données. Cite chaque affirmation importante avec un lien vers sa source.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Un agent de recherche vaut ce que vaut la question qu’on lui pose : précisez la question, le niveau d’exigence et les sources attendues.",
+    "source": {
+      "cle": "thursday-fdaa",
+      "date": "2025-02-13",
+      "url": "https://www.theneurondaily.com/p/thursday-fdaa",
+      "newsletter": "GPT-5 changes EVERYTHING",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 GPT-5 changes EVERYTHING"
+    }
+  },
+  {
+    "id": "faire-reflechir-l-ia-en-profondeur-sur-vos-donnees-marketing",
+    "titre": "Faire réfléchir l’IA en profondeur sur vos données marketing",
+    "resume": "Grace Leung montre comment un modèle de raisonnement fait émerger, à partir de vos contenus et des retours clients, les questions, les freins et les motivations cachées de vos clients.",
+    "categorie": "business",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Dans [cette vidéo](https://youtu.be/c89dcOXOKs4?feature=shared&t=240), Grace Leung présente cinq usages des modèles de raisonnement (comme o3 d’OpenAI ou DeepSeek R1) pour analyser plus finement vos données marketing :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "Cartographier les motivations des utilisateurs à partir de retours bruts.",
+          "Anticiper les évolutions du marché à partir des lancements de produits.",
+          "Repérer les points de friction dans le parcours client.",
+          "Décoder les angles morts du discours de vos concurrents.",
+          "Tester l’expérience utilisateur au regard des besoins d’un public précis."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Sa façon de structurer ses prompts : désigner le contenu à analyser, demander une réflexion approfondie, puis poser une série de questions ciblées, comme dans l’exemple ci-dessous."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt d’analyse approfondie",
+        "type": "prompt",
+        "texte": "Analyse [contenu précis : page web, avis clients, parcours d’achat…] et réfléchis en profondeur :\n- Quelles sont les principales questions que les clients pourraient se poser ?\n- Quels signaux de confiance pourraient manquer ?\n- À quels endroits les utilisateurs risquent-ils de s’y perdre ?\n- Quelles sont les motivations profondes derrière les comportements des utilisateurs ?",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Un modèle de raisonnement donne le meilleur de lui-même quand vous lui posez des questions ciblées sur un contenu précis.",
+    "source": {
+      "cle": "elon-to-buy-openai",
+      "date": "2025-02-11",
+      "url": "https://www.theneurondaily.com/p/elon-to-buy-openai",
+      "newsletter": "Elon to buy OpenAI?!",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺Elon to buy OpenAI?!"
+    }
+  },
+  {
+    "id": "transformer-l-ia-en-contradicteur-pour-qu-elle-cesse-de-vous-approuver",
+    "titre": "Transformer l’IA en contradicteur pour qu’elle cesse de vous approuver",
+    "resume": "Ce prompt interdit à l’IA de simplement vous donner raison : elle analyse vos hypothèses, oppose des contre-arguments, teste votre logique et propose d’autres angles.",
+    "categorie": "verifier",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Voici [un prompt partagé sur Reddit](https://www.reddit.com/r/ChatGPT/comments/1ijr08f/a_prompt_to_avoid_chatgpt_simply_agreeing_with/) pour que ChatGPT cesse d’approuver tout ce que vous dites. Il en fait un partenaire d’entraînement intellectuel plutôt qu’un assistant complaisant."
+      },
+      {
+        "t": "p",
+        "x": "Collez-le au début d’une conversation, ou dans vos instructions personnalisées pour qu’il s’applique à tous vos échanges. Un autre utilisateur en a partagé [une version plus aboutie](https://www.reddit.com/r/ChatGPT/comments/1ijr08f/comment/mbgezn0/) dans la même discussion."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt contradicteur",
+        "type": "prompt",
+        "texte": "À partir de maintenant, ne te contente pas d’approuver mes affirmations et ne suppose pas que mes conclusions sont justes. Ton but est d’être un partenaire d’entraînement intellectuel, pas simplement un assistant conciliant. Chaque fois que je présente une idée, fais ce qui suit :\n1. Analyse mes hypothèses. Qu’est-ce que je tiens pour acquis et qui pourrait être faux ?\n2. Apporte des contre-arguments. Que répondrait un sceptique intelligent et bien informé ?\n3. Teste mon raisonnement. Ma logique résiste-t-elle à l’examen, ou présente-t-elle des failles ou des lacunes que je n’ai pas envisagées ?\n4. Propose d’autres points de vue. De quelles autres façons cette idée pourrait-elle être formulée, interprétée ou contestée ?\n5. Fais passer la vérité avant l’accord. Si je me trompe ou si ma logique est faible, je dois le savoir. Corrige-moi clairement et explique pourquoi.\n\nGarde une approche constructive, mais rigoureuse. Ton rôle n’est pas d’argumenter pour le plaisir, mais de me pousser vers plus de clarté, d’exactitude et d’honnêteté intellectuelle. Si je commence à tomber dans le biais de confirmation ou dans des hypothèses non vérifiées, signale-le directement. Affinons non seulement nos conclusions, mais aussi la façon dont nous y parvenons.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Une IA a tendance à vous donner raison : demandez-lui explicitement de faire passer la vérité avant votre approbation.",
+    "source": {
+      "cle": "sam-s-big-predictions",
+      "date": "2025-02-10",
+      "url": "https://www.theneurondaily.com/p/sam-s-big-predictions",
+      "newsletter": "Sam's big predictions...",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺Sam's big predictions..."
+    }
+  },
+  {
+    "id": "utiliser-deep-research-pour-reperer-des-candidats-a-recruter",
+    "titre": "Utiliser Deep Research pour repérer des candidats à recruter",
+    "resume": "Deep Research peut servir d’outil de recrutement : décrivez le profil recherché et laissez l’IA explorer le web public pour vous proposer des candidats, sources à l’appui.",
+    "categorie": "business",
+    "niveau": "intermediaire",
+    "outils": [
+      "chatgpt"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Greg Kamradt s’est [servi de Deep Research comme outil de recrutement](https://x.com/GregKamradt/status/1888025173250679071) : l’agent de recherche approfondie de ChatGPT explore le web pour trouver des profils qui correspondent à un poste."
+      },
+      {
+        "t": "p",
+        "x": "L’équipe de The Neuron a rédigé [son propre prompt](https://pastebin.com/uByfQ9fH) en suivant les conseils de [cette discussion Reddit](https://www.reddit.com/r/ChatGPTPro/comments/1iis4wy/comment/mbcuzeb/), avec de très bons résultats. Ci-dessous, une version à compléter avec votre poste et vos critères."
+      },
+      {
+        "t": "p",
+        "x": "Vérifiez toujours les profils proposés avant de contacter qui que ce soit, et respectez les règles applicables aux données personnelles."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de recherche de candidats",
+        "type": "prompt",
+        "texte": "Je recrute un [intitulé du poste] pour [entreprise et contexte]. Critères indispensables : [compétences, expérience, localisation]. Critères appréciés : [autres critères]. Recherche sur le web public des personnes qui correspondent à ce profil. Pour chacune, indique son poste actuel, les éléments publics qui montrent la correspondance et les liens vers tes sources. Présente le résultat dans un tableau, du profil le plus pertinent au moins pertinent.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Un agent de recherche approfondie peut faire un premier tri de profils publics, à condition de lui donner des critères précis et de vérifier ses trouvailles.",
+    "source": {
+      "cle": "big-tech-s-big-ai-gamble",
+      "date": "2025-02-09",
+      "url": "https://www.theneurondaily.com/p/big-tech-s-big-ai-gamble",
+      "newsletter": "Big tech's big AI gamble",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺Big tech's big AI gamble"
+    }
+  },
+  {
+    "id": "solliciter-un-modele-de-raisonnement-avec-un-prompt-court-et-clair",
+    "titre": "Solliciter un modèle de raisonnement avec un prompt court et clair",
+    "resume": "Selon Microsoft, les modèles de raisonnement comme o1 et o3-mini n’ont pas besoin d’exemples ni d’étapes : donnez le contexte, l’objectif et le format, puis laissez-les réfléchir.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "D’après [une publication de Microsoft](https://techcommunity.microsoft.com/blog/azure-ai-services-blog/prompt-engineering-for-openai%E2%80%99s-o1-and-o3-mini-reasoning-models/4374010), les modèles de raisonnement o1 et o3-mini demandent l’inverse des astuces habituelles de GPT (exemples, guide étape par étape, *chain-of-thought*) : un contexte limpide et un minimum d’instructions. Donnez-leur :"
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Les faits et le contexte essentiels dont ils ont besoin (ils ne savent pas tout).",
+          "Une formulation claire de ce que vous voulez.",
+          "Le format de réponse souhaité."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Ensuite, laissez travailler leur moteur de raisonnement intégré. Ces modèles excellent sur les tâches complexes quand le prompt reste épuré, sans les techniques habituelles. L’équipe de The Neuron a fait synthétiser ces conseils par o1-pro en un [modèle de prompt](https://chatgpt.com/share/67a55ff2-7b1c-8003-abf5-bac5e18fa38a) ([version texte](https://pastebin.com/stdxRj8h))."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt épuré pour modèle de raisonnement",
+        "type": "prompt",
+        "texte": "Contexte : [faits essentiels, données, contraintes].\n\nObjectif : [ce que tu dois produire, en une phrase].\n\nFormat de réponse : [structure, longueur, présentation].",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Avec un modèle de raisonnement, plus le prompt est simple et le contexte complet, meilleur est le résultat.",
+    "source": {
+      "cle": "top-13-ai-insights",
+      "date": "2025-02-07",
+      "url": "https://www.theneurondaily.com/p/top-13-ai-insights",
+      "newsletter": "Top 13 AI insights",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺Top 13 AI insights"
+    }
+  },
+  {
+    "id": "apprendre-avec-un-tuteur-socratique-puis-reexpliquer-a-l-ia",
+    "titre": "Apprendre avec un tuteur socratique, puis réexpliquer à l’IA",
+    "resume": "Faites-vous guider par des questions plutôt que par un cours magistral, puis expliquez à votre tour la notion à l’IA : elle repère les lacunes de votre compréhension.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Robin Delta a partagé [7 prompts](https://x.com/heyrobinai/status/1886355123544441252) pour maîtriser n’importe quel sujet avec o3-mini et la recherche web, sans dépenser un centime en formation."
+      },
+      {
+        "t": "p",
+        "x": "**Le préféré de The Neuron :** le prompt « [Socratic Enlightenment](https://x.com/heyrobinai/status/1886355020893040839) » transforme l’IA en Socrate personnel. Au lieu de vous déverser des informations, elle vous guide par des questions approfondies, qui ancrent bien mieux les notions. Très utile pour les concepts difficiles."
+      },
+      {
+        "t": "p",
+        "x": "**Astuce :** une fois la notion travaillée, utilisez le prompt « [Teach-back Mastery](https://x.com/heyrobinai/status/1886355053235372165) » : vous réexpliquez le concept à l’IA, qui repère les lacunes de votre compréhension et vous aide à les combler."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt du tuteur socratique",
+        "type": "prompt",
+        "texte": "Je veux comprendre [notion]. Sois mon tuteur socratique : ne me donne pas d’explication toute faite. Pose-moi une question à la fois pour me faire raisonner, pars de ce que je sais déjà et ne m’aide que lorsque je bloque. Appuie-toi sur des sources fiables si nécessaire.",
+        "adapte": true
+      },
+      {
+        "titre": "Le prompt d’explication inversée",
+        "type": "prompt",
+        "texte": "Je vais t’expliquer [notion] avec mes propres mots. Repère les erreurs, les imprécisions et les lacunes de mon explication, pose-moi des questions sur les points flous, puis aide-moi à les combler.\n\nMon explication : [votre explication]",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "On retient mieux en cherchant les réponses qu’en les lisant, et en expliquant qu’en écoutant.",
+    "source": {
+      "cle": "deepfakes-just-got-10x-better",
+      "date": "2025-02-05",
+      "url": "https://www.theneurondaily.com/p/deepfakes-just-got-10x-better",
+      "newsletter": "Deepfakes just got 10x better",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺Deepfakes just got 10x better"
+    }
+  },
+  {
+    "id": "faire-rechercher-par-l-ia-les-bonnes-pratiques-de-prompt-d-un-modele",
+    "titre": "Faire rechercher par l’IA les bonnes pratiques de prompt d’un modèle",
+    "resume": "Avec la recherche web activée, un modèle peut collecter les conseils publiés pour bien le solliciter et les synthétiser en un modèle de prompt réutilisable, à tester sur votre cas.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "o3-mini, accessible aussi aux utilisateurs gratuits de ChatGPT, est un outil puissant à la portée de tous, contrairement à Deep Research, Operator et aux autres outils alors réservés à l’abonnement Pro."
+      },
+      {
+        "t": "p",
+        "x": "L’équipe de The Neuron s’en est servie pour [rechercher sur le web des conseils de prompt pour o3-mini lui-même](https://chatgpt.com/share/67a075ed-073c-8003-88a2-a4f185298e31), et en a tiré un modèle de prompt. Elle a posé [la même question à Deep Research](https://chatgpt.com/share/67a1727d-b55c-8003-8406-82c968c792c1) pour comparer."
+      },
+      {
+        "t": "p",
+        "x": "Ces modèles de prompt ne conviendront pas forcément à tous les besoins : essayez-les et ajustez-les. La méthode, elle, s’applique à n’importe quel nouveau modèle."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de recherche de bonnes pratiques",
+        "type": "prompt",
+        "texte": "Recherche sur le web les conseils officiels et les retours d’utilisateurs expérimentés sur la meilleure façon de rédiger des prompts pour [nom du modèle]. Synthétise-les, puis construis un modèle de prompt réutilisable avec des emplacements entre crochets, et indique la source de chaque conseil.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Un modèle équipé de la recherche web peut vous apprendre à le solliciter : demandez-lui de chercher, puis de synthétiser.",
+    "source": {
+      "cle": "gpt-deep-research-tested",
+      "date": "2025-02-04",
+      "url": "https://www.theneurondaily.com/p/gpt-deep-research-tested",
+      "newsletter": "GPT Deep Research, tested",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺GPT Deep Research, tested"
+    }
+  },
+  {
+    "id": "creer-un-quiz-interactif-directement-dans-canvas",
+    "titre": "Créer un quiz interactif directement dans Canvas",
+    "resume": "Canvas sait afficher des applications HTML et React dans la conversation : vous pouvez y créer quiz, jeux ou visualisations de données et les utiliser sans quitter ChatGPT.",
+    "categorie": "creer",
+    "niveau": "intermediaire",
+    "outils": [
+      "chatgpt"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Si vous n’avez pas utilisé [Canvas](https://openai.com/index/introducing-canvas/) depuis un moment, il mérite un nouveau coup d’œil : OpenAI y a ajouté la prise en charge du modèle o1 et la possibilité d’afficher des applications HTML et React directement dans la conversation."
+      },
+      {
+        "t": "p",
+        "x": "Vous pouvez donc créer des applications interactives dans ChatGPT (quiz, jeux, visualisations de données) qui s’affichent dans la fenêtre de discussion. Pour essayer, activez Canvas dans la barre d’outils sous la zone de saisie, puis envoyez le prompt ci-dessous."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt du quiz interactif",
+        "type": "prompt",
+        "texte": "Crée une application de quiz interactive avec 5 questions à choix multiple sur [votre sujet]. Ajoute un indicateur de progression et l’affichage du score final. Utilise les composants shadcn/ui pour un design épuré et moderne.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Canvas transforme une simple demande en petite application utilisable sur-le-champ, sans rien installer.",
+    "source": {
+      "cle": "the-new-chatgpt-o3-mini",
+      "date": "2025-02-03",
+      "url": "https://www.theneurondaily.com/p/the-new-chatgpt-o3-mini",
+      "newsletter": "The new ChatGPT: o3-mini",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺The new ChatGPT: o3-mini"
+    }
+  },
+  {
+    "id": "faire-debattre-l-ia-de-sa-propre-reponse",
+    "titre": "Faire débattre l’IA de sa propre réponse",
+    "resume": "Parmi les cinq astuces de Conor Grennan, « split » demande à l’IA de débattre de la réponse qu’elle vient de donner : un bon remède contre sa tendance à vous donner raison.",
+    "categorie": "verifier",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "[Conor Grennan](https://www.ai-mindset.ai/) a partagé [cinq astuces de prompt](https://www.reddit.com/r/ChatGPT/comments/1i8xc9p/chatgpt_prompt_strategies/), tirées d’une méthode plus complète. La préférée de The Neuron : **split** (scinder), qui consiste à demander à l’IA de débattre de la réponse qu’elle vient de vous donner."
+      },
+      {
+        "t": "p",
+        "x": "Les chatbots ont tendance à [nous dire ce que nous voulons entendre](https://hub.jhu.edu/2024/05/13/chatbots-tell-people-what-they-want-to-hear/) : c’est la complaisance. Le débat est une parade astucieuse pour obtenir la réponse la plus solide possible. Autre relance efficace : redemander la réponse en exigeant un regard aussi critique que possible."
+      },
+      {
+        "t": "p",
+        "x": "Quant aux autres astuces : **mimic** (imiter) est indispensable pour capturer votre style d’écriture ; **bionic**, **conjure** et **time travel** peuvent servir dans un contexte créatif, mais pas quand l’exactitude des faits compte."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de débat (split)",
+        "type": "prompt",
+        "texte": "Organise un débat sur la réponse que tu viens de me donner : présente les meilleurs arguments pour, puis les meilleurs arguments contre, et conclus par ce qui tient vraiment après examen.",
+        "adapte": true
+      },
+      {
+        "titre": "La relance critique",
+        "type": "prompt",
+        "texte": "Refais cette réponse, mais en étant aussi critique, pointilleux et analytique que possible.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Demander à l’IA de contester sa propre réponse limite sa tendance à vous donner raison.",
+    "source": {
+      "cle": "new-ai-copyright-rules",
+      "date": "2025-01-30",
+      "url": "https://www.theneurondaily.com/p/new-ai-copyright-rules",
+      "newsletter": "New AI copyright rules",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 New AI copyright rules"
+    }
+  },
+  {
+    "id": "ameliorer-ses-prompts-avec-maskara-un-correcteur-dedie-a-l-ia",
+    "titre": "Améliorer ses prompts avec Maskara, un correcteur dédié à l’IA",
+    "resume": "Maskara.ai, entraîné sur des milliers de prompts de qualité, vous aide à écrire de meilleurs prompts et à les tester sur différents modèles avant de vous en servir.",
+    "categorie": "formuler",
+    "niveau": "intermediaire",
+    "outils": [
+      "autre"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Vous rêvez d’un « chuchoteur de prompts » ? C’est à peu près ce qu’est [Maskara.ai](https://maskara.ai/) : un outil entraîné sur des milliers de prompts de qualité pour vous aider à mieux écrire les vôtres. Une sorte de Grammarly pour parler à l’IA. Vous pouvez même tester vos prompts sur différents modèles pour voir comment ils se comportent avant de les utiliser."
+      },
+      {
+        "t": "p",
+        "x": "Maskara est aussi réglé pour les modèles de raisonnement. [Ashutosh Shrivastava](https://x.com/ai_for_success) en a fait [quelques démonstrations](https://x.com/ai_for_success/status/1884089514572013876) : il génère des prompts pour ChatGPT o1 (qui fonctionnent aussi bien avec DeepSeek R1, selon lui) et les fait valider par Claude 3.5 Sonnet."
+      },
+      {
+        "t": "p",
+        "x": "Sans outil dédié, vous pouvez reproduire l’étape de validation en soumettant votre prompt à un autre modèle avec le prompt ci-dessous."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de validation croisée",
+        "type": "prompt",
+        "texte": "Voici un prompt que je compte envoyer à un modèle de raisonnement : [votre prompt]. Évalue-le : l’objectif est-il clair, le contexte suffisant, les contraintes et le format de réponse précisés ? Liste ses faiblesses, puis propose une version améliorée.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Faire relire un prompt par un outil ou un autre modèle avant de l’utiliser permet de repérer ses angles morts.",
+    "source": {
+      "cle": "openai-s-perfect-chess-move",
+      "date": "2025-01-29",
+      "url": "https://www.theneurondaily.com/p/openai-s-perfect-chess-move",
+      "newsletter": "OpenAI's perfect chess move",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 OpenAI's perfect chess move"
+    }
+  },
+  {
+    "id": "creer-des-applications-avec-deepseek-r1-trois-methodes",
+    "titre": "Créer des applications avec DeepSeek R1 : trois méthodes",
+    "resume": "Julian Goldie présente en 20 minutes trois façons d’utiliser le modèle de raisonnement DeepSeek R1 pour créer des applications. Un bon point de départ pour tester ce modèle.",
+    "categorie": "coder",
+    "niveau": "avance",
+    "outils": [
+      "autre"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Julian Goldie a publié un [guide vidéo de 20 minutes](https://youtu.be/E05tO8ic45E?feature=shared) (en anglais) qui montre comment utiliser DeepSeek R1, le modèle de raisonnement de DeepSeek, pour créer des applications selon trois méthodes différentes."
+      },
+      {
+        "t": "p",
+        "x": "Pour un premier essai, décrivez précisément l’application voulue et demandez au modèle de proposer un plan avant d’écrire le code : vous vérifiez la direction avant de lancer la génération."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de démarrage d’application",
+        "type": "prompt",
+        "texte": "Je veux créer une application qui [ce que fait l’application] pour [utilisateurs]. Fonctions indispensables : [liste]. Contraintes : [langage, hébergement, budget…]. Propose d’abord l’architecture et la liste des fichiers, attends ma validation, puis écris le code fichier par fichier.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Avant de faire coder un modèle, faites-lui proposer un plan : c’est plus simple à corriger qu’un code déjà écrit.",
+    "source": {
+      "cle": "monday-s-ai-crash-explained",
+      "date": "2025-01-28",
+      "url": "https://www.theneurondaily.com/p/monday-s-ai-crash-explained",
+      "newsletter": "Monday’s AI crash, explained",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺Monday’s AI crash, explained"
+    }
+  },
+  {
+    "id": "decouper-les-consignes-d-un-agent-en-questions-fermees",
+    "titre": "Découper les consignes d’un agent en questions fermées",
+    "resume": "Plutôt qu’une mission large, donnez à un agent comme Operator des vérifications oui/non, des options limitées et des champs précis à remplir : il agit de façon plus prévisible.",
+    "categorie": "automatiser",
+    "niveau": "intermediaire",
+    "outils": [
+      "chatgpt"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Si vous avez essayé Operator, l’agent d’OpenAI, vous l’avez peut-être vu tâtonner comme un somnambule qui se prépare un croque-monsieur à 3 h du matin : beaucoup de maladresses, du fromage partout… mais mission accomplie, ou presque. Cela arrive parce qu’on lui demande de tout faire d’un coup."
+      },
+      {
+        "t": "p",
+        "x": "Au lieu de le laisser se débattre avec des tâches larges et complexes, structurez vos prompts selon l’[approche FLAT de MindsDB](https://github.com/mindsdb/flat-ai) :"
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "**Des vérifications oui/non** sur un point précis.",
+          "**Des options limitées** parmi lesquelles choisir.",
+          "**Des données précises** à extraire, champ par champ."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "**Pourquoi ça marche :** un agent agit de façon plus prévisible quand la tâche est découpée en points de décision clairs plutôt qu’en consignes ouvertes. **Essayez :** la prochaine fois que vous rédigez un prompt complexe pour un agent, transformez-le en série de questions ou de choix simples. Par exemple, vérifiez qu’une entreprise a une page de tarifs publique avant de lancer une analyse concurrentielle complète."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Les vérifications oui/non",
+        "type": "prompt",
+        "texte": "Est-ce que [élément précis] est vrai ? Oui/Non\nCette page contient-elle [donnée précise] ? Oui/Non",
+        "adapte": false
+      },
+      {
+        "titre": "Le choix entre options limitées",
+        "type": "prompt",
+        "texte": "Ce prospect est-il CHAUD (rendez-vous demandé), TIÈDE (intérêt manifesté) ou FROID (aucun engagement) ?",
+        "adapte": false
+      },
+      {
+        "titre": "L’extraction de données précises",
+        "type": "prompt",
+        "texte": "Trouve exactement ces champs :\n- Taille de l’entreprise\n- Technologies utilisées\n- Dernière levée de fonds",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Un agent est plus fiable quand on remplace une mission ouverte par une suite de questions simples et de choix fermés.",
+    "source": {
+      "cle": "10-wild-deepseek-demos",
+      "date": "2025-01-27",
+      "url": "https://www.theneurondaily.com/p/10-wild-deepseek-demos",
+      "newsletter": "WILD Deepseek demos",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 10 WILD Deepseek demos"
+    }
+  },
+  {
+    "id": "faire-conclure-un-agent-qui-s-eternise-sur-une-tache",
+    "titre": "Faire conclure un agent qui s’éternise sur une tâche",
+    "resume": "Quand l’agent Operator d’OpenAI tourne en rond ou creuse trop, demandez-lui de conclure avec un résumé de ce qu’il a trouvé, ou reprenez vous-même la main en cours de route.",
+    "categorie": "automatiser",
+    "niveau": "intermediaire",
+    "outils": [
+      "chatgpt"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Voici une [astuce du chercheur en IA Elvis Saravia](https://youtu.be/hTZ8uIl7Pwc?feature=shared) : quand Operator, l’agent de navigation d’OpenAI (intégré depuis au mode agent de ChatGPT), met trop de temps sur une tâche, vous avez deux options :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "Lui demander de **conclure**, pour obtenir un résumé rapide de ce qu’il a déjà trouvé.",
+          "**Prendre le contrôle** vous-même en cours de tâche, idéal quand il est coincé dans une boucle."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Dans sa [démonstration](https://youtu.be/hTZ8uIl7Pwc?feature=shared), Elvis faisait rechercher à Operator des articles scientifiques sur l’IA sur archive.org. Quand l’agent a commencé à trop creuser dans les articles, il lui a simplement envoyé le message ci-dessous."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le message pour conclure",
+        "type": "prompt",
+        "texte": "Peux-tu terminer la tâche, s’il te plaît ? Résume simplement ce que tu as déjà trouvé.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Un agent n’a pas besoin d’aller au bout de son exploration : vous pouvez l’arrêter à tout moment pour récupérer ce qu’il sait déjà.",
+    "source": {
+      "cle": "openai-s-agent-is-live",
+      "date": "2025-01-24",
+      "url": "https://www.theneurondaily.com/p/openai-s-agent-is-live",
+      "newsletter": "OpenAI's agent is live?!",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺OpenAI's agent is live?!"
+    }
+  },
+  {
+    "id": "utiliser-le-partage-d-ecran-de-gemini-comme-consultant-en-direct",
+    "titre": "Utiliser le partage d’écran de Gemini comme consultant en direct",
+    "resume": "Avec le partage d’écran en temps réel et ses capacités multimodales, Gemini peut jouer le consultant UX, le dépanneur, l’analyste vidéo ou le rédacteur de procédures.",
+    "categorie": "outils",
+    "niveau": "intermediaire",
+    "outils": [
+      "gemini"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Selon Grace Leung, les atouts majeurs de Gemini 2.0 sont le partage d’écran en temps réel et ses capacités multimodales. Concrètement, vous pouvez en faire :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "votre consultant UX personnel ;",
+          "un dépanneur ;",
+          "un analyste vidéo ;",
+          "un rédacteur de procédures, qui documente vos processus ;",
+          "un créateur de contenus multilingues."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "[Sa vidéo](https://youtu.be/kN93lrS1nfw?feature=shared) (en anglais) montre précisément comment mettre en place chacun de ces usages."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de consultant UX",
+        "type": "prompt",
+        "texte": "Je partage mon écran avec toi : c’est [la page ou l’application concernée]. Comporte-toi en consultant UX. Pendant que je fais défiler et que je clique, signale-moi ce qui est confus, ce qui ralentit l’utilisateur et ce qui manque, puis propose trois améliorations prioritaires.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Montrer son écran à l’IA évite de tout décrire : elle voit ce que vous voyez et réagit en direct.",
+    "source": {
+      "cle": "state-of-ai-in-2025-exposed",
+      "date": "2025-01-23",
+      "url": "https://www.theneurondaily.com/p/state-of-ai-in-2025-exposed",
+      "newsletter": "State of AI in 2025 exposed",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 State of AI in 2025 exposed"
+    }
+  },
+  {
+    "id": "bannir-les-tournures-typiques-de-l-ia-pour-ecrire-plus-naturellement",
+    "titre": "Bannir les tournures typiques de l’IA pour écrire plus naturellement",
+    "resume": "Ondrej Bartos montre que le secret d’un texte naturel est de dire à l’IA ce qu’elle ne doit pas écrire : une liste d’expressions interdites qui trahissent un texte généré.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Vous voulez que l’IA écrive de façon plus naturelle ? [Ondrej Bartos](https://x.com/ondrej_bartos_/status/1880947226631098854) a partagé [un prompt d’« humanisation »](https://pastebin.com/YEtkKeyL) qui montre que le secret consiste à dire à l’IA ce qu’elle ne doit **pas** écrire. Bannissez les tics classiques de l’IA, par exemple (adaptés en français) :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "« Dans le monde de… »",
+          "« Quand il s’agit de… »",
+          "« Percer » ou « dévoiler les secrets »",
+          "« robuste », « sur mesure », « personnalisé »",
+          "« en constante évolution », « en perpétuelle mutation »"
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Ajoutez simplement ces expressions à vos prompts comme mots interdits : le texte ressemble moins à un copier-coller de GPT et davantage à celui d’une vraie personne."
+      },
+      {
+        "t": "p",
+        "x": "**Astuce :** constituez votre propre liste des tournures qui sonnent « IA » dès que vous les repérez. Plus vous en bannissez, plus le résultat paraît naturel."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt des expressions interdites",
+        "type": "prompt",
+        "texte": "Rédige [votre demande]. N’utilise jamais les expressions suivantes, ni leurs variantes :\n- « Dans le monde de… »\n- « Quand il s’agit de… »\n- « percer » ou « dévoiler les secrets »\n- « robuste », « sur mesure », « personnalisé »\n- « en constante évolution », « en perpétuelle mutation »\n- [vos propres expressions à bannir]",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Dire à l’IA ce qu’elle ne doit pas écrire est souvent plus efficace que de lui demander d’écrire « naturellement ».",
+    "source": {
+      "cle": "wtf-is-project-stargate",
+      "date": "2025-01-22",
+      "url": "https://www.theneurondaily.com/p/wtf-is-project-stargate",
+      "newsletter": "WTF is Project Stargate?",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺WTF is Project Stargate?"
+    }
+  },
+  {
+    "id": "changer-le-ton-de-l-ia-avec-une-instruction-personnalisee-decalee",
+    "titre": "Changer le ton de l’IA avec une instruction personnalisée décalée",
+    "resume": "Pour le plaisir, des utilisateurs de Reddit demandent à ChatGPT, dans ses instructions personnalisées, de répondre comme un ado peu serviable dans les commentaires TikTok.",
+    "categorie": "memoire",
+    "niveau": "intermediaire",
+    "outils": [
+      "chatgpt"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Celle-ci est juste pour s’amuser : des utilisateurs de Reddit affirment obtenir un « [grand succès](https://www.reddit.com/r/ChatGPT/comments/1i5h340/comment/m848v3k/) » avec une instruction personnalisée qui demande à ChatGPT de répondre comme un *zoomer* (un jeune de la génération Z) pas serviable du tout, dans la section commentaires de TikTok."
+      },
+      {
+        "t": "p",
+        "x": "L’exercice montre surtout à quel point une instruction personnalisée change le ton de toutes les réponses. Collez la phrase dans les réglages de personnalisation de ChatGPT, essayez-la, puis remplacez-la par le ton qui vous sert vraiment."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "L’instruction personnalisée décalée",
+        "type": "prompt",
+        "texte": "Je veux que tu répondes comme un zoomer pas serviable du tout dans la section commentaires de TikTok.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Les instructions personnalisées s’appliquent à toutes vos conversations : une seule phrase suffit à changer complètement le ton de l’IA.",
+    "source": {
+      "cle": "american-vs-chinese-ai",
+      "date": "2025-01-21",
+      "url": "https://www.theneurondaily.com/p/american-vs-chinese-ai",
+      "newsletter": "American vs Chinese AI",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 American vs Chinese AI"
+    }
+  },
+  {
+    "id": "traiter-un-modele-de-raisonnement-comme-un-generateur-de-rapports",
+    "titre": "Traiter un modèle de raisonnement comme un générateur de rapports",
+    "resume": "Selon Ben Hylak, un modèle comme o1 donne le meilleur de lui-même quand on le noie de contexte et qu’on lui dit quoi produire, sans lui dicter comment y parvenir.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Dans un [excellent article](https://www.latent.space/p/o1-skill-issue) de la newsletter [Latent Space](https://www.latent.space/), Ben Hylak explique qu’il faut cesser d’utiliser o1 comme ChatGPT : ce modèle de raisonnement fonctionne mieux quand on le traite comme un générateur de rapports plutôt que comme un chatbot, et qu’on lui fournit énormément de contexte."
+      },
+      {
+        "t": "p",
+        "x": "**Son idée clé :** enregistrez un rapide mémo vocal où vous expliquez tout votre problème, transcrivez-le et collez la transcription. Plus il y a de contexte, meilleur est le résultat. Et concentrez-vous sur **ce que** vous voulez obtenir, pas sur **la façon** d’y arriver."
+      },
+      {
+        "t": "p",
+        "x": "L’article détaille d’autres conseils, et un [podcast](https://youtu.be/NkHcSpOOC60?feature=shared&t=494) en discute si vous préférez l’écoute."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt en mode rapport",
+        "type": "prompt",
+        "texte": "Voici tout le contexte de mon problème, tiré d’un mémo vocal : [transcription]. Ce que je veux obtenir : [résultat attendu, par exemple un rapport, un plan ou une recommandation]. Pour qui : [lecteur]. Format : [structure et longueur souhaitées]. Choisis toi-même la méthode pour y arriver.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Avec un modèle de raisonnement, donnez beaucoup de contexte et décrivez le résultat voulu ; laissez-lui le choix de la méthode.",
+    "source": {
+      "cle": "openai-s-secret-math-scam",
+      "date": "2025-01-20",
+      "url": "https://www.theneurondaily.com/p/openai-s-secret-math-scam",
+      "newsletter": "OpenAI's secret math scam",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 OpenAI's secret math scam"
+    }
+  },
+  {
+    "id": "trouver-des-idees-de-taches-planifiees-en-exigeant-l-exhaustivite",
+    "titre": "Trouver des idées de tâches planifiées en exigeant l’exhaustivité",
+    "resume": "Pour explorer la fonction Tasks de ChatGPT, demandez d’abord une quinzaine d’idées de tâches, puis exigez que l’IA soit exhaustive : elle en ajoute une trentaine.",
+    "categorie": "automatiser",
+    "niveau": "intermediaire",
+    "outils": [
+      "chatgpt"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Pour tester Tasks, la fonction de ChatGPT qui exécute des tâches planifiées, l’équipe de The Neuron a fait trouver à ChatGPT, avec la recherche web, [45 idées de prompts](https://chatgpt.com/share/67884aa9-7cdc-8003-9384-897f47b62c9b)."
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Demandez d’abord 10 à 15 idées.",
+          "Demandez ensuite à l’IA d’« être exhaustive » : elle en trouve 30 de plus.",
+          "Choisissez les idées qui correspondent à vos besoins et programmez-les comme tâches."
+        ]
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de départ",
+        "type": "prompt",
+        "texte": "Je découvre la fonction Tasks de ChatGPT, qui permet de programmer des tâches récurrentes ou ponctuelles. Je suis [votre métier]. Propose-moi 10 à 15 idées de tâches utiles à programmer, avec pour chacune le prompt à utiliser et la fréquence conseillée.",
+        "adapte": true
+      },
+      {
+        "titre": "La relance d’exhaustivité",
+        "type": "prompt",
+        "texte": "Sois exhaustif et trouve-moi 30 idées de plus.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Une première liste d’idées n’est qu’un début : exiger l’exhaustivité pousse l’IA au-delà des évidences.",
+    "source": {
+      "cle": "is-ai-making-us-dumber",
+      "date": "2025-01-16",
+      "url": "https://www.theneurondaily.com/p/is-ai-making-us-dumber",
+      "newsletter": "Is AI making us dumber?",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Is AI making us dumber?"
+    }
+  },
+  {
+    "id": "transformer-un-conseil-vague-en-plan-d-action-fonde-sur-des-etudes",
+    "titre": "Transformer un conseil vague en plan d’action fondé sur des études",
+    "resume": "Vicky Zhao enchaîne trois outils, Elicit, NotebookLM et Claude, pour trouver et digérer des études scientifiques, puis en tirer un plan d’action détaillé et étayé.",
+    "categorie": "outils",
+    "niveau": "intermediaire",
+    "outils": [
+      "autre",
+      "gemini",
+      "claude"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Pour obtenir de meilleurs résultats, la créatrice Vicky Zhao estime que mieux formuler ses prompts ne suffit pas. [Elle recommande](https://youtu.be/yqq_U2fxd2U?feature=shared) une méthode en trois étapes pour trouver et digérer la recherche scientifique :"
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "**[Elicit](https://elicit.com/)** pour rechercher les études sur votre sujet.",
+          "**[NotebookLM](https://notebooklm.google.com/)** pour y charger ces études et les assimiler.",
+          "**[Claude](https://claude.ai/)** pour en tirer un plan d’action."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Le résultat : un conseil vague comme « améliorer sa communication » devient un plan d’action détaillé, appuyé sur des travaux de recherche."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt du plan d’action",
+        "type": "prompt",
+        "texte": "Voici les principaux résultats d’études sur [sujet], tirés de mes notes : [vos notes ou synthèses]. À partir de ces seuls éléments, transforme le conseil « [conseil vague, par exemple améliorer ma communication] » en plan d’action détaillé : actions concrètes, fréquence, indicateurs de progrès. Pour chaque action, indique l’étude sur laquelle elle s’appuie.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Un plan d’action solide part de sources fiables : cherchez d’abord les études, faites-les synthétiser ensuite.",
+    "source": {
+      "cle": "gpt-bout-to-run-your-life",
+      "date": "2025-01-15",
+      "url": "https://www.theneurondaily.com/p/gpt-bout-to-run-your-life",
+      "newsletter": "GPT ‘bout to run your life",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 GPT ‘bout to run your life"
+    }
+  },
+  {
+    "id": "faire-ecrire-vos-prompts-par-l-ia-avec-un-meta-prompt",
+    "titre": "Faire écrire vos prompts par l’IA avec un méta-prompt",
+    "resume": "Un méta-prompt est un prompt qui sert à écrire d’autres prompts : vous décrivez votre besoin et l’IA rédige pour vous une demande complète et précise, prête à l’emploi.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Cette [astuce de méta-prompt](https://youtu.be/ABCqfaTjNd4?feature=shared) (vidéo en anglais) permet de créer des prompts redoutables pour que ChatGPT produise exactement ce que vous voulez. L’équipe de The Neuron utilise ce type de prompt pour écrire de meilleurs prompts : très « méta », mais très utile."
+      },
+      {
+        "t": "p",
+        "x": "Le principe : au lieu de rédiger vous-même le prompt final, vous demandez à l’IA de l’écrire à partir de votre objectif, puis vous utilisez le résultat dans une nouvelle conversation."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le méta-prompt",
+        "type": "prompt",
+        "texte": "Tu es expert en rédaction de prompts. Je veux obtenir [résultat souhaité] pour [contexte ou public]. Rédige le prompt le plus efficace possible pour cette demande : rôle de l’IA, contexte, tâche, contraintes et format de réponse. S’il te manque des informations, pose-moi d’abord tes questions.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "L’IA sait souvent mieux que vous ce dont elle a besoin : faites-lui rédiger le prompt avant de lui confier la tâche.",
+    "source": {
+      "cle": "ai-doctors-are-here-kinda",
+      "date": "2025-01-14",
+      "url": "https://www.theneurondaily.com/p/ai-doctors-are-here-kinda",
+      "newsletter": "AI Doctors are here...kinda",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺AI Doctors are here...kinda"
+    }
+  },
+  {
+    "id": "decouvrir-comment-deep-research-peut-servir-dans-votre-metier",
+    "titre": "Découvrir comment Deep Research peut servir dans votre métier",
+    "resume": "Ce prompt décrit votre poste et vos besoins de recherche à Gemini, puis lui demande quelles tâches quotidiennes Deep Research pourrait automatiser ou améliorer pour vous.",
+    "categorie": "outils",
+    "niveau": "debutant",
+    "outils": [
+      "gemini"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Gemini Deep Research parcourt un grand nombre de sites web, analyse et recoupe les informations, puis rédige des rapports détaillés avec les liens vers les sources. Il affine ses recherches au fur et à mesure et propose un plan de recherche en plusieurs étapes."
+      },
+      {
+        "t": "p",
+        "x": "Encore faut-il savoir à quoi l’utiliser au quotidien. Ce prompt aide à le découvrir : complétez les crochets avec votre poste, votre secteur, vos tâches habituelles et les recherches que vous faites souvent, puis envoyez-le à Gemini."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de découverte de Deep Research",
+        "type": "prompt",
+        "texte": "Je suis [intitulé de poste] dans le secteur [secteur]. Ma journée type comprend des tâches comme [liste de tâches], et j’ai souvent besoin de faire des recherches sur [types de recherches]. J’ai entendu parler de Gemini Deep Research, qui peut parcourir un grand nombre de sites web, analyser les informations, recouper les sources et produire des rapports détaillés. Il affine ses recherches en continu, me renvoie vers les liens d’origine et génère même des plans de recherche en plusieurs étapes. À partir de ces fonctionnalités, comment pourrais-je utiliser Deep Research pour gagner du temps, améliorer mes méthodes de travail et obtenir de meilleures analyses ? Quelles tâches précises de mon quotidien pourrait-il automatiser ou améliorer ?",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Pour adopter un nouvel outil d’IA, décrivez-lui votre quotidien et demandez-lui où il peut vous être utile.",
+    "source": {
+      "cle": "apple-intelligence-7-months-later-and-users-are-not-impressed",
+      "date": "2025-01-13",
+      "url": "https://www.theneurondaily.com/p/apple-intelligence-7-months-later-and-users-are-not-impressed",
+      "newsletter": "Apple Intelligence: 7 Months Later, and Users Are... Not Impressed.",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "Apple Intelligence: 7 Months Later, and Users Are... Not Impressed."
+    }
+  },
+  {
+    "id": "rediger-et-ameliorer-ses-prompts-avec-les-methodes-tcrei-et-rsti",
+    "titre": "Rédiger et améliorer ses prompts avec les méthodes TCREI et RSTI",
+    "resume": "Tina Huang condense en 20 minutes le cours de prompt de Google en deux moyens mnémotechniques : TCREI pour rédiger un prompt, RSTI pour l’améliorer quand il échoue.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Tina Huang [résume en 20 minutes](https://youtu.be/p09yRj47kNM?feature=shared) le [cours de prompt engineering de Google](https://www.coursera.org/google-learn/prompting-essentials), qui dure 9 heures. Elle y présente deux moyens mnémotechniques (en anglais) :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**TCREI** (« Tiny Crabs Ride Enormous Iguanas ») pour rédiger un prompt : *Task* (la tâche), *Context* (le contexte), *References* (des exemples), *Evaluate* (évaluer le résultat), *Iterate* (itérer).",
+          "**RSTI** (« Ramen Saves Tragic Idiots ») pour l’améliorer : *Revisit* (reprendre le cadre TCREI), *Separate* (découper en phrases plus courtes), *Try* (essayer une autre formulation ou une tâche analogue), *Introduce constraints* (ajouter des contraintes)."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "La vidéo montre ces méthodes sur des exemples réels et se termine par un mini-quiz pour mieux les retenir."
+      },
+      {
+        "t": "p",
+        "x": "**L’idée préférée de The Neuron :** quand un prompt échoue, essayez de « passer à une tâche analogue ». Vous avez besoin d’un plan marketing ? Demandez plutôt une tâche voisine, par exemple une histoire qui montre comment votre produit s’intègre dans la vie de vos clients : selon Tina, les résultats sont généralement bien plus convaincants."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt TCREI",
+        "type": "prompt",
+        "texte": "Tâche : [ce que tu dois produire].\nContexte : [qui je suis, à qui c’est destiné, pourquoi].\nRéférences : [exemples à imiter].\n\nUne fois ta réponse rédigée, évalue-la au regard de ces éléments et dis-moi ce qu’il faudrait préciser pour l’améliorer.",
+        "adapte": true
+      },
+      {
+        "titre": "Le prompt de tâche analogue",
+        "type": "prompt",
+        "texte": "Plutôt qu’un plan marketing pour [produit], écris l’histoire de [client type] qui découvre [produit] et l’intègre à son quotidien : ce qui le pousse à l’essayer, ce qui le convainc, ce qui le fait revenir.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Quand un prompt ne marche pas, ne répétez pas la même demande : reprenez-la, découpez-la, reformulez-la ou contraignez-la.",
+    "source": {
+      "cle": "new-year-new-ai",
+      "date": "2025-01-06",
+      "url": "https://www.theneurondaily.com/p/new-year-new-ai",
+      "newsletter": "New year, new AI?",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 New year, new AI?"
+    }
+  },
+  {
+    "id": "choisir-la-bonne-forme-de-question-pour-obtenir-la-bonne-reponse",
+    "titre": "Choisir la bonne forme de question pour obtenir la bonne réponse",
+    "resume": "Un aide-mémoire pour mieux interroger l’IA : trois principes de base, des amorces de questions ouvertes ou fermées selon le besoin, et des relances pour creuser une réponse.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Les techniques de prompt sont nombreuses et on s’y perd vite. Voici un aide-mémoire, inspiré de [ce message Reddit](https://www.reddit.com/r/ChatGPTPromptGenius/comments/1hcsmem/30_chatgpt_prompt_techniques_in_30_seconds/). D’abord, trois principes :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Soyez précis** : une question vague donne une réponse vague.",
+          "**Attribuez un rôle** : vous voulez une explication de professeur ? Demandez à l’IA de jouer le professeur.",
+          "**Fixez des limites claires** : vous voulez trois puces ? Dites-le."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Pour des réponses précises, préférez les **questions fermées** : oui ou non, l’un ou l’autre, choix multiple, vérification d’un fait, confirmation, décision binaire, quantité, détail précis, préférence de format, état d’avancement. Pour explorer, utilisez les **amorces ouvertes** ci-dessous, puis les **relances** pour aller plus loin."
+      },
+      {
+        "t": "p",
+        "x": "**Le conseil :** voyez l’IA comme un ami très savant, mais qui prend tout au pied de la lettre. Plus vous êtes clair sur ce que vous voulez, meilleure est la réponse."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Les amorces de questions ouvertes",
+        "type": "prompt",
+        "texte": "Comment puis-je… (pour obtenir des étapes détaillées)\nQuels sont… (pour des listes et des explications)\nDécris… (pour une description riche)\nExplique… (pour une réponse pédagogique)\nDe quelles façons… (pour des solutions créatives)\nParle-moi de… (pour une vue d’ensemble complète)\nEt si… (pour analyser un scénario)\nPeux-tu développer… (pour approfondir)\nQu’en penses-tu… (pour une réponse analytique)\nPourquoi… (pour le raisonnement et les justifications)",
+        "adapte": false
+      },
+      {
+        "titre": "Les relances pour creuser",
+        "type": "prompt",
+        "texte": "Peux-tu donner plus de détails sur…\nTu as mentionné [X], peux-tu développer…\nQue veux-tu dire exactement par…\nQuelles hypothèses faisons-nous sur…\nPourquoi penses-tu que…\nQuels éléments prouvent que…\nComment [expert] verrait-il…",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "La forme de votre question oriente la réponse : ouverte pour explorer, fermée pour trancher, relance pour creuser.",
+    "source": {
+      "cle": "gpt-search-unlocked",
+      "date": "2024-12-17",
+      "url": "https://www.theneurondaily.com/p/gpt-search-unlocked",
+      "newsletter": "GPT search UNLOCKED",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 GPT search UNLOCKED"
+    }
+  },
+  {
+    "id": "structurer-ses-prompts-avec-le-prompt-canvas-en-quatre-blocs",
+    "titre": "Structurer ses prompts avec le Prompt Canvas en quatre blocs",
+    "resume": "Le Prompt Canvas de Michael Hewing découpe un prompt en quatre blocs : rôle et public, contexte et références, objectifs et étapes, format et ton. Il sert aussi à organiser vos projets.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Michael Hewing a créé le [Prompt Canvas](https://www.thepromptcanvas.com/), un cadre visuel qui décompose la rédaction d’un prompt en quatre blocs :"
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "**Rôle et public** : définissez le personnage que joue l’IA et le public auquel s’adresse le contenu.",
+          "**Contexte et références** : fournissez les informations de fond et les sources utiles pour gagner en exactitude.",
+          "**Objectifs et tâches** : découpez votre objectif en étapes claires et successives.",
+          "**Résultat et ton** : précisez le format, la longueur, le style et les caractéristiques attendues (formel ou décontracté, par exemple)."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Cette structure vous aide à passer en revue chaque aspect de vos prompts, qu’il s’agisse de tâches professionnelles, de projets créatifs ou de problèmes techniques."
+      },
+      {
+        "t": "p",
+        "x": "Elle s’applique aussi aux projets (Projects dans ChatGPT) : le rôle et le public dans les instructions personnalisées, les fichiers et documents clés comme contexte, une conversation séparée pour chaque tâche, et des consignes de format et de style communes à tout le projet."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le modèle de prompt en quatre blocs",
+        "type": "prompt",
+        "texte": "Rôle : tu es [rôle de l’IA]. Public : [à qui s’adresse le contenu].\n\nContexte : [informations de fond]. Références : [sources ou documents à utiliser].\n\nObjectif : [ce que tu dois produire]. Étapes :\n1. [étape]\n2. [étape]\n3. [étape]\n\nFormat : [type de document, longueur]. Ton : [formel, décontracté…].",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Un bon prompt répond à quatre questions : qui parle et à qui, avec quel contexte, pour quel objectif, sous quelle forme.",
+    "source": {
+      "cle": "real-ai-usage-exposed",
+      "date": "2024-12-16",
+      "url": "https://www.theneurondaily.com/p/real-ai-usage-exposed",
+      "newsletter": "Real AI usage EXPOSED",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 Real AI usage EXPOSED"
+    }
+  },
+  {
+    "id": "structurer-son-prompt-en-json-ou-en-markdown-selon-le-modele",
+    "titre": "Structurer son prompt en JSON ou en Markdown selon le modèle",
+    "resume": "Selon des chercheurs de Microsoft, le format du prompt change nettement la qualité des réponses : JSON pour certains modèles, Markdown pour d’autres. Une IA peut faire la conversion.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Vous voulez de meilleurs résultats de la part de modèles moins chers ? Des [chercheurs de Microsoft](https://arxiv.org/pdf/2411.10541) ont montré qu’un simple changement de format fait une vraie différence. Dans leurs tests, GPT-3.5 (0,50 $ le million de *tokens*) répondait mieux à un prompt en JSON, et GPT-4 (3 $ le million) à un prompt en Markdown : les deux modèles sont ci-dessous."
+      },
+      {
+        "t": "p",
+        "x": "Ces préférences peuvent évoluer avec les modèles, mais c’est pour l’instant un moyen simple de tirer davantage de votre budget IA. Testez les deux formats sur une même tâche et gardez celui qui donne le meilleur résultat."
+      },
+      {
+        "t": "p",
+        "x": "**Astuce rapide :** pas envie de mettre en forme vous-même ? Demandez à n’importe quelle IA de convertir votre prompt en JSON ou en Markdown, elle s’en charge."
+      },
+      {
+        "t": "p",
+        "x": "**Note pour les développeurs :** GPT-4 est « surentraîné » à répondre en Markdown, parce que l’interface de ChatGPT l’utilise. Via l’API, la [solution la plus simple](https://community.openai.com/t/response-formatting-b-text-b-instead-of-text/687054/2) est le plus souvent une bibliothèque de conversion du Markdown en HTML ; si vous devez absolument empêcher le Markdown, utilisez le [paramètre `logit_bias`](https://platform.openai.com/docs/api-reference/chat) pour pénaliser les *tokens* de mise en forme."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le modèle de prompt en JSON",
+        "type": "fichier",
+        "texte": "{\n  \"Instructions\": \"[votre tâche]\",\n  \"Exemples\": \"[exemple de résultat attendu]\",\n  \"Tâche\": \"[votre demande]\"\n}",
+        "adapte": false
+      },
+      {
+        "titre": "Le modèle de prompt en Markdown",
+        "type": "prompt",
+        "texte": "## Instructions\n[votre tâche]\n\n## Exemples\n[exemple de résultat attendu]\n\n## Tâche\n[votre demande]",
+        "adapte": false
+      },
+      {
+        "titre": "Le prompt de conversion",
+        "type": "prompt",
+        "texte": "Reformate ce prompt au format JSON (ou : convertis-le au format Markdown) :\n\n[votre prompt]",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "La mise en forme d’un prompt n’est pas neutre : tester JSON et Markdown sur une même tâche peut améliorer les réponses sans changer de modèle.",
+    "source": {
+      "cle": "o1-pro-is-insane",
+      "date": "2024-12-09",
+      "url": "https://www.theneurondaily.com/p/o1-pro-is-insane",
+      "newsletter": "o1 Pro is INSANE",
+      "rubrique": "Prompt Tip of the Week",
+      "titreOriginal": "Simple format changes can make AI 40% smarter."
+    }
+  },
+  {
+    "id": "faire-ecrire-l-ia-avec-votre-style-grace-a-l-ecriture-en-echo",
+    "titre": "Faire écrire l’IA avec votre style grâce à l’écriture en écho",
+    "resume": "L’écriture en écho consiste à donner à l’IA un échantillon de vos textes pour qu’elle en reprenne la structure des phrases, le vocabulaire et le ton, au lieu de son style habituel.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Les réponses de ChatGPT ont souvent un petit air… de ChatGPT. L’[écriture en écho](https://www.twixify.com/post/echowriting) (*echo writing*) corrige cela : au lieu des tournures typiques de l’IA, vous lui faites écrire avec votre voix. Trois façons de s’y prendre :"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Donnez un échantillon de vos textes** et demandez à l’IA d’écrire dans ce style, en reprenant la structure de vos phrases, votre vocabulaire et votre ton.",
+          "**Dressez une table de correspondance** : listez les tournures typiques de l’IA (« Il est important de noter », « D’un autre côté ») et celles que vous préférez (« Retenez juste que », « Mais à l’inverse »).",
+          "**Faites d’abord analyser votre style**, puis demandez à l’IA de s’appuyer sur ces caractéristiques dans sa réponse (paragraphes courts, langage familier…)."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "La méthode fonctionne mieux avec des exemples clairs et précis de votre écriture qu’avec des consignes vagues comme « écris de façon décontractée ». Un utilisateur de Reddit a aussi partagé [un prompt complet à copier et adapter](https://www.reddit.com/r/ChatGPT/comments/1gauerf/echowriting_prompt_i_made_to_get_chatgpt_to_write/)."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt d’écriture en écho",
+        "type": "prompt",
+        "texte": "Voici un échantillon de mes textes : [collez votre texte]. Rédige la prochaine réponse en reprenant exactement ce style, y compris la longueur de mes phrases, mes choix de vocabulaire et mon ton général.",
+        "adapte": false
+      },
+      {
+        "titre": "Le prompt d’analyse de style",
+        "type": "prompt",
+        "texte": "Analyse d’abord mon style d’écriture dans le texte ci-dessous : longueur des phrases et des paragraphes, niveau de langue, vocabulaire, ton. Puis rédige [votre demande] en t’appuyant sur ces caractéristiques.\n\n[votre texte]",
+        "adapte": false
+      },
+      {
+        "titre": "La table de correspondance",
+        "type": "prompt",
+        "texte": "Quand tu écris pour moi, remplace ces tournures par celles que je préfère :\n- « Il est important de noter » → « Retenez juste que »\n- « D’un autre côté » → « Mais à l’inverse »\n- [tournure de l’IA] → [votre tournure]",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Montrez à l’IA comment vous écrivez plutôt que de lui décrire le ton voulu : des exemples concrets valent mieux qu’une consigne vague.",
+    "source": {
+      "cle": "new-bot-le-chat-does-it-all",
+      "date": "2024-11-19",
+      "url": "https://www.theneurondaily.com/p/new-bot-le-chat-does-it-all",
+      "newsletter": "New bot Le Chat does it all",
+      "rubrique": "Prompt Tip of the Week",
+      "titreOriginal": "😺 New bot Le Chat does it all"
+    }
+  },
+  {
+    "id": "puiser-dans-une-bibliotheque-de-plus-de-500-prompts-structures",
+    "titre": "Puiser dans une bibliothèque de plus de 500 prompts structurés",
+    "resume": "God of Prompt propose plus de 500 prompts prêts à l’emploi, construits pour obtenir des résultats précis : articles, stratégie marketing, programme sportif, voyage…",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Besoin de nouvelles idées de prompts ? Le site God of Prompt a publié une [immense liste](https://www.godofprompt.ai/blog/500-best-prompts-for-chatgpt-2024) de plus de 500 amorces de conversation pour ChatGPT, de la rédaction d’articles de blog à l’organisation de vos prochaines vacances."
+      },
+      {
+        "t": "p",
+        "x": "Leur intérêt : ce ne sont pas des prompts génériques du type « écris-moi une histoire ». Ils sont structurés pour produire des résultats précis et utiles : transformer des recherches en article, trouver des idées de stratégie marketing, construire un programme d’entraînement sur mesure."
+      },
+      {
+        "t": "p",
+        "x": "Parcourez la liste, choisissez un prompt proche de votre besoin et remplacez les éléments génériques par votre propre contexte."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de programme sur mesure",
+        "type": "prompt",
+        "texte": "Tu es coach sportif. Construis-moi un programme d’entraînement de [nombre] semaines pour [objectif], avec [nombre] séances par semaine de [durée] maximum. Mon niveau actuel : [niveau]. Matériel disponible : [matériel]. Présente le programme semaine par semaine, sous forme de tableau.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Partir d’un prompt déjà structuré, puis l’adapter à votre contexte, donne des réponses plus précises qu’une demande vague.",
+    "source": {
+      "cle": "top-ai-models-ranked",
+      "date": "2024-11-06",
+      "url": "https://www.theneurondaily.com/p/top-ai-models-ranked",
+      "newsletter": "Top AI Models RANKED",
+      "rubrique": "Prompt Tip of the Week",
+      "titreOriginal": "😺 Top AI Models RANKED"
+    }
+  },
+  {
+    "id": "apprendre-le-prompt-engineering-avec-une-feuille-de-route",
+    "titre": "Apprendre le prompt engineering avec une feuille de route",
+    "resume": "La Prompt Engineering Roadmap de roadmap.sh présente les notions clés du travail avec l’IA sous forme de carte : un clic sur chaque point ouvre une explication détaillée.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Obtenir de l’IA ce que vous voulez, c’est avant tout lui donner des instructions très claires. Pour apprendre à le faire, la [Prompt Engineering Roadmap](https://roadmap.sh/prompt-engineering) de roadmap.sh est une excellente ressource : elle organise les notions du *prompt engineering* sous forme de carte."
+      },
+      {
+        "t": "p",
+        "x": "Cliquez sur un point de la carte : le guide en donne une explication détaillée (en anglais). Vous pouvez la parcourir dans l’ordre ou aller directement à la notion qui vous manque, puis demander à votre chatbot de l’illustrer sur votre propre cas."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt pour approfondir une notion",
+        "type": "prompt",
+        "texte": "Je découvre le prompt engineering. Explique-moi la notion « [notion repérée sur la feuille de route] » en termes simples, puis montre-moi un exemple de prompt avant et après l’avoir appliquée, sur ce cas tiré de mon travail : [votre cas].",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Bien formuler un prompt s’apprend : une carte des notions aide à savoir quoi apprendre et dans quel ordre.",
+    "source": {
+      "cle": "our-honest-take-on-apple-ai",
+      "date": "2024-10-29",
+      "url": "https://www.theneurondaily.com/p/our-honest-take-on-apple-ai",
+      "newsletter": "Our HONEST take on Apple AI",
+      "rubrique": "Prompt Tip of the Week",
+      "titreOriginal": "😺 Our HONEST take on Apple AI"
+    }
+  },
+  {
+    "id": "faire-ameliorer-son-prompt-par-l-ia-une-question-a-la-fois",
+    "titre": "Faire améliorer son prompt par l’IA, une question à la fois",
+    "resume": "Avant de solliciter un modèle de raisonnement, un modèle rapide vous pose une question à la fois pour compléter votre prompt, jusqu’à ce que vous le jugiez prêt.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Avec les modèles de raisonnement comme [o1 d’OpenAI](https://openai.com/index/introducing-openai-o1-preview/), rédiger un long prompt détaillé compte beaucoup moins qu’avant. Cela ne veut pas dire que les solliciter soit facile : le prompt doit surtout être complet. L’astuce consiste à le faire d’abord travailler par un modèle rapide et conversationnel."
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Avant d’interroger le modèle de raisonnement, ouvrez un modèle rapide (à l’époque GPT-4o) pour vous aider à écrire votre prompt.",
+          "Envoyez-lui le prompt ci-dessous, suivi de votre brouillon : à chaque tour, il vous pose la question la plus utile et vous rend le prompt amélioré.",
+          "Quand le prompt vous convient, envoyez-le d’abord au modèle de raisonnement léger (o1-mini à l’époque, limité à 50 prompts par jour) et ne passez au plus puissant (o1-preview) que si le premier ne résout pas votre problème."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "**La répartition conseillée alors entre les modèles de ChatGPT :**"
+      },
+      {
+        "t": "liste",
+        "x": [
+          "**Modèle rapide** (GPT-4o) : quand vous avez envie de discuter, de vider votre sac, de planifier ou de chercher des idées.",
+          "**Modèle de raisonnement léger** (o1-mini) : quand vous voulez faire réaliser une tâche précise.",
+          "**Modèle de raisonnement le plus puissant** (o1-preview) : quand vous butez sur un problème et qu’il faut sortir l’artillerie lourde."
+        ]
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de questionnement en boucle",
+        "type": "prompt",
+        "texte": "J’écris un prompt pour [nom du modèle de raisonnement] et je veux m’assurer de n’avoir rien oublié avant de l’envoyer. Prends le prompt suivant et pose-moi la question la plus importante qui permettrait de l’améliorer encore. En sortie, redonne-moi le prompt. Continue cette boucle de questions et d’améliorations jusqu’à ce que je te dise d’arrêter.\n\n[votre prompt]",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Faites compléter votre prompt par un modèle rapide qui vous questionne : le modèle de raisonnement n’aura plus qu’à travailler sur une demande complète.",
+    "source": {
+      "cle": "nuclear-power-for-chatgpt",
+      "date": "2024-10-15",
+      "url": "https://www.theneurondaily.com/p/nuclear-power-for-chatgpt",
+      "newsletter": "Nuclear power for ChatGPT?",
+      "rubrique": "Prompt Tip of the Week",
+      "titreOriginal": "😺 Nuclear power for ChatGPT?"
     }
   }
 ];

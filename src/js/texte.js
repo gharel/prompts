@@ -102,12 +102,15 @@ const MOIS_COURTS = [
   'déc.',
 ];
 
-/** « 2026-10-02 » → « 2 octobre 2026 » (ou « 2 oct. 2026 » en court). */
+/**
+ * « 2026-10-02 » → « 2 octobre 2026 » (ou « 2 oct. 2026 » en court), avec des espaces
+ * insécables : une date ne se coupe jamais en fin de ligne.
+ */
 export function formaterDate(iso, { court = false } = {}) {
   const [annee, mois, jour] = String(iso).split('-').map(Number);
   if (!annee || !mois || !jour) return '';
   const nomMois = (court ? MOIS_COURTS : MOIS)[mois - 1];
-  return `${jour === 1 ? '1er' : jour} ${nomMois} ${annee}`;
+  return `${jour === 1 ? '1er' : jour}\u00a0${nomMois}\u00a0${annee}`;
 }
 
 /** Identifiant lisible à partir d'un titre : « Vérifier l’IA » → « verifier-l-ia ». */
