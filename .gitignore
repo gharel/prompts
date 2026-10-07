@@ -1,0 +1,9 @@
+node_modules/
+playwright-report/
+test-results/
+coverage/
+dist/
+.DS_Store
+Thumbs.db
+captures/
+archives/a-traduire.json

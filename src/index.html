@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Prompthèque · Skazy Formation</title>
+    <meta
+      name="description"
+      content="Les techniques de prompt de la rubrique « AI Skill of the Day » de The Neuron, traduites en français, classées par catégorie et prêtes à copier."
+    />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#1a1a1a" />
+    <meta property="og:title" content="Prompthèque · Skazy Formation" />
+    <meta
+      property="og:description"
+      content="Des techniques de prompt prêtes à copier, traduites de la newsletter The Neuron."
+    />
+    <link rel="icon" href="assets/img/favicon.svg" />
+    <link rel="stylesheet" href="styles/charte.css" />
+    <link rel="stylesheet" href="styles/base.css" />
+    <link rel="stylesheet" href="styles/composants.css" />
+    <script>
+      // Thème choisi, appliqué avant l'affichage pour éviter un éclair de la mauvaise couleur.
+      try {
+        const theme = JSON.parse(localStorage.getItem('skazy-prompts:theme'));
+        if (theme === 'light' || theme === 'dark') document.documentElement.dataset.theme = theme;
+      } catch {
+        // stockage indisponible : thème du système
+      }
+    </script>
+    <script type="module" src="js/main.js"></script>
+  </head>
+  <body>
+    <a class="lien-evitement" href="#resultats">Aller aux fiches</a>
+
+    <header class="bandeau">
+      <div class="bandeau__interieur">
+        <a
+          class="bandeau__logo"
+          href="https://formation.skazy.nc"
+          target="_blank"
+          rel="noopener"
+          title="Site de Skazy Formation (nouvel onglet)"
+        >
+          <img
+            class="logo logo--clair"
+            src="assets/img/logo-skazy-formation.svg"
+            alt="Skazy Formation"
+            width="109"
+            height="36"
+          />
+          <img
+            class="logo logo--sombre"
+            src="assets/img/logo-skazy-formation-blanc.svg"
+            alt="Skazy Formation"
+            width="109"
+            height="36"
+          />
+        </a>
+        <p class="bandeau__nom">Prompthèque</p>
+        <nav class="bandeau__actions" aria-label="Réglages" id="actions-bandeau"></nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="scene" id="scene" aria-labelledby="titre-page"></section>
+      <section
+        class="resultats"
+        id="resultats"
+        aria-labelledby="titre-resultats"
+        tabindex="-1"
+      ></section>
+    </main>
+
+    <footer class="pied">
+      <div class="pied__interieur" id="pied"></div>
+    </footer>
+
+    <dialog class="panneau panneau--fiche" id="fiche" aria-labelledby="titre-fiche"></dialog>
+    <dialog class="panneau panneau--apropos" id="apropos" aria-labelledby="titre-apropos"></dialog>
+
+    <button class="haut-de-page" id="haut-de-page" type="button" hidden>
+      <span class="hors-ecran">Revenir en haut de la page</span>
+    </button>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <div class="hors-ecran" id="annonces" aria-live="polite"></div>
+  </body>
+</html>

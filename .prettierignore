@@ -1,0 +1,11 @@
+node_modules/
+playwright-report/
+test-results/
+coverage/
+dist/
+package-lock.json
+src/assets/img/*.svg
+src/js/icones-donnees.js
+captures/
+archives/
+src/donnees/fiches.js
