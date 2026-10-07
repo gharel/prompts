@@ -1,0 +1,577 @@
+/* Mise en page générale, bandeau, boutons, champs, panneaux (dialogues), messages. */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-padding-top: calc(var(--hauteur-bandeau) + 56px);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--fond);
+  color: var(--texte);
+  font-family: var(--police);
+  font-size: var(--texte-base);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-wrap: pretty;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: var(--texte-fort);
+  line-height: 1.2;
+  margin: 0;
+  text-wrap: balance;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: var(--primaire-texte);
+}
+
+img,
+svg {
+  max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--primaire);
+  outline-offset: 2px;
+}
+/* Titres et sections où le code place le focus (tabindex="-1") pour guider les lecteurs
+   d'écran : pas d'anneau, que Safari dessine sinon même après un toucher. Le sélecteur pèse plus
+   que :focus-visible, pour l'emporter aussi sur les feuilles ajoutées après la nôtre (mode nuit
+   de Brave, Dark Reader). Les boutons et les champs gardent leur anneau. */
+[tabindex='-1']:not(a, button, input, select, textarea, summary):focus {
+  outline: none;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.hors-ecran {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.icone {
+  width: 1em;
+  height: 1em;
+  flex: none;
+  fill: currentColor;
+  vertical-align: -0.125em;
+}
+
+.lien-evitement {
+  position: absolute;
+  left: var(--e-4);
+  top: -100px;
+  z-index: 100;
+  background: var(--primaire-fonce);
+  color: var(--sur-primaire);
+  padding: var(--e-2) var(--e-4);
+  border-radius: var(--rayon-pilule);
+  font-weight: 600;
+}
+.lien-evitement:focus {
+  top: var(--e-2);
+}
+
+/* ── Bandeau ─────────────────────────────────────────── */
+.bandeau {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 20;
+  background: var(--surface);
+  border-bottom: 1px solid var(--bord);
+}
+
+.bandeau__interieur {
+  max-width: var(--largeur);
+  margin: 0 auto;
+  padding-inline: var(--e-6);
+  height: var(--hauteur-bandeau);
+  display: flex;
+  align-items: center;
+  gap: var(--e-4);
+}
+
+.bandeau__logo {
+  display: flex;
+  flex: none;
+  border-radius: var(--rayon-md);
+}
+.bandeau__logo .logo {
+  height: 36px;
+  width: auto;
+}
+.logo--sombre {
+  display: none;
+}
+
+.bandeau__nom {
+  font-weight: 700;
+  color: var(--texte-fort);
+  padding-left: var(--e-4);
+  border-left: 1px solid var(--bord);
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.bandeau__actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--e-2);
+}
+
+.bouton-seance {
+  position: relative;
+}
+.compteur {
+  min-width: 1.5rem;
+  padding: 0 6px;
+  border-radius: var(--rayon-pilule);
+  background: var(--surface);
+  color: var(--primaire-texte);
+  font-size: var(--texte-xs);
+  font-weight: 800;
+  line-height: 1.5rem;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Boutons (pilule, comme dans le design system) ───── */
+.bouton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--e-2);
+  min-height: 42px;
+  padding: 8px 20px;
+  border: 2px solid transparent;
+  border-radius: var(--rayon-pilule);
+  font-weight: 600;
+  letter-spacing: var(--interlettre-large);
+  line-height: 1.1;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    background var(--transition-rapide),
+    border-color var(--transition-rapide),
+    color var(--transition-rapide),
+    transform var(--transition-rapide);
+}
+.bouton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.bouton--primaire {
+  background: var(--primaire-fonce);
+  border-color: var(--primaire-fonce);
+  color: var(--sur-primaire);
+}
+.bouton--primaire:hover:not(:disabled) {
+  background: var(--primaire-tres-fonce);
+  border-color: var(--primaire-tres-fonce);
+}
+.bouton--secondaire {
+  background: var(--surface);
+  border-color: var(--primaire-fonce);
+  color: var(--primaire-texte);
+}
+.bouton--secondaire:hover:not(:disabled) {
+  background: var(--primaire-pale);
+}
+.bouton--fantome {
+  background: transparent;
+  color: var(--texte);
+}
+.bouton--fantome:hover {
+  background: var(--surface-2);
+}
+.bouton--discret {
+  min-height: 36px;
+  padding: 6px 12px;
+  background: transparent;
+  color: var(--primaire-texte);
+  font-size: var(--texte-sm);
+  letter-spacing: 0;
+}
+.bouton--discret:hover:not(:disabled) {
+  background: var(--primaire-pale);
+}
+.bouton--danger,
+.bouton--danger:hover:not(:disabled) {
+  color: var(--erreur);
+  background: transparent;
+  border-color: var(--erreur);
+}
+
+.bouton-icone {
+  display: inline-grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  flex: none;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--texte);
+  font-size: 1.05rem;
+  cursor: pointer;
+  transition: background var(--transition-rapide);
+}
+.bouton-icone:hover:not(:disabled) {
+  background: var(--surface-2);
+}
+.bouton-icone:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.lien-bouton {
+  border: 0;
+  padding: 0;
+  background: none;
+  color: var(--primaire-texte);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* En ligne, et non en boîte flex : sur deux lignes, l'icône suit le dernier mot (auquel elle est
+   collée, voir lienExterne()) au lieu d'être repoussée au bout de la ligne. */
+.lien-externe {
+  justify-self: start;
+  font-weight: 600;
+  text-decoration: none;
+}
+.lien-externe:hover {
+  text-decoration: underline;
+}
+.lien-externe__fin {
+  white-space: nowrap;
+}
+.lien-externe .icone {
+  margin-left: 6px;
+  font-size: 0.8em;
+}
+
+/* ── Champs ──────────────────────────────────────────── */
+.champ {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 14px;
+  border: 1.5px solid var(--bord-fort);
+  border-radius: var(--rayon-lg);
+  background: var(--surface);
+  color: var(--texte-fort);
+  transition: border-color var(--transition-rapide);
+}
+.champ::placeholder {
+  color: var(--texte-doux);
+}
+.champ:focus {
+  border-color: var(--primaire);
+  outline: none;
+  box-shadow: 0 0 0 3px var(--primaire-pale);
+}
+.champ-icone {
+  position: relative;
+  flex: 1 1 260px;
+  min-width: 0;
+}
+.champ-icone > .icone {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--texte-doux);
+}
+.champ--recherche {
+  padding-left: 40px;
+  border-radius: var(--rayon-pilule);
+}
+
+.etiquette {
+  display: block;
+  font-size: var(--texte-sm);
+  font-weight: 600;
+  color: var(--texte-fort);
+  margin-bottom: var(--e-1);
+}
+
+/* ── Badges et puces ─────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: var(--rayon-pilule);
+  background: var(--cat-pale);
+  color: var(--cat-texte);
+  font-size: var(--texte-xs);
+  font-weight: 700;
+  letter-spacing: var(--interlettre-tres-large);
+  text-transform: uppercase;
+  line-height: 1;
+  white-space: nowrap;
+}
+.badge--sm {
+  padding: 4px 10px;
+  font-size: 0.6875rem;
+}
+
+.puce {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: var(--rayon-pilule);
+  background: var(--surface-2);
+  color: var(--texte);
+  font-size: var(--texte-sm);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+mark.a-completer {
+  background: var(--surligne);
+  color: var(--surligne-texte);
+  border-radius: var(--rayon-sm);
+  padding: 0 2px;
+  font-weight: 600;
+}
+
+/* ── Panneaux (dialogues) ────────────────────────────── */
+.panneau {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  max-width: none;
+  max-height: none;
+  background: var(--surface);
+  color: var(--texte);
+  box-shadow: var(--ombre-xl);
+}
+.panneau::backdrop {
+  background: var(--voile);
+}
+.panneau--fiche,
+.panneau--seance {
+  margin-left: auto;
+  width: min(780px, 100vw);
+  height: 100dvh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.panneau--seance {
+  width: min(560px, 100vw);
+}
+.panneau--reperes {
+  margin: auto;
+  width: min(940px, calc(100vw - 32px));
+  height: min(880px, calc(100dvh - 32px));
+  border-radius: var(--rayon-2xl);
+  /* clip et non hidden : la fenêtre ne doit jamais défiler (seul son contenu défile). */
+  overflow: clip;
+}
+/* backwards et non both : une animation qui reste en effet après sa fin fait du panneau le
+   repère des éléments fixes (Chrome, Safari), qui défileraient alors avec lui. */
+.panneau[open] {
+  animation: entree-panneau var(--transition) backwards;
+}
+.panneau--reperes[open] {
+  animation-name: entree-centre;
+}
+@keyframes entree-panneau {
+  from {
+    transform: translateX(40px);
+    opacity: 0.4;
+  }
+}
+@keyframes entree-centre {
+  from {
+    transform: translateY(16px);
+    opacity: 0.4;
+  }
+}
+
+.panneau__entete {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--e-4);
+  padding: var(--e-6) var(--e-6) var(--e-4);
+  background: var(--surface);
+  border-bottom: 1px solid var(--bord);
+}
+.panneau__entete h2 {
+  font-size: var(--texte-2xl);
+  font-weight: 800;
+}
+.panneau__corps {
+  padding: var(--e-6);
+}
+
+/* ── Message temporaire ──────────────────────────────── */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(var(--e-6) + env(safe-area-inset-bottom, 0px));
+  z-index: 200;
+  transform: translate(-50%, 20px);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity var(--transition),
+    transform var(--transition);
+}
+.toast > span {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--e-2);
+  padding: 10px 18px;
+  border-radius: var(--rayon-pilule);
+  background: var(--scene);
+  color: var(--scene-texte);
+  font-weight: 600;
+  box-shadow: var(--ombre-lg);
+}
+.toast > span .icone {
+  color: var(--scene-accent);
+}
+.toast--visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* ── Pied de page ────────────────────────────────────── */
+.pied {
+  border-top: 1px solid var(--bord);
+  background: var(--surface);
+  margin-top: var(--e-16);
+}
+.pied__interieur {
+  max-width: var(--largeur);
+  margin: 0 auto;
+  padding: var(--e-8) var(--e-6) calc(var(--e-8) + env(safe-area-inset-bottom, 0px));
+  display: grid;
+  gap: var(--e-2);
+  color: var(--texte-doux);
+  font-size: var(--texte-sm);
+}
+.pied strong {
+  color: var(--texte-fort);
+}
+.lien-pied {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+}
+.pied__sep {
+  margin-inline: var(--e-2);
+}
+
+/* ── Thème sombre : logo blanc ───────────────────────── */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .logo--clair {
+    display: none;
+  }
+  :root:not([data-theme='light']) .logo--sombre {
+    display: block;
+  }
+}
+:root[data-theme='dark'] .logo--clair {
+  display: none;
+}
+:root[data-theme='dark'] .logo--sombre {
+  display: block;
+}
+
+/* ── Petits écrans ───────────────────────────────────── */
+@media (max-width: 960px) {
+  .bouton-reperes__texte {
+    display: none;
+  }
+}
+@media (max-width: 640px) {
+  .bandeau__interieur {
+    padding-inline: var(--e-4);
+    gap: var(--e-2);
+  }
+  .bandeau__nom {
+    display: none;
+  }
+  .bandeau__logo .logo {
+    height: 30px;
+  }
+  .bouton-seance__texte {
+    display: none;
+  }
+  .bouton-seance {
+    padding-inline: 14px;
+  }
+  .panneau--reperes {
+    width: 100vw;
+    height: 100dvh;
+    border-radius: 0;
+  }
+  .panneau__entete,
+  .panneau__corps {
+    padding-inline: var(--e-4);
+  }
+  /* L'en-tête des panneaux part avec le contenu pour laisser l'écran à la lecture ; seul le
+     bouton Fermer reste, flottant en haut à droite comme les flèches de la fiche. */
+  .panneau__entete {
+    position: static;
+    padding-right: 64px;
+  }
+  .panneau__entete > .bouton-icone {
+    position: fixed;
+    top: calc(env(safe-area-inset-top, 0px) + 12px);
+    right: 8px;
+    z-index: 4;
+    background: var(--surface);
+    box-shadow: var(--ombre-md);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

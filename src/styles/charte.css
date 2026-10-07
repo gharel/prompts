@@ -1,0 +1,286 @@
+/*
+ * Charte graphique Skazy Formation, d'après le design system Claude Design
+ * (tokens/colors.css, typography.css, spacing.css). Seul fichier où une couleur est écrite.
+ * Mise en page : un bandeau blanc, le profil sur fond sombre, puis une grille de cartes à
+ * barre de couleur sur fond gris très clair.
+ * Les teintes « -texte » sont assombries (clair) ou éclaircies (sombre) pour le contraste AA.
+ */
+
+@font-face {
+  font-family: 'Georama';
+  font-style: normal;
+  font-weight: 300 900;
+  font-display: swap;
+  src: url('../assets/fonts/georama-latin-ext.woff2') format('woff2');
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
+    U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Georama';
+  font-style: normal;
+  font-weight: 300 900;
+  font-display: swap;
+  src: url('../assets/fonts/georama-latin.woff2') format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  color-scheme: light;
+
+  /* Marque */
+  --primaire: #50967c;
+  --primaire-fonce: #3d7a62;
+  --primaire-tres-fonce: #2f6150;
+  --primaire-clair: #6db898;
+  --primaire-pale: #e8f5f0;
+  --primaire-texte: #3f7662;
+  --sur-primaire: #ffffff;
+
+  /* Neutres */
+  --fond: #f8f9fa;
+  --surface: #ffffff;
+  --surface-2: #f1f3f5;
+  --surface-3: #e9ecef;
+  --bord: #dee2e6;
+  --bord-fort: #ced4da;
+  --texte: #4a4a4a;
+  --texte-fort: #2e2e2e;
+  --texte-doux: #5c646c;
+  --ombre-teinte: 0 0 0;
+
+  /* Bandeau du profil (le « hero » sombre du design system) */
+  --scene: #1a1a1a;
+  --scene-2: #2e2e2e;
+  --scene-bord: #3d3d3d;
+  --scene-texte: #f1f3f5;
+  --scene-doux: #c3c9cf;
+  --scene-accent: #6db898;
+  --sur-scene-accent: #142a21;
+  --voile: rgb(10 14 12 / 55%);
+
+  /* États */
+  --succes: #2e7d55;
+  --succes-pale: #e3f3ea;
+  --alerte: #8a5a00;
+  --alerte-pale: #fdf3dc;
+  --erreur: #b3261e;
+  --surligne: #fdf6da;
+  --surligne-texte: #6b5610;
+
+  /* Couleurs de catégories du design system : base (barre), pâle (fond), texte (AA) */
+  --bleu: #5699c5;
+  --bleu-pale: #ddeef8;
+  --bleu-texte: #336d94;
+  --violet: #a07bd4;
+  --violet-pale: #ede5f9;
+  --violet-texte: #7d4bc4;
+  --turquoise: #5daba0;
+  --turquoise-pale: #dcf0ee;
+  --turquoise-texte: #3c736b;
+  --jaune: #eacb60;
+  --jaune-pale: #fdf6da;
+  --jaune-texte: #866c12;
+  --rose: #e78da5;
+  --rose-pale: #fce8ee;
+  --rose-texte: #c62a53;
+  --orange: #e3764c;
+  --orange-pale: #fbe9e0;
+  --orange-texte: #b4471c;
+  --vert: #50967c;
+  --vert-pale: #e8f5f0;
+  --vert-texte: #3f7662;
+  --anthracite: #4a4a4a;
+  --anthracite-pale: #f1f3f5;
+  --anthracite-texte: #4a4a4a;
+
+  /* Typographie */
+  --police: 'Georama', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  --police-mono: ui-monospace, 'Cascadia Mono', Consolas, 'SF Mono', monospace;
+  --texte-xs: 0.75rem;
+  --texte-sm: 0.875rem;
+  --texte-base: 1rem;
+  --texte-md: 1.125rem;
+  --texte-lg: 1.25rem;
+  --texte-xl: 1.5rem;
+  --texte-2xl: 1.875rem;
+  --texte-3xl: 2.25rem;
+  --texte-4xl: 3rem;
+  --interlettre-large: 0.04em;
+  --interlettre-tres-large: 0.08em;
+
+  /* Espacements (grille de 4 px) */
+  --e-1: 0.25rem;
+  --e-2: 0.5rem;
+  --e-3: 0.75rem;
+  --e-4: 1rem;
+  --e-5: 1.25rem;
+  --e-6: 1.5rem;
+  --e-8: 2rem;
+  --e-10: 2.5rem;
+  --e-12: 3rem;
+  --e-16: 4rem;
+
+  /* Formes */
+  --rayon-sm: 4px;
+  --rayon-md: 8px;
+  --rayon-lg: 12px;
+  --rayon-xl: 16px;
+  --rayon-2xl: 24px;
+  --rayon-pilule: 9999px;
+  --ombre-xs: 0 1px 2px rgb(var(--ombre-teinte) / 6%);
+  --ombre-sm: 0 1px 4px rgb(var(--ombre-teinte) / 8%), 0 1px 2px rgb(var(--ombre-teinte) / 4%);
+  --ombre-md: 0 4px 12px rgb(var(--ombre-teinte) / 10%), 0 2px 4px rgb(var(--ombre-teinte) / 6%);
+  --ombre-lg: 0 8px 24px rgb(var(--ombre-teinte) / 12%), 0 4px 8px rgb(var(--ombre-teinte) / 6%);
+  --ombre-xl: 0 16px 48px rgb(var(--ombre-teinte) / 14%), 0 8px 16px rgb(var(--ombre-teinte) / 8%);
+  --transition-rapide: 150ms ease;
+  --transition: 250ms ease;
+
+  --largeur: 1280px;
+  --hauteur-bandeau: 72px;
+}
+
+/* Thème sombre : celui des slides du design system (#1a1a1a). */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+    --primaire: #6db898;
+    --primaire-fonce: #6db898;
+    --primaire-tres-fonce: #8ccbb0;
+    --primaire-clair: #8ccbb0;
+    --primaire-pale: #213a31;
+    --primaire-texte: #7cc1a5;
+    --sur-primaire: #102019;
+    --fond: #141414;
+    --surface: #1f1f1f;
+    --surface-2: #2a2a2a;
+    --surface-3: #333333;
+    --bord: #383838;
+    --bord-fort: #4a4a4a;
+    --texte: #e4e7ea;
+    --texte-fort: #f8f9fa;
+    --texte-doux: #aab2ba;
+    --scene: #0c0c0c;
+    --scene-2: #1f1f1f;
+    --scene-bord: #333333;
+    --succes: #6fcf97;
+    --succes-pale: #1d3328;
+    --alerte: #f0c060;
+    --alerte-pale: #3a3020;
+    --erreur: #f2867e;
+    --surligne: #453d21;
+    --surligne-texte: #f3dc8c;
+    --bleu-pale: #213745;
+    --bleu-texte: #7fb3d6;
+    --violet-pale: #302145;
+    --violet-texte: #b495de;
+    --turquoise-pale: #23433f;
+    --turquoise-texte: #7fc0b7;
+    --jaune-pale: #453d21;
+    --jaune-texte: #eacb60;
+    --rose-pale: #45212b;
+    --rose-texte: #eea0b6;
+    --orange-pale: #452b21;
+    --orange-texte: #ec9472;
+    --vert: #6db898;
+    --vert-pale: #234337;
+    --vert-texte: #7cc1a5;
+    --anthracite: #8f8f8f;
+    --anthracite-pale: #333333;
+    --anthracite-texte: #c8c8c8;
+  }
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --primaire: #6db898;
+  --primaire-fonce: #6db898;
+  --primaire-tres-fonce: #8ccbb0;
+  --primaire-clair: #8ccbb0;
+  --primaire-pale: #213a31;
+  --primaire-texte: #7cc1a5;
+  --sur-primaire: #102019;
+  --fond: #141414;
+  --surface: #1f1f1f;
+  --surface-2: #2a2a2a;
+  --surface-3: #333333;
+  --bord: #383838;
+  --bord-fort: #4a4a4a;
+  --texte: #e4e7ea;
+  --texte-fort: #f8f9fa;
+  --texte-doux: #aab2ba;
+  --scene: #0c0c0c;
+  --scene-2: #1f1f1f;
+  --scene-bord: #333333;
+  --succes: #6fcf97;
+  --succes-pale: #1d3328;
+  --alerte: #f0c060;
+  --alerte-pale: #3a3020;
+  --erreur: #f2867e;
+  --surligne: #453d21;
+  --surligne-texte: #f3dc8c;
+  --bleu-pale: #213745;
+  --bleu-texte: #7fb3d6;
+  --violet-pale: #302145;
+  --violet-texte: #b495de;
+  --turquoise-pale: #23433f;
+  --turquoise-texte: #7fc0b7;
+  --jaune-pale: #453d21;
+  --jaune-texte: #eacb60;
+  --rose-pale: #45212b;
+  --rose-texte: #eea0b6;
+  --orange-pale: #452b21;
+  --orange-texte: #ec9472;
+  --vert: #6db898;
+  --vert-pale: #234337;
+  --vert-texte: #7cc1a5;
+  --anthracite: #8f8f8f;
+  --anthracite-pale: #333333;
+  --anthracite-texte: #c8c8c8;
+}
+
+/* Couleur d'une famille de tâches : --cat (barre), --cat-pale (fond), --cat-texte (texte). */
+[data-couleur='bleu'] {
+  --cat: var(--bleu);
+  --cat-pale: var(--bleu-pale);
+  --cat-texte: var(--bleu-texte);
+}
+[data-couleur='violet'] {
+  --cat: var(--violet);
+  --cat-pale: var(--violet-pale);
+  --cat-texte: var(--violet-texte);
+}
+[data-couleur='turquoise'] {
+  --cat: var(--turquoise);
+  --cat-pale: var(--turquoise-pale);
+  --cat-texte: var(--turquoise-texte);
+}
+[data-couleur='jaune'] {
+  --cat: var(--jaune);
+  --cat-pale: var(--jaune-pale);
+  --cat-texte: var(--jaune-texte);
+}
+[data-couleur='rose'] {
+  --cat: var(--rose);
+  --cat-pale: var(--rose-pale);
+  --cat-texte: var(--rose-texte);
+}
+[data-couleur='orange'] {
+  --cat: var(--orange);
+  --cat-pale: var(--orange-pale);
+  --cat-texte: var(--orange-texte);
+}
+[data-couleur='vert'] {
+  --cat: var(--vert);
+  --cat-pale: var(--vert-pale);
+  --cat-texte: var(--vert-texte);
+}
+[data-couleur='anthracite'] {
+  --cat: var(--anthracite);
+  --cat-pale: var(--anthracite-pale);
+  --cat-texte: var(--anthracite-texte);
+}
