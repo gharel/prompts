@@ -56,9 +56,9 @@ describe('decouperACompleter', () => {
 
 describe('formaterDate et slugifier', () => {
   it('écrit la date en français', () => {
-    expect(formaterDate('2026-10-02')).toBe('2 octobre 2026');
-    expect(formaterDate('2026-08-01')).toBe('1er août 2026');
-    expect(formaterDate('2026-02-14', { court: true })).toBe('14 févr. 2026');
+    expect(formaterDate('2026-10-02')).toBe('2\u00a0octobre\u00a02026');
+    expect(formaterDate('2026-08-01')).toBe('1er\u00a0août\u00a02026');
+    expect(formaterDate('2026-02-14', { court: true })).toBe('14\u00a0févr.\u00a02026');
     expect(formaterDate('n’importe quoi')).toBe('');
   });
   it('fait un identifiant lisible', () => {
