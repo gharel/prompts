@@ -15,7 +15,7 @@ import { monterScene } from './vues/scene.js';
 import { monterResultats } from './vues/resultats.js';
 import { monterFiche } from './vues/fiche.js';
 import { monterAPropos } from './vues/apropos.js';
-import { lienExterne } from './vues/commun.js';
+import { lienExterne, DROITS, USAGE_RESERVE } from './vues/commun.js';
 
 const $ = (id) => document.getElementById(id);
 
@@ -87,9 +87,10 @@ remplir(
   el(
     'p',
     {},
-    'Skazy Formation, Nouvelle-Calédonie · ',
+    `${DROITS}, Nouvelle-Calédonie · `,
     lienExterne('formation.skazy.nc', 'https://formation.skazy.nc', { classe: 'lien-pied' }),
   ),
+  el('p', {}, USAGE_RESERVE),
 );
 
 document.documentElement.classList.add('pret');

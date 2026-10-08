@@ -43,6 +43,17 @@ test('le thème sombre est accessible aussi', async ({ page }) => {
   await verifierAccessibilite(page);
 });
 
+test('la page est réservée aux stagiaires : non indexée, droits en pied de page', async ({
+  page,
+}) => {
+  await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noindex');
+  const pied = page.locator('.pied');
+  await expect(pied).toContainText('© 2026 Skazy Formation');
+  await expect(pied).toContainText(
+    /Usage réservé aux stagiaires de Skazy Formation\s:\sreproduction et réutilisation dans une autre formation interdites sans accord écrit\./,
+  );
+});
+
 test('une catégorie filtre les cartes et s’inscrit dans l’adresse', async ({ page }) => {
   const total = await nombre(page.locator('#titre-resultats'));
   const pastille = page.locator('label.pastille', { hasText: 'Coder' });

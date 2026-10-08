@@ -6,6 +6,14 @@ import { icone } from '../icones.js';
 import { analyserMarkdown, decouperACompleter, nombreACompleter } from '../texte.js';
 import { categorie as trouverCategorie, TYPES_PROMPT } from '../../donnees/referentiels.js';
 
+/**
+ * Mention de droits du pied de page. Le signe copyright est écrit © : Unicode le classe
+ * parmi les pictogrammes, et le contrôle « aucun emoji » le refuserait.
+ */
+export const DROITS = '© 2026 Skazy Formation';
+export const USAGE_RESERVE =
+  'Usage réservé aux stagiaires de Skazy Formation : reproduction et réutilisation dans une autre formation interdites sans accord écrit.';
+
 /** Markdown léger → nœuds (texte, <strong>, <em>, <code>, <a>). */
 export function markdown(source) {
   return analyserMarkdown(source).map((m) => {

@@ -7,6 +7,7 @@ Consignes pour les agents de code (Claude Code, Codex, Copilot…) et pour les h
 Une base de prompts en français : une fiche par section de la rubrique quotidienne de la newsletter **The Neuron** (theneurondaily.com), « AI Skill of the Day », appelée « Prompt Tip of the Week » fin 2024 puis « Prompt Tip of the Day » jusqu’au 2 mars 2026.
 
 - Chaque fiche : titre, résumé, catégorie, niveau, outils, explication, un ou plusieurs prompts à copier, idée à retenir, **source datée** (édition, adresse, titre original, nom de la rubrique).
+- **Usage réservé aux stagiaires** : la page n’est pas indexée (`<meta name="robots" content="noindex">`) et le pied de page porte la mention de droits (`DROITS` et `USAGE_RESERVE` dans `src/js/vues/commun.js`).
 - **Aucune IA ni requête réseau dans la page.** Elle est livrée en **un seul fichier HTML autonome** (`dist/index.html`), ouvrable hors ligne, et publiée sur GitHub Pages : https://gharel.github.io/prompts/
 - La charte est celle du design system **Skazy Formation** de Claude Design, reprise du projet voisin `exercices-ia` : vert `#50967c`, texte `#4a4a4a`, police Georama, boutons en pilule, cartes avec une barre de couleur de 6 px en haut, badges en majuscules, scène sombre `#1a1a1a`, pas d’emoji.
 - Les **archives** (`archives/the-neuron/`) gardent toutes les éditions de la newsletter, pour en tirer d’autres informations plus tard.
