@@ -296,7 +296,7 @@ export function monterFiche(dialogue, magasin, fiches, { courants }) {
     }
     dialogue.scrollTop = 0;
     focaliser(dialogue.querySelector('#titre-fiche'));
-    document.title = `${fiche.titre} · Prompthèque`;
+    document.title = `${fiche.titre} · Prompthèque · Skazy Formation`;
     return true;
   }
 

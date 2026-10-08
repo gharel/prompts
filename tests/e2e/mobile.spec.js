@@ -73,6 +73,11 @@ for (const largeur of LARGEURS) {
           '.pastille__corps, .bandeau__actions .bouton, .menu-filtre__bouton, .resultats__titres h2, .actif, #hasard',
         ),
       ).toEqual([]);
+      // Bandeau : la pastille de l'outil reste visible, à l'écart des boutons.
+      await expect(page.locator('.bandeau__pastille')).toBeVisible();
+      const pastille = await page.locator('.bandeau__pastille').boundingBox();
+      const actions = await page.locator('.bandeau__actions').boundingBox();
+      expect(pastille.x + pastille.width + 4).toBeLessThanOrEqual(actions.x);
       // Le titre « Catégories » respire au-dessus des pastilles.
       expect(await ecart(page, '.categories__legende', '.pastilles')).toBeGreaterThanOrEqual(12);
       // Le texte d'exemple de la recherche tient dans le champ.
