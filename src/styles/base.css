@@ -133,13 +133,24 @@ textarea {
   display: none;
 }
 
+/* Signature commune aux outils Skazy Formation : logo, filet, pastille (le favicon), nom. */
 .bandeau__nom {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.0625rem;
   font-weight: 700;
   color: var(--texte-fort);
   padding-left: var(--e-4);
   border-left: 1px solid var(--bord);
   line-height: 1.2;
   white-space: nowrap;
+}
+.bandeau__pastille {
+  flex: none;
+  width: 28px;
+  height: 28px;
 }
 
 .bandeau__actions {
@@ -527,13 +538,19 @@ mark.a-completer {
 @media (max-width: 640px) {
   .bandeau__interieur {
     padding-inline: var(--e-4);
-    gap: var(--e-2);
-  }
-  .bandeau__nom {
-    display: none;
+    gap: var(--e-3);
   }
   .bandeau__logo .logo {
     height: 30px;
+  }
+  /* Logo de 30 px : pastille de 24 px et nom de 16 px, dans le même rapport qu'en grand. */
+  .bandeau__nom {
+    padding-left: var(--e-3);
+    font-size: var(--texte-base);
+  }
+  .bandeau__pastille {
+    width: 24px;
+    height: 24px;
   }
   .bouton-seance__texte {
     display: none;
@@ -566,6 +583,18 @@ mark.a-completer {
   }
 }
 
+/* Faute de place, le nom de l'outil s'efface ; la pastille et son filet restent. */
+@media (max-width: 480px) {
+  .bandeau__nom-texte {
+    display: none;
+  }
+}
+/* En dessous de 360 px, les boutons (compteur de favoris compris) ont besoin de toute la place. */
+@media (max-width: 359px) {
+  .bandeau__nom {
+    display: none;
+  }
+}
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

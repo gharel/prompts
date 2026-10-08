@@ -14,6 +14,8 @@ test('un clic sur une carte ouvre sa fiche complète', async ({ page }) => {
   const fiche = page.getByRole('dialog');
   await expect(fiche.getByRole('heading', { level: 2 })).toHaveText(titre);
   await expect(page).toHaveURL(/#[a-z0-9-]+$/);
+  // Titre d'onglet : « Page · Nom · Skazy Formation ».
+  await expect(page).toHaveTitle(/^\S.* · Prompthèque · Skazy Formation$/);
   await expect(fiche.locator('.fiche__section').first()).toContainText('La technique');
   await expect(fiche.locator('.prompt').first()).toBeVisible();
   await expect(fiche.locator('.fiche__source a')).toHaveAttribute(
@@ -31,6 +33,7 @@ test('la fiche se ferme avec Échap et rend la main à la carte', async ({ page 
   await page.keyboard.press('Escape');
   await expect(page.getByRole('dialog')).toBeHidden();
   await expect(page).not.toHaveURL(/#/);
+  await expect(page).toHaveTitle('Prompthèque · Skazy Formation');
   await expect(lien).toBeFocused();
 });
 
