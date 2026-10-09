@@ -103,12 +103,6 @@ export function creerEtat(filtresInitiaux = FILTRES_PAR_DEFAUT) {
   };
 }
 
-/** Thème : 'systeme', 'light' ou 'dark'. */
-export function lireTheme() {
-  const theme = lire('theme', 'systeme');
-  return theme === 'light' || theme === 'dark' ? theme : 'systeme';
-}
-
 /**
  * Barre du navigateur sur téléphone : de la couleur du bandeau dans le thème choisi ; thème du
  * système : celle que index.html donne à chaque schéma de couleurs.
@@ -122,8 +116,11 @@ export function colorerBarre(theme) {
   }
 }
 
+/**
+ * Thème : 'systeme', 'light' ou 'dark', commun à tous les outils Skazy Formation (lireTheme et
+ * ecrireTheme, dans stockage.js). appliquerTheme le met sur la page, sans l'écrire.
+ */
 export function appliquerTheme(theme) {
   if (theme === 'light' || theme === 'dark') document.documentElement.dataset.theme = theme;
   else delete document.documentElement.dataset.theme;
-  ecrire('theme', theme);
 }

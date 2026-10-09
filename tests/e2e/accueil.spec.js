@@ -178,16 +178,94 @@ test('le bouton Copier d’une carte copie le prompt', async ({ page }) => {
   expect(copie.length).toBeGreaterThan(20);
 });
 
-test('le thème se change et se retient', async ({ page }) => {
+/** Thème commun à tous les outils Skazy Formation : clé, nom du bouton, page. */
+const CLE_THEME = 'skazy-outils:theme';
+const NOMS_THEME = {
+  systeme: 'Thème : celui du système. Changer de thème',
+  light: 'Thème : clair. Changer de thème',
+  dark: 'Thème : sombre. Changer de thème',
+};
+async function verifierTheme(page, theme) {
   const bouton = page.locator('#bouton-theme');
+  await expect(bouton).toHaveAttribute('aria-label', NOMS_THEME[theme]);
+  await expect(bouton).toHaveAttribute('title', NOMS_THEME[theme]);
+  if (theme === 'systeme') await expect(page.locator('html')).not.toHaveAttribute('data-theme');
+  else await expect(page.locator('html')).toHaveAttribute('data-theme', theme);
+}
+
+test('le thème se change, se retient et vaut pour tous les outils', async ({ page }) => {
+  const bouton = page.locator('#bouton-theme');
+  const cle = () => page.evaluate((c) => localStorage.getItem(c), CLE_THEME);
+  // Le mode nuit de Brave (Dark Reader) ne repeint pas la page, qui a son thème sombre.
+  await expect(page.locator('meta[name="color-scheme"]')).toHaveAttribute('content', 'light dark');
+  await expect(
+    page.locator('meta[name="color-scheme"] + meta[name="darkreader-lock"]'),
+  ).toHaveCount(1);
+
+  await verifierTheme(page, 'systeme');
+  expect(await cle()).toBeNull();
   await bouton.click();
-  await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
+  await verifierTheme(page, 'light');
+  expect(await cle()).toBe('"light"');
   await bouton.click();
-  await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+  await verifierTheme(page, 'dark');
+  expect(await cle()).toBe('"dark"');
   await page.reload();
-  await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+  await verifierTheme(page, 'dark');
   await bouton.click();
-  await expect(page.locator('html')).not.toHaveAttribute('data-theme', /./);
+  await verifierTheme(page, 'systeme');
+  expect(await cle()).toBeNull();
+
+  // L'ancienne clé propre à l'outil n'est plus ni lue ni écrite.
+  await page.evaluate(() => localStorage.setItem('skazy-prompts:theme', '"dark"'));
+  await page.reload();
+  await verifierTheme(page, 'systeme');
+  await bouton.click();
+  expect(await page.evaluate(() => localStorage.getItem('skazy-prompts:theme'))).toBe('"dark"');
+  expect(await cle()).toBe('"light"');
+});
+
+test('le thème choisi dans un autre onglet ou un autre outil s’applique aussitôt', async ({
+  page,
+  context,
+}) => {
+  const metas = page.locator('meta[name="theme-color"]');
+  const surface = () =>
+    page.evaluate(() =>
+      getComputedStyle(document.documentElement).getPropertyValue('--surface').trim(),
+    );
+  await verifierTheme(page, 'systeme');
+  const autre = await context.newPage();
+  await autre.goto('/');
+  const boutonAutre = autre.locator('#bouton-theme');
+  await boutonAutre.click();
+  await verifierTheme(autre, 'light');
+  await verifierTheme(page, 'light');
+  await boutonAutre.click();
+  await verifierTheme(page, 'dark');
+  // La barre du navigateur prend la couleur du bandeau sombre.
+  const sombre = await surface();
+  await expect(metas.nth(0)).toHaveAttribute('content', sombre);
+  await expect(metas.nth(1)).toHaveAttribute('content', sombre);
+  await boutonAutre.click();
+  await verifierTheme(autre, 'systeme');
+  await verifierTheme(page, 'systeme');
+  await expect(metas.nth(0)).toHaveAttribute('content', '#ffffff');
+  await expect(metas.nth(1)).toHaveAttribute('content', '#1f1f1f');
+
+  // Un autre outil Skazy Formation écrit la même clé.
+  await autre.evaluate((c) => localStorage.setItem(c, '"light"'), CLE_THEME);
+  await verifierTheme(page, 'light');
+  await autre.evaluate((c) => localStorage.removeItem(c), CLE_THEME);
+  await verifierTheme(page, 'systeme');
+  await autre.close();
+
+  // Retour sur une page gardée en mémoire par le navigateur : le thème est relu.
+  await page.evaluate((c) => {
+    localStorage.setItem(c, '"dark"');
+    dispatchEvent(new PageTransitionEvent('pageshow', { persisted: true }));
+  }, CLE_THEME);
+  await verifierTheme(page, 'dark');
 });
 
 test('À propos présente les catégories et mène à l’une d’elles', async ({ page }) => {

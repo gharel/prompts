@@ -1,9 +1,12 @@
 /**
  * Les actions du bandeau : Mes favoris, À propos, thème.
+ * Le thème suit le système, ou il est clair ou sombre ; l'icône montre le thème actuel. Le choix
+ * vaut pour tous les outils Skazy Formation et se reprend aussitôt quand il change ailleurs.
  */
 import { el, remplir, typographier } from '../ui.js';
 import { icone } from '../icones.js';
-import { lireTheme, appliquerTheme, colorerBarre } from '../etat.js';
+import { appliquerTheme, colorerBarre } from '../etat.js';
+import { lireTheme, ecrireTheme, ecouterTheme } from '../stockage.js';
 
 const THEMES = {
   systeme: { suivant: 'light', icone: 'circle-half-stroke', nom: 'Thème : celui du système' },
@@ -16,7 +19,12 @@ export function monterBandeau(conteneur, magasin, { ouvrirAPropos }) {
   const boutonTheme = el('button', { type: 'button', class: 'bouton-icone', id: 'bouton-theme' });
   boutonTheme.addEventListener('click', () => {
     theme = THEMES[theme].suivant;
-    appliquerTheme(theme);
+    ecrireTheme(theme);
+    synchroniserTheme();
+  });
+  // Choisi dans un autre onglet ou un autre outil, ou au retour sur la page : on le reprend.
+  ecouterTheme((nouveau) => {
+    theme = nouveau;
     synchroniserTheme();
   });
 
@@ -58,9 +66,11 @@ export function monterBandeau(conteneur, magasin, { ouvrirAPropos }) {
 
   function synchroniserTheme() {
     const t = THEMES[theme];
+    appliquerTheme(theme);
     boutonTheme.replaceChildren(icone(t.icone));
-    boutonTheme.setAttribute('aria-label', typographier(`${t.nom}. Changer de thème`));
-    boutonTheme.title = typographier(t.nom);
+    const nom = typographier(`${t.nom}. Changer de thème`);
+    boutonTheme.setAttribute('aria-label', nom);
+    boutonTheme.title = nom;
     colorerBarre(theme);
   }
 

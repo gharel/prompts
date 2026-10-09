@@ -11,6 +11,9 @@
     <!-- Outil réservé aux stagiaires : la page n'apparaît pas dans les moteurs de recherche. -->
     <meta name="robots" content="noindex" />
     <meta name="color-scheme" content="light dark" />
+    <!-- La page a son propre thème sombre : sans ce verrou, le mode nuit de Brave (Dark Reader) la
+         repeint, même en thème clair. -->
+    <meta name="darkreader-lock" />
     <!-- Barre du navigateur sur téléphone : de la couleur du bandeau (le bouton du thème la suit). -->
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#1f1f1f" media="(prefers-color-scheme: dark)" />
@@ -24,9 +27,10 @@
     <link rel="stylesheet" href="styles/base.css" />
     <link rel="stylesheet" href="styles/composants.css" />
     <script>
-      // Thème choisi, appliqué avant l'affichage pour éviter un éclair de la mauvaise couleur.
+      // Thème choisi, commun à tous les outils Skazy Formation, appliqué avant l'affichage pour
+      // éviter un éclair de la mauvaise couleur. Thème du système : aucune clé.
       try {
-        const theme = JSON.parse(localStorage.getItem('skazy-prompts:theme'));
+        const theme = JSON.parse(localStorage.getItem('skazy-outils:theme'));
         if (theme === 'light' || theme === 'dark') document.documentElement.dataset.theme = theme;
       } catch {
         // stockage indisponible : thème du système
