@@ -56,12 +56,22 @@ function ouvrirDepuisAdresse() {
 globalThis.addEventListener('hashchange', ouvrirDepuisAdresse);
 ouvrirDepuisAdresse();
 
-// Bouton « Revenir en haut », visible après un écran de défilement.
+// Le nom de l'outil mène à son accueil (« ./ ») ; ouvert en file://, « ./ » afficherait le
+// dossier : le lien recharge alors le fichier lui-même.
+if (globalThis.location.protocol === 'file:') {
+  $('lien-accueil').href = globalThis.location.pathname.split('/').pop() || './';
+}
+
+// Bouton « Remonter en haut », visible après un écran de défilement (ordinateur et téléphone).
 const haut = $('haut-de-page');
 haut.prepend(icone('arrow-up'));
-haut.addEventListener('click', () => {
-  globalThis.scrollTo({ top: 0, behavior: 'smooth' });
-  $('recherche')?.focus({ preventScroll: true });
+haut.addEventListener('click', (evenement) => {
+  const reduit = globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+  globalThis.scrollTo({ top: 0, behavior: reduit ? 'auto' : 'smooth' });
+  // Au clavier (detail 0), on reprend dans la recherche. Au doigt ou à la souris, sur le titre
+  // (tabindex="-1") : ni anneau, ni clavier du téléphone qui s'ouvre.
+  const cible = evenement.detail === 0 ? $('recherche') : $('titre-page');
+  cible?.focus({ preventScroll: true });
 });
 const surveillerDefilement = () => {
   haut.hidden = globalThis.scrollY < globalThis.innerHeight * 1.2;

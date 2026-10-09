@@ -1069,11 +1069,13 @@ mark.a-completer {
   gap: var(--e-2) var(--e-6);
 }
 
-/* ── Revenir en haut ─────────────────────────────────── */
+/* ── Remonter en haut ────────────────────────────────── */
+/* Modèle commun aux outils Skazy Formation : bouton rond en bas à droite, qui apparaît en fondu
+   après un écran de défilement (voir main.js), sur ordinateur comme sur téléphone. */
 .haut-de-page {
   position: fixed;
-  right: var(--e-5);
-  bottom: calc(var(--e-5) + env(safe-area-inset-bottom, 0px));
+  right: var(--e-6);
+  bottom: calc(var(--e-6) + env(safe-area-inset-bottom, 0px));
   z-index: 15;
   display: grid;
   place-items: center;
@@ -1086,9 +1088,20 @@ mark.a-completer {
   box-shadow: var(--ombre-lg);
   font-size: 1.1rem;
   cursor: pointer;
+  animation: apparition-haut var(--transition);
 }
 .haut-de-page:hover {
   background: var(--primaire-tres-fonce);
+}
+/* Jamais par-dessus une fiche ou l'À propos ouverts. */
+body:has(dialog[open]) .haut-de-page {
+  display: none;
+}
+@keyframes apparition-haut {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
 }
 
 /* ── Petits écrans ───────────────────────────────────── */
@@ -1097,6 +1110,16 @@ mark.a-completer {
     display: none;
   }
   .bouton-apropos {
+    padding-inline: 10px;
+  }
+}
+/* Le bandeau gagne « Les outils » et le logo à droite : « Mes favoris » se réduit à l'icône
+   (et au compteur) dès 800 px ; son nom reste dans aria-label. */
+@media (max-width: 800px) {
+  .bouton-favoris__texte {
+    display: none;
+  }
+  .bouton-favoris {
     padding-inline: 10px;
   }
 }
@@ -1195,12 +1218,6 @@ mark.a-completer {
   .carte__corps {
     padding: var(--e-4);
   }
-  .bouton-favoris__texte {
-    display: none;
-  }
-  .bouton-favoris {
-    padding-inline: 10px;
-  }
   .fiche__entete {
     padding: var(--e-2) var(--e-2) var(--e-2) var(--e-4);
     flex-wrap: nowrap;
@@ -1221,9 +1238,23 @@ mark.a-completer {
   .apropos__niveaux dd {
     margin-bottom: var(--e-2);
   }
-  /* Sur téléphone, le bouton flottant masquerait le texte des cartes : on s'en passe. */
+  /* Sur téléphone : 44 px, à 16 px des bords. Le pied garde de la place pour ne pas être
+     masqué par le bouton. */
   .haut-de-page {
-    display: none;
+    right: var(--e-4);
+    bottom: calc(var(--e-4) + env(safe-area-inset-bottom, 0px));
+    width: 44px;
+    height: 44px;
+  }
+  .pied__interieur {
+    padding-bottom: calc(76px + env(safe-area-inset-bottom, 0px));
+  }
+}
+/* Petits téléphones : « Mes favoris » plus compact, pour que le bandeau tienne à 360 px. */
+@media (max-width: 400px) {
+  .bouton-favoris {
+    gap: var(--e-1);
+    padding-inline: 8px;
   }
 }
 

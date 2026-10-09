@@ -120,31 +120,20 @@ textarea {
   gap: var(--e-4);
 }
 
-.bandeau__logo {
-  display: flex;
-  flex: none;
-  border-radius: var(--rayon-md);
-}
-.bandeau__logo .logo {
-  height: 36px;
-  width: auto;
-}
-.logo--sombre {
-  display: none;
-}
-
-/* Signature commune aux outils Skazy Formation : logo, filet, pastille (le favicon), nom. */
+/* Bandeau commun aux outils Skazy Formation. À gauche, la pastille (le favicon) et le nom de
+   l'outil, en un seul lien vers son accueil ; à droite, après les actions de l'outil :
+   « Les outils » (la roue), un filet, puis le logo Skazy Formation, toujours en dernier. */
 .bandeau__nom {
   display: flex;
   flex: none;
   align-items: center;
   gap: 10px;
+  border-radius: var(--rayon-md);
   font-size: 1.0625rem;
   font-weight: 700;
   color: var(--texte-fort);
-  padding-left: var(--e-4);
-  border-left: 1px solid var(--bord);
   line-height: 1.2;
+  text-decoration: none;
   white-space: nowrap;
 }
 .bandeau__pastille {
@@ -158,6 +147,51 @@ textarea {
   display: flex;
   align-items: center;
   gap: var(--e-2);
+}
+
+.bandeau__outils {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: var(--e-2);
+  min-height: 42px;
+  padding: 6px 14px 6px 8px;
+  border-radius: var(--rayon-pilule);
+  color: var(--texte);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 1.1;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background var(--transition-rapide);
+}
+.bandeau__outils:hover {
+  background: var(--surface-2);
+}
+.bandeau__roue {
+  flex: none;
+  width: 26px;
+  height: 26px;
+}
+
+.bandeau__filet {
+  flex: none;
+  width: 1px;
+  height: 24px;
+  background: var(--bord);
+}
+
+.bandeau__logo {
+  display: flex;
+  flex: none;
+  border-radius: var(--rayon-md);
+}
+.bandeau__logo .logo {
+  height: 36px;
+  width: auto;
+}
+.logo--sombre {
+  display: none;
 }
 
 .bouton-seance {
@@ -545,7 +579,6 @@ mark.a-completer {
   }
   /* Logo de 30 px : pastille de 24 px et nom de 16 px, dans le même rapport qu'en grand. */
   .bandeau__nom {
-    padding-left: var(--e-3);
     font-size: var(--texte-base);
   }
   .bandeau__pastille {
@@ -583,14 +616,65 @@ mark.a-completer {
   }
 }
 
-/* Faute de place, le nom de l'outil s'efface ; la pastille et son filet restent. */
-@media (max-width: 480px) {
+/* Sur téléphone et petite tablette, « Les outils » se réduit à la roue : le texte, masqué à
+   l'écran comme .hors-ecran, reste le nom du lien. */
+@media (max-width: 720px) {
+  .bandeau__outils {
+    justify-content: center;
+    width: 42px;
+    padding: 0;
+  }
+  .bandeau__outils-texte {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
+/* Faute de place, le nom de l'outil s'efface ; la pastille reste, et le lien garde son nom. */
+@media (max-width: 540px) {
+  .bandeau__interieur {
+    gap: var(--e-2);
+  }
+  .bandeau__actions {
+    gap: var(--e-1);
+  }
   .bandeau__nom-texte {
-    display: none;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
+/* Petits téléphones : bandeau resserré et logo plus petit, pour que rien ne déborde à 360 px,
+   même avec un compteur de favoris à deux chiffres. */
+@media (max-width: 400px) {
+  .bandeau__interieur {
+    padding-inline: var(--e-3);
+    gap: 6px;
+  }
+  .bandeau__logo .logo {
+    height: 28px;
+  }
+  .bandeau__outils {
+    width: 40px;
+    min-height: 40px;
+  }
+}
+@media (max-width: 370px) {
+  .bandeau__logo .logo {
+    height: 26px;
   }
 }
 /* En dessous de 360 px, les boutons (compteur de favoris compris) ont besoin de toute la place. */
 @media (max-width: 359px) {
+  .bandeau__interieur {
+    padding-inline: var(--e-2);
+  }
   .bandeau__nom {
     display: none;
   }

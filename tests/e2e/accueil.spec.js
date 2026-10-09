@@ -200,3 +200,86 @@ test('À propos présente les catégories et mène à l’une d’elles', async 
   await expect(dialogue).toBeHidden();
   await expect(page.locator('input[name="categorie"][value="creer"]')).toBeChecked();
 });
+
+test('le bandeau : nom de l’outil vers son accueil, actions, « Les outils », filet, logo en dernier', async ({
+  page,
+}) => {
+  const bandeau = page.locator('.bandeau__interieur');
+  expect(await bandeau.evaluate((b) => [...b.children].map((e) => e.className))).toEqual([
+    'bandeau__nom',
+    'bandeau__actions',
+    'bandeau__outils',
+    'bandeau__filet',
+    'bandeau__logo',
+  ]);
+
+  // La pastille et le nom forment un seul lien vers l'accueil de l'outil, sans filet.
+  const nom = page.getByRole('link', { name: 'Prompthèque', exact: true });
+  await expect(nom).toHaveAttribute('href', './');
+  await expect(nom).toHaveAttribute('aria-current', 'page');
+  await expect(nom.locator('.bandeau__pastille')).toBeVisible();
+  await expect(nom.getByText('Prompthèque')).toBeVisible();
+  expect(await nom.evaluate((a) => getComputedStyle(a).borderLeftStyle)).toBe('none');
+
+  const outils = page.getByRole('link', { name: 'Les outils', exact: true });
+  await expect(outils).toHaveAttribute('href', 'https://gharel.github.io/home/');
+  await expect(outils).not.toHaveAttribute('target', /./);
+  await expect(outils).toHaveAttribute('title', 'Tous les outils Skazy Formation');
+  await expect(outils.locator('.bandeau__roue')).toBeVisible();
+  await expect(outils.getByText('Les outils')).toBeVisible();
+
+  const logo = page.getByRole('link', { name: 'Site de Skazy Formation (nouvel onglet)' });
+  await expect(logo).toHaveAttribute('href', 'https://formation.skazy.nc');
+  await expect(logo).toHaveAttribute('target', '_blank');
+  await expect(logo).toHaveAttribute('rel', 'noopener');
+  await expect(logo.locator('img.logo--clair')).toBeVisible();
+
+  // À l'écran aussi, le logo est le plus à droite, après un filet de 1 × 24 px.
+  const filet = await page.locator('.bandeau__filet').boundingBox();
+  expect([Math.round(filet.width), Math.round(filet.height)]).toEqual([1, 24]);
+  const droites = await bandeau.evaluate((b) =>
+    [...b.children].map((e) => e.getBoundingClientRect().right),
+  );
+  expect(Math.max(...droites)).toBe(droites.at(-1));
+
+  // Le nom ramène à l'accueil de l'outil, filtres effacés.
+  await page.goto('/?categorie=verifier');
+  await expect(page.locator('.carte').first()).toBeVisible();
+  await nom.click();
+  await expect(page).toHaveURL(/\/$/);
+  await expect(page.locator('input[name="categorie"][value="toutes"]')).toBeChecked();
+});
+
+test('le bouton « Remonter en haut de la page » apparaît après défilement et ramène en haut', async ({
+  page,
+}) => {
+  const haut = page.getByRole('button', { name: 'Remonter en haut de la page' });
+  await expect(haut).toBeHidden();
+  await page.evaluate(() => window.scrollTo(0, window.innerHeight * 1.5));
+  await expect(haut).toBeVisible();
+  const boite = await haut.boundingBox();
+  expect([boite.width, boite.height]).toEqual([48, 48]);
+  expect(Math.round(1280 - boite.x - boite.width)).toBe(24);
+
+  // À la souris : en haut, focus sur le titre (sans anneau).
+  await haut.click();
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
+  await expect(page.locator('#titre-page')).toBeFocused();
+  await expect(haut).toBeHidden();
+
+  // Au clavier : on reprend dans la recherche.
+  await page.evaluate(() => window.scrollTo(0, window.innerHeight * 1.5));
+  await haut.focus();
+  await page.keyboard.press('Enter');
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
+  await expect(page.locator('#recherche')).toBeFocused();
+
+  // Jamais par-dessus une fiche ouverte.
+  await page.evaluate(() => window.scrollTo(0, window.innerHeight * 1.5));
+  await expect(haut).toBeVisible();
+  const id = await page.locator('.carte').first().getAttribute('data-id');
+  await page.evaluate((id) => (window.location.hash = id), id);
+  await expect(page.getByRole('dialog')).toBeVisible();
+  expect(await page.evaluate(() => window.scrollY >= window.innerHeight * 1.2)).toBe(true);
+  await expect(haut).toBeHidden();
+});
