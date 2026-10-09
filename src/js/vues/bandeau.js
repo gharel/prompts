@@ -3,7 +3,7 @@
  */
 import { el, remplir, typographier } from '../ui.js';
 import { icone } from '../icones.js';
-import { lireTheme, appliquerTheme } from '../etat.js';
+import { lireTheme, appliquerTheme, colorerBarre } from '../etat.js';
 
 const THEMES = {
   systeme: { suivant: 'light', icone: 'circle-half-stroke', nom: 'Thème : celui du système' },
@@ -61,6 +61,7 @@ export function monterBandeau(conteneur, magasin, { ouvrirAPropos }) {
     boutonTheme.replaceChildren(icone(t.icone));
     boutonTheme.setAttribute('aria-label', typographier(`${t.nom}. Changer de thème`));
     boutonTheme.title = typographier(t.nom);
+    colorerBarre(theme);
   }
 
   function synchroniserFavoris() {

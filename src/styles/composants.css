@@ -8,6 +8,31 @@
 .scene :focus-visible {
   outline-color: var(--scene-accent);
 }
+/* Sur téléphone, la scène remplit l'écran : sombre, elle laissait croire que le thème clair ne
+   s'appliquait pas. En thème clair, elle prend donc les couleurs claires de la page. */
+@media (max-width: 640px) {
+  :root:not([data-theme='dark']) .scene {
+    --scene: var(--fond);
+    --scene-2: var(--surface);
+    --scene-bord: var(--bord-fort);
+    --scene-texte: var(--texte-fort);
+    --scene-doux: var(--texte-doux);
+    --scene-accent: var(--primaire-fonce);
+    --sur-scene-accent: var(--sur-primaire);
+  }
+}
+/* Thème du système quand il est sombre : la scène garde ses couleurs sombres. */
+@media (max-width: 640px) and (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .scene {
+    --scene: inherit;
+    --scene-2: inherit;
+    --scene-bord: inherit;
+    --scene-texte: inherit;
+    --scene-doux: inherit;
+    --scene-accent: inherit;
+    --sur-scene-accent: inherit;
+  }
+}
 .scene__interieur {
   max-width: var(--largeur);
   margin: 0 auto;

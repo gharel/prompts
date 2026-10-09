@@ -243,6 +243,12 @@
   --anthracite-texte: #c8c8c8;
 }
 
+/* Thème clair choisi : « only » interdit aux navigateurs mobiles qui assombrissent les sites
+   (Chrome, Brave, Samsung Internet) d'assombrir la page malgré ce choix. */
+:root[data-theme='light'] {
+  color-scheme: only light;
+}
+
 /* Couleur d'une famille de tâches : --cat (barre), --cat-pale (fond), --cat-texte (texte). */
 [data-couleur='bleu'] {
   --cat: var(--bleu);
