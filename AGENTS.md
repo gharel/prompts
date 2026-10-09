@@ -19,6 +19,10 @@ Une base de prompts en français : une fiche par section de la rubrique quotidie
   5. le **logo Skazy Formation**, toujours en dernier, vers https://formation.skazy.nc dans un nouvel onglet (nom accessible « Site de Skazy Formation (nouvel onglet) »), 36 px de haut, 30 px ≤ 640 px, 28 puis 26 px ≤ 400 et 370 px.
   - Quand la place manque, « Les outils » se réduit à la roue (≤ 720 px), « Mes favoris » à son icône et au compteur (≤ 800 px), le nom de l’outil s’efface (≤ 540 px) ; ces textes restent le nom accessible des liens. La pastille reste toujours (sauf sous 360 px). Rien ne déborde à 360 px, même avec un compteur de favoris à deux chiffres.
   - Bouton rond « **Remonter en haut de la page** » (`#haut-de-page`), modèle commun aux outils : en bas à droite (48 px à 24 px des bords, 44 px à 16 px sur téléphone, plus la zone de sécurité), il apparaît en fondu après 1,2 écran de défilement, sur ordinateur comme sur téléphone, jamais par-dessus une fiche ou l’À propos ouverts ; défilement fluide sauf si les animations sont réduites ; focus sur le titre de la page (au clavier : sur la recherche).
+- **Thème commun aux outils Skazy Formation** : le bouton du thème (`#bouton-theme`) a trois états, du thème du système au thème clair, puis sombre, puis de nouveau celui du système ; l’icône montre le thème actuel (demi-cercle, soleil, lune), le nom accessible et l’info-bulle disent « Thème : celui du système. Changer de thème » (puis « Thème : clair. … », « Thème : sombre. … »).
+  - Le choix vaut pour **tous les outils** (même origine, https://gharel.github.io, donc même stockage) : il est gardé sous la clé `skazy-outils:theme`, hors du préfixe de l’outil (`"light"` ou `"dark"` en JSON ; thème du système : clé effacée). Le script du `<head>` l’applique avant l’affichage ; un changement dans un autre onglet ou un autre outil (événement `storage`), ou le retour sur une page gardée en mémoire (`pageshow`), le reprend aussitôt. Les anciennes clés propres à l’outil ne sont plus lues.
+  - Thème clair choisi : `color-scheme: only light` ; thème sombre choisi : sombre ; sinon, celui du système.
+  - `<meta name="darkreader-lock" />` suit toujours `<meta name="color-scheme" content="light dark" />` : la page a son propre thème sombre ; sans ce verrou, le mode nuit de Brave (Dark Reader) la repeint, même en thème clair.
 - Les **archives** (`archives/the-neuron/`) gardent toutes les éditions de la newsletter, pour en tirer d’autres informations plus tard.
 
 ## Commandes
@@ -52,7 +56,7 @@ src/js/etat.js                 État : filtres, favoris, thème ; adresse ↔ fi
 src/js/filtres.js              Pur : rechercher, filtrer, trier, compter, voisines
 src/js/texte.js                Pur : markdown léger, [passages à compléter], dates, slugs
 src/js/schema.js               Schéma d'une fiche et contrôle de typographie
-src/js/ui.js · stockage.js     el(), remplir(), typographier(), copier() ; seul accès à localStorage (préfixe skazy-prompts:)
+src/js/ui.js · stockage.js     el(), remplir(), typographier(), copier() ; seul accès à localStorage (préfixe skazy-prompts: ; thème commun : skazy-outils:theme)
 src/js/icones.js               Liste des icônes Font Awesome utilisées ; icone('nom') ou icone('regular/nom')
 src/js/vues/                   bandeau, scene, resultats, menu (filtres en pilule), carte, fiche, apropos, commun
 src/donnees/referentiels.js    Catégories (une couleur du design system chacune), niveaux, outils
@@ -84,7 +88,7 @@ Reprises des projets voisins `jeu-formation` et `exercices-ia`, même auteur et 
 - **Aucune dépendance à l'exécution, aucun CDN, aucune requête réseau.** La police est intégrée, les icônes Font Awesome Free sont un sprite SVG généré (`npm run icones`). esbuild ne sert qu'à construire le fichier unique. jsdom sert aux outils d’archives (Node).
 - **La logique est séparée de l'affichage.** Les fonctions pures (`filtres.js`, `texte.js`, `etat.js`, `schema.js`, `outils/neuron.js`) sont testées unitairement ; les vues ne font que construire la page et réagir aux clics.
 - **Sécurité** : tout texte passe par `el()` ou `textContent`, jamais par `innerHTML` ; les liens du markdown léger n’acceptent que `http(s)`.
-- **Stockage** : toujours par `stockage.js` ; une erreur de stockage ne fait jamais planter la page.
+- **Stockage** : toujours par `stockage.js` (clés préfixées `skazy-prompts:`, sauf le thème commun `skazy-outils:theme`) ; une erreur de stockage ne fait jamais planter la page.
 - **Accessibilité** :
   - contraste WCAG AA dans les deux thèmes : pas de texte blanc sur `#50967c` (3,5:1), on utilise `--primaire-fonce` ;
   - tout se fait au clavier (← → dans une fiche, Échap pour fermer), les annonces passent par `annoncer()` ;
