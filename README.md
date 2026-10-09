@@ -8,7 +8,8 @@ Les techniques de prompt de la rubrique quotidienne de la newsletter [The Neuron
 - 8 catégories (Formuler, Vérifier et sécuriser, Agents et automatisation, Coder avec l’IA, Mémoire et compétences, Images, vidéo et design, Stratégie et métier, Choisir ses outils), filtres par niveau et par outil, recherche sans accents, tri ;
 - favoris gardés dans le navigateur, lien direct vers chaque fiche, filtres dans l’adresse ;
 - charte du design system **Skazy Formation** (Claude Design), thème clair et sombre, pensé pour le téléphone ;
-- chaque outil Skazy Formation a sa couleur de l’arc-en-ciel, dans cet ordre : Quiz rouge, Mini-jeux orange, Vigie jaune, Atelier d’exercices IA vert, Comprendre l'IA bleu, Prompthèque violet ; le favicon (pictogramme blanc sur un dégradé de cette couleur) sert aussi de pastille dans le bandeau : logo Skazy Formation, filet, pastille, nom de l’outil ; titre d’onglet : « Page · Nom · Skazy Formation » ;
+- chaque outil Skazy Formation a sa couleur de l’arc-en-ciel, dans cet ordre : Quiz rouge, Mini-jeux orange, Vigie jaune, Atelier d’exercices IA vert, Comprendre l'IA bleu, Prompthèque violet ; le favicon (pictogramme blanc sur un dégradé de cette couleur) sert aussi de pastille dans le bandeau ; titre d’onglet : « Page · Nom · Skazy Formation » ;
+- un bandeau commun aux outils Skazy Formation : à gauche, la pastille et le nom de l’outil (un lien vers son accueil) ; à droite, après Mes favoris, À propos et le thème, « Les outils » (la roue, vers [la page des outils](https://gharel.github.io/home/)), un filet, puis le logo Skazy Formation (vers formation.skazy.nc, dans un nouvel onglet) ; sur téléphone, « Les outils » se réduit à la roue ; un bouton rond « Remonter en haut de la page » apparaît après un écran de défilement, sur ordinateur comme sur téléphone ;
 - un seul fichier HTML autonome (`dist/index.html`), sans aucune requête réseau, publié sur GitHub Pages.
 
 ## Les archives de The Neuron

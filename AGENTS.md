@@ -10,7 +10,15 @@ Une base de prompts en français : une fiche par section de la rubrique quotidie
 - **Usage réservé aux stagiaires** : la page n’est pas indexée (`<meta name="robots" content="noindex">`) et le pied de page porte la mention de droits (`DROITS` et `USAGE_RESERVE` dans `src/js/vues/commun.js`).
 - **Aucune IA ni requête réseau dans la page.** Elle est livrée en **un seul fichier HTML autonome** (`dist/index.html`), ouvrable hors ligne, et publiée sur GitHub Pages : https://gharel.github.io/prompts/
 - La charte est celle du design system **Skazy Formation** de Claude Design, reprise du projet voisin `exercices-ia` : vert `#50967c`, texte `#4a4a4a`, police Georama, boutons en pilule, cartes avec une barre de couleur de 6 px en haut, badges en majuscules, scène sombre `#1a1a1a`, pas d’emoji.
-- Chaque outil Skazy Formation a sa couleur de l’arc-en-ciel, dans cet ordre : Quiz rouge, Mini-jeux orange, Vigie jaune, Atelier d’exercices IA vert, Comprendre l'IA bleu, Prompthèque violet. Le favicon (`src/assets/img/favicon.svg`, pictogramme blanc sur un dégradé de cette couleur, ici une baguette magique sur `#d578f0` → `#701fe6`) sert aussi de pastille dans le bandeau : logo Skazy Formation, filet, pastille, nom de l’outil (sur téléphone, le nom s’efface faute de place, la pastille reste). Titre d’onglet : « Page · Nom · Skazy Formation » (`Prompthèque · Skazy Formation`, puis `Titre de la fiche · Prompthèque · Skazy Formation` quand une fiche est ouverte).
+- Chaque outil Skazy Formation a sa couleur de l’arc-en-ciel, dans cet ordre : Quiz rouge, Mini-jeux orange, Vigie jaune, Atelier d’exercices IA vert, Comprendre l'IA bleu, Prompthèque violet. Le favicon (`src/assets/img/favicon.svg`, pictogramme blanc sur un dégradé de cette couleur, ici une baguette magique sur `#d578f0` → `#701fe6`) sert aussi de pastille dans le bandeau. Titre d’onglet : « Page · Nom · Skazy Formation » (`Prompthèque · Skazy Formation`, puis `Titre de la fiche · Prompthèque · Skazy Formation` quand une fiche est ouverte).
+- **Bandeau commun aux outils Skazy Formation** (la signature), de gauche à droite :
+  1. la pastille et le nom de l’outil, en **un seul lien** vers son accueil (`./`, `aria-current="page"`), sans filet ;
+  2. les actions de l’outil : Mes favoris, À propos, thème (`src/js/vues/bandeau.js`) ;
+  3. « **Les outils** » : la roue (`src/assets/img/les-outils.svg`, copie du favicon de la page d’accueil des outils, jamais un lien vers le fichier distant) vers https://gharel.github.io/home/, dans le même onglet, `title="Tous les outils Skazy Formation"` ;
+  4. un filet de 1 × 24 px ;
+  5. le **logo Skazy Formation**, toujours en dernier, vers https://formation.skazy.nc dans un nouvel onglet (nom accessible « Site de Skazy Formation (nouvel onglet) »), 36 px de haut, 30 px ≤ 640 px, 28 puis 26 px ≤ 400 et 370 px.
+  - Quand la place manque, « Les outils » se réduit à la roue (≤ 720 px), « Mes favoris » à son icône et au compteur (≤ 800 px), le nom de l’outil s’efface (≤ 540 px) ; ces textes restent le nom accessible des liens. La pastille reste toujours (sauf sous 360 px). Rien ne déborde à 360 px, même avec un compteur de favoris à deux chiffres.
+  - Bouton rond « **Remonter en haut de la page** » (`#haut-de-page`), modèle commun aux outils : en bas à droite (48 px à 24 px des bords, 44 px à 16 px sur téléphone, plus la zone de sécurité), il apparaît en fondu après 1,2 écran de défilement, sur ordinateur comme sur téléphone, jamais par-dessus une fiche ou l’À propos ouverts ; défilement fluide sauf si les animations sont réduites ; focus sur le titre de la page (au clavier : sur la recherche).
 - Les **archives** (`archives/the-neuron/`) gardent toutes les éditions de la newsletter, pour en tirer d’autres informations plus tard.
 
 ## Commandes
@@ -26,7 +34,7 @@ Une base de prompts en français : une fiche par section de la rubrique quotidie
 | `npm run icones`                        | Régénère `src/js/icones-donnees.js` après un ajout dans `src/js/icones.js`             |
 | `npm run check`                         | Lint + format + validation HTML + tests unitaires (**avant chaque commit**)            |
 | `npm run test:e2e`                      | Build, puis tests Playwright de bout en bout, accessibilité et mobile (**avant push**) |
-| `npm run captures`                      | Photographie la page (1280, 1920, 390, 360 px, clair et sombre) dans `captures/`       |
+| `npm run captures`                      | Photographie la page (1280, 1440, 1920, 390, 360 px, clair et sombre) dans `captures/` |
 
 Les tests e2e portent sur le fichier construit, servi sur le port 4185 (`PORT_E2E` pour en changer).
 
@@ -81,14 +89,14 @@ Reprises des projets voisins `jeu-formation` et `exercices-ia`, même auteur et 
   - contraste WCAG AA dans les deux thèmes : pas de texte blanc sur `#50967c` (3,5:1), on utilise `--primaire-fonce` ;
   - tout se fait au clavier (← → dans une fiche, Échap pour fermer), les annonces passent par `annoncer()` ;
   - `prefers-reduced-motion` est respecté ;
-- **Téléphone** : aucun défilement horizontal, aucun texte coupé, aucun bouton qui touche un texte, à 390 et 360 px (`tests/e2e/mobile.spec.js` le vérifie).
+- **Téléphone** : aucun défilement horizontal, aucun texte coupé, aucun bouton qui touche un texte, à 390 et 360 px, bandeau compris, en clair et en sombre (`tests/e2e/mobile.spec.js` le vérifie).
 - **Format** : Prettier (guillemets simples, 100 colonnes). Lint : ESLint `recommended` + `eqeqeq`, `prefer-const`.
 
 ## Procédure avant commit et push
 
 1. `npm run check` passe sans erreur (en cas d'échec de format : `npm run format`).
 2. `npm run test:e2e` passe entièrement.
-3. Si l'interface a changé : `npm run captures`, puis vérification à l'œil (1280, 1920, 390 et 360 px, clair et sombre).
+3. Si l'interface a changé : `npm run build` puis `npm run captures`, et vérification à l'œil (1280, 1440, 1920, 390 et 360 px, clair et sombre).
 4. Commit au format Conventional Commits, en français : `feat(fiche): …`, `fix(filtres): …`, `docs:`, `test:`, `chore:`, `data:` pour de nouvelles fiches.
 5. Push sur `main` : [.github/workflows/publier.yml](.github/workflows/publier.yml) relance les tests, construit `dist/index.html` et le publie sur GitHub Pages. Un push sur `main` est une mise en ligne.
 

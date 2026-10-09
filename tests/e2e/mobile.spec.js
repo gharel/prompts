@@ -97,6 +97,82 @@ for (const largeur of LARGEURS) {
       expect(exemple).toBe(true);
     });
 
+    for (const theme of ['light', 'dark']) {
+      test(`bandeau (${theme === 'light' ? 'clair' : 'sombre'}) : tout tient, la roue seule, le logo en dernier`, async ({
+        page,
+      }) => {
+        await page.emulateMedia({ colorScheme: theme });
+        // Douze favoris : le compteur à deux chiffres, le cas le plus large.
+        await page.goto('/');
+        await expect(page.locator('.carte').first()).toBeVisible();
+        await page.evaluate(() => {
+          const ids = [...document.querySelectorAll('.carte')]
+            .slice(0, 12)
+            .map((c) => c.dataset.id);
+          localStorage.setItem('skazy-prompts:favoris', JSON.stringify(ids));
+        });
+        await page.reload();
+        await expect(page.locator('.bandeau__actions .compteur')).toHaveText('12');
+        expect(await sansDefilementHorizontal(page)).toBe(true);
+        expect(await textesCoupes(page, '.bandeau__interieur > *, .bandeau__actions > *')).toEqual(
+          [],
+        );
+
+        // De gauche à droite, sans chevauchement : pastille, actions, roue, filet, logo.
+        const boites = await page
+          .locator('.bandeau__interieur')
+          .evaluate((b) => [...b.children].map((e) => e.getBoundingClientRect().toJSON()));
+        expect(boites).toHaveLength(5);
+        for (let i = 1; i < boites.length; i += 1) {
+          expect(boites[i].left, `élément ${i}`).toBeGreaterThanOrEqual(boites[i - 1].right + 4);
+        }
+        expect(boites.at(-1).right).toBeLessThanOrEqual(largeur - 8);
+
+        // « Les outils » : la roue seule, texte masqué mais gardé comme nom du lien.
+        const outils = page.getByRole('link', { name: 'Les outils', exact: true });
+        await expect(outils.locator('.bandeau__roue')).toBeVisible();
+        const zone = await outils.boundingBox();
+        expect(zone.width).toBeGreaterThanOrEqual(40);
+        expect(zone.height).toBeGreaterThanOrEqual(40);
+        const texteVisible = await outils
+          .locator('.bandeau__outils-texte')
+          .evaluate((t) => t.getBoundingClientRect().width > 1);
+        expect(texteVisible).toBe(false);
+
+        // Le nom de l'outil reste un lien vers son accueil, même réduit à la pastille.
+        await expect(page.getByRole('link', { name: 'Prompthèque', exact: true })).toHaveAttribute(
+          'href',
+          './',
+        );
+
+        // Le logo du thème, à droite, vers formation.skazy.nc dans un nouvel onglet.
+        const logo = page.getByRole('link', { name: 'Site de Skazy Formation (nouvel onglet)' });
+        await expect(logo).toHaveAttribute('href', 'https://formation.skazy.nc');
+        await expect(logo).toHaveAttribute('target', '_blank');
+        await expect(
+          logo.locator(theme === 'light' ? '.logo--clair' : '.logo--sombre'),
+        ).toBeVisible();
+      });
+    }
+
+    test('le bouton « Remonter en haut de la page » apparaît aussi sur téléphone', async ({
+      page,
+    }) => {
+      await page.goto('/');
+      await expect(page.locator('.carte').first()).toBeVisible();
+      const haut = page.getByRole('button', { name: 'Remonter en haut de la page' });
+      await expect(haut).toBeHidden();
+      await page.evaluate(() => window.scrollTo(0, window.innerHeight * 1.5));
+      await expect(haut).toBeVisible();
+      const boite = await haut.boundingBox();
+      expect([boite.width, boite.height]).toEqual([44, 44]);
+      expect(Math.round(largeur - boite.x - boite.width)).toBe(16);
+      expect(Math.round(800 - boite.y - boite.height)).toBe(16);
+      await haut.tap();
+      await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
+      await expect(page.locator('#titre-page')).toBeFocused();
+    });
+
     test('cartes : aucun bouton ne touche un texte', async ({ page }) => {
       await page.goto('/');
       await expect(page.locator('.carte').first()).toBeVisible();

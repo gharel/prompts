@@ -8,6 +8,7 @@
     "dev": "node outils/dev.js",
     "build": "node outils/construire.js",
     "icones": "node outils/generer-icones.js",
+    "captures": "node outils/captures.js",
     "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",

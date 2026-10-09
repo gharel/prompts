@@ -2,7 +2,8 @@
  * npm run build : construit dist/index.html, un fichier unique et autonome.
  * - le JavaScript (modules de src/js) est regroupé par esbuild en un seul script ;
  * - les feuilles de style sont regroupées, avec les polices intégrées en data URI ;
- * - les logos et l'icône de l'onglet sont intégrés en data URI.
+ * - les logos, la pastille, la roue « Les outils » et l'icône de l'onglet sont intégrés en
+ *   data URI.
  * Le fichier s'ouvre hors ligne en double-cliquant, sans aucune requête réseau.
  */
 import { build } from 'esbuild';
@@ -62,7 +63,8 @@ const sortie = html
     (_t, attribut, chemin) => `${attribut}="${dataUri(chemin)}"`,
   );
 
-const restes = sortie.match(/(?:src|href)="(?!https?:|data:|#|index\.html)[^"]+"/g);
+// Adresses relatives admises : les ancres et « ./ » (le nom de l'outil mène à son accueil).
+const restes = sortie.match(/(?:src|href)="(?!https?:|data:|#|index\.html|\.\/")[^"]+"/g);
 if (restes) {
   console.error(`Ressources non intégrées : ${restes.join(', ')}`);
   process.exit(1);

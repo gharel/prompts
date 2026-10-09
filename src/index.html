@@ -35,13 +35,42 @@
   <body>
     <a class="lien-evitement" href="#resultats">Aller aux fiches</a>
 
+    <!-- Bandeau commun aux outils Skazy Formation : pastille et nom de l'outil (lien vers son
+         accueil), actions de l'outil, puis « Les outils », un filet et le logo Skazy Formation. -->
     <header class="bandeau">
       <div class="bandeau__interieur">
+        <a class="bandeau__nom" id="lien-accueil" href="./" aria-current="page">
+          <img
+            class="bandeau__pastille"
+            src="assets/img/favicon.svg"
+            width="28"
+            height="28"
+            alt=""
+          />
+          <span class="bandeau__nom-texte">Prompthèque</span>
+        </a>
+        <nav class="bandeau__actions" aria-label="Réglages" id="actions-bandeau"></nav>
+        <a
+          class="bandeau__outils"
+          href="https://gharel.github.io/home/"
+          title="Tous les outils Skazy Formation"
+        >
+          <img
+            class="bandeau__roue"
+            src="assets/img/les-outils.svg"
+            width="26"
+            height="26"
+            alt=""
+          />
+          <span class="bandeau__outils-texte">Les outils</span>
+        </a>
+        <span class="bandeau__filet" aria-hidden="true"></span>
         <a
           class="bandeau__logo"
           href="https://formation.skazy.nc"
           target="_blank"
           rel="noopener"
+          aria-label="Site de Skazy Formation (nouvel onglet)"
           title="Site de Skazy Formation (nouvel onglet)"
         >
           <img
@@ -59,17 +88,6 @@
             height="36"
           />
         </a>
-        <p class="bandeau__nom">
-          <img
-            class="bandeau__pastille"
-            src="assets/img/favicon.svg"
-            width="28"
-            height="28"
-            alt=""
-          />
-          <span class="bandeau__nom-texte">Prompthèque</span>
-        </p>
-        <nav class="bandeau__actions" aria-label="Réglages" id="actions-bandeau"></nav>
       </div>
     </header>
 
@@ -91,7 +109,7 @@
     <dialog class="panneau panneau--apropos" id="apropos" aria-labelledby="titre-apropos"></dialog>
 
     <button class="haut-de-page" id="haut-de-page" type="button" hidden>
-      <span class="hors-ecran">Revenir en haut de la page</span>
+      <span class="hors-ecran">Remonter en haut de la page</span>
     </button>
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
     <div class="hors-ecran" id="annonces" aria-live="polite"></div>

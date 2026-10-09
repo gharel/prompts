@@ -1,6 +1,6 @@
 /**
- * node outils/captures.js [dossier] : photographie dist/index.html (ouvert en file://) en
- * 1280×720, 1920×1080, 390 et 360 px, en clair et en sombre, avec une fiche ouverte.
+ * npm run captures [-- dossier] : photographie dist/index.html (ouvert en file://) en
+ * 1280×720, 1440×900, 1920×1080, 390 et 360 px, en clair et en sombre, avec une fiche ouverte.
  * Pour vérifier l'interface à l'œil sans lancer de serveur (npm run build d'abord). Les images
  * vont dans le dossier donné (par défaut captures/, ignoré par git).
  */
@@ -45,6 +45,8 @@ const ouvrirFicheBas = async (page) => {
 };
 
 await capturer('accueil-1280', { largeur: 1280, hauteur: 720 });
+await capturer('accueil-1440', { largeur: 1440, hauteur: 900 });
+await capturer('accueil-1440-sombre', { largeur: 1440, hauteur: 900, theme: 'dark' });
 await capturer('accueil-1920', { largeur: 1920, hauteur: 1080 });
 await capturer('accueil-1280-sombre', { largeur: 1280, hauteur: 720, theme: 'dark' });
 await capturer('defilement-1280', {
@@ -62,6 +64,8 @@ await capturer('fiche-1280-sombre', {
 });
 await capturer('accueil-390', { largeur: 390, hauteur: 844, pleinePage: false });
 await capturer('accueil-390-sombre', { largeur: 390, hauteur: 844, theme: 'dark' });
+await capturer('accueil-360-sombre', { largeur: 360, hauteur: 740, theme: 'dark' });
+// Bouton « Remonter en haut » sur téléphone, après un écran de défilement.
 await capturer('cartes-390', {
   largeur: 390,
   hauteur: 844,

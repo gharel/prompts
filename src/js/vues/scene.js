@@ -73,7 +73,7 @@ export function monterScene(conteneur, magasin, fiches) {
         'div',
         { class: 'scene__titres' },
         el('p', { class: 'surtitre' }, 'The Neuron · AI Skill of the Day, en français'),
-        el('h1', { id: 'titre-page' }, 'Des techniques de prompt prêtes à copier'),
+        el('h1', { id: 'titre-page', tabindex: '-1' }, 'Des techniques de prompt prêtes à copier'),
         el(
           'p',
           { class: 'scene__chapo' },
