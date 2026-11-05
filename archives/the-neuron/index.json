@@ -1,7 +1,250 @@
 {
   "source": "https://www.theneurondaily.com",
-  "misAJour": "2026-10-07T11:54:31.946Z",
+  "misAJour": "2026-11-05T04:30:34.821Z",
   "editions": [
+    {
+      "slug": "watch-napster-is-an-ai-company-now",
+      "date": "2026-11-04T20:05:00.000Z",
+      "titre": "Napster Is an AI Company Now. Seriously.",
+      "sousTitre": "Napster CEO John Akunto explains the company’s pivot from music to visual AI agents, edge compute, customer-data ownership, and robotics.",
+      "url": "https://www.theneurondaily.com/p/watch-napster-is-an-ai-company-now",
+      "fichier": "2026/2026-11-04-watch-napster-is-an-ai-company-now.html",
+      "recupereLe": "2026-11-05T04:30:33.989Z"
+    },
+    {
+      "slug": "november-4-wednesday",
+      "date": "2026-11-04T09:30:00.000Z",
+      "titre": "😾 Google will cut Search for schools without AI",
+      "sousTitre": "PLUS: ChatGPT search is one-fifth of Google, and Anthropic wants 7GW",
+      "url": "https://www.theneurondaily.com/p/november-4-wednesday",
+      "fichier": "2026/2026-11-04-november-4-wednesday.html",
+      "recupereLe": "2026-11-05T04:30:32.627Z"
+    },
+    {
+      "slug": "proton-s-ai-staff-revolt",
+      "date": "2026-11-03T10:00:00.000Z",
+      "titre": "😸 Proton’s AI staff revolt",
+      "sousTitre": "PLUS: Proton drops AI re-interviews + Anthropic’s $895B tab",
+      "url": "https://www.theneurondaily.com/p/proton-s-ai-staff-revolt",
+      "fichier": "2026/2026-11-03-proton-s-ai-staff-revolt.html",
+      "recupereLe": "2026-11-05T04:30:31.205Z"
+    },
+    {
+      "slug": "microsoft-s-binding-ai-school-deal",
+      "date": "2026-11-02T09:45:00.000Z",
+      "titre": "Microsoft's Enforceable AI Privacy Standard for Schools",
+      "sousTitre": "Microsoft's enforceable AI privacy standard for schools is now in effect, OpenAI will merge ChatGPT and Codex limits, and Apple Intelligence heads to China.",
+      "url": "https://www.theneurondaily.com/p/microsoft-s-binding-ai-school-deal",
+      "fichier": "2026/2026-11-02-microsoft-s-binding-ai-school-deal.html",
+      "recupereLe": "2026-11-05T04:30:29.724Z"
+    },
+    {
+      "slug": "publishers-sell-ads-only-ai-agents-see",
+      "date": "2026-11-01T18:30:00.000Z",
+      "titre": "😺 Publishers sell ads only AI agents see",
+      "sousTitre": "PLUS: OpenAI firings, a $1,000 mosquito laser and Gemini’s file editor.",
+      "url": "https://www.theneurondaily.com/p/publishers-sell-ads-only-ai-agents-see",
+      "fichier": "2026/2026-11-01-publishers-sell-ads-only-ai-agents-see.html",
+      "recupereLe": "2026-11-05T04:30:28.235Z"
+    },
+    {
+      "slug": "mistral-released-a-1t-parameter-open-model",
+      "date": "2026-10-30T09:30:00.000Z",
+      "titre": "😸 Mistral released a 1T-parameter open model",
+      "sousTitre": "PLUS: Reddit’s login push and Deepgram’s Daily buy",
+      "url": "https://www.theneurondaily.com/p/mistral-released-a-1t-parameter-open-model",
+      "fichier": "2026/2026-10-30-mistral-released-a-1t-parameter-open-model.html",
+      "recupereLe": "2026-11-05T04:30:26.846Z"
+    },
+    {
+      "slug": "new-york-curbs-ai-chatbots-for-kids",
+      "date": "2026-10-29T09:45:00.000Z",
+      "titre": "😸 New York curbs AI chatbots for kids",
+      "sousTitre": "PLUS: Make Claude ask before it builds a draft",
+      "url": "https://www.theneurondaily.com/p/new-york-curbs-ai-chatbots-for-kids",
+      "fichier": "2026/2026-10-29-new-york-curbs-ai-chatbots-for-kids.html",
+      "recupereLe": "2026-11-05T04:30:25.457Z"
+    },
+    {
+      "slug": "watch-robots-that-learn-jobs-by-watching-you",
+      "date": "2026-10-28T19:05:00.000Z",
+      "titre": "Robots That Learn Jobs by Watching You",
+      "sousTitre": "Standard Bots CEO Evan Beard explains how AI lets industrial robots learn from demonstration, adapt to variation, and automate jobs legacy robots could not handle.",
+      "url": "https://www.theneurondaily.com/p/watch-robots-that-learn-jobs-by-watching-you",
+      "fichier": "2026/2026-10-28-watch-robots-that-learn-jobs-by-watching-you.html",
+      "recupereLe": "2026-11-05T04:30:24.032Z"
+    },
+    {
+      "slug": "google-launches-genie-4-with-sound",
+      "date": "2026-10-28T09:30:00.000Z",
+      "titre": "😺 Google launches Genie 4 with sound",
+      "sousTitre": "PLUS: One scientist, 11 labs, Oracle's AI chip deal, and an AI workflow to find project blockers.",
+      "url": "https://www.theneurondaily.com/p/google-launches-genie-4-with-sound",
+      "fichier": "2026/2026-10-28-google-launches-genie-4-with-sound.html",
+      "recupereLe": "2026-11-05T04:30:22.590Z"
+    },
+    {
+      "slug": "openai-s-big-day-brought-a-disproof-and-terra",
+      "date": "2026-10-27T09:30:00.000Z",
+      "titre": "😺 OpenAI's big day brought a disproof and Terra",
+      "sousTitre": "PLUS: Anthropic's IPO filing and Microsoft's 60K exits",
+      "url": "https://www.theneurondaily.com/p/openai-s-big-day-brought-a-disproof-and-terra",
+      "fichier": "2026/2026-10-27-openai-s-big-day-brought-a-disproof-and-terra.html",
+      "recupereLe": "2026-11-05T04:30:21.165Z"
+    },
+    {
+      "slug": "claude-crossed-a-paywall-on-its-own",
+      "date": "2026-10-26T10:15:00.000Z",
+      "titre": "😺 Claude crossed a paywall on its own",
+      "sousTitre": "PLUS: Kimi K3.1 Pro, and an important security correction.",
+      "url": "https://www.theneurondaily.com/p/claude-crossed-a-paywall-on-its-own",
+      "fichier": "2026/2026-10-26-claude-crossed-a-paywall-on-its-own.html",
+      "recupereLe": "2026-11-05T04:30:19.783Z"
+    },
+    {
+      "slug": "walmart-announces-ai-shopping-controls",
+      "date": "2026-10-25T17:30:00.000Z",
+      "titre": "😺 Walmart announces AI shopping controls",
+      "sousTitre": "PLUS: Meta’s nonvoting stock, a paint boom, and five tools to try.",
+      "url": "https://www.theneurondaily.com/p/walmart-announces-ai-shopping-controls",
+      "fichier": "2026/2026-10-25-walmart-announces-ai-shopping-controls.html",
+      "recupereLe": "2026-11-05T04:30:18.408Z"
+    },
+    {
+      "slug": "microsoft-ai-scored-83-where-doctors-got-36",
+      "date": "2026-10-23T09:30:00.000Z",
+      "titre": "😺 Microsoft AI scored 83% where doctors got 36%",
+      "sousTitre": "PLUS: OpenAI's reported $30B raise at $1.25T",
+      "url": "https://www.theneurondaily.com/p/microsoft-ai-scored-83-where-doctors-got-36",
+      "fichier": "2026/2026-10-23-microsoft-ai-scored-83-where-doctors-got-36.html",
+      "recupereLe": "2026-11-05T04:30:16.903Z"
+    },
+    {
+      "slug": "new-claude-duet-works-while-your-phone-s-off",
+      "date": "2026-10-22T09:30:00.000Z",
+      "titre": "😺 New Claude Duet works while your phone's off",
+      "sousTitre": "PLUS: OpenAI's 32-minute drug lead, LiteLLM hack",
+      "url": "https://www.theneurondaily.com/p/new-claude-duet-works-while-your-phone-s-off",
+      "fichier": "2026/2026-10-22-new-claude-duet-works-while-your-phone-s-off.html",
+      "recupereLe": "2026-11-05T04:30:15.465Z"
+    },
+    {
+      "slug": "meta-s-muse-made-shared-chats-searchable",
+      "date": "2026-10-21T09:30:00.000Z",
+      "titre": "😺 Meta’s Muse made shared chats searchable",
+      "sousTitre": "PLUS: SpaceX’s AI arm, OpenAI’s drug bet, and a safer way to fight bills",
+      "url": "https://www.theneurondaily.com/p/meta-s-muse-made-shared-chats-searchable",
+      "fichier": "2026/2026-10-21-meta-s-muse-made-shared-chats-searchable.html",
+      "recupereLe": "2026-11-05T04:30:14.073Z"
+    },
+    {
+      "slug": "ai-hackers-left-the-door-open",
+      "date": "2026-10-20T10:00:00.000Z",
+      "titre": "😸 AI hackers left the door open",
+      "sousTitre": "PLUS: DeepSeek banned, Anthropic’s second $45B deal",
+      "url": "https://www.theneurondaily.com/p/ai-hackers-left-the-door-open",
+      "fichier": "2026/2026-10-20-ai-hackers-left-the-door-open.html",
+      "recupereLe": "2026-11-05T04:30:12.614Z"
+    },
+    {
+      "slug": "deepseek-s-free-model-edged-opus-5-at-coding",
+      "date": "2026-10-19T10:00:00.000Z",
+      "titre": "😺 DeepSeek's free model edged Opus 5 at coding",
+      "sousTitre": "PLUS: Open weights, 85% cheaper search, and a US-China twist",
+      "url": "https://www.theneurondaily.com/p/deepseek-s-free-model-edged-opus-5-at-coding",
+      "fichier": "2026/2026-10-19-deepseek-s-free-model-edged-opus-5-at-coding.html",
+      "recupereLe": "2026-11-05T04:30:11.195Z"
+    },
+    {
+      "slug": "meta-s-new-terms-cover-website-scraping",
+      "date": "2026-10-18T17:30:00.000Z",
+      "titre": "😺 Meta’s new terms cover website scraping",
+      "sousTitre": "PLUS: Google pays 400+ publications. Cloudflare tests payment for AI use.",
+      "url": "https://www.theneurondaily.com/p/meta-s-new-terms-cover-website-scraping",
+      "fichier": "2026/2026-10-18-meta-s-new-terms-cover-website-scraping.html",
+      "recupereLe": "2026-11-05T04:30:09.668Z"
+    },
+    {
+      "slug": "deep-dive-the-32-language-workplace-is-closer-than-you-think-1",
+      "date": "2026-10-17T13:00:00.000Z",
+      "titre": "😸 DEEP DIVE: The 32-language workplace is closer than you think",
+      "sousTitre": "PLUS: What actually breaks when global teams work across languages, and where AI can finally help",
+      "url": "https://www.theneurondaily.com/p/deep-dive-the-32-language-workplace-is-closer-than-you-think-1",
+      "fichier": "2026/2026-10-17-deep-dive-the-32-language-workplace-is-closer-than-you-think-1.html",
+      "recupereLe": "2026-11-05T04:30:08.304Z"
+    },
+    {
+      "slug": "october-16-friday-1362",
+      "date": "2026-10-16T09:30:00.000Z",
+      "titre": "😸 October 16 (Friday)",
+      "sousTitre": "PLUS: Meta's 816B open model and Google Deep Review",
+      "url": "https://www.theneurondaily.com/p/october-16-friday-1362",
+      "fichier": "2026/2026-10-16-october-16-friday-1362.html",
+      "recupereLe": "2026-11-05T04:30:06.893Z"
+    },
+    {
+      "slug": "gemini-now-screens-scam-texts",
+      "date": "2026-10-15T09:30:00.000Z",
+      "titre": "😸 October 15 (Thursday)",
+      "sousTitre": "PLUS: Anthropic's $16.8B quarter",
+      "url": "https://www.theneurondaily.com/p/gemini-now-screens-scam-texts",
+      "fichier": "2026/2026-10-15-gemini-now-screens-scam-texts.html",
+      "recupereLe": "2026-11-05T04:30:05.530Z"
+    },
+    {
+      "slug": "google-launched-gemini-4-argon-tying-gpt-6-b85b",
+      "date": "2026-10-14T10:00:00.000Z",
+      "titre": "😸 Google launched Gemini 4 Argon, tying GPT-6",
+      "sousTitre": "PLUS: Nvidia's €2B Europe push",
+      "url": "https://www.theneurondaily.com/p/google-launched-gemini-4-argon-tying-gpt-6-b85b",
+      "fichier": "2026/2026-10-14-google-launched-gemini-4-argon-tying-gpt-6-b85b.html",
+      "recupereLe": "2026-11-05T04:30:04.123Z"
+    },
+    {
+      "slug": "meta-s-muse-wonder-is-here-priced-like-opus-ee30",
+      "date": "2026-10-13T09:40:00.000Z",
+      "titre": "😺 Meta’s Muse Wonder is here, priced like Opus",
+      "sousTitre": "Meta launches Muse Wonder at Opus prices but trails Claude Opus 5.5 in independent tests, plus Anthropic’s self-copying AI warning and Character.AI bankruptcy.",
+      "url": "https://www.theneurondaily.com/p/meta-s-muse-wonder-is-here-priced-like-opus-ee30",
+      "fichier": "2026/2026-10-13-meta-s-muse-wonder-is-here-priced-like-opus-ee30.html",
+      "recupereLe": "2026-11-05T04:30:02.738Z"
+    },
+    {
+      "slug": "white-house-orders-ai-incident-reporting-f220",
+      "date": "2026-10-12T10:30:00.000Z",
+      "titre": "😸 White House orders AI incident reporting",
+      "sousTitre": "PLUS: Tesla's FSD rename and an AI film's XPRIZE win",
+      "url": "https://www.theneurondaily.com/p/white-house-orders-ai-incident-reporting-f220",
+      "fichier": "2026/2026-10-12-white-house-orders-ai-incident-reporting-f220.html",
+      "recupereLe": "2026-11-05T04:30:01.255Z"
+    },
+    {
+      "slug": "google-tested-amie-with-98-patients",
+      "date": "2026-10-11T17:30:00.000Z",
+      "titre": "Google's AMIE Trial and Utah's AI Healthcare Pilots",
+      "sousTitre": "Google tested AMIE with 98 urgent-care patients under physician supervision. Utah's AI healthcare pilots raise a different question: what happens when review comes later?",
+      "url": "https://www.theneurondaily.com/p/google-tested-amie-with-98-patients",
+      "fichier": "2026/2026-10-11-google-tested-amie-with-98-patients.html",
+      "recupereLe": "2026-11-05T04:29:59.813Z"
+    },
+    {
+      "slug": "claude-dashboards-motion-launched",
+      "date": "2026-10-09T09:30:00.000Z",
+      "titre": "Claude Dashboards and Motion Launch With Adobe",
+      "sousTitre": "Claude launches Dashboards and Motion with Adobe Firefly editing, while OpenAI reaches a $50B run rate and new AI agents, tools, and research arrive.",
+      "url": "https://www.theneurondaily.com/p/claude-dashboards-motion-launched",
+      "fichier": "2026/2026-10-09-claude-dashboards-motion-launched.html",
+      "recupereLe": "2026-11-05T04:29:58.298Z"
+    },
+    {
+      "slug": "october-08-thursday",
+      "date": "2026-10-08T09:40:00.000Z",
+      "titre": "GPT-6 Builds Interactive Calculators and Charts in ChatGPT",
+      "sousTitre": "GPT-6 now builds calculators and charts inside ChatGPT, Claude Haiku 5.5 cuts API prices up to 90%, Nous Research hits $1.5B, and AI cracks Enigma codes.",
+      "url": "https://www.theneurondaily.com/p/october-08-thursday",
+      "fichier": "2026/2026-10-08-october-08-thursday.html",
+      "recupereLe": "2026-11-05T04:29:56.612Z"
+    },
     {
       "slug": "openai-s-ai-produced-722-math-manuscripts",
       "date": "2026-10-07T09:30:00.000Z",

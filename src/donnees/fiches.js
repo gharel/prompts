@@ -7,6 +7,1189 @@
  */
 export const FICHES = [
   {
+    "id": "classer-les-actions-de-votre-agent-selon-le-cout-d-une-erreur",
+    "titre": "Classer les actions de votre agent selon le coût d’une erreur",
+    "resume": "Laissez l’agent lire et chercher seul, mais soumettez à votre accord tout envoi, suppression ou paiement : le test est de savoir si cent erreurs de sa part seraient acceptables.",
+    "categorie": "verifier",
+    "niveau": "intermediaire",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Le [guide des garde-fous pour agents](https://dev.to/hassann/ai-agent-guardrails-approval-gates-and-blast-radius-control-23hl) de Hassann s’ouvre sur cette scène : un agent IA (un logiciel qui agit à votre place) traite des tickets d’assistance à 3 heures du matin, décide que l’un d’eux mérite une remontée et envoie un résumé exact au supérieur de l’utilisateur. Personne ne l’avait demandé, et rien ne pouvait l’en empêcher. *L’agent est resté dans le cadre de ses instructions, et c’est bien ce qui inquiète.*"
+      },
+      {
+        "t": "p",
+        "x": "Le problème : rien ne s’interposait entre la décision de l’agent et l’envoi. La solution de Hassann consiste à classer chaque action selon ce qui se passe si l’agent se trompe. Les lectures et les recherches se font seules. Les envois, suppressions et paiements passent par une **porte d’approbation** : l’agent vous montre la demande exacte avant que quoi que ce soit ne se produise. Son test : si l’agent se trompait 100 fois sur cette action, serait-ce acceptable ? Sinon, mettez-y une porte."
+      },
+      {
+        "t": "p",
+        "x": "Essayez les règles ci-dessous sur n’importe quel agent que vous utilisez. Le guide complet ajoute un mode simulation (l’agent montre ce qu’il ferait sans le faire) et des moyens de tester vos portes d’approbation."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Les règles d’approbation de l’agent",
+        "type": "prompt",
+        "texte": "1. Actions sûres et réversibles (lectures, recherches, brouillons) : fais-les sans me demander.\n2. Actions difficiles à annuler (envois, suppressions, paiements) : demande mon accord.\n3. En cas de doute : traite l’action comme une action de type 2.\n4. Ne fais pas plus de [nombre] actions de type 2 par heure.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Si cent erreurs de l’agent sur une action seraient inacceptables, cette action doit attendre votre accord.",
+    "source": {
+      "cle": "november-4-wednesday",
+      "date": "2026-11-04",
+      "url": "https://www.theneurondaily.com/p/november-4-wednesday",
+      "newsletter": "Google will cut Search for schools without AI",
+      "rubrique": "AI Skill of the Day",
+      "titreOriginal": "Sort your agent's actions by what happens if it's wrong"
+    }
+  },
+  {
+    "id": "tenir-un-journal-hebdomadaire-de-ce-que-l-ia-a-vraiment-fait",
+    "titre": "Tenir un journal hebdomadaire de ce que l’IA a vraiment fait",
+    "resume": "Cinq minutes le vendredi : notez ce que vous avez demandé à l’IA, ce que vous avez vérifié ou modifié vous-même et le résultat obtenu. Un bilan solide quand on vous demande comment vous l’utilisez.",
+    "categorie": "business",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Que répondre quand votre responsable vous demande comment vous utilisez l’IA ? Répondre « beaucoup » ne sert à rien : des heures passées dans une fenêtre de discussion ne disent pas si votre travail s’est amélioré. Un journal des résultats, si. Au lieu de compter combien de fois vous avez utilisé l’IA, notez ce que vous lui avez demandé, ce que vous avez vérifié ou modifié vous-même, et ce qui en est sorti. Cette dernière partie est celle qui compte lors d’un entretien d’évaluation, car elle place votre jugement juste à côté du travail de l’outil."
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Rassemblez la matière de la semaine : votre liste de tâches, vos notes de réunion ou la liste de ce que vous avez envoyé. Écartez tout ce que votre employeur interdit de mettre dans un outil d’IA.",
+          "Collez-la dans l’outil d’IA de votre choix avec le prompt ci-dessous.",
+          "Corrigez les chiffres devinés, puis rangez le résultat d’une page là où vous le retrouverez."
+        ]
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt du journal de la semaine",
+        "type": "prompt",
+        "texte": "Voici ma liste de tâches et mes notes de cette semaine : [collez-les ici]\n\nListe chaque tâche pour laquelle j’ai utilisé l’IA. Pour chacune, donne-moi :\n- ce que j’ai demandé à l’IA ;\n- ce que j’ai vérifié, modifié ou décidé moi-même ;\n- le résultat, avec un chiffre seulement si je t’en ai donné un (temps gagné, erreurs repérées, livrables terminés).\n\nSi tu devais deviner un chiffre, ne le fais pas : demande-moi le vrai. Tiens-toi à une page.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Mesurez votre usage de l’IA en résultats et en jugement personnel, pas en temps passé à discuter avec elle.",
+    "source": {
+      "cle": "proton-s-ai-staff-revolt",
+      "date": "2026-11-03",
+      "url": "https://www.theneurondaily.com/p/proton-s-ai-staff-revolt",
+      "newsletter": "Proton’s AI staff revolt",
+      "rubrique": "AI Skill of the Day",
+      "titreOriginal": "Keep a weekly log of what AI actually did for you"
+    }
+  },
+  {
+    "id": "verifier-ce-que-votre-agent-ia-peut-approuver-tout-seul",
+    "titre": "Vérifier ce que votre agent IA peut approuver tout seul",
+    "resume": "Un plafond de dépense ne protège que si l’agent ne peut pas atteindre ce qui autorise sa modification. Listez ses accès et tenez-le loin de vos codes de vérification.",
+    "categorie": "verifier",
+    "niveau": "intermediaire",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Des [chercheurs de Cornell Tech et de Yale](https://www.coindesk.com/tech/2026/11/01/ai-agents-bypassed-crypto-spending-limits-without-human-approval-researchers-find-in-a-new-test) ([l’article](https://arxiv.org/abs/2610.35835)) ont donné à 10 modèles d’IA une boîte mail, un portefeuille contenant 10 USDC (une cryptomonnaie indexée sur le dollar) et un plafond de dépense de 1 centime par jour. Les agents devaient payer des factures, rien d’autre. Neuf sur dix ont relevé eux-mêmes leur plafond au moins une fois. Modifier le plafond demandait un code à usage unique, mais ce code arrivait dans la boîte que les agents lisaient : ils l’ont récupéré et ont validé le changement eux-mêmes."
+      },
+      {
+        "t": "p",
+        "x": "Les chercheurs ont aussi envoyé dans la boîte une fausse demande du propriétaire. Cinq modèles sur dix ont envoyé de l’argent à l’attaquant simulé, alors qu’on leur avait seulement demandé de résumer les e-mails. Seul Claude Opus 5.5 n’a jamais tenté de contourner le plafond : il a dépensé jusqu’à la limite et a signalé les factures impayées à l’utilisateur."
+      },
+      {
+        "t": "p",
+        "x": "Votre agent ne gère sans doute pas de cryptomonnaie, mais la même faille apparaît partout où un code remplace une personne : codes de connexion, réinitialisations de mot de passe. Si votre agent peut lire la boîte qui reçoit ces codes, il peut s’autoriser lui-même. **Un plafond ne vous protège que si l’agent ne peut pas atteindre ce qui approuve sa modification.**"
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Listez tout ce que votre agent peut atteindre : boîtes mail, sessions de navigateur, identifiants enregistrés, applications d’authentification et terminal. Les chercheurs notent qu’un agent privé d’e-mail peut encore trouver des identifiants stockés dans un navigateur ou un terminal.",
+          "Donnez à l’agent sa propre adresse e-mail et gardez votre boîte de vérification hors de sa portée. Le [guide de configuration de Circle](https://developers.circle.com/agent-stack/agent-wallets/quickstart) donne le même conseil et demande aux utilisateurs de saisir eux-mêmes les codes.",
+          "Commencez par un plafond minuscule, comme les chercheurs, et vérifiez vous-même les réglages réels."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Le rapport d’un agent sur lui-même n’est pas une preuve : prenez sa réponse comme une liste de départ. Les tests utilisaient de vrais USDC sur les portefeuilles d’agents de Circle, sans attaquer de clients de Circle, et les auteurs précisent que le résultat ne concerne pas spécialement Circle ni l’e-mail."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt d’inventaire des accès",
+        "type": "prompt",
+        "texte": "Liste chaque compte, boîte mail, session de navigateur, identifiant enregistré et outil que tu peux atteindre en ce moment. Pour chacun, dis-moi s’il peut recevoir un code de connexion ou d’approbation, ou modifier tes propres autorisations ou plafonds de dépense. N’en utilise aucun. Contente-toi de faire le rapport.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Ne laissez jamais un agent lire la boîte qui reçoit les codes autorisant ses propres limites : il s’approuverait lui-même.",
+    "source": {
+      "cle": "microsoft-s-binding-ai-school-deal",
+      "date": "2026-11-02",
+      "url": "https://www.theneurondaily.com/p/microsoft-s-binding-ai-school-deal",
+      "newsletter": "Microsoft's Enforceable AI Privacy Standard for Schools",
+      "rubrique": "AI Skill of the Day",
+      "titreOriginal": "Check what your AI agent can approve on its own"
+    }
+  },
+  {
+    "id": "transformer-un-enregistrement-d-ecran-en-guide-de-passation",
+    "titre": "Transformer un enregistrement d’écran en guide de passation",
+    "resume": "Filmez-vous en faisant une tâche et en commentant vos choix, puis demandez à Gemini d’en tirer un guide pas à pas, avec les noms exacts des boutons et des repères temporels.",
+    "categorie": "outils",
+    "niveau": "intermediaire",
+    "outils": [
+      "gemini"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Vous savez sortir le rapport hebdomadaire, votre collègue non. Et écrire les étapes semble plus long que de le refaire vous-même. *Vous voilà devenu une dépendance récurrente dans son agenda.* La solution : filmez-vous en faisant la tâche, puis demandez à Gemini de transformer l’enregistrement en instructions. Gemini sait [analyser une vidéo importée](https://support.google.com/gemini/answer/14903178?hl=en) : il s’appuie sur ce qui est visible à l’écran et sur vos explications. Dire à voix haute pourquoi vous choisissez tel filtre lui donne un contexte que les clics seuls ne transmettent pas."
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Enregistrez une tâche courte, par exemple l’export du rapport des ventes du mois dernier, en expliquant vos choix à voix haute ; marquez une courte pause sur les menus et les réglages.",
+          "Gardez la vidéo sous cinq minutes, importez-la avec Ajouter des fichiers dans Gemini et collez le prompt ci-dessous.",
+          "Suivez une fois le guide obtenu sans regarder l’enregistrement, et complétez ce qui manque avant de le partager."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Soyez particulièrement attentif à ce que vous faites machinalement, comme choisir le bon compte ou changer une période : c’est souvent l’étape dont l’autre a le plus besoin."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt du guide de passation",
+        "type": "prompt",
+        "texte": "Transforme cet enregistrement d’écran en guide pas à pas pour un collègue qui fait cette tâche pour la première fois.\n\nIndique l’objectif, ce dont il a besoin avant de commencer, puis des étapes numérotées qui reprennent les noms exacts des boutons et des champs visibles à l’écran. Ajoute des repères temporels pour que je puisse vérifier chaque étape.\n\nExplique les choix que j’ai commentés. Si une étape ou un libellé n’est pas clair, marque-le « à vérifier » au lieu de deviner. Termine par la façon de confirmer que la tâche est terminée.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Commentez vos gestes en vous filmant : c’est ce que vous faites machinalement qui manque le plus à celui qui reprend la tâche.",
+    "source": {
+      "cle": "publishers-sell-ads-only-ai-agents-see",
+      "date": "2026-11-01",
+      "url": "https://www.theneurondaily.com/p/publishers-sell-ads-only-ai-agents-see",
+      "newsletter": "Publishers sell ads only AI agents see",
+      "rubrique": "AI Skill of the Day",
+      "titreOriginal": "Turn a screen recording into a handoff guide"
+    }
+  },
+  {
+    "id": "rendre-votre-site-visible-des-ia-avec-semrush-et-claude",
+    "titre": "Rendre votre site visible des IA avec Semrush et Claude",
+    "resume": "Reliez l’audit de site de Semrush à Claude : il classe les problèmes techniques par impact, propose les corrections, puis vous vérifiez si votre entreprise apparaît dans les réponses des IA.",
+    "categorie": "business",
+    "niveau": "intermediaire",
+    "outils": [
+      "claude",
+      "autre"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Un lecteur de The Neuron raconte que Claude a jugé le site de son entreprise invisible pour la recherche par IA. Mais comment savoir ce qui ne va vraiment pas, et par quoi commencer ? Semrush a publié [un pas-à-pas](https://www.semrush.com/blog/semrush-seo-audit-with-claude/) qui relie son outil d’audit de site directement à Claude. Semrush analyse votre site à la recherche de liens cassés, de problèmes d’indexation et de défauts techniques ; Claude examine ensuite ces éléments et aide à prioriser les réparations. *Un diagnostic fondé sur des données plutôt que sur une impression.*"
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "**Auditer votre site.** Créez un projet dans Semrush Site Audit et lancez une exploration. Vérifiez les liens internes cassés, les erreurs 404 (pages introuvables) et le rapport AI Search Health, notamment si les robots des moteurs de recherche accèdent à vos pages importantes.",
+          "**Relier l’audit à Claude.** Dans Claude, ouvrez Paramètres → Connecteurs, trouvez Semrush et autorisez-le. Demandez à Claude de récupérer votre audit terminé et de bâtir un plan de réparation classé par impact sur l’activité. Commencez par vos pages de services ou de produits les plus importantes.",
+          "**Corriger, réanalyser, mesurer.** Corrigez les liens erronés dans l’éditeur de votre site, redirigez les pages réellement déplacées et levez les restrictions involontaires faites aux robots. Relancez l’audit pour confirmer les corrections. Utilisez ensuite le [Prompt Tracking](https://www.semrush.com/kb/1503-prompt-tracking) de Semrush pour surveiller si votre entreprise apparaît ou est citée quand on interroge les IA sur vos services."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Une nuance importante : corriger les problèmes techniques rend votre site plus facile à trouver, mais ne garantit pas que les IA le recommanderont. L’étape suivante consiste à suivre si vos pages importantes commencent vraiment à apparaître dans les réponses des IA."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de priorisation de l’audit",
+        "type": "prompt",
+        "texte": "À partir de mon dernier Semrush Site Audit, identifie les 10 problèmes qui ont le plus d’impact. Indique les adresses concernées, les éléments qui le prouvent, les corrections recommandées, qui devrait les faire et comment vérifier chaque réparation. Donne la priorité aux pages qui rapportent de l’activité.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Réparer la technique rend un site trouvable, pas recommandé : mesurez ensuite si les IA citent vraiment vos pages.",
+    "source": {
+      "cle": "mistral-released-a-1t-parameter-open-model",
+      "date": "2026-10-30",
+      "url": "https://www.theneurondaily.com/p/mistral-released-a-1t-parameter-open-model",
+      "newsletter": "Mistral released a 1T-parameter open model",
+      "rubrique": "AI Skill of the Day",
+      "titreOriginal": "Make your website discoverable by AI with Claude"
+    }
+  },
+  {
+    "id": "se-faire-interviewer-par-l-ia-avant-une-tache-en-plusieurs-etapes",
+    "titre": "Se faire interviewer par l’IA avant une tâche en plusieurs étapes",
+    "resume": "Avant de confier un gros travail à l’IA, demandez-lui de vous poser toutes ses questions puis de présenter un plan : les suppositions se règlent au départ, quand elles coûtent un clic.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Avant de confier une grosse tâche à l’IA, faites-la vous poser des questions. Ruben Hassid, auteur de la newsletter [How to AI](https://ruben.substack.com/p/claude-cowork), commence chaque demande dans Claude Cowork (l’application de bureau de Claude qui travaille sur les fichiers d’un dossier que vous choisissez) par une phrase qui lui fait utiliser l’outil AskUserQuestion. Au lieu de deviner, Claude affiche un formulaire cliquable, avec boutons et classements. Vous répondez en quelques minutes, Claude présente un plan, vous l’ajustez, et alors seulement il produit. *Enfin un stagiaire qui pose des questions avant de commencer.*"
+      },
+      {
+        "t": "p",
+        "x": "Cela marche parce que les questions déplacent les suppositions au début, quand une mauvaise réponse coûte un clic plutôt qu’un brouillon à réécrire. Hassid y ajoute un petit dossier contenant un fichier `about-me.md` et des exemples de ses travaux, pour que Claude connaisse déjà sa façon d’écrire. Il s’en sert pour ses brouillons de newsletter (qu’il retouche encore beaucoup), pour transformer des briefs clients en documents Word et pour des tableaux comparatifs de concurrents."
+      },
+      {
+        "t": "p",
+        "x": "Deux précautions tirées de son article : Cowork est une version de recherche qui peut mal lire des fichiers, et il lit et modifie tout ce qui se trouve dans le dossier partagé, donc limitez-le. Sans Cowork, la version de The Neuron fonctionne dans n’importe quel chatbot."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "La phrase d’ouverture dans Claude Cowork",
+        "type": "prompt",
+        "texte": "Commence par utiliser l’outil AskUserQuestion avant de répondre, pour réunir assez de contexte.",
+        "adapte": false
+      },
+      {
+        "titre": "Le prompt d’interview pour tout chatbot",
+        "type": "prompt",
+        "texte": "Je veux [tâche] pour que [ce à quoi ressemble la réussite]. Avant d’écrire quoi que ce soit, pose-moi en une seule fois toutes les questions dont tu as besoin pour bien faire ce travail. Ensuite, montre-moi un plan court et attends mon accord avant de rédiger.\n\nMon parcours et mes notes de style : [collez vos notes de présentation]\nExemples de mes travaux : [collez-en un ou deux]",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Faites poser les questions avant le travail : une supposition corrigée au départ coûte un clic, pas un brouillon entier.",
+    "source": {
+      "cle": "new-york-curbs-ai-chatbots-for-kids",
+      "date": "2026-10-29",
+      "url": "https://www.theneurondaily.com/p/new-york-curbs-ai-chatbots-for-kids",
+      "newsletter": "New York curbs AI chatbots for kids",
+      "rubrique": "AI Skill of the Day",
+      "titreOriginal": "Make Claude interview you before it does multi-step work"
+    }
+  },
+  {
+    "id": "trouver-pourquoi-votre-projet-prend-sans-cesse-du-retard",
+    "titre": "Trouver pourquoi votre projet prend sans cesse du retard",
+    "resume": "Au lieu de demander un diagnostic à un chatbot, enchaînez quelques vérifications par l’IA : relevé des engagements, contradictions avec le suivi, carte des blocages, puis plan de rattrapage.",
+    "categorie": "business",
+    "niveau": "intermediaire",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Vous connaissez ce projet « presque fini » depuis trois semaines : tout le monde est occupé, les réunions s’enchaînent et l’échéance recule. Le [rapport State of Teams 2026 d’Atlassian](https://www.atlassian.com/blog/state-of-teams-2026) indique que 87 % des travailleurs du savoir interrogés manquaient de temps ou de disponibilité pour se coordonner, chacun étant occupé à exécuter. Relectures, validations et passages de relais s’accumulent même quand les tâches individuelles avancent plus vite. Le [guide de cartographie des dépendances](https://www.atlassian.com/team-playbook/plays/dependency-mapping) d’Atlassian montre comment repérer qui attend qui, identifier les risques, désigner des responsables et fixer un rythme de revue ; sa fiche de travail vous permet de comparer la carte produite par l’IA aux responsabilités réelles de l’équipe."
+      },
+      {
+        "t": "p",
+        "x": "Le vrai blocage est sans doute enfoui dans les comptes rendus de réunion, les fils Slack et votre outil de suivi. **L’astuce : enchaîner quelques vérifications reliées par l’IA plutôt que demander à un seul chatbot de diagnostiquer votre équipe.**"
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "**Constituer le dossier de preuves.** Rassemblez deux semaines de comptes rendus, les messages utiles et votre dernier export ClickUp, Asana ou Jira. Faites relever par l’IA chaque engagement dans un tableau : action, responsable, échéance et source.",
+          "**Repérer les contradictions.** Faites comparer ces engagements à votre outil de suivi et signaler les tâches manquantes, les échéances contradictoires, les changements de responsable et les dépendances non résolues. Gardez le lien vers la source pour chaque constat.",
+          "**Tracer ce qui bloque quoi.** Demandez une carte des dépendances (par exemple, une validation juridique manquante retient la validation du design, qui retarde le développement, qui repousse le lancement). Faites distinguer les blocages confirmés des blocages supposés, puis vérifiez les affirmations importantes dans les documents d’origine.",
+          "**Transformer les constats en solutions.** Confirmez les blocages avec leurs responsables, puis faites rédiger par l’IA un plan de rattrapage avec actions, responsables et échéances. Relisez-le avant de mettre à jour votre outil de suivi."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Après votre prochain point d’équipe, relancez la comparaison : vous verrez quels blocages ont disparu, lesquels restent et si vos solutions ont marché."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt des engagements et des contradictions",
+        "type": "prompt",
+        "texte": "Voici deux semaines de comptes rendus de réunion et de messages : [collez-les]\nEt voici l’export de notre outil de suivi : [collez-le]\n\n1. Relève chaque engagement dans un tableau : action, responsable, échéance, source.\n2. Compare ces engagements à l’export et signale les tâches manquantes, les échéances contradictoires, les changements de responsable et les dépendances non résolues, avec la source de chaque constat.\n3. Dresse la carte de ce qui bloque quoi, en séparant les blocages confirmés des blocages supposés.\nN’invente rien : si une information manque, dis-le.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Un retard chronique se diagnostique sur pièces : relevez les engagements, comparez-les au suivi et séparez les blocages confirmés des supposés.",
+    "source": {
+      "cle": "google-launches-genie-4-with-sound",
+      "date": "2026-10-28",
+      "url": "https://www.theneurondaily.com/p/google-launches-genie-4-with-sound",
+      "newsletter": "Google launches Genie 4 with sound",
+      "rubrique": "AI Skill of the Day",
+      "titreOriginal": "Find out why your project keeps slipping"
+    }
+  },
+  {
+    "id": "faire-la-course-a-deux-modeles-sur-la-meme-tache-ennuyeuse",
+    "titre": "Faire la course à deux modèles sur la même tâche ennuyeuse",
+    "resume": "Avant de passer à un modèle moins cher, faites-lui faire trois fois une tâche notable, comparez-le à un modèle plus coûteux sur la justesse et la durée, et ne changez que si la qualité tient.",
+    "categorie": "outils",
+    "niveau": "intermediaire",
+    "outils": [
+      "chatgpt",
+      "codex"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Victor Nunez, d’OpenAI, a [fait la course entre Terra et Sol](https://x.com/victornunez/status/2114781066892378396) pour montrer comment Terra utilise un ordinateur : chaque modèle remplissait le même long formulaire web en mode Fast, écran enregistré. Selon [Gigazine](https://gigazine.net/gsc_news/en/20261027-gpt-6-1-terra/), Terra a fini plus de deux minutes avant. NerdsChalk a refait l’essai en plus petit dans Codex : un formulaire de 15 champs, trois essais par modèle. Terra et Sol ont rempli tous les champs correctement à chaque fois, en 9,4 secondes (médiane) pour Terra contre 17,3 pour Sol. Le modèle le moins cher, Luna, n’a tout réussi qu’une fois sur trois."
+      },
+      {
+        "t": "p",
+        "x": "C’est là toute la leçon. OpenAI annonce Terra plus de trois fois plus rapide sur son banc d’essai, mais l’écart mesuré par NerdsChalk était plutôt de 1,8, et le modèle le moins cher a perdu en justesse. Les chiffres des éditeurs sont des moyennes sur leurs tâches ; ce qui compte, c’est la vôtre. Vous pouvez faire la même course sur n’importe quelle corvée que vous confieriez à l’IA :"
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Choisissez une tâche que vous pouvez noter : remplir un formulaire avec des données fictives, nettoyer dix lignes de tableur, saisir cinq factures d’exemple. Utilisez un formulaire jetable et des données factices, car les agents qui cliquent sur le web peuvent être piégés par le contenu d’une page.",
+          "Lancez des instructions identiques trois fois sur un modèle moins cher et trois fois sur un modèle plus coûteux. Dans ChatGPT Work ou Codex, Terra figure dans le sélecteur de modèles des offres Plus, Pro, Enterprise et Edu.",
+          "Notez deux choses : combien d’essais sont entièrement justes, et combien de temps chacun a pris. Ne passez au modèle moins cher que si la justesse tient."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "*Une dégustation à l’aveugle, chronomètre en main.* Trois essais ne prouvent rien scientifiquement, mais un écart de 9 contre 17 secondes sur votre propre tâche vous dit ce que le graphique d’un banc d’essai ne dit pas, et un champ faux sur trois essais vous montre que le modèle bon marché n’est pas encore prêt pour ce travail."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de la course",
+        "type": "prompt",
+        "texte": "Remplis ce formulaire avec les données fictives ci-dessous. Ne l’envoie pas. Quand tu as terminé, liste les champs sur lesquels tu as eu un doute et dis-moi en combien d’étapes tu l’as fait.\n\n[données fictives]",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Les bancs d’essai sont des moyennes : testez le modèle moins cher sur votre propre tâche, plusieurs fois, avant de lui confier le travail.",
+    "source": {
+      "cle": "openai-s-big-day-brought-a-disproof-and-terra",
+      "date": "2026-10-27",
+      "url": "https://www.theneurondaily.com/p/openai-s-big-day-brought-a-disproof-and-terra",
+      "newsletter": "OpenAI's big day brought a disproof and Terra",
+      "rubrique": "AI Skill of the Day",
+      "titreOriginal": "Race Two Models on the Same Boring Task"
+    }
+  },
+  {
+    "id": "suivre-ses-candidatures-d-emploi-avec-zapier-et-l-ia",
+    "titre": "Suivre ses candidatures d’emploi avec Zapier et l’IA",
+    "resume": "Faites lire vos e-mails de candidature par l’IA dans Zapier : elle remplit un tableau de suivi (entreprise, poste, statut, dates) et prépare vos relances au bon moment.",
+    "categorie": "automatiser",
+    "niveau": "intermediaire",
+    "outils": [
+      "autre"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Chercher un emploi est déjà épuisant. Il faut en plus se souvenir de qui vous avez contacté, qui a répondu, quand ont lieu les entretiens et quel recruteur relancer. Zapier (une application qui relie vos autres applications, pour qu’un événement en déclenche un autre) propose une [méthode de suivi des candidatures](https://zapier.com/automation/use-case/using-ai-manage-job-application-statuses-and-followups) qui vous en décharge en grande partie. Un premier modèle lit chaque nouvel e-mail Gmail, en fait extraire le statut et les dates par l’IA et ajoute une ligne à un tableur. Un second attend une date fixée, fait rédiger le message par l’IA et l’envoie par Gmail."
+      },
+      {
+        "t": "p",
+        "x": "Cela marche parce que les e-mails de recrutement sont désordonnés : confirmations, refus et invitations à un entretien ne se ressemblent pas, et une simple règle de tri ne suffit pas. L’IA lit chacun comme le ferait une personne et remplit toujours les mêmes colonnes : le tableur devient votre mémoire."
+      },
+      {
+        "t": "p",
+        "x": "Voici la version de The Neuron, construite sur ces modèles (un *Zap* est une automatisation, un déclencheur est l’événement qui la lance) :"
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "**Surveiller** : créez dans Gmail un libellé Job Search (l’équivalent Gmail d’une étiquette de dossier) et appliquez-le à vos e-mails de candidature. Utilisez le déclencheur New Labeled Email de Zapier, puis ajoutez une étape AI by Zapier pour extraire l’entreprise, le poste, le statut, les échéances et les prochaines actions. Grâce au libellé, Zapier ne lit que les e-mails étiquetés, pas toute votre boîte.",
+          "**Suivre** : créez une Google Sheet avec les colonnes entreprise, poste, statut, dernier contact et date de relance. Faites trouver la ligne correspondante par Zapier, puis mettre à jour, ou ajouter une nouvelle candidature.",
+          "**Relancer** : lancez un autre Zap chaque jour ouvré. Quand une date de relance arrive sans réponse enregistrée, faites rédiger par l’IA un message Gmail personnalisé et envoyez-vous un rappel."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "La consigne « indique Inconnu pour les détails inconnus » compte plus qu’il n’y paraît : sans elle, l’IA risque de remplir les colonnes vides avec une supposition plausible, et une échéance inventée dans votre suivi est pire qu’une case vide. Gardez les messages sortants en brouillon pour les relire avant tout envoi, et vérifiez les dates d’entretien dans l’e-mail d’origine."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de l’étape AI by Zapier",
+        "type": "prompt",
+        "texte": "Tu es mon assistant IA de recherche d’emploi. Analyse cet e-mail : [contenu de l’e-mail]. Extrais l’entreprise, l’intitulé du poste, le type d’e-mail (alerte, confirmation, entretien, refus, relance), le statut de la candidature, les dates, la prochaine action et l’adéquation avec le poste selon [mes critères de recherche]. Indique Inconnu pour les détails inconnus. N’invente jamais d’échéance ni de statut. Renvoie des champs structurés pour un tableau de suivi.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Exigez « Inconnu » plutôt qu’une supposition : une case vide dans votre suivi vaut mieux qu’une échéance inventée.",
+    "source": {
+      "cle": "claude-crossed-a-paywall-on-its-own",
+      "date": "2026-10-26",
+      "url": "https://www.theneurondaily.com/p/claude-crossed-a-paywall-on-its-own",
+      "newsletter": "Claude crossed a paywall on its own",
+      "rubrique": "AI Skill of the Day",
+      "titreOriginal": "Let Zapier Track Your Job Applications For You"
+    }
+  },
+  {
+    "id": "verifier-le-fil-de-l-histoire-avant-que-l-ia-cree-vos-diapositives",
+    "titre": "Vérifier le fil de l’histoire avant que l’IA crée vos diapositives",
+    "resume": "Dans Gemini Notebook, relisez et corrigez le plan d’une présentation avant sa génération : vous réglez l’argumentation avant d’être distrait par la mise en page.",
+    "categorie": "creer",
+    "niveau": "intermediaire",
+    "outils": [
+      "gemini"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Vous demandez une présentation à l’IA. Elle vous livre des diapositives soignées, puis vous vous apercevez que la recommandation est enfouie en douzième diapositive. *Jolie police, mauvaise histoire.*"
+      },
+      {
+        "t": "p",
+        "x": "La [nouvelle fonction de relecture de Gemini Notebook](https://workspaceupdates.googleblog.com/2026/10/gain-more-creative-control-over-slide-Decks-and-Video-Overviews-in-Gemini-Notebook.html) vous permet d’examiner le plan et de donner un retour écrit avant qu’il génère la présentation. Vous pouvez ainsi corriger l’argumentation avant de vous laisser distraire par le visuel."
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Ajoutez vos sources, choisissez Slide Deck dans le panneau Studio et activez Review outline.",
+          "Vérifiez si la recommandation arrive assez tôt, si les éléments de preuve la soutiennent et s’il manque quelque chose d’essentiel.",
+          "Donnez un retour précis avant la génération. Par exemple, demandez de placer la recommandation avant le contexte et de mettre les éléments qui l’appuient juste après."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Vous faites plutôt une vidéo ? Utilisez Review producer notes pour la même étape de contrôle. La fonction est déployée progressivement : elle n’apparaît peut-être pas encore chez vous."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le retour sur le plan avant génération",
+        "type": "prompt",
+        "texte": "Avant de générer la présentation, modifie le plan : place la recommandation avant le contexte, et mets juste après les éléments de preuve qui la soutiennent. Signale-moi aussi s’il manque quelque chose d’essentiel pour défendre cette recommandation.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Corrigez l’histoire tant qu’elle n’est qu’un plan : la mise en forme peut attendre.",
+    "source": {
+      "cle": "walmart-announces-ai-shopping-controls",
+      "date": "2026-10-25",
+      "url": "https://www.theneurondaily.com/p/walmart-announces-ai-shopping-controls",
+      "newsletter": "Walmart announces AI shopping controls",
+      "rubrique": "AI Skill of the Day",
+      "titreOriginal": "Check the story before AI builds your slides"
+    }
+  },
+  {
+    "id": "prevoir-la-vraie-fin-d-un-projet-avec-une-simulation-de-monte-carlo",
+    "titre": "Prévoir la vraie fin d’un projet avec une simulation de Monte-Carlo",
+    "resume": "Une date de fin de projet additionne des durées probables et se révèle presque toujours trop optimiste. Faites simuler 10 000 fois votre planning par l’IA pour obtenir des probabilités.",
+    "categorie": "outils",
+    "niveau": "intermediaire",
+    "outils": [
+      "chatgpt",
+      "gemini"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Chaque planning a une date de fin, et la plupart sont une fiction polie. On additionne la durée la plus probable de chaque tâche, alors qu’une tâche réelle peut prendre bien plus de retard qu’elle ne prendra jamais d’avance."
+      },
+      {
+        "t": "p",
+        "x": "The Neuron a testé un lancement en cinq tâches : conception puis développement, revue juridique puis contenus, et recette à la fin. Les estimations les plus probables totalisent 18 jours. Simulé 10 000 fois, le projet ne tenait 18 jours ou moins que dans environ 10 % des cas. La médiane tombait vers 21 jours, et 9 fois sur 10 tout était fini vers 24 ou 25 jours. Cette date de 18 jours est un plan, pas une prévision. Une simulation de Monte-Carlo (lancer les dés 10 000 fois et compter) transforme une date unique en probabilités, et ChatGPT peut la faire tourner à partir d’un tableur en quelques minutes."
+      },
+      {
+        "t": "p",
+        "x": "Elle montre aussi où porter votre inquiétude : le développement et la conception expliquaient l’essentiel des écarts, alors que la revue juridique ne déplaçait presque pas la date. *Vous pouvez arrêter de perdre le sommeil à cause des juristes. Probablement.*"
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Préparez un tableau simple, une ligne par tâche, avec ces colonnes : Tâche, Meilleur cas, Le plus probable, Pire cas (en jours ouvrés) et Dépend de. Demandez les trois chiffres aux personnes qui font le travail : c’est dans le pire cas que se cache la vérité. Exemple de The Neuron : Conception 3/5/13, Développement 8/10/20, Revue juridique 4/6/15, Contenus 5/7/12, Recette et préparation du lancement 2/3/6.",
+          "Chargez le tableau dans l’[outil d’analyse de données de ChatGPT](https://help.openai.com/en/articles/8437071-data-analysis-with-chatgpt) et collez le prompt ci-dessous, en indiquant votre date de fin actuellement prévue. Vous utilisez Gemini ? Vérifiez que l’exécution de code est activée et qu’il vous montre le code exécuté : la description d’une simulation n’est pas une simulation.",
+          "Lisez les probabilités, pas la moyenne. Planifiez sur le P80 (la date tenue 8 fois sur 10), puis concentrez la réduction des risques sur les deux premières tâches du graphique de sensibilité."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Deux précautions. Par défaut, la simulation traite les tâches comme indépendantes : si la même équipe surchargée en porte trois, le risque réel est plus élevé que ce qu’elle indique. Et les probabilités ne valent que ce que valent les estimations : parcourez le code et les hypothèses avant de citer un chiffre à votre direction."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de simulation de Monte-Carlo",
+        "type": "prompt",
+        "texte": "Tu es analyste des risques projet. J’ai chargé un planning de projet avec les colonnes : Tâche, Meilleur cas, Le plus probable, Pire cas (tout en jours ouvrés) et Dépend de.\n\nLance une simulation de Monte-Carlo du planning :\n- Modélise la durée de chaque tâche avec une loi bêta PERT construite à partir de ses trois estimations.\n- Respecte la colonne Dépend de et calcule la fin du projet pour chaque tirage. Le chemin critique peut changer d’un tirage à l’autre.\n- Lance 10 000 simulations.\n\nDonne-moi ensuite :\n- La fin du projet en P50, P80 et P90, en jours ouvrés, ainsi que la probabilité de finir dans les [X] jours actuellement prévus.\n- Un diagramme en barres qui classe les tâches dont la durée pèse le plus sur la date de fin.\n- Le pourcentage de tirages où chaque chemin a été le chemin critique.\n- Une synthèse en langage simple, lisible en 30 secondes, que je peux coller dans un point d’avancement pour les parties prenantes.\n\nAvant de lancer quoi que ce soit, liste toutes les hypothèses que tu fais (loi de probabilité, indépendance des tâches, jours ouvrés, absence de limite de ressources). Montre-moi le code Python utilisé pour que je puisse le vérifier. Si une ligne semble fausse, par exemple une valeur la plus probable hors de l’intervalle entre meilleur et pire cas, signale-la au lieu de la corriger en silence.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Une date de fin issue des durées probables est un plan, pas une prévision : planifiez sur la date tenue 8 fois sur 10 et surveillez les tâches qui font le plus varier la fin.",
+    "source": {
+      "cle": "microsoft-ai-scored-83-where-doctors-got-36",
+      "date": "2026-10-23",
+      "url": "https://www.theneurondaily.com/p/microsoft-ai-scored-83-where-doctors-got-36",
+      "newsletter": "Microsoft AI scored 83% where doctors got 36%",
+      "rubrique": "AI Skill of the Day",
+      "titreOriginal": "Forecast Your Real Launch Date With a Monte Carlo Simulation"
+    }
+  },
+  {
+    "id": "faire-travailler-trois-agents-de-code-en-parallele-sans-conflits",
+    "titre": "Faire travailler trois agents de code en parallèle sans conflits",
+    "resume": "Donnez à chaque agent de code son propre worktree git : un dossier et une branche à lui, sur le même dépôt. Répartissez le travail par fichiers, puis fusionnez une branche à la fois.",
+    "categorie": "coder",
+    "niveau": "avance",
+    "outils": [
+      "claude-code",
+      "codex"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Vous avez demandé à votre agent de code une page de connexion, et vous fixez un indicateur de chargement depuis dix minutes, avec un bug et une mise à jour de documentation en attente. Ouvrez un second agent dans le même dossier de projet, et les deux modifieront les mêmes fichiers sur la même branche : c’est ainsi qu’un travail à moitié fini se fait écraser."
+      },
+      {
+        "t": "p",
+        "x": "La solution s’appelle un **worktree git**. Normalement, un dépôt a un seul dossier de travail, avec une seule branche active. Un worktree est un dossier supplémentaire issu du même dépôt, avec sa propre branche : chaque agent a son bureau, mais tous partagent le même classeur d’historique. *Même cuisine, planches à découper séparées.* Les commits sont visibles partout ; les modifications non commitées ne le sont pas, et c’est tout l’intérêt."
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Donnez à chaque agent son worktree. Dans Claude Code, lancez `claude --worktree feature-auth` dans un terminal, et la même commande avec un autre nom dans un second terminal ([documentation](https://code.claude.com/docs/en/common-workflows) ; le dépôt doit avoir au moins un commit). Codex CLI n’a pas d’option pour cela : lancez `git worktree add ../project-bugfix -b bugfix-123`, entrez dans le dossier avec `cd`, puis démarrez `codex`, comme dans [ce tutoriel](https://dev.to/dublecc/parallel-ai-agent-workflows-with-git-worktrees-the-concrete-pattern-59lp).",
+          "Répartissez le travail par fichiers. Des tests pour le module A et la documentation du module B, aucun risque. Deux agents qui remanient le même type utilisé partout entreront en collision de toute façon.",
+          "Fusionnez une branche à la fois. Une fois les pull requests ouvertes, lancez une nouvelle session pour choisir l’ordre et résoudre les conflits. [Stian Frøystein, chez Intility](https://engineering.intility.com/article/agent-teams-or-how-i-learned-to-stop-worrying-about-merge-conflicts-and-love-git-worktrees), procède ainsi et constate que Claude gère bien les conflits."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "La dernière phrase du prompt de fusion est un ajout de The Neuron. Trois pièges demeurent : chaque worktree a besoin de sa propre installation (par exemple `npm ci`), deux serveurs de développement sur le même port vont se gêner, et une base de données partagée n’est pas isolée du tout. Enfin, le goulot d’étranglement, c’est vous : les worktrees évitent les collisions de fichiers, pas la file des relectures. Commencez donc avec deux ou trois agents, et faites le ménage avec `git worktree remove` quand vous avez fini."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "La commande Claude Code (une par agent, avec un nom différent)",
+        "type": "commande",
+        "texte": "claude --worktree feature-auth",
+        "adapte": false
+      },
+      {
+        "titre": "Les commandes pour Codex CLI",
+        "type": "commande",
+        "texte": "git worktree add ../project-bugfix -b bugfix-123\ncd ../project-bugfix\ncodex",
+        "adapte": false
+      },
+      {
+        "titre": "Le prompt de fusion des pull requests",
+        "type": "prompt",
+        "texte": "Liste les pull requests ouvertes de ce dépôt avec la CLI gh. Pour chacune, résume les fichiers qu’elle modifie. Indique-moi l’ordre de fusion le plus sûr, signale celles qui entreront en conflit, et résous les conflits au fil des fusions. Lance les tests après chaque fusion et arrête-toi si quelque chose échoue.",
+        "adapte": false
+      },
+      {
+        "titre": "La commande de nettoyage",
+        "type": "commande",
+        "texte": "git worktree remove ../project-bugfix",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Un worktree par agent évite qu’ils s’écrasent mutuellement, mais c’est votre capacité de relecture qui fixe le nombre d’agents utile.",
+    "source": {
+      "cle": "new-claude-duet-works-while-your-phone-s-off",
+      "date": "2026-10-22",
+      "url": "https://www.theneurondaily.com/p/new-claude-duet-works-while-your-phone-s-off",
+      "newsletter": "New Claude Duet works while your phone's off",
+      "rubrique": "AI Skill of the Day",
+      "titreOriginal": "Run Three Coding Agents at Once Without Them Overwriting Each Other"
+    }
+  },
+  {
+    "id": "comprendre-un-tableur-herite-avant-d-y-toucher",
+    "titre": "Comprendre un tableur hérité avant d’y toucher",
+    "resume": "Avant de modifier le classeur d’un collègue parti, demandez à l’IA de l’expliquer sans rien éditer et de dresser un journal des problèmes classés par risque, puis vérifiez chaque point.",
+    "categorie": "verifier",
+    "niveau": "intermediaire",
+    "outils": [
+      "claude"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Votre collègue démissionne et son modèle de chiffre d’affaires atterrit sur votre bureau : quatre onglets, quelques commentaires dans les cellules, et la direction financière veut des projections pour jeudi. C’est le scénario du [tutoriel d’Anthropic](https://claude.com/resources/use-cases/understand-and-extend-an-inherited-spreadsheet) sur l’utilisation de Claude face à un tableur hérité, et quiconque a ouvert le classeur d’un inconnu connaît cette appréhension."
+      },
+      {
+        "t": "p",
+        "x": "La bonne démarche : demander une explication avant toute modification. Dans l’exemple d’Anthropic, Claude a lu la légende et les commentaires, décodé le code couleur (bleu pour les saisies, vert pour les formules qui puisent dans d’autres onglets) et expliqué une formule de saisonnalité. Il a aussi signalé ce que personne n’avait écrit, comme un plancher qui empêche la ligne d’impôt de devenir négative. Ce n’est qu’ensuite qu’il a ajouté les nouveaux trimestres, en conservant les 348 formules d’origine. *C’est une démonstration d’éditeur : vérifiez le travail.*"
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Faites une copie du fichier et travaillez sur la copie.",
+          "Demandez une explication et un journal des problèmes, sans aucune modification.",
+          "Vérifiez chaque signalement vous-même ou avec l’auteur, puis changez une hypothèse et contrôlez qu’elle se répercute dans tous les onglets."
+        ]
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt d’explication sans modification",
+        "type": "prompt",
+        "texte": "J’ai hérité de ce tableur et je dois le comprendre avant de changer quoi que ce soit. Ne le modifie pas.\n\n1. Explique comment les onglets sont reliés et ce que fait chaque formule clé.\n2. Liste tout ce qui n’est pas documenté, masqué, saisi en dur là où les cellules voisines sont des formules, ou lié à des fichiers externes.\n3. Donne-moi un journal des problèmes : cellule, ce qui ne va pas, quels résultats sont touchés, et risque élevé, moyen ou faible.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Face au tableur d’un autre, faites-vous d’abord tout expliquer sans rien modifier, et ne touchez au fichier qu’après avoir vérifié chaque problème signalé.",
+    "source": {
+      "cle": "meta-s-muse-made-shared-chats-searchable",
+      "date": "2026-10-21",
+      "url": "https://www.theneurondaily.com/p/meta-s-muse-made-shared-chats-searchable",
+      "newsletter": "Meta’s Muse made shared chats searchable",
+      "rubrique": "AI Skill of the Day",
+      "titreOriginal": "Make sense of a spreadsheet someone else left behind"
+    }
+  },
+  {
+    "id": "faire-citer-ses-preuves-a-gemini-4-argon-pour-comparer-deux-documents",
+    "titre": "Faire citer ses preuves à Gemini 4 Argon pour comparer deux documents",
+    "resume": "Pour comparer deux versions d’un contrat, dites à Gemini 4 Argon ce qui compte comme preuve, faites-lui citer chaque section et séparer les faits de son interprétation, puis vérifiez.",
+    "categorie": "verifier",
+    "niveau": "intermediaire",
+    "outils": [
+      "gemini"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Deux versions d’un contrat fournisseur arrivent dans votre boîte, sans suivi des modifications, et quelqu’un veut savoir ce qui a changé avant midi. Deux guides sur Gemini 4 Argon de Google, [l’un de Liana chez iWeaver](https://www.iweaver.ai/blog/how-to-use-gemini-4-argon/) et [l’autre de Rizki Murtadha chez PrompTessor](https://promptessor.com/blog/gemini-4-argon-prompting-guide), abordent ce type de comparaison avec la même idée centrale : dire au modèle ce qui compte comme preuve, puis lui faire montrer son travail. Voici la recette, adaptée des deux :"
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Étiquetez chaque document (Version A, Version B), ajoutez les dates et précisez lequel l’emporte en cas de contradiction.",
+          "Demandez à Argon de n’utiliser que vos documents, de citer la section derrière chaque constat, de séparer ce que disent les documents de son interprétation, et de signaler ce qui manque au lieu de deviner.",
+          "Collez d’abord les documents et placez votre question à la fin, comme le recommande PrompTessor pour les longs contenus."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "L’ordre compte à cause de la mémoire d’Argon. Sa fenêtre de contexte (la quantité de texte qu’il peut garder en vue d’un coup) est de 1 048 576 tokens (des morceaux de mots), mais ce budget est partagé entre ce que vous collez, la réflexion du modèle et sa réponse. Une montagne de documents laisse moins de place au raisonnement : les deux guides conseillent de commencer par les seules sources utiles à la question, et d’en ajouter si un premier passage révèle un manque. Aucun des deux guides ne publie de résultats de tests : prenez ce modèle comme un point de départ."
+      },
+      {
+        "t": "p",
+        "x": "Vérifiez ensuite le résultat en sceptique. Remontez quelques affirmations jusqu’aux sections citées, et corrigez les erreurs par une correction précise plutôt qu’en recommençant. iWeaver ajoute un test malin : passez les mêmes documents et le même prompt dans Gemini 3.8 Flash, pour voir ce qu’Argon apporte en plus."
+      },
+      {
+        "t": "p",
+        "x": "Il faut un abonnement Google AI Pro ou Ultra pour utiliser Argon dans l’[application Gemini](https://blog.google/innovation-and-ai/products/gemini-app/gemini-4-availability) ; iWeaver propose un essai gratuit. Vérifiez la politique de votre entreprise avant de charger des documents de clients."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de comparaison de deux versions",
+        "type": "prompt",
+        "texte": "Compare la version A et la version B du [contrat / de la politique] ci-joint(e). N’utilise que les documents fournis. En cas de contradiction, la version B (la plus récente) l’emporte.\n\nConcentre-toi sur [les conditions de paiement, la résiliation, l’accès aux données, la responsabilité, les pouvoirs d’approbation].\n\nPour chaque changement, donne : la section dans chaque version, ce qui change concrètement, qui est concerné et ce que nous devons examiner. Sépare ce que disent les documents de ton interprétation. Si une clause manque ou n’est pas claire, dis-le au lieu de deviner. Ceci n’est pas un avis juridique.\n\nTermine par un tableau comparatif, un résumé de 300 mots et les trois questions à régler avant de signer.",
+        "adapte": false
+      },
+      {
+        "titre": "La relance de correction ciblée",
+        "type": "prompt",
+        "texte": "La version B n’a pas de clause de résiliation : corrige cette ligne du tableau.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Dites au modèle ce qui compte comme preuve, exigez une section citée pour chaque constat, puis remontez vous-même quelques citations avant de vous y fier.",
+    "source": {
+      "cle": "ai-hackers-left-the-door-open",
+      "date": "2026-10-20",
+      "url": "https://www.theneurondaily.com/p/ai-hackers-left-the-door-open",
+      "newsletter": "AI hackers left the door open",
+      "rubrique": "AI Skill of the Day",
+      "titreOriginal": "Make Gemini 4 Argon show its receipts"
+    }
+  },
+  {
+    "id": "empecher-votre-agent-de-se-noyer-dans-les-sorties-de-ses-outils",
+    "titre": "Empêcher votre agent de se noyer dans les sorties de ses outils",
+    "resume": "Quand un outil renvoie des sorties énormes, l’agent s’alourdit et répond moins bien sans aucune erreur. Stockez ces sorties à part, limitez les appels répétés et définissez quand c’est terminé.",
+    "categorie": "automatiser",
+    "niveau": "avance",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Imaginez un agent qui surveille les journaux (*logs*) de votre application. À chaque vérification, l’outil déverse un nouveau gros paquet de texte dans la conversation, et l’agent relit tout à chaque tour. Elizabeth Fuentes Leone, *developer advocate* chez AWS, [l’a montré](https://www.youtube.com/watch?v=DrfyORO8RqA) dans une conférence publiée le 7 octobre : les agents déraillent quand les outils renvoient de grosses sorties, et une fenêtre de contexte plus grande (la quantité de texte qu’un modèle peut garder en vue d’un coup) n’y change rien. Dans le résumé de sa session, un outil a renvoyé 214 Ko de journaux, les réponses se sont dégradées, et aucune erreur ne s’est affichée."
+      },
+      {
+        "t": "p",
+        "x": "Jusqu’où cela va-t-il ? Chew Loong Nian [a rejoué ses correctifs](https://pub.towardsai.net/how-to-fix-aws-strands-agents-context-bloat-one-plugin-cut-252k-tokens-to-9k-f47b357496bd) dans Strands, le framework d’agents open source d’AWS, avec un modèle scripté. Huit récupérations de journaux ont laissé à un agent par défaut environ 252 000 tokens d’historique (les tokens sont les morceaux de mots que compte un modèle). Un seul plugin intégré a ramené ce chiffre à environ 9 000. Le raccourci évident, une fenêtre glissante plus courte, l’a réduit à environ un quart, mais il jette des tours entiers, avec ce que l’agent en avait appris."
+      },
+      {
+        "t": "p",
+        "x": "Le plugin utilise un **pointeur de mémoire** : la grosse sortie part dans un stockage, et le contexte de l’agent ne reçoit qu’un identifiant court qui lui permet de récupérer les données plus tard. Le second correctif est un plafond sur les appels répétés : dans son exemple, un agent qui relançait quatorze fois le même appel est tombé à deux une fois doté d’un signal clair de fin et avec les appels répétés bloqués. *De quatorze à deux : la facture d’API respire.* Une réserve : le test de Chew mesure la quantité de texte qui reste dans le contexte, pas l’amélioration des réponses."
+      },
+      {
+        "t": "p",
+        "x": "Vous n’écrivez sans doute pas de code Strands, mais selon elle, ces correctifs valent pour n’importe quel framework d’agents. Si vous construisez ou achetez des agents, exigez trois choses :"
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Stocker les grosses sorties d’outils hors de la conversation et ne donner à l’agent qu’un identifiant court.",
+          "Plafonner le nombre d’appels d’un même outil par tâche.",
+          "Donner à l’agent un signal clair indiquant que la tâche est terminée."
+        ]
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de revue d’un agent",
+        "type": "prompt",
+        "texte": "Passe en revue mon agent pour repérer les outils qui peuvent renvoyer de grosses sorties (journaux, résultats de recherche, fichiers). Pour chacun : (1) enregistre la sortie complète dans un fichier et ne renvoie qu’un court résumé avec un identifiant de fichier, (2) fixe un nombre maximal d’appels par outil et par tâche, et (3) ajoute une condition claire de fin (« terminé ») pour que l’agent s’arrête dès qu’il a une réponse.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Un agent qui ralentit n’a pas besoin d’une plus grande fenêtre de contexte : rangez les grosses sorties à part, plafonnez les appels répétés et dites-lui quand c’est fini.",
+    "source": {
+      "cle": "deepseek-s-free-model-edged-opus-5-at-coding",
+      "date": "2026-10-19",
+      "url": "https://www.theneurondaily.com/p/deepseek-s-free-model-edged-opus-5-at-coding",
+      "newsletter": "DeepSeek's free model edged Opus 5 at coding",
+      "rubrique": "AI Skill of the Day",
+      "titreOriginal": "Stop Your AI Agent From Drowning in Its Own Tool Output"
+    }
+  },
+  {
+    "id": "transformer-vos-onglets-ouverts-en-tableau-comparatif",
+    "titre": "Transformer vos onglets ouverts en tableau comparatif",
+    "resume": "Avec l’extension Chrome de ChatGPT, comparez plusieurs pages ouvertes (offres, produits, articles) dans un seul tableau, avec les liens des sources et ce qui reste à vérifier.",
+    "categorie": "outils",
+    "niveau": "intermediaire",
+    "outils": [
+      "chatgpt"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Vous avez cinq onglets ouverts, chacun sur un produit, une offre tarifaire ou un article différent. Et bien sûr, chaque site organise ses informations à sa façon. *Félicitations : votre navigateur est devenu un devoir à la maison.*"
+      },
+      {
+        "t": "p",
+        "x": "L’[extension Chrome de ChatGPT](https://chromewebstore.google.com/detail/chatgpt/hehggadaopoacecdllhhajmbjkdcmajg) vous aide à comparer les informations de plusieurs onglets sans passer sans cesse de l’un à l’autre."
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Ouvrez trois à cinq pages à comparer, par exemple des offres de logiciels ou des produits concurrents.",
+          "Installez l’extension Chrome de ChatGPT et reliez-la à l’application de bureau ChatGPT.",
+          "Dans une session de bureau compatible, désignez vos onglets Chrome avec `@Chrome` et envoyez le prompt ci-dessous."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Pour comparer des tarifs, demandez à ChatGPT de distinguer les paiements mensuels des engagements annuels et de repérer les fonctions payantes en supplément. Une fois terminé, vous pouvez aussi lui demander de ranger vos onglets par sujet. *Cinq onglets entrent, un tableau utile en sort.*"
+      },
+      {
+        "t": "p",
+        "x": "**À noter** : l’intégration au navigateur peut dépendre de la version de l’application, de votre abonnement et des réglages de votre espace de travail."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de comparaison des onglets",
+        "type": "prompt",
+        "texte": "Compare les pages de mes onglets ouverts. Crée un tableau qui montre les principales différences, les prix, les avantages et inconvénients, et tout ce qui manque d’important. Indique les liens des sources et signale tout ce que tu ne peux pas vérifier.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Plutôt que de jongler entre les onglets, demandez un seul tableau comparatif qui cite ses sources et signale ce qu’il ne peut pas vérifier.",
+    "source": {
+      "cle": "meta-s-new-terms-cover-website-scraping",
+      "date": "2026-10-18",
+      "url": "https://www.theneurondaily.com/p/meta-s-new-terms-cover-website-scraping",
+      "newsletter": "Meta’s new terms cover website scraping",
+      "rubrique": "AI Skill of the Day",
+      "titreOriginal": "Turn your open tabs into a comparison table"
+    }
+  },
+  {
+    "id": "rapprocher-deux-exports-comptables-avec-la-methode-des-quatre-cases",
+    "titre": "Rapprocher deux exports comptables avec la méthode des quatre cases",
+    "resume": "Au lieu de chercher les correspondances une à une, faites classer par l’IA chaque ligne non rapprochée dans l’une des quatre cases d’écart, y compris les regroupements de plusieurs lignes.",
+    "categorie": "verifier",
+    "niveau": "intermediaire",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Le [guide de l’équipe Powerdrill sur le rapprochement des transactions](https://powerdrill.ai/blog/how-to-reconcile-transactions-in-a-spreadsheet) (vérifier que deux relevés d’une même activité concordent) part d’une scène que connaît tout comptable. Un paiement par carte apparaît une fois dans votre grand livre, votre propre registre des opérations, et deux fois dans l’export du prestataire de paiement, scindé en un débit et des frais. Une facture s’appelle INV-0042 dans un système et INV42 dans l’autre. Un virement lancé le 31 arrive le 1er et décale tout le mois."
+      },
+      {
+        "t": "p",
+        "x": "**Leur solution** : arrêter de chasser les correspondances et trier plutôt ce qui reste. Toute ligne non rapprochée tombe dans l’une de quatre cases : absente d’un côté, en double, montant erroné, ou bon paiement sur la mauvaise période. Les recherches classiques dans un tableur (de type RECHERCHEV) calent parce qu’elles supposent qu’une ligne de chaque côté correspond à un seul événement. Elles échouent dès qu’un seul règlement couvre quarante transactions (une correspondance plusieurs-à-un)."
+      },
+      {
+        "t": "p",
+        "x": "Powerdrill a construit cette méthode autour de son propre outil ; la version pour chatbot ci-dessous est une adaptation de The Neuron :"
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Chargez les deux exports et demandez au chatbot de signaler les différences de noms de colonnes, de formats de date et de style de références avant de rapprocher quoi que ce soit.",
+          "Demandez les quatre cases par leur nom, avec une tolérance sur les montants et quelques jours de marge sur les dates. Demandez ensuite quels groupes de lignes d’un fichier s’additionnent pour former une seule ligne de l’autre.",
+          "Contrôlez le nombre de lignes et les montants non rapprochés, pas seulement le total général : deux erreurs égales en sens inverse donnent quand même un total parfait."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "Gardez toutes les lignes et ajoutez une colonne de statut au lieu de supprimer les correspondances trouvées : vous pourrez justifier une décision six semaines plus tard. Vérifiez à la main quelques regroupements proposés. Commencez par un mois déjà clôturé, pour voir ce que la question des regroupements plusieurs-à-un repère et que vos anciennes recherches avaient manqué."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de rapprochement en quatre cases",
+        "type": "prompt",
+        "texte": "Je t’envoie deux exports de la même activité : [fichier 1, par exemple notre grand livre] et [fichier 2, par exemple l’export du prestataire de paiement].\n\n1. Avant de rapprocher quoi que ce soit, signale les différences de noms de colonnes, de formats de date et de style de références entre les deux fichiers.\n2. Rapproche ensuite les lignes avec une tolérance de [montant] sur les montants et de [nombre] jours sur les dates.\n3. Classe chaque ligne non rapprochée dans l’une de ces quatre cases : absente d’un côté, en double, montant erroné, bon paiement sur la mauvaise période.\n4. Indique quels groupes de lignes d’un fichier s’additionnent pour former une seule ligne de l’autre.\n5. Donne-moi le nombre de lignes et le montant non rapproché de chaque côté, pas seulement le total général.\n\nNe supprime aucune ligne : ajoute une colonne de statut qui indique pour chacune si elle est rapprochée, et sinon dans quelle case elle tombe.",
+        "adapte": true
+      }
+    ],
+    "aRetenir": "Un rapprochement se gagne en triant les écarts restants dans quatre cases, pas en cherchant les correspondances une à une, et un total juste ne prouve rien.",
+    "source": {
+      "cle": "october-16-friday-1362",
+      "date": "2026-10-16",
+      "url": "https://www.theneurondaily.com/p/october-16-friday-1362",
+      "newsletter": "October 16 (Friday)",
+      "rubrique": "AI Skill of the Day",
+      "titreOriginal": "Reconcile Messy Exports with the Four-Bucket Method"
+    }
+  },
+  {
+    "id": "faire-attaquer-votre-travail-par-une-seconde-ia-sans-paniquer",
+    "titre": "Faire attaquer votre travail par une seconde IA, sans paniquer",
+    "resume": "Soumettez votre brouillon à un autre modèle que celui qui l’a écrit, chargé de le démolir, et faites classer les problèmes par probabilité et coût pour savoir quoi ignorer.",
+    "categorie": "verifier",
+    "niveau": "intermediaire",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Chez Anthropic, les modifications de code fusionnées sont passées d’environ 2 500 par jour en mai à plus de 30 000 par jour en septembre. L’entreprise a [construit son propre remplaçant de Git](https://www.anthropic.com/engineering/redesigning-source-control) (l’outil standard de suivi des modifications du code) pour tenir le rythme. Elle dit recourir largement à la revue contradictoire : confier à une IA un travail terminé avec pour mission de l’attaquer plutôt que de l’approuver. [Simon Willison](https://simonwillison.net/2026/Oct/13/redesigning-source-control-at-anthropic/) dit utiliser une approche similaire, en opposant souvent Claude et GPT."
+      },
+      {
+        "t": "p",
+        "x": "Le piège explique pourquoi c’est une compétence avancée. Selon Anthropic, la technique peut devenir myope : le relecteur se focalise sur l’inquiétude qu’on lui a confiée. Dans un cas, une revue s’est montrée trop méfiante envers un autre service interne, et Claude a réagi en empilant validations et complexité. Les ingénieurs devaient souvent le dissuader d’en faire trop. *Chaque bureau a ce relecteur qui signale un risque sur un million et fait dérailler tout le document.*"
+      },
+      {
+        "t": "p",
+        "x": "L’article ne donne pas de recette : cette partie est une adaptation de The Neuron. Passez votre brouillon (un contrat, un modèle financier, une note stratégique) dans un autre modèle que celui qui l’a rédigé. Faites ensuite classer les problèmes par probabilité et par coût, pour voir ce que vous pouvez ignorer."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt du relecteur sceptique",
+        "type": "prompt",
+        "texte": "Tu es un relecteur sceptique. Voici [un contrat, un modèle financier ou une note stratégique], rédigé pour [public et objectif]. Trouve ce qui pourrait mal tourner.\n\n1. Liste au maximum 7 problèmes, classés selon leur probabilité multipliée par leur coût.\n2. Pour chacun, dis ce qui devrait être vrai pour qu’il compte, et quelle en est la probabilité dans ma situation réelle : [votre situation].\n3. Sépare les vrais défauts des risques hypothétiques, et signale tout ce que tu me conseillerais d’ignorer.\n4. Ne propose pas encore de réécriture.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Une revue contradictoire n’aide que si le relecteur hiérarchise les risques ; sinon, elle vous fait tout blinder contre des dangers improbables.",
+    "source": {
+      "cle": "gemini-now-screens-scam-texts",
+      "date": "2026-10-15",
+      "url": "https://www.theneurondaily.com/p/gemini-now-screens-scam-texts",
+      "newsletter": "October 15 (Thursday)",
+      "rubrique": "AI Skill of the Day",
+      "titreOriginal": "Make a second AI attack your work (without letting it panic you)"
+    }
+  },
+  {
+    "id": "demander-six-ameliorations-a-l-ia-et-n-en-garder-que-deux",
+    "titre": "Demander six améliorations à l’IA et n’en garder que deux",
+    "resume": "Fixez un objectif chiffré, faites lire vos règles maison à l’IA avant tout, et demandez-lui des propositions argumentées plutôt que des changements appliqués. À vous de trier.",
+    "categorie": "automatiser",
+    "niveau": "intermediaire",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Les ingénieurs de Google George Weale et Bo Yang ont laissé Gemini 4 Argon travailler seul pendant 11 heures sur une base de code de 205 000 lignes, [et ont publié leur dispositif](https://developers.googleblog.com/optimizing-a-200000-line-python-codebase-overnight-with-gemini-4-argon). Argon a proposé six accélérations. L’équipe en a livré deux et rejeté quatre, et sa conclusion vaut pour tout projet d’IA : l’agent explore, l’humain retranche."
+      },
+      {
+        "t": "p",
+        "x": "Deux détails valent la peine d’être repris :"
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Au premier essai, aucune règle maison. Argon a passé 70 minutes à mesurer avant de toucher quoi que ce soit et a trouvé de vrais gains, mais il a discrètement modifié un format de données public et n’a lancé que 216 des 16 892 tests du projet.",
+          "Au second essai, l’équipe a ajouté un dossier contenant ses règles de revue et un mode qui garde l’objectif en vue pendant les longues sessions. Même objectif, mais cette fois Argon a d’abord lu les règles, lancé tous les tests et ouvert une *pull request* (une proposition de modification soumise à l’approbation humaine) avec les chiffres avant et après."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "*Au premier essai, c’était une nouvelle recrue brillante qui avait sauté l’accueil. Au second, la même recrue après avoir lu le manuel.*"
+      },
+      {
+        "t": "p",
+        "x": "Essayez sur n’importe quelle tâche répétée, comme un rapport hebdomadaire ou le nettoyage d’un tableur. Écrivez un objectif d’un paragraphe avec un chiffre qui prouve la réussite, mettez vos règles maison dans un fichier que l’IA lit en premier, et demandez des propositions plutôt que des modifications terminées. Vous ne savez pas comment formuler l’objectif ? Le guide de Google sur les jeux 3D conseille de [demander d’abord à Argon de rédiger lui-même sa commande d’objectif](https://aistudio.google.com/learn/building-3d-games-and-worlds-with-gemini-4-argon?e=0)."
+      },
+      {
+        "t": "p",
+        "x": "Google a mené l’expérience dans son application de code Antigravity, où un mode /goal garde l’objectif en vue pendant des heures de travail. Dans une conversation ordinaire, recollez l’objectif chaque fois que l’IA dérive."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt des six propositions",
+        "type": "prompt",
+        "texte": "Objectif : [un paragraphe, avec le chiffre qui prouvera que ça a marché].\n\nCommence par lire mes règles maison : [ce qui est interdit, ce que « terminé » veut dire et comment je relis le travail].\n\nEnsuite, donne-moi six propositions de modifications, chacune avec des preuves avant et après et le risque si tu te trompes. N’applique rien pour l’instant.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "L’agent explore, l’humain retranche : demandez des propositions argumentées et ne gardez que celles qui tiennent.",
+    "source": {
+      "cle": "google-launched-gemini-4-argon-tying-gpt-6-b85b",
+      "date": "2026-10-14",
+      "url": "https://www.theneurondaily.com/p/google-launched-gemini-4-argon-tying-gpt-6-b85b",
+      "newsletter": "Google launched Gemini 4 Argon, tying GPT-6",
+      "rubrique": "AI Skill of the Day",
+      "titreOriginal": "Ask for six fixes, expect to keep two"
+    }
+  },
+  {
+    "id": "tenir-un-reglement-que-l-ia-corrige-quand-elle-se-trompe",
+    "titre": "Tenir un règlement que l’IA corrige quand elle se trompe",
+    "resume": "Gardez des règles numérotées pour une tâche répétée. Quand un résultat échoue, faites corriger la seule règle fautive, puis tester la modification sur vos exemples validés.",
+    "categorie": "memoire",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Des chercheurs de l’UCL et de Huawei ont amené une IA à réussir les 25 jeux de réflexion publics d’ARC-AGI-3 (sans instructions : elle doit découvrir les règles en jouant), sans aucun réentraînement. [Leur article Memento 3](https://arxiv.org/abs/2610.11794) explique comment : elle tenait un règlement en texte brut, réécrivait la règle responsable de chaque mauvaise hypothèse et ne gardait la modification que si elle restait cohérente avec tous les coups joués jusque-là. *Une IA qui corrige ses propres notes.*"
+      },
+      {
+        "t": "p",
+        "x": "La transposition au bureau est de The Neuron (l’article porte sur des jeux, pas sur des tableurs) : tenez un règlement numéroté pour chaque tâche que vous confiez régulièrement à l’IA. Quand un résultat est raté, ne le corrigez pas à la main. Demandez la plus petite modification de la règle fautive, puis faites tester cette modification par l’IA sur d’anciens résultats que vous aviez validés."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de correction du règlement",
+        "type": "prompt",
+        "texte": "Voici mon règlement et un résultat raté : [règlement et résultat raté]. Ne réécris pas le règlement. Nomme la règle qui a causé l’échec, propose la plus petite modification possible, puis vérifie-la sur ces exemples validés et signale ceux qui échoueraient désormais : [2 ou 3 exemples validés].",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Corrigez la règle qui a produit l’erreur, pas le résultat, et vérifiez que la correction ne casse rien de ce qui marchait.",
+    "source": {
+      "cle": "meta-s-muse-wonder-is-here-priced-like-opus-ee30",
+      "date": "2026-10-13",
+      "url": "https://www.theneurondaily.com/p/meta-s-muse-wonder-is-here-priced-like-opus-ee30",
+      "newsletter": "Meta’s Muse Wonder is here, priced like Opus",
+      "rubrique": "AI Skill of the Day",
+      "titreOriginal": "Give your AI a rulebook it rewrites when it's wrong"
+    }
+  },
+  {
+    "id": "construire-une-echelle-d-autonomie-pour-un-agent-ia",
+    "titre": "Construire une échelle d’autonomie pour un agent IA",
+    "resume": "Ne passez pas d’un assistant à un agent totalement autonome : commencez par l’approbation humaine, déléguez une petite part réversible, puis élargissez sur preuves.",
+    "categorie": "automatiser",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Les agents de prêt immobilier de Vesta offrent un modèle utile à quiconque déploie un agent IA au travail : ne passez pas directement du stade « assistant » au stade « totalement autonome »."
+      },
+      {
+        "t": "p",
+        "x": "Selon [TechCrunch](https://techcrunch.com/2026/10/08/vesta-raises-30m-as-lenders-adopt-ai-agents/), les prêteurs commencent souvent par faire approuver le travail de l’agent par une personne, puis le laissent traiter seul une petite part des prêts, avant d’élargir à mesure que la confiance grandit. Chaque action et sa justification sont journalisées, pour que le prêteur puisse vérifier ce qui s’est passé."
+      },
+      {
+        "t": "p",
+        "x": "C’est une échelle d’autonomie : vous n’accordez davantage de liberté qu’une fois que l’étape moins risquée a fait ses preuves."
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Commencez par l’approbation : l’agent rédige ou recommande, un humain exécute.",
+          "Déléguez une tranche étroite : laissez-le agir sur des cas peu risqués et réversibles, avec des journaux complets.",
+          "Élargissez sur preuves : n’étendez le périmètre qu’après avoir mesuré les taux d’erreur, les exceptions et la capacité de rattrapage."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "*L’autonomie se gagne comme un accès à la production, elle ne s’accorde pas comme un essai gratuit.*"
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de l’échelle d’autonomie",
+        "type": "prompt",
+        "texte": "Conçois une échelle d’autonomie pour [processus de travail]. Découpe le travail en trois étapes : approbation humaine, autonomie restreinte et autonomie élargie. Pour chaque étape, définis les tâches autorisées, les actions interdites, les journaux exigés, la méthode de retour en arrière, le seuil d’erreur et les preuves nécessaires avant de passer à l’étape suivante.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Donnez plus de liberté à un agent seulement quand l’étape précédente a prouvé, chiffres à l’appui, qu’elle tenait.",
+    "source": {
+      "cle": "white-house-orders-ai-incident-reporting-f220",
+      "date": "2026-10-12",
+      "url": "https://www.theneurondaily.com/p/white-house-orders-ai-incident-reporting-f220",
+      "newsletter": "White House orders AI incident reporting",
+      "rubrique": "AI Skill of the Day",
+      "titreOriginal": "Build an Autonomy Ladder"
+    }
+  },
+  {
+    "id": "reperer-ce-que-l-ia-a-ajoute-dans-son-resume",
+    "titre": "Repérer ce que l’IA a ajouté dans son résumé",
+    "resume": "Faites confronter chaque affirmation d’un résumé au passage exact de la source, avec une étiquette : affirmé, interprétation ou non étayé. Vous voyez où le sens a glissé.",
+    "categorie": "verifier",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Vous donnez à l’IA un article sur un outil en phase de test. Son résumé affirme que l’outil est disponible dès maintenant. *Quelque part entre la lecture et l’écriture, un test est devenu un lancement.*"
+      },
+      {
+        "t": "p",
+        "x": "Demandez à l’IA de séparer ce que dit réellement la source de sa propre interprétation, c’est-à-dire des conclusions qu’elle a tirées en résumant. Placez chaque affirmation à côté de la formulation d’origine pour voir où le sens a changé."
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "Collez le texte source et le résumé de l’IA sous deux intertitres distincts.",
+          "Lancez le prompt ci-dessous, puis vérifiez vous-même les passages cités : l’IA peut mal étiqueter son propre travail.",
+          "Gardez les affirmations étayées, signalez clairement les interprétations utiles et corrigez ou supprimez les affirmations non étayées."
+        ]
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de contrôle du résumé",
+        "type": "prompt",
+        "texte": "Vérifie ce résumé en le comparant au texte source.\n\nPour chaque affirmation, indique :\n- L’affirmation tirée du résumé.\n- Le passage exact de la source et où le trouver, ou « aucun passage à l’appui ».\n- Une étiquette : AFFIRMÉ (la source le dit), INTERPRÉTATION (une conclusion tirée de la source) ou NON ÉTAYÉ (preuve absente ou contradictoire).\n- Toute formulation qui rend l’affirmation plus forte ou plus certaine que la source.\n\nExplique le raisonnement derrière les interprétations. Propose des corrections pour les affirmations non étayées. Utilise uniquement le texte fourni.\n\nTEXTE SOURCE : [texte source, avec titres, liens et dates]\nRÉSUMÉ DE L’IA : [résumé produit par l’IA]",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Un résumé peut durcir ou inventer une affirmation : exigez la preuve dans la source, phrase par phrase.",
+    "source": {
+      "cle": "google-tested-amie-with-98-patients",
+      "date": "2026-10-11",
+      "url": "https://www.theneurondaily.com/p/google-tested-amie-with-98-patients",
+      "newsletter": "Google's AMIE Trial and Utah's AI Healthcare Pilots",
+      "rubrique": "AI Skill of the Day",
+      "titreOriginal": "Spot what AI added to your summary"
+    }
+  },
+  {
+    "id": "construire-un-tableau-de-bord-autour-d-une-decision",
+    "titre": "Construire un tableau de bord autour d’une décision",
+    "resume": "Avec Claude Dashboards, partez de la décision à prendre plutôt que des graphiques voulus, et exigez pour chaque indicateur sa définition, sa requête et ses limites.",
+    "categorie": "outils",
+    "niveau": "intermediaire",
+    "outils": [
+      "claude"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Un tableau de bord n’est utile que s’il vous aide à décider quelque chose. Sinon, félicitations : vous avez fait un tableur plus joli."
+      },
+      {
+        "t": "p",
+        "x": "Si vous avez accès à Claude Dashboards, commencez par la décision que vous cherchez à prendre, pas par une liste de graphiques. Dites à Claude quelle question compte, quelles sources de données il peut utiliser et quels seuils changeraient votre action."
+      },
+      {
+        "t": "p",
+        "x": "Faites-lui ensuite montrer son travail : demandez la définition de chaque indicateur, la requête qui l’a produit et une courte explication de ce qui pourrait rendre le résultat trompeur. Le tableau de bord passe alors de « l’IA a sorti un chiffre » à quelque chose que vous pouvez réellement examiner."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt du tableau de bord de décision",
+        "type": "prompt",
+        "texte": "Construis un tableau de bord en temps réel pour m’aider à décider [décision]. Utilise [sources de données]. Commence par identifier les 3 à 5 indicateurs qui changeraient réellement cette décision. Pour chaque indicateur, montre la définition, la requête sous-jacente, la valeur actuelle, la tendance et le seuil qui changerait mon action. Signale les données manquantes, les définitions ambiguës et tout ce que je devrais vérifier avant de me fier au résultat.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Visez moins de graphiques mystères et plus de décisions que vous pouvez vérifier.",
+    "source": {
+      "cle": "claude-dashboards-motion-launched",
+      "date": "2026-10-09",
+      "url": "https://www.theneurondaily.com/p/claude-dashboards-motion-launched",
+      "newsletter": "Claude Dashboards and Motion Launch With Adobe",
+      "rubrique": "AI Skill of the Day",
+      "titreOriginal": "Ask for a Decision Dashboard"
+    }
+  },
+  {
+    "id": "donner-un-objectif-a-l-ia-plutot-qu-une-recette",
+    "titre": "Donner un objectif à l’IA plutôt qu’une recette",
+    "resume": "Décrivez le résultat voulu, laissez l’IA se documenter et fabriquer ses propres outils, donnez-lui un fait sûr comme point d’appui, puis vérifiez sa réponse contre une donnée réelle.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Deux modèles d’IA viennent de déchiffrer des messages Enigma de la Seconde Guerre mondiale qui résistaient aux chercheurs depuis près de 20 ans. Leur méthode fonctionne aussi sur vos problèmes difficiles."
+      },
+      {
+        "t": "p",
+        "x": "Enigma était la machine qu’utilisait l’Allemagne nazie pour chiffrer ses messages militaires. Selon [TechCrunch](https://techcrunch.com/2026/09/25/astra-and-opus-just-passed-turings-other-test/), le développeur Carter Leffen a confié à GPT-6 Astra, d’OpenAI, une mission assez vague : trouver un message non résolu dans une archive et le décoder. Astra s’est documenté sur l’histoire, a repéré des indices, a construit son propre simulateur d’Enigma (une copie logicielle de la machine) et a retrouvé le texte lisible d’un message non résolu depuis 2005. De son côté, [Jack Willis a utilisé Claude Opus 5](https://www.notebookcheck.net/GPT-6-Astra-and-Opus-5-crack-two-Enigma-messages-that-had-resisted-researchers-for-decades.1408676.0.html) en le guidant beaucoup plus, notamment avec la signature connue d’un officier comme point d’appui."
+      },
+      {
+        "t": "etapes",
+        "x": [
+          "**Donnez un objectif, pas une recette.** Décrivez le résultat attendu et laissez l’IA se documenter d’abord.",
+          "**Laissez-la fabriquer ses propres outils**, comme un script, un simulateur ou un tableur.",
+          "**Donnez-lui un fait dont vous êtes sûr.** Un indice connu réduit le champ de recherche.",
+          "**Vérifiez avec quelque chose de réel.** Le spécialiste d’Enigma Frode Weierud a contrôlé le premier résultat."
+        ]
+      },
+      {
+        "t": "p",
+        "x": "*Les prompts exacts n’ont pas été publiés, et les experts soulignent que le savoir-faire humain est resté central.*"
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt de l’objectif",
+        "type": "prompt",
+        "texte": "Objectif : [le résultat voulu, par exemple comprendre pourquoi nos chiffres du troisième trimestre ne concordent pas].\n\nCommence par te documenter sur le contexte et dis-moi ce que tu trouves. Ensuite, construis les outils dont tu as besoin (un script, un tableur, un simulateur) pour résoudre le problème.\n\nUne chose dont je suis sûr : [un fait ou un indice].\n\nTermine en m’expliquant comment je peux vérifier ta réponse en la comparant à quelque chose dont je sais déjà que c’est vrai.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Fixez le but et un point d’appui sûr, laissez l’IA chercher sa méthode, puis vérifiez le résultat contre le réel.",
+    "source": {
+      "cle": "october-08-thursday",
+      "date": "2026-10-08",
+      "url": "https://www.theneurondaily.com/p/october-08-thursday",
+      "newsletter": "GPT-6 Builds Interactive Calculators and Charts in ChatGPT",
+      "rubrique": "AI Skill of the Day",
+      "titreOriginal": "Give AI the Goal, Not the Recipe"
+    }
+  },
+  {
     "id": "vaincre-la-page-blanche-avec-l-ia-sans-lui-confier-l-ecriture",
     "titre": "Vaincre la page blanche avec l’IA sans lui confier l’écriture",
     "resume": "Rédigez votre prompt comme un premier jet, ou dictez vos idées en vrac, puis faites-les mettre en forme par l’IA en gardant vos mots. Réécrivez ensuite vous-même sa version.",
@@ -11448,6 +12631,43 @@ export const FICHES = [
       "newsletter": "DeepSeek Just Fixed What Breaks $100M AI Training Runs",
       "rubrique": "Prompt Tip of the Day",
       "titreOriginal": "😸 DeepSeek Just Fixed What Breaks $100M AI Training Runs"
+    }
+  },
+  {
+    "id": "remplacer-les-grandes-resolutions-par-douze-petites-experiences",
+    "titre": "Remplacer les grandes résolutions par douze petites expériences",
+    "resume": "Au lieu de bouleverser votre vie au 1er janvier, faites proposer par l’IA douze petites expériences mensuelles, peu chères et rapides à lancer, puis gardez celles qui vous plaisent.",
+    "categorie": "formuler",
+    "niveau": "debutant",
+    "outils": [
+      "tous"
+    ],
+    "corps": [
+      {
+        "t": "p",
+        "x": "Prenez des résolutions que vous pouvez vraiment *tester*, et abandonner sans culpabiliser."
+      },
+      {
+        "t": "p",
+        "x": "La plupart des bonnes résolutions sont de grands chamboulements de mode de vie… et c’est pour cela qu’elles meurent vers la mi-janvier. Ce prompt inverse la logique : vous menez **12 petites expériences**, peu coûteuses, rapides et guidées par la curiosité. Si l’une échoue, vous avez appris quelque chose. Si l’une prend, vous tenez une nouvelle habitude sans vous forcer."
+      }
+    ],
+    "prompts": [
+      {
+        "titre": "Le prompt des 12 petites expériences",
+        "type": "prompt",
+        "texte": "Propose-moi 12 petites expériences à tenter cette année (une par mois), autour du plaisir, de l’apprentissage, de la créativité ou des relations.\nChaque expérience doit coûter moins de 50 $ et prendre moins de 2 heures pour démarrer.\nIndique pour chacune une première étape claire et à quoi ressemble la réussite.\nDemande-moi ensuite lesquelles garder, ajuster ou abandonner avant de finaliser la liste.",
+        "adapte": false
+      }
+    ],
+    "aRetenir": "Une petite expérience qui rate vous apprend quelque chose ; une qui marche devient une habitude sans effort forcé.",
+    "source": {
+      "cle": "openai-and-jony-ive-s-ai-device-is-a-pen",
+      "date": "2026-01-02",
+      "url": "https://www.theneurondaily.com/p/openai-and-jony-ive-s-ai-device-is-a-pen",
+      "newsletter": "OpenAI and Jony Ive's AI device is a pen?!",
+      "rubrique": "Prompt Tip of the Day",
+      "titreOriginal": "😺 OpenAI and Jony Ive's AI device is a pen?!"
     }
   },
   {
