@@ -9,6 +9,8 @@
     "build": "node outils/construire.js",
     "icones": "node outils/generer-icones.js",
     "captures": "node outils/captures.js",
+    "newsletters": "node outils/newsletters.js",
+    "integrer": "node outils/integrer-fiches.js",
     "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
