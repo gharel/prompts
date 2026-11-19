@@ -82,7 +82,7 @@ tests/e2e/                     Playwright : parcours, accessibilité (axe), mobi
 
 ## Conventions de code
 
-Reprises des projets voisins `jeu-formation` et `exercices-ia`, même auteur et même charte :
+Reprises des projets voisins `jeux` et `exercices-ia`, même auteur et même charte :
 
 - **En français** : noms de fonctions et de variables, commentaires, textes affichés, messages de commit.
 - **Aucune dépendance à l'exécution, aucun CDN, aucune requête réseau.** La police est intégrée, les icônes Font Awesome Free sont un sprite SVG généré (`npm run icones`). esbuild ne sert qu'à construire le fichier unique. jsdom sert aux outils d’archives (Node).

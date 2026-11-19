@@ -1,5 +1,5 @@
 /**
- * Petits outils d'affichage, repris de jeu-formation. Tout texte passe par textContent :
+ * Petits outils d'affichage, repris de jeux. Tout texte passe par textContent :
  * jamais d'innerHTML avec du contenu.
  */
 
