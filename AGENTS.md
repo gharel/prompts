@@ -14,7 +14,7 @@ Une base de prompts en français : une fiche par section de la rubrique quotidie
 - **Bandeau commun aux outils Skazy Formation** (la signature), de gauche à droite :
   1. la pastille et le nom de l’outil, en **un seul lien** vers son accueil (`./`, `aria-current="page"`), sans filet ;
   2. les actions de l’outil : Mes favoris, À propos, thème (`src/js/vues/bandeau.js`) ;
-  3. « **Les outils** » : la roue (`src/assets/img/les-outils.svg`, copie du favicon de la page d’accueil des outils, jamais un lien vers le fichier distant) vers https://gharel.github.io/home/, dans le même onglet, `title="Tous les outils Skazy Formation"` ;
+  3. « **Les outils** » : la roue (`src/assets/img/les-outils.svg`, copie du favicon de la page d’accueil des outils, jamais un lien vers le fichier distant) vers https://gharel.github.io/pro/, dans le même onglet, `title="Tous les outils Skazy Formation"` ;
   4. un filet de 1 × 24 px ;
   5. le **logo Skazy Formation**, toujours en dernier, vers https://formation.skazy.nc dans un nouvel onglet (nom accessible « Site de Skazy Formation (nouvel onglet) »), 36 px de haut, 30 px ≤ 640 px, 28 puis 26 px ≤ 400 et 370 px.
   - Quand la place manque, « Les outils » se réduit à la roue (≤ 720 px), « Mes favoris » à son icône et au compteur (≤ 800 px), le nom de l’outil s’efface (≤ 540 px) ; ces textes restent le nom accessible des liens. La pastille reste toujours (sauf sous 360 px). Rien ne déborde à 360 px, même avec un compteur de favoris à deux chiffres.

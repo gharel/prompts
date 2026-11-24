@@ -300,7 +300,7 @@ test('le bandeau : nom de l’outil vers son accueil, actions, « Les outils »,
   expect(await nom.evaluate((a) => getComputedStyle(a).borderLeftStyle)).toBe('none');
 
   const outils = page.getByRole('link', { name: 'Les outils', exact: true });
-  await expect(outils).toHaveAttribute('href', 'https://gharel.github.io/home/');
+  await expect(outils).toHaveAttribute('href', 'https://gharel.github.io/pro/');
   await expect(outils).not.toHaveAttribute('target', /./);
   await expect(outils).toHaveAttribute('title', 'Tous les outils Skazy Formation');
   await expect(outils.locator('.bandeau__roue')).toBeVisible();
