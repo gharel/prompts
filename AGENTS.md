@@ -20,10 +20,10 @@ Une base de prompts en français : une fiche par section de la rubrique quotidie
   - Quand la place manque, « Les outils » se réduit à la roue (≤ 720 px), « Mes favoris » à son icône et au compteur (≤ 800 px), le nom de l’outil s’efface (≤ 540 px) ; ces textes restent le nom accessible des liens. La pastille reste toujours (sauf sous 360 px). Rien ne déborde à 360 px, même avec un compteur de favoris à deux chiffres.
   - Bouton rond « **Remonter en haut de la page** » (`#haut-de-page`), modèle commun aux outils : en bas à droite (48 px à 24 px des bords, 44 px à 16 px sur téléphone, plus la zone de sécurité), il apparaît en fondu après 1,2 écran de défilement, sur ordinateur comme sur téléphone, jamais par-dessus une fiche ou l’À propos ouverts ; défilement fluide sauf si les animations sont réduites ; focus sur le titre de la page (au clavier : sur la recherche).
 - **Thème commun aux outils Skazy Formation** : le bouton du thème (`#bouton-theme`) a trois états, du thème du système au thème clair, puis sombre, puis de nouveau celui du système ; l’icône montre le thème actuel (demi-cercle, soleil, lune), le nom accessible et l’info-bulle disent « Thème : celui du système. Changer de thème » (puis « Thème : clair. … », « Thème : sombre. … »).
-  - Le choix vaut pour **tous les outils** (même origine, https://gharel.github.io, donc même stockage) : il est gardé sous la clé `skazy-outils:theme`, hors du préfixe de l’outil (`"light"` ou `"dark"` en JSON ; thème du système : clé effacée). Le script du `<head>` l’applique avant l’affichage ; un changement dans un autre onglet ou un autre outil (événement `storage`), ou le retour sur une page gardée en mémoire (`pageshow`), le reprend aussitôt. Les anciennes clés propres à l’outil ne sont plus lues.
+  - Le choix vaut pour **tous les outils** (même origine, https://gharel.github.io, donc même stockage) : il est gardé sous la clé `skazy-outils:theme`, hors du préfixe de l’outil (`"light"` ou `"dark"` en JSON ; thème du système : clé effacée). Le script du `<head>` (`src/js/theme-initial.js`) l’applique avant l’affichage ; un changement dans un autre onglet ou un autre outil (événement `storage`), ou le retour sur une page gardée en mémoire (`pageshow`), le reprend aussitôt. Les anciennes clés propres à l’outil ne sont plus lues.
   - Thème clair choisi : `color-scheme: only light` ; thème sombre choisi : sombre ; sinon, celui du système.
   - `<meta name="darkreader-lock" />` suit toujours `<meta name="color-scheme" content="light dark" />` : la page a son propre thème sombre ; sans ce verrou, le mode nuit de Brave (Dark Reader) la repeint, même en thème clair.
-- Les **archives** (`archives/the-neuron/`) gardent toutes les éditions de la newsletter, pour en tirer d’autres informations plus tard.
+- Les **archives** (`archives/the-neuron/`) gardent toutes les éditions de la newsletter, pour en tirer d’autres informations plus tard. Elles restent en local : `archives/` est ignoré par git (contenu sous droit d'auteur, dépôt public). Ne jamais les recommiter.
 
 ## Commandes
 
@@ -52,6 +52,7 @@ src/styles/charte.css          Jetons du design system (clair et sombre) : seul 
 src/styles/base.css            Mise en page, bandeau, boutons, champs, panneaux, toast, pied
 src/styles/composants.css      Scène, pastilles, filtres, cartes, fiche, prompts, à propos
 src/js/main.js                 Montage de la page, adresse (filtres et #fiche)
+src/js/theme-initial.js        Script classique du <head> : le thème choisi, appliqué avant l'affichage
 src/js/etat.js                 État : filtres, favoris, thème ; adresse ↔ filtres (pur)
 src/js/filtres.js              Pur : rechercher, filtrer, trier, compter, voisines
 src/js/texte.js                Pur : markdown léger, [passages à compléter], dates, slugs
@@ -87,7 +88,7 @@ Reprises des projets voisins `jeux` et `exercices-ia`, même auteur et même cha
 - **En français** : noms de fonctions et de variables, commentaires, textes affichés, messages de commit.
 - **Aucune dépendance à l'exécution, aucun CDN, aucune requête réseau.** La police est intégrée, les icônes Font Awesome Free sont un sprite SVG généré (`npm run icones`). esbuild ne sert qu'à construire le fichier unique. jsdom sert aux outils d’archives (Node).
 - **La logique est séparée de l'affichage.** Les fonctions pures (`filtres.js`, `texte.js`, `etat.js`, `schema.js`, `outils/neuron.js`) sont testées unitairement ; les vues ne font que construire la page et réagir aux clics.
-- **Sécurité** : tout texte passe par `el()` ou `textContent`, jamais par `innerHTML` ; les liens du markdown léger n’acceptent que `http(s)`.
+- **Sécurité** : tout texte passe par `el()` ou `textContent`, jamais par `innerHTML` ; les liens du markdown léger n’acceptent que `http(s)`. Politique de sécurité (`<meta http-equiv="Content-Security-Policy">` de `src/index.html`) : aucune ressource hors du fichier ou du site, styles en ligne permis, et aucun script en ligne ni attribut `onclick` dans les sources (`script-src 'self'`). Le build recopie les deux scripts (`theme-initial.js` et le paquet de `main.js`) en ligne dans `dist/index.html` et remplace `'self'` par leur empreinte SHA-256 : tout autre script est bloqué (`autonome.spec.js` le vérifie).
 - **Stockage** : toujours par `stockage.js` (clés préfixées `skazy-prompts:`, sauf le thème commun `skazy-outils:theme`) ; une erreur de stockage ne fait jamais planter la page.
 - **Accessibilité** :
   - contraste WCAG AA dans les deux thèmes : pas de texte blanc sur `#50967c` (3,5:1), on utilise `--primaire-fonce` ;

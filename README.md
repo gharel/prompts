@@ -19,6 +19,8 @@ Les techniques de prompt de la rubrique quotidienne de la newsletter [The Neuron
 
 `archives/the-neuron/index.json` les liste toutes : `slug`, `date`, `titre`, `sousTitre`, `url`, `fichier`, `recupereLe`.
 
+Les archives restent **en local** : `archives/` est ignoré par git, car ces éditions sont sous droit d'auteur et le dépôt est public. Le site publié ne s'en sert pas ; seuls `npm run newsletters` et `npm run integrer` les lisent.
+
 ## Ajouter les nouvelles éditions
 
 ```bash

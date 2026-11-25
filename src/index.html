@@ -3,6 +3,12 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <!-- Politique de sécurité : aucun script en ligne ni externe, aucune ressource hors du site.
+         Le build remplace 'self' de script-src par l'empreinte des deux scripts intégrés. -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'"
+    />
     <title>Prompthèque · Skazy Formation</title>
     <meta
       name="description"
@@ -26,16 +32,7 @@
     <link rel="stylesheet" href="styles/charte.css" />
     <link rel="stylesheet" href="styles/base.css" />
     <link rel="stylesheet" href="styles/composants.css" />
-    <script>
-      // Thème choisi, commun à tous les outils Skazy Formation, appliqué avant l'affichage pour
-      // éviter un éclair de la mauvaise couleur. Thème du système : aucune clé.
-      try {
-        const theme = JSON.parse(localStorage.getItem('skazy-outils:theme'));
-        if (theme === 'light' || theme === 'dark') document.documentElement.dataset.theme = theme;
-      } catch {
-        // stockage indisponible : thème du système
-      }
-    </script>
+    <script src="js/theme-initial.js"></script>
     <script type="module" src="js/main.js"></script>
   </head>
   <body>

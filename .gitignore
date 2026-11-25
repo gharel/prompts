@@ -6,4 +6,10 @@ dist/
 .DS_Store
 Thumbs.db
 captures/
-archives/a-traduire.json
+# Archives de The Neuron : contenu sous droit d'auteur, gardé en local uniquement
+archives/
+
+# Secrets locaux
+.env
+.env.*
+!.env.example

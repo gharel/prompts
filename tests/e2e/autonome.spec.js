@@ -15,6 +15,11 @@ test('le fichier s’ouvre hors ligne en double-cliquant, sans aucune requête r
     if (!/^(file|data|blob):/.test(r.url())) requetes.push(r.url());
   });
   await page.goto(FICHIER);
+  // Politique de sécurité : seuls les deux scripts intégrés s'exécutent, par leur empreinte.
+  await expect(page.locator('meta[http-equiv="Content-Security-Policy"]')).toHaveAttribute(
+    'content',
+    /script-src 'sha256-[\w+/]+=*' 'sha256-[\w+/]+=*';/,
+  );
   await expect(page.locator('.carte').first()).toBeVisible();
   await expect(page.locator('.bandeau__logo img').first()).toBeVisible();
   // Pastille, roue « Les outils » et logo sont intégrés au fichier et s'affichent.
